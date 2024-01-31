@@ -2,6 +2,13 @@ const STORAGE_TOKEN = "QRFWKZVNK81DEAU7AMO2GVI5JL8YYYMLU187EAAJ";
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 
+/**
+ * stored a string to remotestorage
+ * 
+ * @param {string} key under which the value is stored
+ * @param {string} value string that will be stored
+ * @returns response from fetch
+ */
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
@@ -9,6 +16,13 @@ async function setItem(key, value) {
 }
 
 
+/**
+ * stored a JSON to remotestorage
+ * 
+ * @param {string} key under which the value is stored
+ * @param {JSON} value JSON that will be stored
+ * @returns response from fetch
+ */
 async function setItemFromJson(key, value) {
     return await setItem(key, JSON.stringify(value));
 }
