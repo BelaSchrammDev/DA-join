@@ -1,0 +1,59 @@
+:root {
+  /* bg = background */
+  --site-bg: #f6f7f8;
+
+  --primary: #2a3647;
+  --secondary: #091931;
+  --accent: #29abe2;
+  /* hvr = hover */
+  --primary-hvr: #202e47;
+  --checkbox-hvr: #edf2fa;
+
+  /* btn = button */
+  /* shdw = shadow */
+  /* td = top-down */
+  --btn-shdw-td: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+
+  /* ttb = top to bottom */
+  --btn-shdw-ttb: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  --header-shdw-ttb: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+
+  /* qm = questio-mark */
+  --qm-grey: #a8a8a8;
+
+  --icon-grey: #cdcdcd;
+
+  --no-task-bg: #a8a8a8;
+
+  --form-active-border: 1px solid #29abe2;
+
+  --form-fail-border: 1px solid #ff8190;
+
+  /* txt-col = text color */
+  --form-fail-txt-col: #ff8190;
+
+  /* ma = mailaddress */
+  --contact-ma: #007cee;
+
+  /* set as 'background' - property!!! */
+  --contact-hvr: linear-gradient(180deg, #f9f9f9 0%, #f0f0f0 100%);
+
+  --urgent: #ff3d00;
+  --medium: #ffa800;
+  --low: #7ae229;
+
+  /* small-br = button border-radius */
+  /* for buttons and contacts */
+  --small-br: 0.625rem;
+
+  /* med-br = med border-radius */
+  /* for all tasks in the board (reduced) */
+  --med-br: 1.5rem;
+
+  /* big-br = big border-radius */
+  /* for all slide-in pop-ups like _add contact+_ | _add task+_ and _task-detail-view_ */
+  --big-br: 1.875rem;
+
+  /* refers to menu that shows up when profile in upper-right corner is clicked */
+  --small-menu-br: 1.25rem 0rem 1.25rem 1.25rem;
+}
