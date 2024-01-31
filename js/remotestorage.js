@@ -39,7 +39,7 @@ async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
         if (res.data) return res.data.value;
-        return "";
+        return undefined;
     });
 }
 
@@ -52,5 +52,8 @@ async function getItem(key) {
  * @returns {JSON} the value from the storageapi
  */
 async function getItemAsJson(key) {
-    return JSON.parse(await getItem(key));
+    let response = await getItem(key);
+    console.log(response);
+    if (response) return JSON.parse(response);
+    return undefined;
 }
