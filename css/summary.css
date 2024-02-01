@@ -104,6 +104,7 @@ a:visited {
     justify-content: center;
     align-items: center;
     gap: 18px;
+    transition: transform 120ms ease-in-out;
 }
 
 .task-important {
@@ -113,6 +114,7 @@ a:visited {
     border-radius: 30px;
     padding: 38px 19px 38px 19px;
     box-shadow: var(--btn-shdw-td);
+    transition: transform 120ms ease-in-out;
 }
 
 .task-counter-container {
@@ -127,6 +129,7 @@ a:visited {
     border-radius: 30px;
     padding: 38px 19px 38px 19px;
     box-shadow: var(--btn-shdw-td);
+    transition: transform 120ms ease-in-out;
 }
 
 /* SUMMARY INFO INNER */
@@ -172,4 +175,25 @@ a:visited {
     font-weight: 700;
     color: var(--accent);
     margin: 0;
+}
+
+/* HOVER EFFECTS */
+
+.hover-to-the-right:hover {
+    transform: scale(1.075);
+    transform-origin: left;
+}
+
+.hover-to-the-left:hover {
+    transform: scale(1.075);
+    transform-origin: right;
+}
+
+.hover-to-the-bottom-right:hover {
+    transform: scale(1.075);
+    transform-origin: top left;
+}
+
+.hover-to-the-middel:hover {
+    transform: scale(1.075);
 }
