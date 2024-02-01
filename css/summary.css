@@ -134,14 +134,15 @@ a:visited {
 .task-amount {
     font-size: 64px;
     font-weight: 600;
+    text-align: center;
 }
 
-.task-left {
+.upper-task-text {
     font-size: 20px;
     font-weight: 400;
 }
 
-.pencil-bg {
+.upper-img-bg {
     height: 69px;
     width: 69px;
     border-radius: 50%;
