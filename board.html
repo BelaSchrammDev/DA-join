@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
+    <script src="./js/main.js"></script>
+    <script src="./js/remotestorage.js"></script>
+    <title>Join - Board</title>
+    <!-- styletag for debuging only -->
+    <style>
+        
+        .debug_maindiv{
+            min-height: 100vh;
+            max-width: 1440px;
+            margin: auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+
+        .debug_maincontent{
+            background-color: aqua;
+            flex-grow: 1;
+        }
+
+        .debug_header {
+            height: 100px;
+            width: 100%;
+            background-color: rgb(224, 171, 171);
+        }
+
+        .debug_sidebar {
+            background-color: rgb(169, 169, 255);
+            width: 232px;
+        }
+    </style>
+    <!-- ----------------------------- -->
+</head>
+
+<body onload="initJoin()">
+
+    <div class="debug_maindiv">
+        <div class="debug_sidebar" w3-include-html="./templates/sidebar.html"></div>
+        <div class="debug_maincontent">
+            <header class="debug_header" w3-include-html="./templates/header.html"></header>
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
