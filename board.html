@@ -50,11 +50,10 @@
             justify-content: flex-start;
             align-items: flex-start;
             width: 1208px;
-            height: 232px;
-            border: 1px solid black;
+            height: 200.5px;
         }
 
-        .board_headline{
+        .board_headline {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -124,24 +123,100 @@
             width: 22px;
         }
 
-        .board_task_headers{
+        .board_task_rows {
             display: flex;
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-start;
             gap: 34px;
             font-size: 20px;
             font-weight: 700;
             color: #42526E;
-            margin-top: 48px;
             margin-left: 64px;
         }
 
-        .board_task_head{
+        .board_task_head {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 244px;
             height: 24px;
+            margin-bottom: 15.5px;
+        }
+
+        .board_task_list {}
+
+        .board_task {
+            background-color: aqua;
+            height: 200px;
+        }
+
+        .board_task {
+            width: 252px;
+            height: max-content;
+            border-radius: 24px;
+            background-color: white;
+            box-shadow: 0px 0px 10px 3px #00000014;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 24px;
+            padding: 16px;
+        }
+
+        .board_task>span:first-child {
+            font-size: 16px;
+            font-weight: 400;
+            color: white;
+            height: 27px;
+            background-color: #0038ff;
+            border-radius: 8px;
+            padding: 4px 16px 4px 16px;
+        }
+
+        .board_tast_description {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .board_tast_description>span:first-child {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2a3647;
+        }
+
+        .board_tast_description>span:nth-child(2) {
+            font-size: 16px;
+            font-weight: 400;
+            color: #a8a8a8;
+        }
+
+        .board_task_footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-self: stretch;
+        }
+
+        .board_task_assign{
+            display: flex;
+        }
+
+        .board_task_assign span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 1000px;
+            border: 1px solid white;
+            font-size: 12px;
+            font-weight: 400;
+            margin-right: -10px;
         }
     </style>
     <!-- ----------------------------- -->
@@ -169,26 +244,43 @@
                                 </div>
                             </button>
                         </div>
-                        <div class="board_task_headers">
+                    </div>
+                    <div class="board_task_rows">
+                        <div>
                             <div class="board_task_head">
                                 <span>To do</span>
                                 <img src="./img/icons/board/plus-button.svg" alt="">
                             </div>
-                            <div class="board_task_head">
-                                <span>In progress</span>
-                                <img src="./img/icons/board/plus-button.svg" alt="">
-                            </div>
-                            <div class="board_task_head">
-                                <span>Await feedback</span>
-                                <img src="./img/icons/board/plus-button.svg" alt="">
-                            </div>
-                            <div class="board_task_head">
-                                <span>Done</span>
+                            <div class="board_task_list">
+                                <div class="board_task">
+                                    <span>User Story</span>
+                                    <div class="board_tast_description">
+                                        <span>Kochwelt Page & Recipe Recommender</span>
+                                        <span>Build start page with recipe recommendation...</span>
+                                    </div>
+                                    <div>Subtask</div>
+                                    <div class="board_task_footer">
+                                        <div class="board_task_assign">
+                                            <span style="background-color: aqua; color: black;">AM</span>
+                                            <span style="background-color: rgb(9, 255, 0); color: black;">AM</span>
+                                            <span style="background-color: rgb(68, 0, 255); color: rgb(255, 255, 255);">AM</span>
+                                        </div>
+                                        <img src="./img/icons/board/medium.svg" alt="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="board_task_rows">
-
+                        <div class="board_task_head">
+                            <span>In progress</span>
+                            <img src="./img/icons/board/plus-button.svg" alt="">
+                        </div>
+                        <div class="board_task_head">
+                            <span>Await feedback</span>
+                            <img src="./img/icons/board/plus-button.svg" alt="">
+                        </div>
+                        <div class="board_task_head">
+                            <span>Done </span>
+                        </div>
                     </div>
                 </div>
             </div>
