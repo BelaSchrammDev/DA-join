@@ -44,36 +44,44 @@
             align-items: flex-start;
         }
 
-        .board_header{
+        .board_header {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 73px;
-            padding-left: 64px;
-            padding-top: 79.5px;
-            padding-bottom: 48px;
-        }
-
-        .board_header>span{
-            flex-grow: 1;
-            font-size: 61px;
-            font-weight: 700;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 1208px;
+            height: 232px;
+            border: 1px solid black;
         }
 
         .board_header>div{
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 1056px;
+            margin-left: 64px;
+            margin-top: 79.5px;
+        }
+
+        .board_header>div>span {
+            flex-grow: 1;
+            font-size: 61px;
+            font-weight: 700;
+        }
+
+        .board_header>div>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 48px;
-            width: 280px;
+            width: 312px;
             padding: 0 16px;
             background-color: white;
             border: 1px solid #A8A8A8;
             border-radius: 10px;
         }
 
-        .board_header>div>input{
+        .board_header>div>div>input {
             outline: none;
             border: unset;
             height: 32px;
@@ -83,39 +91,38 @@
             font-weight: 400;
         }
 
-        .board_header>div>img {
+        .board_header>div>div>img {
             width: 32px;
             height: 32px;
             padding-left: 16px;
             border-left: 1px solid #D1D1D1;
         }
 
-        .board_header>button{
+        .board_header>div>button {
             height: 48px;
             width: 160px;
             background-color: #2a3547;
             border-radius: 10px;
-            margin: 0 32px;
+            margin-left: 32px;
         }
 
-        .board_header>button>div {
+        .board_header>div>button>div {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 4px;
         }
 
-        .board_header>button>div>span{
+        .board_header>div>button>div>span {
             font-size: 21px;
             font-weight: 700;
             color: white;
         }
 
-        .board_header>button>img{
+        .board_header>div>button>img {
             height: 22px;
             width: 22px;
         }
-
     </style>
     <!-- ----------------------------- -->
 </head>
@@ -129,17 +136,19 @@
             <div>
                 <div class="board_main_div">
                     <div class="board_header">
-                        <span>Board</span>
                         <div>
-                            <input type="text" placeholder="Find Task">
-                            <img src="./img/icons/board/search.svg" alt="">
-                        </div>
-                        <button>
+                            <span>Board</span>
                             <div>
-                                <span>Add task</span>
-                                <img src="./img/icons/board/add.svg" alt="">
+                                <input type="text" placeholder="Find Task">
+                                <img src="./img/icons/board/search.svg" alt="">
                             </div>
-                        </button>
+                            <button>
+                                <div>
+                                    <span>Add task</span>
+                                    <img src="./img/icons/board/add.svg" alt="">
+                                </div>
+                            </button>
+                        </div>
                     </div>
                     <div class="board_task_rows">
 
