@@ -7,11 +7,12 @@
     <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
     <script src="./js/main.js"></script>
     <script src="./js/remotestorage.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/font.css">
     <title>Join - Board</title>
     <!-- styletag for debuging only -->
     <style>
-        
-        .debug_maindiv{
+        .debug_maindiv {
             min-height: 100vh;
             max-width: 1440px;
             margin: auto;
@@ -20,9 +21,9 @@
             align-items: stretch;
         }
 
-        .debug_maincontent{
-            background-color: aqua;
+        .debug_maincontent {
             flex-grow: 1;
+            background-color: #F6F7F8;
         }
 
         .debug_header {
@@ -35,6 +36,86 @@
             background-color: rgb(169, 169, 255);
             width: 232px;
         }
+
+        .board_main_div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .board_header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 73px;
+            padding-left: 64px;
+            padding-top: 79.5px;
+            padding-bottom: 48px;
+        }
+
+        .board_header>span{
+            flex-grow: 1;
+            font-size: 61px;
+            font-weight: 700;
+        }
+
+        .board_header>div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+            width: 280px;
+            padding: 0 16px;
+            background-color: white;
+            border: 1px solid #A8A8A8;
+            border-radius: 10px;
+        }
+
+        .board_header>div>input{
+            outline: none;
+            border: unset;
+            height: 32px;
+            width: 100%;
+            flex-grow: 1;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .board_header>div>img {
+            width: 32px;
+            height: 32px;
+            padding-left: 16px;
+            border-left: 1px solid #D1D1D1;
+        }
+
+        .board_header>button{
+            height: 48px;
+            width: 160px;
+            background-color: #2a3547;
+            border-radius: 10px;
+            margin: 0 32px;
+        }
+
+        .board_header>button>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .board_header>button>div>span{
+            font-size: 21px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .board_header>button>img{
+            height: 22px;
+            width: 22px;
+        }
+
     </style>
     <!-- ----------------------------- -->
 </head>
@@ -46,7 +127,24 @@
         <div class="debug_maincontent">
             <header class="debug_header" w3-include-html="./templates/header.html"></header>
             <div>
+                <div class="board_main_div">
+                    <div class="board_header">
+                        <span>Board</span>
+                        <div>
+                            <input type="text" placeholder="Find Task">
+                            <img src="./img/icons/board/search.svg" alt="">
+                        </div>
+                        <button>
+                            <div>
+                                <span>Add task</span>
+                                <img src="./img/icons/board/add.svg" alt="">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="board_task_rows">
 
+                    </div>
+                </div>
             </div>
         </div>
     </div>
