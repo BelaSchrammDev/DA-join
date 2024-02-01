@@ -46,7 +46,7 @@
 
         .board_header {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
             width: 1208px;
@@ -54,7 +54,7 @@
             border: 1px solid black;
         }
 
-        .board_header>div{
+        .board_headline{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -63,13 +63,13 @@
             margin-top: 79.5px;
         }
 
-        .board_header>div>span {
+        .board_headline>span {
             flex-grow: 1;
             font-size: 61px;
             font-weight: 700;
         }
 
-        .board_header>div>div {
+        .board_headline>div {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -81,7 +81,7 @@
             border-radius: 10px;
         }
 
-        .board_header>div>div>input {
+        .board_headline>div>input {
             outline: none;
             border: unset;
             height: 32px;
@@ -91,14 +91,14 @@
             font-weight: 400;
         }
 
-        .board_header>div>div>img {
+        .board_headline>div>img {
             width: 32px;
             height: 32px;
             padding-left: 16px;
             border-left: 1px solid #D1D1D1;
         }
 
-        .board_header>div>button {
+        .board_headline>button {
             height: 48px;
             width: 160px;
             background-color: #2a3547;
@@ -106,22 +106,42 @@
             margin-left: 32px;
         }
 
-        .board_header>div>button>div {
+        .board_headline>button>div {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 4px;
         }
 
-        .board_header>div>button>div>span {
+        .board_headline>button>div>span {
             font-size: 21px;
             font-weight: 700;
             color: white;
         }
 
-        .board_header>div>button>img {
+        .board_headline>button>img {
             height: 22px;
             width: 22px;
+        }
+
+        .board_task_headers{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 34px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #42526E;
+            margin-top: 48px;
+            margin-left: 64px;
+        }
+
+        .board_task_head{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 244px;
+            height: 24px;
         }
     </style>
     <!-- ----------------------------- -->
@@ -136,7 +156,7 @@
             <div>
                 <div class="board_main_div">
                     <div class="board_header">
-                        <div>
+                        <div class="board_headline">
                             <span>Board</span>
                             <div>
                                 <input type="text" placeholder="Find Task">
@@ -148,6 +168,23 @@
                                     <img src="./img/icons/board/add.svg" alt="">
                                 </div>
                             </button>
+                        </div>
+                        <div class="board_task_headers">
+                            <div class="board_task_head">
+                                <span>To do</span>
+                                <img src="./img/icons/board/plus-button.svg" alt="">
+                            </div>
+                            <div class="board_task_head">
+                                <span>In progress</span>
+                                <img src="./img/icons/board/plus-button.svg" alt="">
+                            </div>
+                            <div class="board_task_head">
+                                <span>Await feedback</span>
+                                <img src="./img/icons/board/plus-button.svg" alt="">
+                            </div>
+                            <div class="board_task_head">
+                                <span>Done</span>
+                            </div>
                         </div>
                     </div>
                     <div class="board_task_rows">
