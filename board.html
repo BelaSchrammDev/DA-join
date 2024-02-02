@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/task.css">
+    <script src="./js/board.js"></script>
     <title>Join - Board</title>
     <!-- styletag for debuging only -->
     <style>
@@ -44,13 +45,13 @@
 
 <body onload="initJoin()">
 
-    <div class="board_overlay">
-        <div class="task_big">
+    <div onclick="debug_hide_taskbigcard()" id="board_overlay" class="board_overlay">
+        <div id="task_big" class="task_big">
             <!-- task big begin -->
             <!-- slide in with margin-left: 150vw / unset -->
             <div class="task_big_headline">
                 <span style="background-color: #0038ff;">User Story</span>
-                <img src="./img/icons/board/close.svg" alt="">
+                <img onclick="debug_hide_taskbigcard()" src="./img/icons/board/close.svg" alt="">
             </div>
             <span class="task_big_title">Kochwelt Page & Recipe Recommender</span>
             <span class="task_big_description">Build start page with recipe recommendation.</span>
@@ -119,7 +120,7 @@
                             </div>
                             <div class="board_task_list">
                                 <!-- task begin -->
-                                <div class="board_task">
+                                <div onclick="debug_view_taskbigcard()" class="board_task">
                                     <span style="background-color: #0038ff;">User Story</span>
                                     <div class="board_tast_description">
                                         <span>Kochwelt Page & Recipe Recommender</span>
