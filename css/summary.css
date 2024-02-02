@@ -249,7 +249,7 @@ a:visited {
 }
 
 .hover-to-the-right:hover .upper-img-bg>img {
-    content: url('/img/icons/summary/pencil-dark.svg');
+    content: url('../img/icons/summary/pencil-dark.svg');
 }
 
 .hover-to-the-right:hover .task-amount, .hover-to-the-right:hover .upper-task-text {
@@ -265,7 +265,7 @@ a:visited {
 }
 
 .hover-to-the-right:active .upper-img-bg>img {
-    content: url('/img/icons/summary/pencil.svg');
+    content: url('../img/icons/summary/pencil.svg');
 }
 
 .hover-to-the-right:active .upper-img-bg {
@@ -292,7 +292,7 @@ a:visited {
 }
 
 .hover-to-the-left:hover .upper-img-bg>img {
-    content: url('/img/icons/summary/hook-dark.svg');
+    content: url('../img/icons/summary/hook-dark.svg');
 }
 
 .hover-to-the-left:hover .task-amount, .hover-to-the-left:hover .upper-task-text {
@@ -308,7 +308,7 @@ a:visited {
 }
 
 .hover-to-the-left:active .upper-img-bg>img {
-    content: url('/img/icons/summary/hook.svg');
+    content: url('../img/icons/summary/hook.svg');
 }
 
 .hover-to-the-left:active .upper-img-bg {
