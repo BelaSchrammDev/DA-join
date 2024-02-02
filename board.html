@@ -46,8 +46,8 @@
 <body onload="initJoin()">
 
     <div onclick="debug_hide_taskbigcard()" id="board_overlay" class="board_overlay">
-        <div id="task_big" class="task_big">
-            <!-- task big begin -->
+        <!-- task big begin -->
+        <div onclick="event.stopPropagation();" id="task_big" class="task_big">
             <!-- slide in with margin-left: 150vw / unset -->
             <div class="task_big_headline">
                 <span style="background-color: #0038ff;">User Story</span>
@@ -87,8 +87,8 @@
                 <div></div>
                 <button><img src="./img/icons/board/edit-img.png" alt=""></button>
             </div>
-            <!-- task big end -->
         </div>
+        <!-- task big end -->
     </div>
 
     <div class="debug_maindiv">
@@ -104,7 +104,7 @@
                                 <input type="text" placeholder="Find Task">
                                 <img src="./img/icons/board/search.svg" alt="">
                             </div>
-                            <button>
+                            <button class="addtask-btn">
                                 <div>
                                     <span>Add task</span>
                                     <img src="./img/icons/board/add.svg" alt="">
