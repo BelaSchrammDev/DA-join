@@ -41,6 +41,10 @@
     border-radius: 10px;
 }
 
+div:has(>input:focus){
+    border: 1px solid #29ABE2;
+}
+
 .board_headline>div>input {
     outline: none;
     border: unset;
@@ -49,10 +53,6 @@
     flex-grow: 1;
     font-size: 20px;
     font-weight: 400;
-}
-
-div:has(>input:focus){
-    border: 1px solid #29ABE2;
 }
 
 .board_headline>div>img {
@@ -78,7 +78,10 @@ div:has(>input:focus){
     border: unset;
 }
 
-
+.board_headline>button:active {
+    background-color: #091931;
+    border: 1px solid #2A3647;
+}
 
 .board_headline>button>div {
     display: flex;
@@ -116,6 +119,14 @@ div:has(>input:focus){
     width: 244px;
     height: 24px;
     margin-bottom: 15.5px;
+}
+
+.board_task_head>img:hover{
+    content: url('../img/icons/board/plus-button_high.svg');
+}
+
+.board_task_head>img:active{
+    content: url('../img/icons/board/plus-button-press.svg');
 }
 
 .board_task {
