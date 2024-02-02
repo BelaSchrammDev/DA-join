@@ -2,3 +2,7 @@
     box-sizing: border-box;
     font-family: Inter;
 }
+
+body{
+    margin: 0;
+}
