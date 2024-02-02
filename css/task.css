@@ -1,0 +1,19 @@
+.board_overlay{
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task_big{
+    z-index: 11;
+    position: fixed;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #00000029;
+}
