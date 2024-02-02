@@ -44,7 +44,7 @@ a:hover {
 
 a:visited {
     color: unset;
-} 
+}
 
 /* SUMMARY HEADLINE */
 
@@ -180,20 +180,61 @@ a:visited {
 /* HOVER EFFECTS */
 
 .hover-to-the-right:hover {
-    transform: scale(1.075);
+    transform: scale(1.070, 1.095);
     transform-origin: left;
 }
 
+.hover-to-the-right:active {
+    background-color: #F9F9F9;
+    box-shadow: var(--btn-shdw-ttb);
+}
+
 .hover-to-the-left:hover {
-    transform: scale(1.075);
+    transform: scale(1.070, 1.095);
     transform-origin: right;
 }
 
+.hover-to-the-left:active {
+    background-color: #F9F9F9;
+    box-shadow: var(--btn-shdw-ttb);
+}
+
 .hover-to-the-bottom-right:hover {
-    transform: scale(1.075);
+    transform: scale(1.028, 1.095);
     transform-origin: top left;
 }
 
+.hover-to-the-bottom-right:active {
+    box-shadow: var(--btn-shdw-ttb);
+    background-color: #FFFFFF;
+}
+
 .hover-to-the-middel:hover {
-    transform: scale(1.075);
+    transform: scale(1.095);
+}
+
+.hover-to-the-middel:active {
+    box-shadow: var(--btn-shdw-ttb);
+    background-color: #FFFFFF;
+}
+
+.hover-to-the-left-small:hover {
+    transform: scale(1.095);
+    transform-origin: right;
+}
+
+.hover-to-the-left-small:active {
+    box-shadow: var(--btn-shdw-ttb);
+    background-color: #FFFFFF;
+}
+
+
+.hover-to-the-right-small:hover {
+    transform: scale(1.095);
+    transform-origin: left;
+}
+
+.hover-to-the-right-small:active {
+    box-shadow: var(--btn-shdw-ttb);
+    background-color: #FFFFFF;
 }
