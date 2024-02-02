@@ -264,6 +264,10 @@ a:visited {
     margin: 0;
 }
 
+.hover-to-the-right:active .upper-img-bg>img {
+    content: url('/img/icons/summary/pencil.svg');
+}
+
 .hover-to-the-right:active .upper-img-bg {
     background-color: var(--primary);
 }
@@ -301,6 +305,10 @@ a:visited {
     width: 264px !important;
     height: 168px !important;
     margin: 0;
+}
+
+.hover-to-the-left:active .upper-img-bg>img {
+    content: url('/img/icons/summary/hook.svg');
 }
 
 .hover-to-the-left:active .upper-img-bg {
