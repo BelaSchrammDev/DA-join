@@ -9,6 +9,7 @@
     <script src="./js/remotestorage.js"></script>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/task.css">
     <script src="./js/board.js"></script>
@@ -29,12 +30,6 @@
             background-color: #F6F7F8;
         }
 
-        .debug_header {
-            height: 100px;
-            width: 100%;
-            background-color: rgb(224, 171, 171);
-        }
-
         .debug_sidebar {
             background-color: rgb(169, 169, 255);
             width: 232px;
@@ -47,7 +42,7 @@
 
     <div onclick="debug_hide_taskbigcard()" id="board_overlay" class="board_overlay">
         <!-- task big begin -->
-        <div onclick="event.stopPropagation();" id="task_big" class="task_big">
+        <div onclick="event.stopPropagation();" id="task_big" class="task_big" style="right: -600px;">
             <!-- slide in with margin-left: 150vw / unset -->
             <div class="task_big_headline">
                 <span style="background-color: #0038ff;">User Story</span>

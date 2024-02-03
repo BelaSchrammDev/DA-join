@@ -1,3 +1,7 @@
+:root{
+    --task_big_width: 525px;
+}
+
 .board_overlay {
     z-index: -1;
     position: fixed;
@@ -11,12 +15,12 @@
 }
 
 .task_big {
-    margin-left: 150vw;
+    width: var(--task_big_width);
+    /* right: calc((100% - var(--task_big_width)) / 2); */
     z-index: 11;
     position: fixed;
     background-color: white;
     box-shadow: 0px 0px 4px 0px #00000029;
-    width: 525px;
     border-radius: 30px;
     padding: 48px 40px 48px 40px;
     display: flex;
@@ -27,7 +31,7 @@
     font-size: 20px;
     font-weight: 400;
     color: #2a3647;
-    transition: margin-left 125ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .task_big_headline {
