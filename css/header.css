@@ -1,0 +1,60 @@
+/* HEADER */
+
+header {
+    background-color: white;
+    height: 96px;
+    box-shadow: var(--header-shdw-ttb);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header img {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+}
+
+header img:hover {
+    padding: 4px;
+    cursor: pointer;
+}
+
+.header-kanbanboard-headline {
+    margin-left: 348px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.header-help-user-container {
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-user-bg {
+    width: 56px;
+    height: 56px;
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-user-bg:hover {
+    background-color: #E1E6EC;
+    cursor: pointer;
+}
+
+.header-user {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.header-help-link:hover {
+    background-color: unset;
+}
