@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
+    <script src="./js/main.js"></script>
+    <script src="./js/remotestorage.js"></script>
+    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/addtask.css">
+    <script src="./js/board.js"></script>
+    <title>Join - Board</title>
+</head>
+
+<body onload="initJoin()">
+    <div class="maindiv">
+        <div w3-include-html="./templates/sidebar.html"></div>
+        <div class="maincontent">
+            <header w3-include-html="./templates/header.html"></header>
+            <div class="addtask_sitediv" w3-include-html="./templates/addtask.html"></div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -16,7 +16,6 @@
 
 .task_big {
     width: var(--task_big_width);
-    /* right: calc((100% - var(--task_big_width)) / 2); */
     z-index: 11;
     position: fixed;
     background-color: white;

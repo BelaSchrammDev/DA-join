@@ -7,6 +7,22 @@ body{
     margin: 0;
 }
 
+/* to be determinated */
+.maindiv {
+    min-height: 100vh;
+    max-width: 1440px;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.maincontent {
+    flex-grow: 1;
+    background-color: #F6F7F8;
+}
+/* ------------------------ */
+
 .addtask-btn {
     height: 48px;
     width: 160px;

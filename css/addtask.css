@@ -1,0 +1,17 @@
+.addtask_maindiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.addtask_sitediv{
+    margin-top: 96px;
+    margin-left: 90px;
+}
+
+.addtask_title{
+    font-size: 61px;
+    font-weight: 700;
+    color: black;
+}
