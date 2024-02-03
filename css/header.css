@@ -14,6 +14,7 @@ header img {
     width: 32px;
     height: 32px;
     padding: 6px;
+    transition: 60ms ease-in-out;
 }
 
 header img:hover {
@@ -42,6 +43,7 @@ header img:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 60ms ease-in-out;
 }
 
 .header-user-bg:hover {
@@ -79,11 +81,17 @@ header img:hover {
 .header-menu-link {
     width: 130px;
     height: 46px;
-    margin-left: 16px;
+    padding-left: 16px;
     font-size: 16px;
     font-weight: 400;
     color: var(--icon-grey) !important;
     display: flex;
     align-items: center;
     justify-content: start;
+    transition: 100ms ease-in-out;
+}
+
+.header-menu-link:hover {
+    background-color: #2A3D59;
+    font-size: 16.5px;
 }
