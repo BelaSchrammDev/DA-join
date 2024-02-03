@@ -71,8 +71,16 @@ function changeAssignedContactsSearchTerm() {
 
 
 function clickAddTaskTemplate(event) {
-    if (event.target.id == 'addtaskTemplate') closeAssignedContactsDropDownList();
+    const excludedIDs = ['edit_assigned_list', 'edit_assigned', 'inputAssignContacts','atncddm']
+    if (event.target.id.startsWith('assignedContacts_')) return;
+    for (let index = 0; index < excludedIDs.length; index++) {
+        const elementID = excludedIDs[index];
+        if (event.target.id == elementID) return;
+    }
+    console.log('dropdown closed by ' + event.target.id);
+    closeAssignedContactsDropDownList();
 }
+
 
 function clickAssignedContactsDropDownList() {
     const list = document.getElementById('edit_assigned_list');
