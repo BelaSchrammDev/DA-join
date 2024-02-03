@@ -58,3 +58,32 @@ header img:hover {
 .header-help-link:hover {
     background-color: unset;
 }
+
+.header-menu-container {
+    width: 150px;
+    height: 158px;
+    background-color: var(--primary);
+    box-shadow: var(--btn-shdw-td);
+    border-radius: 20px 0 20px 20px;
+    padding: 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 96px;
+    right: 20px;
+}
+
+.header-menu-link {
+    width: 130px;
+    height: 46px;
+    margin-left: 16px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--icon-grey) !important;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
