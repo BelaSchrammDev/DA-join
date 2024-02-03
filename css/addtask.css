@@ -1,17 +1,202 @@
-.addtask_maindiv{
+.addtask_maindiv {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.addtask_sitediv{
-    margin-top: 96px;
+.addtask_sitediv {
+    margin-top: 90px;
     margin-left: 90px;
 }
 
-.addtask_title{
+.addtask_title {
     font-size: 61px;
     font-weight: 700;
     color: black;
+    margin-bottom: 48px;
+}
+
+.addtask_edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 32px;
+}
+
+.edit_property {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.edit_property>span {
+    font-size: 20px;
+    font-weight: 400;
+    color: #2a3647;
+    margin-bottom: 8px;
+}
+
+.edit_property>input,
+.edit_property>textarea {
+    width: 440px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 12px 21px 12px 21px;
+    outline: unset;
+    color: black;
+}
+
+.edit_property>input::placeholder,
+.edit_property>textarea::placeholder {
+    color: #d1d1d1;
+}
+
+.edit_property>input {
+    height: 48px;
+}
+
+.edit_property>textarea {
+    height: 100px;
+    resize: vertical;
+    min-height: 80px;
+    max-height: 150px;
+}
+
+.edit_property>input:focus,
+.edit_property>textarea:focus {
+    border: 1px solid #29abe2;
+}
+
+.required>span:after {
+    content: '*';
+    color: #ff8190;
+}
+
+.edit_assigned {
+    width: 440px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 12px 21px 12px 21px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.edit_assigned>input, .edit_assigned>input::placeholder{
+    border: unset;
+    outline: unset;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    color: black;
+}
+
+.edit_assigned>input:focus{
+    
+}
+
+
+.edit_assigned>img {
+    height: 24px;
+    width: 24px;
+    border-radius: 1000px;
+    transition: background-color 100ms ease-in-out;
+}
+
+.edit_assigned>img:hover {
+    background-color: #d1d1d1;
+}
+
+.edit_assigned_list {
+    max-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 5px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    overflow: hidden;
+    transition: max-height 125ms ease-in-out;
+    scrollbar-gutter: stable;
+}
+
+.edit_assigned_list>div {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.unassigned_contact {
+    background-color: white;
+}
+
+.unassigned_contact:hover {
+    background-color: #eeeeee;
+}
+
+.assigned_contact {
+    background-color: #2A3647;
+}
+
+.assigned_contact:hover {
+    background-color: #091931;
+}
+
+.assigned_contact>span:nth-child(2) {
+    color: white;
+}
+
+.edit_assigned_list>div>span:first-child {
+    width: 42px;
+    height: 42px;
+    border-radius: 1000px;
+    border: 2px solid white;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_assigned_list>div>span:nth-child(2) {
+    flex-grow: 1;
+}
+
+/* Firefox */
+.list_scrollbar {
+    /* scrollbar-width: thin;
+    scrollbar-color: #78879c white; */
+}
+
+/* Chrome, Edge, and Safari */
+.list_scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.list_scrollbar::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+.list_scrollbar::-webkit-scrollbar-thumb {
+    background-color: #d1d1d1;
+    border-radius: 8px;
 }
