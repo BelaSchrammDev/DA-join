@@ -13,13 +13,13 @@
                 </div>
                 <div class="edit_property">
                     <span>Assigned to</span>
-                    <div class="edit_assignedcontacts">
+                    <div style="position: relative;">
                         <div onclick="openAssignedContactsDropDownList()" id="edit_assigned" class="edit_assigned">
                             <input autocomplete="off" id="inputAssignContacts"
                                 onkeyup="changeAssignedContactsSearchTerm()"
                                 onfocus="openAssignedContactsDropDownList()" type="text"
                                 placeholder="Select contacts to assign">
-                            <img onclick="clickAssignedContactsDropDownList(event)"
+                            <img class="dropdown_arrow" onclick="clickAssignedContactsDropDownList(event)"
                                 src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                         </div>
                         <div id="edit_assigned_list" class="edit_assigned_list list_scrollbar">
@@ -66,11 +66,25 @@
                     <span>Prio</span>
                     <div class="addtask_priority">
                         <input type="radio" id="taskprio_urgent" name="taskpriority" value="urgent">
-                        <label for="taskprio_urgent">Urgent<img src="../img/icons/add-task/Prio-urgent.svg" alt=""></label><br>
+                        <label for="taskprio_urgent">Urgent<img src="../img/icons/add-task/Prio-urgent.svg"
+                                alt=""></label><br>
                         <input type="radio" id="taskprio_medium" name="taskpriority" value="medium">
-                        <label for="taskprio_medium">Medium <img src="../img/icons/add-task/Prio-medium.svg" alt=""></label><br>
+                        <label for="taskprio_medium">Medium <img src="../img/icons/add-task/Prio-medium.svg"
+                                alt=""></label><br>
                         <input type="radio" id="taskprio_low" name="taskpriority" value="low">
                         <label for="taskprio_low">Low <img src="../img/icons/add-task/Prio-low.svg" alt=""></label>
+                    </div>
+                </div>
+                <div class="edit_property required">
+                    <span>Category</span>
+                    <div style="position: relative;">
+                        <div onclick="clickTaskPriorityDropDownList(event)" edit_property id="edit_category"
+                            class="edit_category">
+                            <span id="taskcategory_name">Select Task Category</span>
+                            <img class="dropdown_arrow" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
+                        </div>
+                        <div id="edit_category_list" class="edit_category_list list_scrollbar">
+                        </div>
                     </div>
                 </div>
             </div>

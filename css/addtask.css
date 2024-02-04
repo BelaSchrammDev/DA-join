@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .addtask_sitediv,
@@ -12,6 +12,14 @@
 .legal_notice_sitediv {
     margin-top: 90px;
     margin-left: 90px;
+    margin-right: 90px;
+}
+
+/* variables setup */
+:root {
+    --editfields_minwidth: 420px;
+    --editfields_maxwidth: 700px;
+    --editfields_height: 48px;
 }
 
 .addtask_title {
@@ -34,6 +42,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: 32px;
+    flex-grow: 1;
 }
 
 .edit_property {
@@ -51,8 +60,10 @@
 }
 
 .edit_property>input,
+.edit_property>div[edit_property],
 .edit_property>textarea {
-    width: 440px;
+    min-width: var(--editfields_minwidth);
+    max-width: var(--editfields_maxwidth);
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     font-size: 20px;
@@ -60,6 +71,7 @@
     padding: 12px 21px 12px 21px;
     outline: unset;
     color: black;
+    background-color: white;
 }
 
 .edit_property>input::placeholder,
@@ -68,13 +80,21 @@
     color: #d1d1d1;
 }
 
+.edit_property>div[edit_property],
 .edit_property>input {
-    height: 48px;
+    height: var(--editfields_height);
+}
+
+.edit_property>div>div[edit_property] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
 }
 
 .edit_property>textarea {
-    height: 100px;
-    resize: vertical;
+    height: calc(vat(--editfields_height) * 3);
+    resize: none;
     min-height: 80px;
     max-height: 150px;
 }
@@ -89,12 +109,9 @@
     color: #ff8190;
 }
 
-.edit_assignedcontacts {
-    position: relative;
-}
-
-.edit_assigned {
-    width: 440px;
+.edit_assigned, .edit_category {
+    min-width: var(--editfields_minwidth);
+    max-width: var(--editfields_maxwidth);
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     font-size: 20px;
@@ -107,6 +124,12 @@
     cursor: pointer;
 }
 
+.edit_assigned:has(>input:focus),
+.edit_assigned>input:focus {
+    flex-grow: 1;
+    cursor: default;
+}
+
 .edit_assigned>input,
 .edit_assigned>input::placeholder {
     border: unset;
@@ -117,7 +140,7 @@
     color: black;
 }
 
-.edit_assigned>img {
+.dropdown_arrow {
     height: 24px;
     width: 24px;
     border-radius: 1000px;
@@ -125,11 +148,15 @@
         transform 100ms ease-in-out;
 }
 
-.edit_assigned>img:hover {
+.dropdown_arrow:hover {
     background-color: #d1d1d1;
 }
 
-.edit_assigned_list {
+.dropdown_arrow[open='true'] {
+    transform: rotate(180deg);
+}
+
+.edit_assigned_list, .edit_category_list {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -145,17 +172,24 @@
     font-weight: 400;
     overflow: hidden;
     transition: max-height 125ms ease-in-out;
+}
+
+.edit_assigned_list{
     scrollbar-gutter: stable;
 }
 
-.edit_assigned_list>div {
-    height: 50px;
+.edit_category_list{
+    box-shadow: 0px 0px 14px 3px #0000000A;
+}
+
+.edit_assigned_list>div,
+.edit_category_list>div {
+    height: var(--editfields_height);
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
     padding: 10px;
-    margin-right: 5px;
     cursor: pointer;
     border-radius: 10px;
     user-select: none;
@@ -189,7 +223,9 @@
     background-color: white;
 }
 
-.edit_assigned_list>div[checked="false"]:hover {
+.edit_assigned_list>div[checked="false"]:hover,
+.edit_category_list>div:hover
+{
     background-color: #eeeeee;
 }
 
@@ -237,7 +273,6 @@
 }
 
 .assignedcontacts_bar {
-    position: absolute;
     padding-top: 10px;
     width: 100%;
     display: flex;
@@ -261,7 +296,8 @@
 }
 
 .addtask_priority {
-    width: 440px;
+    min-width: var(--editfields_minwidth);
+    max-width: var(--editfields_maxwidth);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -318,4 +354,8 @@
 
 .addtask_priority>input {
     display: none;
+}
+
+.edit_category_list>div{
+
 }
