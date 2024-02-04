@@ -76,6 +76,9 @@ header img:hover {
     position: absolute;
     top: 96px;
     right: 20px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 120ms ease-in-out;
 }
 
 .header-menu-link {
@@ -94,4 +97,8 @@ header img:hover {
 .header-menu-link:hover {
     background-color: #2A3D59;
     font-size: 16.5px;
+}
+
+.show-header-menu {
+    transform: scaleX(1);
 }
