@@ -1,10 +1,11 @@
 let openAssignedContactsList = false;
 
 
-function addTaskClickAssignedContacts(contactsID) {
-    let div = document.getElementById('assignedContacts_' + contactsID);
-    if (div.getAttribute('checked') == "true") div.setAttribute('checked', 'false');
-    else div.setAttribute('checked', 'true');
+function toggleAssignedContactsCheckState(contactsID) {
+    const contactsCheckBox = document.getElementById('contactsCheckbox_' + contactsID);
+    const state = contactsCheckBox.checked;
+    contactsCheckBox.checked = !state;
+    document.getElementById('assignedContacts_' + contactsID).setAttribute('checked', !state);
 }
 
 
@@ -67,7 +68,6 @@ function clickAddTaskTemplate(event) {
         const elementID = excludedIDs[index];
         if (event.target.id == elementID) return;
     }
-    console.log('dropdown closed by ' + event.target.id);
     closeAssignedContactsDropDownList();
 }
 

@@ -1,11 +1,15 @@
-.addtask_maindiv, .help_maindiv, .legal_notice_maindiv {
+.addtask_maindiv,
+.help_maindiv,
+.legal_notice_maindiv {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.addtask_sitediv, .help_sitediv, .legal_notice_sitediv {
+.addtask_sitediv,
+.help_sitediv,
+.legal_notice_sitediv {
     margin-top: 90px;
     margin-left: 90px;
 }
@@ -17,7 +21,7 @@
     margin-bottom: 48px;
 }
 
-.addtask_form{
+.addtask_form {
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
@@ -85,7 +89,7 @@
     color: #ff8190;
 }
 
-.edit_assignedcontacts{
+.edit_assignedcontacts {
     position: relative;
 }
 
@@ -103,7 +107,8 @@
     cursor: pointer;
 }
 
-.edit_assigned>input, .edit_assigned>input::placeholder{
+.edit_assigned>input,
+.edit_assigned>input::placeholder {
     border: unset;
     outline: unset;
     font-size: 20px;
@@ -117,7 +122,7 @@
     width: 24px;
     border-radius: 1000px;
     transition: background-color 100ms ease-in-out,
-    transform 100ms ease-in-out;
+        transform 100ms ease-in-out;
 }
 
 .edit_assigned>img:hover {
@@ -156,6 +161,10 @@
     user-select: none;
 }
 
+.edit_assigned_list>div>input {
+    display: none;
+}
+
 /* assigncontact is true */
 .edit_assigned_list>div[checked="true"] {
     background-color: #2A3647;
@@ -172,20 +181,22 @@
 .edit_assigned_list>div[checked="true"]>img {
     content: url('../img/icons/add-task/cf-checked-white.svg');
 }
+
 /* assigncontact is true END */
 
 /* assigncontact is false */
 .edit_assigned_list>div[checked="false"] {
     background-color: white;
-}            
+}
 
 .edit_assigned_list>div[checked="false"]:hover {
     background-color: #eeeeee;
-}        
+}
 
 .edit_assigned_list>div[checked="false"]>img {
     content: url('../img/icons/add-task/cf-unchecked-black.svg');
 }
+
 /* assigncontact is false END */
 
 .edit_assigned_list>div>span:first-child {
@@ -225,7 +236,7 @@
     border-radius: 8px;
 }
 
-.assignedcontacts_bar{
+.assignedcontacts_bar {
     position: absolute;
     padding-top: 10px;
     width: 100%;
@@ -234,7 +245,7 @@
     align-items: center;
 }
 
-.assignedcontacts_bar>span{
+.assignedcontacts_bar>span {
     border-radius: 1000px;
     border: 2px solid white;
     width: 42px;
@@ -244,7 +255,67 @@
     align-items: center;
 }
 
-.separatorline{
+.separatorline {
     width: 1px;
     background-color: #d1d1d1;
+}
+
+.addtask_priority {
+    width: 440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.addtask_priority>label {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+.addtask_priority>label:hover {
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.addtask_priority>input[type=radio]:checked+label:hover {
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+#taskprio_urgent:checked+label {
+    color: white;
+    background-color: #FF3D00;
+}
+
+#taskprio_medium:checked+label {
+    color: white;
+    background-color: #FFA800;
+}
+
+#taskprio_low:checked+label {
+    color: white;
+    background: #7AE229;
+}
+
+#taskprio_urgent:checked+label>img {
+    content: url('../img/icons/add-task/Prio-urgent-white.svg');
+}
+
+#taskprio_medium:checked+label>img {
+    content: url('../img/icons/add-task/Prio-medium-white.svg');
+}
+
+#taskprio_low:checked+label>img {
+    content: url('../img/icons/add-task/Prio-low-white.svg');
+}
+
+.addtask_priority>input {
+    display: none;
 }

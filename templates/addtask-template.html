@@ -23,22 +23,30 @@
                                 src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                         </div>
                         <div id="edit_assigned_list" class="edit_assigned_list list_scrollbar">
-                            <div id="assignedContacts_1" checked="true" onclick="addTaskClickAssignedContacts(1)"><span
-                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Bela
-                                    Schramm</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
-                                    alt=""></div>
-                            <div id="assignedContacts_2" checked="false" onclick="addTaskClickAssignedContacts(2)"><span
-                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Nadja
-                                    Reuther</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
-                                    alt=""></div>
-                            <div id="assignedContacts_3" checked="false" onclick="addTaskClickAssignedContacts(3)"><span
-                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Simon
-                                    Henke</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
-                                    alt=""></div>
-                            <div id="assignedContacts_4" checked="true" onclick="addTaskClickAssignedContacts(4)"><span
-                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Michael
-                                    Buschmann</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
-                                    alt=""></div>
+                            <div id="assignedContacts_1" checked="true" onclick="toggleAssignedContactsCheckState(1)">
+                                <span id="atncddm" style="background-color: red;">BS</span>
+                                <span id="atncddm">Bela Schramm</span>
+                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                <input type="checkbox" checked name="contactsID" id="contactsCheckbox_1">
+                            </div>
+                            <div id="assignedContacts_2" checked="false" onclick="toggleAssignedContactsCheckState(2)">
+                                <span id="atncddm" style="background-color: red;">BS</span>
+                                <span id="atncddm">Nadja Reuther</span>
+                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                <input type="checkbox" name="contactsID" id="contactsCheckbox_2">
+                            </div>
+                            <div id="assignedContacts_3" checked="false" onclick="toggleAssignedContactsCheckState(3)">
+                                <span id="atncddm" style="background-color: red;">BS</span>
+                                <span id="atncddm">Simon Henke</span>
+                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                <input type="checkbox" name="contactsID" id="contactsCheckbox_3">
+                            </div>
+                            <div id="assignedContacts_4" checked="true" onclick="toggleAssignedContactsCheckState(4)">
+                                <span id="atncddm" style="background-color: red;">BS</span>
+                                <span id="atncddm">Michael Buschmann</span>
+                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                <input type="checkbox" checked name="contactsID" id="contactsCheckbox_4">
+                            </div>
                         </div>
                         <div id="assignedcontacts_bar" class="assignedcontacts_bar">
                             <span style="background-color: blue;">BS</span>
@@ -50,7 +58,21 @@
             </div>
             <div class="separatorline"></div>
             <div class="addtask_edit">
-
+                <div class="edit_property required">
+                    <span>Due Date</span>
+                    <input type="date" placeholder="dd/mm/yyyy" required>
+                </div>
+                <div class="edit_property">
+                    <span>Prio</span>
+                    <div class="addtask_priority">
+                        <input type="radio" id="taskprio_urgent" name="taskpriority" value="urgent">
+                        <label for="taskprio_urgent">Urgent<img src="../img/icons/add-task/Prio-urgent.svg" alt=""></label><br>
+                        <input type="radio" id="taskprio_medium" name="taskpriority" value="medium">
+                        <label for="taskprio_medium">Medium <img src="../img/icons/add-task/Prio-medium.svg" alt=""></label><br>
+                        <input type="radio" id="taskprio_low" name="taskpriority" value="low">
+                        <label for="taskprio_low">Low <img src="../img/icons/add-task/Prio-low.svg" alt=""></label>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
