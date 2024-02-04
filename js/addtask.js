@@ -1,5 +1,6 @@
 let openAssignedContactsList = false;
 
+
 function addTaskClickAssignedContacts(contactsID) {
     let div = document.getElementById('assignedContacts_' + contactsID);
     if (div.getAttribute('checked') == "true") div.setAttribute('checked', 'false');
@@ -10,7 +11,7 @@ function addTaskClickAssignedContacts(contactsID) {
 function openAssignedContactsDropDownList() {
     if (openAssignedContactsList == true) return;
     openAssignedContactsList = true;
-    document.getElementById('inputAssignContacts').placeholder = '';
+    document.getElementById('inputAssignContacts').placeholder = 'Search contact';
     showAllAssignedContacts();
     const list = document.getElementById('edit_assigned_list');
     document.getElementById('edit_assigned').style = 'border: 1px solid #29abe2;'

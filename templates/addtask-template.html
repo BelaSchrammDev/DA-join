@@ -13,20 +13,44 @@
                 </div>
                 <div class="edit_property">
                     <span>Assigned to</span>
-                    <div onclick="openAssignedContactsDropDownList()" id="edit_assigned" class="edit_assigned">
-                        <input autocomplete="off" id="inputAssignContacts" onkeyup="changeAssignedContactsSearchTerm()" onfocus="openAssignedContactsDropDownList()" type="text" placeholder="Select contacts to assign">
-                        <img onclick="clickAssignedContactsDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
-                    </div>
-                    <div id="edit_assigned_list" class="edit_assigned_list list_scrollbar">
-                        <div id="assignedContacts_1" checked="true" onclick="addTaskClickAssignedContacts(1)"><span id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Bela Schramm</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt=""></div>
-                        <div id="assignedContacts_2" checked="false" onclick="addTaskClickAssignedContacts(2)"><span id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Nadja Reuther</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt=""></div>
-                        <div id="assignedContacts_3" checked="false" onclick="addTaskClickAssignedContacts(3)"><span id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Simon Henke</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt=""></div>
-                        <div id="assignedContacts_4" checked="true" onclick="addTaskClickAssignedContacts(4)"><span id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Michael Buschmann</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt=""></div>
+                    <div class="edit_assignedcontacts">
+                        <div onclick="openAssignedContactsDropDownList()" id="edit_assigned" class="edit_assigned">
+                            <input autocomplete="off" id="inputAssignContacts"
+                                onkeyup="changeAssignedContactsSearchTerm()"
+                                onfocus="openAssignedContactsDropDownList()" type="text"
+                                placeholder="Select contacts to assign">
+                            <img onclick="clickAssignedContactsDropDownList(event)"
+                                src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
+                        </div>
+                        <div id="edit_assigned_list" class="edit_assigned_list list_scrollbar">
+                            <div id="assignedContacts_1" checked="true" onclick="addTaskClickAssignedContacts(1)"><span
+                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Bela
+                                    Schramm</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
+                                    alt=""></div>
+                            <div id="assignedContacts_2" checked="false" onclick="addTaskClickAssignedContacts(2)"><span
+                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Nadja
+                                    Reuther</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
+                                    alt=""></div>
+                            <div id="assignedContacts_3" checked="false" onclick="addTaskClickAssignedContacts(3)"><span
+                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Simon
+                                    Henke</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
+                                    alt=""></div>
+                            <div id="assignedContacts_4" checked="true" onclick="addTaskClickAssignedContacts(4)"><span
+                                    id="atncddm" style="background-color: red;">BS</span><span id="atncddm">Michael
+                                    Buschmann</span><img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg"
+                                    alt=""></div>
+                        </div>
+                        <div id="assignedcontacts_bar" class="assignedcontacts_bar">
+                            <span style="background-color: blue;">BS</span>
+                            <span style="background-color: brown;">NR</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div></div>
-            <div class="addtask_edit"></div>
+            <div class="addtask_edit">
+
+            </div>
         </div>
     </form>
 </div>

@@ -52,7 +52,8 @@
 }
 
 .edit_property>input::placeholder,
-.edit_property>textarea::placeholder {
+.edit_property>textarea::placeholder,
+.edit_assigned>input:focus::placeholder {
     color: #d1d1d1;
 }
 
@@ -75,6 +76,10 @@
 .required>span:after {
     content: '*';
     color: #ff8190;
+}
+
+.edit_assignedcontacts{
+    position: relative;
 }
 
 .edit_assigned {
@@ -113,6 +118,9 @@
 }
 
 .edit_assigned_list {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
     max-height: 0;
     display: flex;
     flex-direction: column;
@@ -208,4 +216,23 @@
 .list_scrollbar::-webkit-scrollbar-thumb {
     background-color: #d1d1d1;
     border-radius: 8px;
+}
+
+.assignedcontacts_bar{
+    position: absolute;
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.assignedcontacts_bar>span{
+    border-radius: 1000px;
+    border: 2px solid white;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
