@@ -7,6 +7,13 @@ body{
     margin: 0;
 }
 
+.main {
+    display:flex;
+}
+
+.content {
+    margin-left: 96px;
+}
 .addtask-btn {
     height: 48px;
     width: 160px;
