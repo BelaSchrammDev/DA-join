@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
+    <title>Join - Contacts</title>
+    <link rel="stylesheet" href="./css/root.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+</head>
+
+<body onload="initJoin()">
+    <div w3-include-html="./templates/sidebar.html"></div>
+    <header w3-include-html="./templates/header.html"></header>
+    <main>
+        <section class="contact-container">
+            <div class="add-button-container">
+                <button class="add-contact-btn">
+                    <span>Add new contact</span>
+                    <img src="./img/icons/contacts/add_contact-white.svg" alt="">
+                </button>
+            </div>
+        </section>
+        <section class="show-contact-container">
+            <div class="headline-container">
+                <h1 class="headline-contact">Contacts</h1>
+                <div class="headline-seperator"></div>
+                <span class="subheadline-contact">Better with a team</span>
+            </div>
+        </section>
+    </main>
+    <script src="./js/main.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/header.js"></script>
+</body>
+
+</html>

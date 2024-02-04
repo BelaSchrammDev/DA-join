@@ -1,0 +1,129 @@
+/* GENERAL */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter';
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    background-color: var(--primary);
+    width: 232px;
+    height: 100vh;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+main {
+    margin-left: 232px;
+    background-color: var(--site-bg);
+    flex: 1;
+    display: flex;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+a:link {
+    color: unset;
+}
+
+a:visited {
+    color: unset;
+}
+
+/* STRUCTURE */
+
+.contact-container {
+    width: 456px;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.show-contact-container {     
+    display: flex;
+    margin-top: 110px;
+    margin-left: 55px;
+    flex: 1;
+}
+
+/* SHOW CONTACT VIEW */
+
+.headline-container {
+    display: flex;
+    align-items: center;
+    height: 73px;
+    gap: 30px;
+}
+
+.headline-contact {
+    font-size: 61px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.headline-seperator {
+    width: 3px;
+    height: 59px;
+    border-radius: 3px;
+    background-color: var(--accent);
+}
+
+.subheadline-contact {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+/* BUTTON */
+
+.add-button-container {
+    width: 456px;
+    height: 101px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-contact-btn {
+    height: 56px;
+    width: 352px;
+    background-color: #2a3547;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    transition: background-color 80ms ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.add-contact-btn span {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.add-contact-btn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: unset;
+    cursor: pointer;
+}
+
+.add-contact-btn:active {
+    background-color: #091931;
+    border: 1px solid #2A3647;
+}
