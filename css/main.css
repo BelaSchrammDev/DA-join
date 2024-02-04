@@ -23,13 +23,6 @@ body{
 }
 /* ------------------------ */
 
-.main {
-    display:flex;
-}
-
-.content {
-    margin-left: 96px;
-}
 .addtask-btn {
     height: 48px;
     width: 160px;
