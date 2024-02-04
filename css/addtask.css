@@ -1,11 +1,11 @@
-.addtask_maindiv, .help_maindiv {
+.addtask_maindiv, .help_maindiv, .legal_notice_maindiv {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.addtask_sitediv, .help_sitediv {
+.addtask_sitediv, .help_sitediv, .legal_notice_sitediv {
     margin-top: 90px;
     margin-left: 90px;
 }
