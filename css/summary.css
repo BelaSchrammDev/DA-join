@@ -17,12 +17,7 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-}
-
-header {
-    background-color: white;
-    height: 96px;
-    margin-left: 232px;
+    z-index: 2;
 }
 
 main {
