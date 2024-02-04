@@ -14,7 +14,7 @@ nav {
     background-color: var(--primary);
     width: 232px;
     height: 100vh;
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     z-index: 2;
