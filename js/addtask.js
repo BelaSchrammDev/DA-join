@@ -2,33 +2,21 @@ let openAssignedContactsList = false;
 
 function addTaskClickAssignedContacts(contactsID) {
     let div = document.getElementById('assignedContacts_' + contactsID);
-    if (div.checked) {
-        div.checked = false;
-        div.classList.remove('assigned_contact');
-        div.classList.add('unassigned_contact');
-        div.children[2].src = './img/icons/add-task/cf-unchecked-black.svg';
-    } else {
-        div.checked = true;
-        div.classList.remove('unassigned_contact');
-        div.classList.add('assigned_contact');
-        div.children[2].src = './img/icons/add-task/cf-checked-white.svg';
-    }
-}
-
-
-function focusAssignContacts() {
-    document.getElementById('inputAssignContacts').placeholder = '';
-    openAssignedContactsDropDownList();
+    if (div.getAttribute('checked') == "true") div.setAttribute('checked', 'false');
+    else div.setAttribute('checked', 'true');
 }
 
 
 function openAssignedContactsDropDownList() {
     if (openAssignedContactsList == true) return;
     openAssignedContactsList = true;
+    document.getElementById('inputAssignContacts').placeholder = '';
     showAllAssignedContacts();
     const list = document.getElementById('edit_assigned_list');
     document.getElementById('edit_assigned').style = 'border: 1px solid #29abe2;'
+    document.getElementById('edit_assigned').children[1].style = 'transform: rotate(180deg);'
     list.style['max-height'] = '200px';
+    document.getElementById('inputAssignContacts').focus();
     setTimeout(() => {
         list.style.overflow = 'auto';
         document.getElementById('addtaskTemplate').setAttribute("onclick", "clickAddTaskTemplate(event)");
@@ -41,7 +29,8 @@ function closeAssignedContactsDropDownList() {
     openAssignedContactsList = false;
     document.getElementById('addtaskTemplate').removeAttribute("onclick");
     const list = document.getElementById('edit_assigned_list');
-    document.getElementById('edit_assigned').style = ''
+    document.getElementById('edit_assigned').style = '';
+    document.getElementById('edit_assigned').children[1].style = '';
     list.style.overflow = 'hidden';
     list.style['max-height'] = '0';
     const input = document.getElementById('inputAssignContacts');
@@ -71,7 +60,7 @@ function changeAssignedContactsSearchTerm() {
 
 
 function clickAddTaskTemplate(event) {
-    const excludedIDs = ['edit_assigned_list', 'edit_assigned', 'inputAssignContacts','atncddm']
+    const excludedIDs = ['edit_assigned_list', 'edit_assigned', 'inputAssignContacts', 'atncddm']
     if (event.target.id.startsWith('assignedContacts_')) return;
     for (let index = 0; index < excludedIDs.length; index++) {
         const elementID = excludedIDs[index];
@@ -82,7 +71,8 @@ function clickAddTaskTemplate(event) {
 }
 
 
-function clickAssignedContactsDropDownList() {
+function clickAssignedContactsDropDownList(event) {
+    event.stopPropagation();
     const list = document.getElementById('edit_assigned_list');
     if (list.clientHeight == 0) openAssignedContactsDropDownList();
     else closeAssignedContactsDropDownList();

@@ -100,16 +100,12 @@
     color: black;
 }
 
-.edit_assigned>input:focus{
-    
-}
-
-
 .edit_assigned>img {
     height: 24px;
     width: 24px;
     border-radius: 1000px;
-    transition: background-color 100ms ease-in-out;
+    transition: background-color 100ms ease-in-out,
+    transform 100ms ease-in-out;
 }
 
 .edit_assigned>img:hover {
@@ -142,27 +138,40 @@
     margin-right: 5px;
     cursor: pointer;
     border-radius: 10px;
+    user-select: none;
 }
 
-.unassigned_contact {
-    background-color: white;
-}
-
-.unassigned_contact:hover {
-    background-color: #eeeeee;
-}
-
-.assigned_contact {
+/* assigncontact is true */
+.edit_assigned_list>div[checked="true"] {
     background-color: #2A3647;
 }
 
-.assigned_contact:hover {
+.edit_assigned_list>div[checked="true"]:hover {
     background-color: #091931;
 }
 
-.assigned_contact>span:nth-child(2) {
+.edit_assigned_list>div[checked="true"]>span:nth-child(2) {
     color: white;
 }
+
+.edit_assigned_list>div[checked="true"]>img {
+    content: url('../img/icons/add-task/cf-checked-white.svg');
+}
+/* assigncontact is true END */
+
+/* assigncontact is false */
+.edit_assigned_list>div[checked="false"] {
+    background-color: white;
+}            
+
+.edit_assigned_list>div[checked="false"]:hover {
+    background-color: #eeeeee;
+}        
+
+.edit_assigned_list>div[checked="false"]>img {
+    content: url('../img/icons/add-task/cf-unchecked-black.svg');
+}
+/* assigncontact is false END */
 
 .edit_assigned_list>div>span:first-child {
     width: 42px;
