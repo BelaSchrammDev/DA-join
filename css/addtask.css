@@ -75,8 +75,8 @@
 }
 
 .edit_property>input::placeholder,
-.edit_property>textarea::placeholder,
-.edit_assigned>input:focus::placeholder {
+.edit_property>textarea::placeholder
+{
     color: #d1d1d1;
 }
 
@@ -90,6 +90,20 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+}
+
+.edit_assigned[dropdownopen='true']{
+    border: 1px solid #29abe2;
+}
+
+.edit_assigned[dropdownopen='true']>input::placeholder {
+    color: #d1d1d1;
+}
+
+.edit_assigned[dropdownopen='true'] + div {
+    max-height: 200px;
+    min-height: 100px;
+    overflow: auto;
 }
 
 .edit_property>textarea {

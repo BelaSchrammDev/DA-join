@@ -35,7 +35,7 @@ function openTaskCategoryDropDownList() {
     list.style['max-height'] = '200px';
     setTimeout(() => {
         list.style.overflow = 'auto';
-        document.getElementById('addtaskTemplate').setAttribute("onclick", "clickAddTaskTemplate(event)");
+        document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
     }, 200);
 }
 
@@ -63,16 +63,13 @@ function openAssignedContactsDropDownList() {
     closeTaskCategoryDropDownList();
     if (openAssignedContactsList == true) return;
     openAssignedContactsList = true;
+    document.getElementById('edit_assigned').setAttribute('dropdownopen', true);
     document.getElementById('inputAssignContacts').placeholder = 'Search contact';
     showAllAssignedContacts();
-    const list = document.getElementById('edit_assigned_list');
-    document.getElementById('edit_assigned').style = 'border: 1px solid #29abe2;'
     document.getElementById('edit_assigned').children[1].setAttribute('open', true);
-    list.style['max-height'] = '200px';
     document.getElementById('inputAssignContacts').focus();
     setTimeout(() => {
-        list.style.overflow = 'auto';
-        document.getElementById('addtaskTemplate').setAttribute("onclick", "clickAddTaskTemplate(event)");
+        document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
     }, 200);
 }
 
@@ -80,12 +77,8 @@ function openAssignedContactsDropDownList() {
 function closeAssignedContactsDropDownList() {
     if (openAssignedContactsList == false) return;
     openAssignedContactsList = false;
-    document.getElementById('addtaskTemplate').removeAttribute("onclick");
-    const list = document.getElementById('edit_assigned_list');
-    document.getElementById('edit_assigned').style = '';
+    document.getElementById('edit_assigned').setAttribute('dropdownopen', false);
     document.getElementById('edit_assigned').children[1].setAttribute('open', false);
-    list.style.overflow = 'hidden';
-    list.style['max-height'] = '0';
     const input = document.getElementById('inputAssignContacts');
     input.placeholder = 'Select contacts to assign';
     input.value = '';
@@ -95,7 +88,7 @@ function closeAssignedContactsDropDownList() {
 function closeAllDropDowns() {
     closeAssignedContactsDropDownList();
     closeTaskCategoryDropDownList();
-    document.getElementById('addtaskTemplate').removeAttribute("onclick");
+    document.body.removeAttribute("onclick");
 }
 
 
