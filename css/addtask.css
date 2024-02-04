@@ -168,6 +168,7 @@
 
 .dropdown_arrow[open='true'] {
     transform: rotate(180deg);
+    cursor: pointer;
 }
 
 .edit_assigned_list, .edit_category_list {
