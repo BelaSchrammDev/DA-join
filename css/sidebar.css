@@ -25,6 +25,8 @@ nav {
 .nav_list_element {
     display: flex;
     align-items: center;
+    color: #CDCDCD;
+    text-decoration: none;
     width: 100%;
     padding: 6px 46px 6px 46px;
     margin-bottom: 24px;
