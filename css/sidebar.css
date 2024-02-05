@@ -55,29 +55,17 @@ nav {
 }
 
 @media screen and (max-width: 594px) {
-    .main_window {
-        flex-direction: column;
-    }
     nav {
         width: auto;
         height: auto;
         position: relative;
     }
-    .right_side_navbar {
-        margin: 6px 0 6px 12px;
-    }
-    .content {
-        margin: 0;
-        padding: 0;
-    }
-    h1 {
-        font-size: 24px;
-    }
     .nav_elements {
-        background-color: rgba(255,255,255,0.9);
+        background-color: #2A3647;
         margin: 0;
         display: flex;
         justify-content: center;
+        text-align: center;
         position: fixed;
         bottom: -1px;
         left: 0;
@@ -85,5 +73,11 @@ nav {
     }
     .nav_list_element {
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+    .navbar_logo, .nav_security_links {
+        display: none;
     }
 }
