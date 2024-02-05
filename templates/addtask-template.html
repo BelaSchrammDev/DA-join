@@ -72,18 +72,15 @@
                         <label for="taskprio_medium"><span>Medium</span><img
                                 src="../img/icons/add-task/Prio-medium.svg"></label>
                         <input type="radio" id="taskprio_low" name="taskpriority" value="low">
-                        <label for="taskprio_low"><span>Low</span><img src="../img/icons/add-task/Prio-low.svg"
-                                alt=""></label>
+                        <label for="taskprio_low"><span>Low</span><img src="../img/icons/add-task/Prio-low.svg"></label>
                     </div>
                 </div>
                 <div class="edit_property required">
                     <span>Category</span>
-                    <div style="position: relative;">
-                        <div onclick="clickTaskPriorityDropDownList(event)" edit_property id="edit_category"
-                            class="edit_category">
-                            <span id="taskcategory_name">Select Task Category</span>
-                            <img class="dropdown_arrow" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
-                        </div>
+                    <div style="position: relative;" id="edit_category_div" class="edit_category_div">
+                        <img onclick="clickTaskCategoryDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
+                        <input onkeydown="return false;" onclick="clickTaskCategoryDropDownList(event)" type="text"
+                            required placeholder="Select Task Category" id="edit_category" class="edit_category">
                         <div id="edit_category_list" class="edit_category_list list_scrollbar">
                         </div>
                     </div>
