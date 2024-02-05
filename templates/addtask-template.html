@@ -27,7 +27,7 @@
                                 <span id="atncddm" style="background-color: red;">BS</span>
                                 <span id="atncddm">Bela Schramm</span>
                                 <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input type="checkbox" checked name="contactsID" id="contactsCheckbox_1">
+                                <input type="checkbox" name="contactsID" id="contactsCheckbox_1">
                             </div>
                             <div id="assignedContacts_2" checked="false" onclick="toggleAssignedContactsCheckState(2)">
                                 <span id="atncddm" style="background-color: red;">BS</span>
@@ -45,7 +45,7 @@
                                 <span id="atncddm" style="background-color: red;">BS</span>
                                 <span id="atncddm">Michael Buschmann</span>
                                 <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input type="checkbox" checked name="contactsID" id="contactsCheckbox_4">
+                                <input type="checkbox" name="contactsID" id="contactsCheckbox_4">
                             </div>
                         </div>
                         <div id="assignedcontacts_bar" class="assignedcontacts_bar">
@@ -95,12 +95,20 @@
                 <span>*</span>
                 <span>This field is required</span>
             </div>
-            <button class="btnAddOk">
-                <div>
-                    <span>Create task</span>
-                    <img src="./img/icons/board/add.svg" alt="">
-                </div>
-            </button>
+            <div>
+                <button class="btnCancel" type="reset">
+                    <div>
+                        <span>Clear</span>
+                        <img src="../img/icons/add-task/cancel.svg" alt="">
+                    </div>
+                </button>
+                <button class="btnAddOk">
+                    <div>
+                        <span>Create task</span>
+                        <img src="./img/icons/board/add.svg" alt="">
+                    </div>
+                </button>
+            </div>
         </div>
     </form>
 </div>

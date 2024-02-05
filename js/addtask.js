@@ -53,9 +53,7 @@ function closeTaskCategoryDropDownList() {
 
 function toggleAssignedContactsCheckState(contactsID) {
     const contactsCheckBox = document.getElementById('contactsCheckbox_' + contactsID);
-    const state = contactsCheckBox.checked;
-    contactsCheckBox.checked = !state;
-    document.getElementById('assignedContacts_' + contactsID).setAttribute('checked', !state);
+    contactsCheckBox.checked = !contactsCheckBox.checked;
 }
 
 
@@ -82,6 +80,14 @@ function closeAssignedContactsDropDownList() {
     const input = document.getElementById('inputAssignContacts');
     input.placeholder = 'Select contacts to assign';
     input.value = '';
+}
+
+
+function setCheckedStateForAllContacts(){
+    let contactsDivs = document.getElementById('edit_assigned_list').children;
+    for (let index = 0; index < contactsDivs.length; index++) {
+
+    }
 }
 
 
