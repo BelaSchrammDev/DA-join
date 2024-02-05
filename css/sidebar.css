@@ -13,6 +13,7 @@ nav {
     position: sticky;
     top: 0;
     background-color: #2A3647;
+    color: #CDCDCD;
 }
 .navbar_logo {
     margin-top: 64px;
@@ -25,7 +26,8 @@ nav {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 12px 12px 12px 12px;
+    padding: 6px 46px 6px 46px;
+    margin-bottom: 24px;
     cursor: pointer;
     transition-duration: 175ms;
 }
@@ -37,4 +39,49 @@ nav {
 .nav_list_element span {
     padding: 0 0 0 16px;
     font-size: 16px;
+}
+.nav_security_links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 16px;
+    margin-bottom: 64px;
+}
+.nav_security_links a {
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 594px) {
+    .main_window {
+        flex-direction: column;
+    }
+    nav {
+        width: auto;
+        height: auto;
+        position: relative;
+    }
+    .right_side_navbar {
+        margin: 6px 0 6px 12px;
+    }
+    .content {
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    .nav_elements {
+        background-color: rgba(255,255,255,0.9);
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        bottom: -1px;
+        left: 0;
+        width: 100vw;
+    }
+    .nav_list_element {
+        padding: 0;
+    }
 }
