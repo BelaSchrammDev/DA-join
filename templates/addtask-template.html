@@ -66,13 +66,14 @@
                     <span>Prio</span>
                     <div class="addtask_priority">
                         <input type="radio" id="taskprio_urgent" name="taskpriority" value="urgent">
-                        <label for="taskprio_urgent">Urgent<img src="../img/icons/add-task/Prio-urgent.svg"
-                                alt=""></label><br>
+                        <label for="taskprio_urgent"><span>Urgent</span><img
+                                src="../img/icons/add-task/Prio-urgent.svg"></label>
                         <input type="radio" id="taskprio_medium" name="taskpriority" value="medium">
-                        <label for="taskprio_medium">Medium <img src="../img/icons/add-task/Prio-medium.svg"
-                                alt=""></label><br>
+                        <label for="taskprio_medium"><span>Medium</span><img
+                                src="../img/icons/add-task/Prio-medium.svg"></label>
                         <input type="radio" id="taskprio_low" name="taskpriority" value="low">
-                        <label for="taskprio_low">Low <img src="../img/icons/add-task/Prio-low.svg" alt=""></label>
+                        <label for="taskprio_low"><span>Low</span><img src="../img/icons/add-task/Prio-low.svg"
+                                alt=""></label>
                     </div>
                 </div>
                 <div class="edit_property required">
@@ -90,13 +91,16 @@
             </div>
         </div>
         <div class="task_action">
-            <span class="is_required required">This field is required</span>
+            <div>
+                <span>*</span>
+                <span>This field is required</span>
+            </div>
             <button class="btnAddOk">
                 <div>
                     <span>Create task</span>
                     <img src="./img/icons/board/add.svg" alt="">
                 </div>
             </button>
-</div>
+        </div>
     </form>
 </div>
