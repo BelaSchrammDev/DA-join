@@ -18,7 +18,7 @@
 /* variables setup */
 :root {
     --editfields_minwidth: 280px;
-    --editfields_maxwidth: 700px;
+    --editfields_maxwidth: 770px;
     --editfields_height: 48px;
     --property_description_gap: 8px;
 }
@@ -392,6 +392,7 @@
     .addtask_priority>label>span {
         display: none;
     }
+
     .addtask_priority>label {
         width: 60px !important;
     }
@@ -450,6 +451,7 @@
 
 .task_action {
     margin-top: 146px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -464,4 +466,22 @@
     justify-content: flex-end;
     align-items: center;
     gap: 16px;
+}
+
+@media (max-width: 1200px) {
+    .addtask_form {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .addtask_edit {
+        width: unset;
+    }
+
+    .task_action>div:nth-child(2) {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 16px;
+    }
 }
