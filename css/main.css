@@ -58,16 +58,5 @@ body{
     background-color: #091931;
     border: 1px solid #2A3647;
 }
-
-/* add a red star sign to the right*/
-.required>span::after {
-    content: '*';
-    color: #ff8190;
-}
-
-/* add a red star sign to the left*/
-.is_required>span::before {
-    content: '*';
-    color: #ff8190;
-}
-
+/* button NED */
+     

@@ -17,9 +17,16 @@
 
 /* variables setup */
 :root {
-    --editfields_minwidth: 420px;
+    --editfields_minwidth: 280px;
     --editfields_maxwidth: 700px;
     --editfields_height: 48px;
+    --property_description_gap: 8px;
+}
+
+/* add a red star sign to the right*/
+.required>span::after {
+    content: '*';
+    color: #ff8190;
 }
 
 .addtask_title {
@@ -31,7 +38,7 @@
 
 .addtask_form {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: stretch;
     gap: 48px;
 }
@@ -42,7 +49,8 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: 32px;
-    flex-grow: 1;
+    width: 45%;
+    /* flex-grow: 1; */
 }
 
 .edit_property {
@@ -53,6 +61,7 @@
 }
 
 .edit_property>span {
+    position: relative;
     font-size: 20px;
     font-weight: 400;
     color: #2a3647;
@@ -72,6 +81,25 @@
     outline: unset;
     color: black;
     background-color: white;
+}
+
+.edit_property>span:has(+ input:invalid)::after{
+    position: absolute;
+    left: 5px;
+    bottom: calc( -14px - (var(--editfields_height) + var(--property_description_gap)));
+    font-size: 12px;
+    font-weight: 400;
+    content: 'this field is required';
+    color: #FF8190;
+}
+
+.edit_property>input:invalid{
+    position: relative;
+    border: 1px solid #FF8190;
+    overflow: visible;
+}
+
+.edit_property>input:invalid::after {
 }
 
 .edit_property>input::placeholder,
@@ -284,7 +312,6 @@
 
 .assignedcontacts_bar {
     padding-top: 10px;
-    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -306,6 +333,8 @@
 }
 
 .addtask_priority {
+    container-type: inline-size;
+    container-name: prioritybar;
     min-width: var(--editfields_minwidth);
     max-width: var(--editfields_maxwidth);
     display: flex;
@@ -313,6 +342,12 @@
     align-items: center;
     font-size: 20px;
     font-weight: 400;
+}
+
+@container prioritybar (max-width: 380px) {
+    .addtask_priority>label>span {
+        display: none;
+    }    
 }
 
 .addtask_priority>label {
@@ -371,4 +406,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+
+.task_action>div>span:first-child{
+    color: #ff8190;
 }
