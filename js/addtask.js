@@ -4,7 +4,7 @@ let openTaskCategoryList = false;
 
 const taskCategorys = [
     { id: 1, name: 'User Story' },
-    { id: 2, name: 'Techical Task' }
+    { id: 2, name: 'Technical Task' }
 ]
 
 
@@ -30,8 +30,8 @@ function openTaskCategoryDropDownList() {
     if (openTaskCategoryList == true) return;
     openTaskCategoryList = true;
     const list = document.getElementById('edit_category_list');
+    document.getElementById('edit_category_div').setAttribute('dropdownopen', 'true');
     document.getElementById('edit_category').style = 'border: 1px solid #29abe2;'
-    document.getElementById('edit_category').children[1].setAttribute('open', true);
     list.style['max-height'] = '200px';
     setTimeout(() => {
         list.style.overflow = 'auto';
@@ -45,7 +45,7 @@ function closeTaskCategoryDropDownList() {
     openTaskCategoryList = false;
     const list = document.getElementById('edit_category_list');
     document.getElementById('edit_category').style = '';
-    document.getElementById('edit_category').children[1].setAttribute('open', false);
+    document.getElementById('edit_category_div').setAttribute('dropdownopen', 'false');
     list.style.overflow = 'hidden';
     list.style['max-height'] = '0';
 }
@@ -53,9 +53,7 @@ function closeTaskCategoryDropDownList() {
 
 function toggleAssignedContactsCheckState(contactsID) {
     const contactsCheckBox = document.getElementById('contactsCheckbox_' + contactsID);
-    const state = contactsCheckBox.checked;
-    contactsCheckBox.checked = !state;
-    document.getElementById('assignedContacts_' + contactsID).setAttribute('checked', !state);
+    contactsCheckBox.checked = !contactsCheckBox.checked;
 }
 
 
@@ -82,6 +80,14 @@ function closeAssignedContactsDropDownList() {
     const input = document.getElementById('inputAssignContacts');
     input.placeholder = 'Select contacts to assign';
     input.value = '';
+}
+
+
+function setCheckedStateForAllContacts() {
+    let contactsDivs = document.getElementById('edit_assigned_list').children;
+    for (let index = 0; index < contactsDivs.length; index++) {
+
+    }
 }
 
 
@@ -121,7 +127,6 @@ function clickAddTaskTemplate(event) {
     }
     event.stopPropagation();
     closeAllDropDowns()
-    // closeAssignedContactsDropDownList();
 }
 
 
@@ -132,7 +137,7 @@ function clickAssignedContactsDropDownList(event) {
     else closeAssignedContactsDropDownList();
 }
 
-function clickTaskPriorityDropDownList(event) {
+function clickTaskCategoryDropDownList(event) {
     event.stopPropagation();
     const list = document.getElementById('edit_category_list');
     if (list.clientHeight == 0) openTaskCategoryDropDownList();
@@ -141,6 +146,6 @@ function clickTaskPriorityDropDownList(event) {
 
 
 function selectTaskCategory(categoryID) {
-    document.getElementById('taskcategory_name').innerHTML = taskCategorys[categoryID].name;
+    document.getElementById('edit_category').value = taskCategorys[categoryID].name;
     closeTaskCategoryDropDownList();
 }

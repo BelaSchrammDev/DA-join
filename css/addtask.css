@@ -17,9 +17,94 @@
 
 /* variables setup */
 :root {
-    --editfields_minwidth: 420px;
-    --editfields_maxwidth: 700px;
+    --editfields_minwidth: 280px;
+    --editfields_maxwidth: 770px;
     --editfields_height: 48px;
+    --property_description_gap: 8px;
+}
+
+/* buttonstyle for multiple use */
+.btnAddOk,
+.btnCancel {
+    height: 48px;
+    border-radius: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: background-color 100ms ease-in-out;
+}
+
+.btnAddOk {
+    background-color: #2a3547;
+    border: 1px solid #2A3647;
+    font-size: 21px;
+    font-weight: 700;
+    color: white;
+}
+
+.btnCancel {
+    background-color: white;
+    border: 1px solid #2A3647;
+    font-size: 20px;
+    font-weight: 400;
+    color: #2A3647;
+}
+
+.btnCancel:hover {
+    border: 2px solid #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.btnCancel:hover>div>span {
+    color: #29ABE2;
+}
+
+.btnCancel:hover>div>img {
+    content: url('../img/icons/add-task/cancel-high.svg');
+}
+
+.btnCancel:active {
+    border: 1px solid #091931;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.btnCancel:active>div>span {
+    color: #091931;
+}
+
+.btnCancel:active>div>img {
+    content: url('../img/icons/add-task/cancel-activ.svg');
+}
+
+
+
+.btnAddOk>img,
+.btnCancel>img {
+    height: 22px;
+    width: 22px;
+}
+
+.btnAddOk>div,
+.btnCancel>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.btnAddOk:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: 1px solid #29ABE2;
+}
+
+.btnAddOk:active {
+    background-color: #091931;
+    border: 1px solid #2A3647;
+}
+
+.required>span::after {
+    content: '*';
+    color: #ff8190;
 }
 
 .addtask_title {
@@ -31,7 +116,7 @@
 
 .addtask_form {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: stretch;
     gap: 48px;
 }
@@ -42,7 +127,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: 32px;
-    flex-grow: 1;
+    width: 45%;
 }
 
 .edit_property {
@@ -53,6 +138,7 @@
 }
 
 .edit_property>span {
+    position: relative;
     font-size: 20px;
     font-weight: 400;
     color: #2a3647;
@@ -60,10 +146,11 @@
 }
 
 .edit_property>input,
-.edit_property>div[edit_property],
+.edit_property>div>input,
 .edit_property>textarea {
     min-width: var(--editfields_minwidth);
     max-width: var(--editfields_maxwidth);
+    width: 100%;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     font-size: 20px;
@@ -75,8 +162,8 @@
 }
 
 .edit_property>input::placeholder,
-.edit_property>textarea::placeholder
-{
+.edit_property>div>input::placeholder,
+.edit_property>textarea::placeholder {
     color: #d1d1d1;
 }
 
@@ -92,7 +179,7 @@
     cursor: pointer;
 }
 
-.edit_assigned[dropdownopen='true']{
+.edit_assigned[dropdownopen='true'] {
     border: 1px solid #29abe2;
 }
 
@@ -100,7 +187,7 @@
     color: #d1d1d1;
 }
 
-.edit_assigned[dropdownopen='true'] + div {
+.edit_assigned[dropdownopen='true']+div {
     max-height: 200px;
     min-height: 100px;
     overflow: auto;
@@ -118,7 +205,8 @@
     border: 1px solid #29abe2;
 }
 
-.edit_assigned, .edit_category {
+.edit_assigned,
+.edit_category {
     min-width: var(--editfields_minwidth);
     max-width: var(--editfields_maxwidth);
     border-radius: 10px;
@@ -166,7 +254,8 @@
     cursor: pointer;
 }
 
-.edit_assigned_list, .edit_category_list {
+.edit_assigned_list,
+.edit_category_list {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -184,11 +273,11 @@
     transition: max-height 125ms ease-in-out;
 }
 
-.edit_assigned_list{
+.edit_assigned_list {
     scrollbar-gutter: stable;
 }
 
-.edit_category_list{
+.edit_category_list {
     box-shadow: 0px 0px 14px 3px #0000000A;
 }
 
@@ -209,41 +298,26 @@
     display: none;
 }
 
-/* assigncontact is true */
-.edit_assigned_list>div[checked="true"] {
+.edit_assigned_list>div:has(input[type='checkbox']:checked) {
     background-color: #2A3647;
 }
 
-.edit_assigned_list>div[checked="true"]:hover {
+.edit_assigned_list>div:hover:has(input[type='checkbox']:checked) {
     background-color: #091931;
 }
 
-.edit_assigned_list>div[checked="true"]>span:nth-child(2) {
+.edit_assigned_list>div:has(input[type='checkbox']:checked)>span:nth-child(2) {
     color: white;
 }
 
-.edit_assigned_list>div[checked="true"]>img {
+.edit_assigned_list>div:has(input[type='checkbox']:checked)>img {
     content: url('../img/icons/add-task/cf-checked-white.svg');
 }
 
-/* assigncontact is true END */
-
-/* assigncontact is false */
-.edit_assigned_list>div[checked="false"] {
-    background-color: white;
-}
-
-.edit_assigned_list>div[checked="false"]:hover,
-.edit_category_list>div:hover
-{
+.edit_assigned_list>div:has(input[type='checkbox']):hover,
+.edit_category_list>div:hover {
     background-color: #eeeeee;
 }
-
-.edit_assigned_list>div[checked="false"]>img {
-    content: url('../img/icons/add-task/cf-unchecked-black.svg');
-}
-
-/* assigncontact is false END */
 
 .edit_assigned_list>div>span:first-child {
     width: 42px;
@@ -284,7 +358,6 @@
 
 .assignedcontacts_bar {
     padding-top: 10px;
-    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -306,6 +379,8 @@
 }
 
 .addtask_priority {
+    container-type: inline-size;
+    container-name: prioritybar;
     min-width: var(--editfields_minwidth);
     max-width: var(--editfields_maxwidth);
     display: flex;
@@ -313,6 +388,16 @@
     align-items: center;
     font-size: 20px;
     font-weight: 400;
+}
+
+@container prioritybar (max-width: 420px) {
+    .addtask_priority>label>span {
+        display: none;
+    }
+
+    .addtask_priority>label {
+        width: 60px !important;
+    }
 }
 
 .addtask_priority>label {
@@ -366,9 +451,64 @@
     display: none;
 }
 
-.task_action{
+.edit_category{
+    /* background: url('../img/icons/add-task/arrow_drop_downaa.svg') no-repeat right; */
+    caret-color: transparent;
+}
+
+.edit_category_div>img{
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    border-radius: 1000px;
+    cursor: pointer;
+    right: 20px;
+    top: calc(var(--editfields_height) / 3.5);
+    transition: background-color 100ms ease-in-out,
+        transform 100ms ease-in-out;
+}
+
+.edit_category_div>img:hover{
+    background-color: #d1d1d1;
+}
+
+.edit_category_div[dropdownopen='true']>img{
+    transform: rotate(180deg);
+}
+
+.task_action {
     margin-top: 146px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+
+.task_action>div>span:first-child {
+    color: #ff8190;
+}
+
+.task_action>div:nth-child(2) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (max-width: 1200px) {
+    .addtask_form {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .addtask_edit {
+        width: unset;
+    }
+
+    .task_action>div:nth-child(2) {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 16px;
+    }
 }
