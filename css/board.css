@@ -39,6 +39,7 @@
     background-color: white;
     border: 1px solid #a8a8a8;
     border-radius: 10px;
+    margin-right: 16px;
 }
 
 div:has(>input:focus){
@@ -60,17 +61,6 @@ div:has(>input:focus){
     height: 32px;
     padding-left: 16px;
     border-left: 1px solid #D1D1D1;
-}
-
-.board_headline>button>div>span {
-    font-size: 21px;
-    font-weight: 700;
-    color: white;
-}
-
-.board_headline>button>img {
-    height: 22px;
-    width: 22px;
 }
 
 .board_task_rows {

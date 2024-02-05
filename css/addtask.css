@@ -118,11 +118,6 @@
     border: 1px solid #29abe2;
 }
 
-.required>span:after {
-    content: '*';
-    color: #ff8190;
-}
-
 .edit_assigned, .edit_category {
     min-width: var(--editfields_minwidth);
     max-width: var(--editfields_maxwidth);
@@ -371,6 +366,9 @@
     display: none;
 }
 
-.edit_category_list>div{
-
+.task_action{
+    margin-top: 146px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
