@@ -9,7 +9,7 @@ const taskCategorys = [
 
 
 async function initAddtaskSite() {
-    await includeHTML();
+    await initJoin();
     renderAddtaskFields();
 }
 
