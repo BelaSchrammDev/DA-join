@@ -7,10 +7,9 @@ body {
     margin: 0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
 }
 
-nav {
+/* nav {
     background-color: var(--primary);
     width: 232px;
     height: 100vh;
@@ -18,10 +17,10 @@ nav {
     top: 0;
     left: 0;
     z-index: 2;
-}
+} */
 
 main {
-    margin-left: 232px;
+    /* margin-left: 232px; */
     background-color: var(--site-bg);
     flex: 1;
     padding-left: 96px;
@@ -72,6 +71,12 @@ a:visited {
 }
 
 /* STRUCTURE MAIN SECTION */
+
+.header-main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
 .main-info-container {
     display: flex;

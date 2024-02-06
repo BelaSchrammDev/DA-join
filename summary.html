@@ -8,81 +8,83 @@
     <title>Join - Summary</title>
     <link rel="stylesheet" href="./css/root.css">
     <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/summary.css">
     <link rel="stylesheet" href="./css/media_queries.css">
 </head>
 
 <body onload="initSummarySite()">
     <div w3-include-html="./templates/sidebar.html"></div>
-    <header w3-include-html="./templates/header.html"></header>
-    <main>
-        <section class="summary-headline-container">
-            <h1 class="summary-headline">Join 360</h1>
-            <div class="vector-seperator"></div>
-            <span class="summary-subheadline">Key Metrics at a Glace</span>
-        </section>
-        <section class="main-info-container">
-            <section class="summary-main-container">
-                <div class="summary-taskinfo">
-                    <a class="task-to-do-done hover-to-the-right" href="./board.html">
-                        <div class="upper-img-bg">
-                            <img src="./img/icons/summary/pencil.svg" alt="">
-                        </div>
-                        <div>
-                            <div class="task-amount">1</div>
-                            <span class="upper-task-text">To-Do</span>
-                        </div>
-                    </a>
-                    <a class="task-to-do-done hover-to-the-left" href="./board.html">
-                        <div class="upper-img-bg">
-                            <img src="./img/icons/summary/hook.svg" alt="">
-                        </div>
-                        <div>
-                            <div class="task-amount">1</div>
-                            <span class="upper-task-text">Done</span>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a class="task-important hover-to-the-bottom-right" href="./board.html">
-                        <div class="important-task-amount">
-                            <div class="important-img-bg">
-                                <img class="hover-test" src="./img/icons/summary/cappa.svg" alt="">
+    <div class="header-main-container">
+        <header w3-include-html="./templates/header.html"></header>
+        <main>
+            <section class="summary-headline-container">
+                <h1 class="summary-headline">Join 360</h1>
+                <div class="vector-seperator"></div>
+                <span class="summary-subheadline">Key Metrics at a Glace</span>
+            </section>
+            <section class="main-info-container">
+                <section class="summary-main-container">
+                    <div class="summary-taskinfo">
+                        <a class="task-to-do-done hover-to-the-right" href="./board.html">
+                            <div class="upper-img-bg">
+                                <img src="./img/icons/summary/pencil.svg" alt="">
                             </div>
                             <div>
                                 <div class="task-amount">1</div>
-                                <span class="important-text">Urgent</span>
+                                <span class="upper-task-text">To-Do</span>
                             </div>
-                        </div>
-                        <div class="important-seperator"></div>
-                        <div class="important-task-date">
-                            <span class="important-text-bold">October 16, 2022</span>
-                            <span class="important-text">Upcoming Deadline</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="task-counter-container">
-                    <a class="task-counter hover-to-the-right-small" href="./board.html">
-                        <div class="task-amount">5</div>
-                        <span class="upper-task-text tib-width">Tasks in Board</span>
-                    </a>
-                    <a class="task-counter hover-to-the-middel" href="./board.html">
-                        <div class="task-amount">2</div>
-                        <span class="upper-task-text">Tasks in Progress</span>
-                    </a>
-                    <a class="task-counter hover-to-the-left-small" href="./board.html">
-                        <div class="task-amount">2</div>
-                        <span class="upper-task-text">Awaiting Feedback</span>
-                    </a>
-                </div>
+                        </a>
+                        <a class="task-to-do-done hover-to-the-left" href="./board.html">
+                            <div class="upper-img-bg">
+                                <img src="./img/icons/summary/hook.svg" alt="">
+                            </div>
+                            <div>
+                                <div class="task-amount">1</div>
+                                <span class="upper-task-text">Done</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="task-important hover-to-the-bottom-right" href="./board.html">
+                            <div class="important-task-amount">
+                                <div class="important-img-bg">
+                                    <img class="hover-test" src="./img/icons/summary/cappa.svg" alt="">
+                                </div>
+                                <div>
+                                    <div class="task-amount">1</div>
+                                    <span class="important-text">Urgent</span>
+                                </div>
+                            </div>
+                            <div class="important-seperator"></div>
+                            <div class="important-task-date">
+                                <span class="important-text-bold">October 16, 2022</span>
+                                <span class="important-text">Upcoming Deadline</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="task-counter-container">
+                        <a class="task-counter hover-to-the-right-small" href="./board.html">
+                            <div class="task-amount">5</div>
+                            <span class="upper-task-text tib-width">Tasks in Board</span>
+                        </a>
+                        <a class="task-counter hover-to-the-middel" href="./board.html">
+                            <div class="task-amount">2</div>
+                            <span class="upper-task-text">Tasks in Progress</span>
+                        </a>
+                        <a class="task-counter hover-to-the-left-small" href="./board.html">
+                            <div class="task-amount">2</div>
+                            <span class="upper-task-text">Awaiting Feedback</span>
+                        </a>
+                    </div>
+                </section>
+                <section class="welcome-container">
+                    <h3 class="welcome-message">Good morning,</h3>
+                    <h2 class="username">Sofia Müller</h2>
+                </section>
             </section>
-            <section class="welcome-container">
-                <h3 class="welcome-message">Good morning,</h3>
-                <h2 class="username">Sofia Müller</h2>
-            </section>
-        </section>
-    </main>
+        </main>
+    </div>
     <script src="./js/main.js"></script>
     <script src="./js/summary.js"></script>
     <script src="./js/header.js"></script>
