@@ -31,7 +31,9 @@ body{
     margin-left: 90px;
     margin-right: 90px;
 }
+
  /* SIDEBAR */
+
 nav {
     display: flex;
     flex-direction: column;
@@ -109,7 +111,7 @@ header img:hover {
 }
 
 .header-kanbanboard-headline {
-    margin-left: 348px;
+    margin-left: 116px;
     font-size: 20px;
     font-weight: 400;
 }
