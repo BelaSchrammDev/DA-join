@@ -396,7 +396,8 @@
     }
 
     .addtask_priority>label {
-        width: 60px !important;
+        min-width: 60px !important;
+        width: 30% !important;
     }
 }
 
@@ -456,9 +457,19 @@
     caret-color: transparent;
 }
 
+.edit_category_div>div:first-child{
+    position: absolute;
+    width: 100%;
+    height: var(--editfields_height);
+    border: 1px solid transparent;
+    z-index: 1;
+    cursor: pointer;
+}
+
 .edit_category_div>img{
     height: 24px;
     width: 24px;
+    z-index: 2;
     position: absolute;
     border-radius: 1000px;
     cursor: pointer;

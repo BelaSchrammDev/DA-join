@@ -78,8 +78,9 @@
                 <div class="edit_property required">
                     <span>Category</span>
                     <div style="position: relative;" id="edit_category_div" class="edit_category_div">
+                        <div onclick="clickTaskCategoryDropDownList(event)"></div>
                         <img onclick="clickTaskCategoryDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
-                        <input onkeydown="return false;" onclick="clickTaskCategoryDropDownList(event)" type="text"
+                        <input onkeydown="return false;" type="text"
                             required placeholder="Select Task Category" id="edit_category" class="edit_category">
                         <div id="edit_category_list" class="edit_category_list list_scrollbar">
                         </div>
