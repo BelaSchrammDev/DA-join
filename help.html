@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="./css/root.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/addtask.css">
-    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/media_queries.css">
+
 
     <script src="./js/addtask.js"></script>
     <title>Help</title>
@@ -22,7 +21,7 @@
         <div w3-include-html="./templates/sidebar.html"></div>
         <div class="maincontent">
             <header w3-include-html="./templates/header.html"></header>
-            <div id="helpTemplate" class="content_maindiv">
+            <div class="content_maindiv">
                 <h1>Help</h1>
                 <p>
                     Welcome to the help page for <a href="index.html">Join</a>, your guide to using our kanban project management tool. 
@@ -48,34 +47,37 @@
                 <p>
                     Here is a step-by-step guide on how to use <a href="index.html">Join</a>:
                 </p>
-                <ol>
+                <ol class="helpol">
                     <li>
-                        Exploring the Board
-                        When you log in to <a href="index.html">Join</a>, you'll find a default board. 
+                        <h3>Exploring the Board</h3>
+                        <p>
+                            When you log in to <a href="index.html">Join</a>, you'll find a default board. 
                         This board represents your project and contains four default lists: "To Do", "In Progress", “Await feedback” and "Done".
                     </li>
                     <li>
-                        Creating Contacts
+                        <h3>Creating Contacts</h3>
+                        <p>
                         In <a href="index.html">Join</a>, you can add contacts to collaborate on your projects. 
                         Go to the "Contacts" section, click on "New contact", and fill in the required information. 
                         Once added, these contacts can be assigned tasks and they can interact with the tasks on the board.
+                        </p>
                     </li>
                     <li>
-                        Adding Cards
-                        Now that you've added your contacts, you can start adding cards. Cards represent individual tasks. 
+                        <h3>Adding Cards</h3>
+                        <p>Now that you've added your contacts, you can start adding cards. Cards represent individual tasks. 
                         Click the "+" button under the appropriate list to create a new card. Fill in the task details in the card, 
-                        like task name, description, due date, assignees, etc.
+                        like task name, description, due date, assignees, etc.</p>
                     </li>
                     <li>
-                        Moving Cards
-                        As the task moves from one stage to another, you can reflect that on the board by dragging and dropping the card 
-                        from one list to another.
+                        <h3>Moving Cards</h3>
+                        <p>As the task moves from one stage to another, you can reflect that on the board by dragging and dropping the card 
+                        from one list to another.</p>
                     </li>
                     <li>
-                        Deleting Cards
-                        Once a task is completed, you can either move it to the "Done" list or delete it. 
+                        <h3>Deleting Cards</h3>
+                        <p>Once a task is completed, you can either move it to the "Done" list or delete it. 
                         Deleting a card will permanently remove it from the board. Please exercise caution when deleting cards, 
-                        as this action is irreversible.
+                        as this action is irreversible.</p>
                     </li>
                 </ol>
                 <p>
