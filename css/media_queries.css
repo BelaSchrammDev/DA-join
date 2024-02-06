@@ -1,0 +1,27 @@
+@media screen and (max-width: 800px) {
+    nav {
+        width: auto;
+        height: auto;
+        position: relative;
+    }
+    .nav_elements {
+        background-color: #2A3647;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        position: fixed;
+        bottom: -1px;
+        left: 0;
+        width: 100vw;
+    }
+    .nav_list_element {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+    .navbar_logo, .nav_security_links {
+        display: none;
+    }
+}
