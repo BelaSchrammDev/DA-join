@@ -1,4 +1,4 @@
-<div id="addtaskTemplate" class="addtask_maindiv">
+<div id="addtaskTemplate" class="content_maindiv">
     <span class="addtask_title">Add Task</span>
     <form action="">
         <div class="addtask_form">
@@ -77,9 +77,10 @@
                 </div>
                 <div class="edit_property required">
                     <span>Category</span>
-                    <div style="position: relative;" id="edit_category_div" class="edit_category_div">
-                        <img autocomplete="off" onclick="clickTaskCategoryDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
-                        <input onkeydown="return false;" onclick="clickTaskCategoryDropDownList(event)" type="text"
+                    <div id="edit_category_div" class="edit_category_div">
+                        <div onclick="clickTaskCategoryDropDownList(event)"></div>
+                        <img onclick="clickTaskCategoryDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
+                        <input type="text" tabindex="-1"
                             required placeholder="Select Task Category" id="edit_category" class="edit_category">
                         <div id="edit_category_list" class="edit_category_list list_scrollbar">
                         </div>
@@ -88,7 +89,10 @@
                 <div class="edit_property">
                     <span>Subtasks</span>
                     <div class="edit_subtask_div">
-                        <img src="../img/icons/add-task/cancel.svg" alt="">
+                        <div>
+                            <img src="../img/icons/board/add.svg" alt="">
+                            <img src="../img/icons/add-task/cancel.svg" alt="">
+                        </div>
                         <input type="text" placeholder="Add new subtask">
                     </div>
                 </div>

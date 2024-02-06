@@ -22,3 +22,12 @@ body{
     background-color: #F6F7F8;
 }
 
+.content_maindiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-top: 110px;
+    margin-left: 90px;
+    margin-right: 90px;
+}
