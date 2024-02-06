@@ -202,6 +202,7 @@
 }
 
 .edit_property>input:focus,
+.edit_property>div>input:focus,
 .edit_property>textarea:focus {
     border: 1px solid #29abe2;
 }
@@ -459,6 +460,10 @@
     caret-color: transparent;
 }
 
+.edit_category_div{
+    position: relative;
+}
+
 .edit_category_div>div:first-child{
     position: absolute;
     width: 100%;
@@ -487,6 +492,22 @@
 
 .edit_category_div[dropdownopen='true']>img{
     transform: rotate(180deg);
+}
+
+.edit_subtask_div{
+    position: relative;
+}
+
+.edit_subtask_div>img:first-child{
+    height: 24px;
+    width: 24px;
+    z-index: 2;
+    position: absolute;
+    border-radius: 1000px;
+    cursor: pointer;
+    right: 20px;
+    top: calc(var(--editfields_height) / 3.5);
+    transition: background-color 100ms ease-in-out;
 }
 
 .task_action {

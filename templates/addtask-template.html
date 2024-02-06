@@ -77,13 +77,20 @@
                 </div>
                 <div class="edit_property required">
                     <span>Category</span>
-                    <div style="position: relative;" id="edit_category_div" class="edit_category_div">
+                    <div id="edit_category_div" class="edit_category_div">
                         <div onclick="clickTaskCategoryDropDownList(event)"></div>
                         <img onclick="clickTaskCategoryDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                         <input type="text" tabindex="-1"
                             required placeholder="Select Task Category" id="edit_category" class="edit_category">
                         <div id="edit_category_list" class="edit_category_list list_scrollbar">
                         </div>
+                    </div>
+                </div>
+                <div class="edit_property">
+                    <span>Subtasks</span>
+                    <div class="edit_subtask_div">
+                        <img src="../img/icons/add-task/cancel.svg" alt="">
+                        <input type="text" placeholder="Add new subtask">
                     </div>
                 </div>
             </div>
