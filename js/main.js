@@ -89,10 +89,15 @@ const taskCategorys = [
 ]
 
 
+function createUniqueID(prefix) {
+    const idnumber = new Date().getTime();
+    return prefix + idnumber;
+}
+
+
 function testGuestLogin() {
     sessionStorage.setItem('currentuser', 'Guest');
     sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
-    sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
     window.location.href = './summary.html';
 }
 
@@ -100,16 +105,16 @@ async function initJoin() {
     // test if user logged in
     currentuser = sessionStorage.getItem('currentuser');
     if (currentuser == null || currentuser == '') window.location.href = './index.html';
-    // user login
+    // user is correct logged in
     await includeHTML();
-    // load task and contacts from remotestorage
-    // currently the above defined are taken
+    // load task from remotestorage and or
 }
 
 
 async function initLoginSite() {
     await includeHTML();
-    // ???
+    // load contacts from remotestorage for login
+    sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
 }
 
 
