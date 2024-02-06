@@ -8,44 +8,46 @@
     <title>Join - Contacts</title>
     <link rel="stylesheet" href="./css/root.css">
     <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/contacts.css">
     <link rel="stylesheet" href="./css/media_queries.css">
 </head>
 
 <body onload="initContactsSite()">
     <div w3-include-html="./templates/sidebar.html"></div>
-    <header w3-include-html="./templates/header.html"></header>
-    <main>
-        <section class="contact-container">
-            <div class="add-button-container">
-                <button class="add-contact-btn">
-                    <span>Add new contact</span>
-                    <img src="./img/icons/contacts/add_contact-white.svg" alt="">
-                </button>
-            </div>
-            <div>
-                <h3 class="contact-letter">A</h3>
-                <div class="contact-seperator"></div>
-                <div class="contact-data-container">
-                    <div class="contact-bg">
-                        <span class="contact-short">AM</span>
-                    </div>
-                    <div class="contact-name-email-container">
-                        <span class="contact-name">Anton Mayer</span>
-                        <span class="contact-email">antom@gmail.com</span>
+    <div class="header-main-container">
+        <header w3-include-html="./templates/header.html"></header>
+        <main>
+            <section class="contact-container">
+                <div class="add-button-container">
+                    <button class="add-contact-btn">
+                        <span>Add new contact</span>
+                        <img src="./img/icons/contacts/add_contact-white.svg" alt="">
+                    </button>
+                </div>
+                <div>
+                    <h3 class="contact-letter">A</h3>
+                    <div class="contact-seperator"></div>
+                    <div class="contact-data-container">
+                        <div class="contact-bg">
+                            <span class="contact-short">AM</span>
+                        </div>
+                        <div class="contact-name-email-container">
+                            <span class="contact-name">Anton Mayer</span>
+                            <span class="contact-email">antom@gmail.com</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="show-contact-container">
-            <div class="headline-container">
-                <h1 class="headline-contact">Contacts</h1>
-                <div class="headline-seperator"></div>
-                <span class="subheadline-contact">Better with a team</span>
-            </div>
-        </section>
-    </main>
+            </section>
+            <section class="show-contact-container">
+                <div class="headline-container">
+                    <h1 class="headline-contact">Contacts</h1>
+                    <div class="headline-seperator"></div>
+                    <span class="subheadline-contact">Better with a team</span>
+                </div>
+            </section>
+        </main>
+    </div>
     <script src="./js/main.js"></script>
     <script src="./js/contacts.js"></script>
     <script src="./js/header.js"></script>

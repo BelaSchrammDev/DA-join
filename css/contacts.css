@@ -9,21 +9,11 @@ body {
     margin: 0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
-}
-
-nav {
-    background-color: var(--primary);
-    width: 232px;
-    height: 100vh;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    z-index: 2;
+    max-width: 1920px;
+    margin: auto;
 }
 
 main {
-    margin-left: 232px;
     background-color: var(--site-bg);
     flex: 1;
     display: flex;
@@ -43,6 +33,12 @@ a:visited {
 }
 
 /* STRUCTURE */
+
+.header-main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
 .contact-container {
     width: 456px;

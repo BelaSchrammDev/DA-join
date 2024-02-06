@@ -5,8 +5,10 @@
 body {
     font-family: 'Inter';
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
+    max-width: 1920px;
+    margin: auto;
 }
 
 /* nav {
