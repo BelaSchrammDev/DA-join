@@ -7,7 +7,7 @@ body{
     margin: 0;
 }
 
-/* to be determinated */
+/********** MAIN-CONTENT **********/
 .maindiv {
     min-height: 100vh;
     max-width: 1920px;
@@ -31,7 +31,7 @@ body{
     margin-left: 90px;
     margin-right: 90px;
 }
- /* SIDEBAR */
+ /********** SIDEBAR **********/
 nav {
     display: flex;
     flex-direction: column;
@@ -84,7 +84,7 @@ nav {
     text-decoration: none;
 }
 
-/* HEADER */
+/********** HEADER **********/
 
 header {
     background-color: white;
@@ -189,7 +189,28 @@ header img:hover {
     transform: scaleX(1);
 }
 
-/* HELP-SIDE */
-.help_ol {
-    font-size: 24px;
+/********** HELP-SIDE **********/
+/* orderedList with big Number*/
+
+.bignum {
+    margin-left: 0;
+    counter-reset: listItem;
+}
+
+.bignum>li {
+    list-style: none;
+    position: relative;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    padding-left: 1em;
+    min-height: 2em;
+}
+
+.bignum>li:before {
+    position: absolute;
+    counter-increment: listItem;
+    content: counter(listItem) ".";
+    font-size: 2em;
+    top: -0.1em;
+    left: -1em;
 }
