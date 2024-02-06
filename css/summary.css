@@ -11,18 +11,7 @@ body {
     margin: auto;
 }
 
-/* nav {
-    background-color: var(--primary);
-    width: 232px;
-    height: 100vh;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    z-index: 2;
-} */
-
 main {
-    /* margin-left: 232px; */
     background-color: var(--site-bg);
     flex: 1;
     padding-left: 96px;
