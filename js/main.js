@@ -1,8 +1,8 @@
 let sessionTasks = [
     {
-        id: 12345,
-        title: 'Testtask 1',
-        description: 'Titel 1 beschreibung',
+        id: 'T12',
+        title: 'Testtask 2',
+        description: 'Titel 2 beschreibung',
         assignedto: ['C123'],
         date: '14.02.2024',
         priority: '',
@@ -11,7 +11,33 @@ let sessionTasks = [
             { name: 'subtask 1', done: true },
             { name: 'subtask 2', done: false },
         ]
-    }
+    },
+    {
+        id: 'T123',
+        title: 'Testtask 2',
+        description: 'Titel 2 beschreibung',
+        assignedto: ['C456'],
+        date: '14.04.2024',
+        priority: 'low',
+        category: 2,
+        subtasks: [
+            { name: 'subtask 1', done: true },
+            { name: 'subtask 2', done: false },
+        ]
+    },
+    {
+        id: 'T123454',
+        title: 'Testtask 3',
+        description: 'Titel 3 beschreibung',
+        assignedto: ['C789'],
+        date: '14.02.2025',
+        priority: 'medium',
+        category: 1,
+        subtasks: [
+            { name: 'subtask 1', done: true },
+            { name: 'subtask 2', done: false },
+        ]
+    },
 ]
 
 let sessionContacts = [
@@ -57,6 +83,12 @@ let sessionContacts = [
 let currentuser = '';
 
 
+const taskCategorys = [
+    { id: 1, name: 'User Story' },
+    { id: 2, name: 'Technical Task' }
+]
+
+
 function testGuestLogin() {
     sessionStorage.setItem('currentuser', 'Guest');
     sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
@@ -67,7 +99,7 @@ function testGuestLogin() {
 async function initJoin() {
     // test if user logged in
     currentuser = sessionStorage.getItem('currentuser');
-    if (currentuser == null) window.location.href = './index.html';
+    if (currentuser == null || currentuser == '') window.location.href = './index.html';
     // user login
     await includeHTML();
     // load task and contacts from remotestorage
@@ -75,7 +107,7 @@ async function initJoin() {
 }
 
 
-async function initLoginSite(){
+async function initLoginSite() {
     await includeHTML();
     // ???
 }
