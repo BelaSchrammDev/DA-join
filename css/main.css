@@ -19,7 +19,7 @@ body{
 
 .maincontent {
     flex-grow: 1;
-    background-color: #F6F7F8;
+    background-color: var(--side-bg);
 }
 
 .content_maindiv {
@@ -30,6 +30,16 @@ body{
     margin-top: 110px;
     margin-left: 90px;
     margin-right: 90px;
+}
+
+.title {
+    font-size: 61px;
+    font-weight: 700;
+    color: black;
+}
+
+.accent_blue {
+    color: var(--accent);
 }
  /********** SIDEBAR **********/
 nav {
@@ -43,7 +53,7 @@ nav {
     position: sticky;
     top: 0;
     background-color: #2A3647;
-    color: #CDCDCD;
+    color: var(--icon-grey);
 }
 .navbar_logo {
     margin-top: 64px;
@@ -55,7 +65,7 @@ nav {
 .nav_list_element {
     display: flex;
     align-items: center;
-    color: #CDCDCD;
+    color: var(--icon-grey);
     text-decoration: none;
     width: 100%;
     padding: 6px 46px 6px 46px;
@@ -64,7 +74,7 @@ nav {
     transition-duration: 175ms;
 }
 .nav_list_element:hover {
-    background-color: #091931;
+    background-color: var(--secondary);
     transition-duration: 175ms;
     transform: scale(1.1);
 }
@@ -80,7 +90,7 @@ nav {
     margin-bottom: 64px;
 }
 .nav_security_links a {
-    color: #A8A8A8;
+    color: var(--qm-grey);
     text-decoration: none;
 }
 
