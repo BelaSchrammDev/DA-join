@@ -32,7 +32,7 @@ function openTaskCategoryDropDownList() {
     const list = document.getElementById('edit_category_list');
     document.getElementById('edit_category_div').setAttribute('dropdownopen', 'true');
     document.getElementById('edit_category').style = 'border: 1px solid #29abe2;'
-    list.style['max-height'] = '200px';
+    list.style['max-height'] = '300px';
     setTimeout(() => {
         list.style.overflow = 'auto';
         document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
@@ -66,9 +66,7 @@ function openAssignedContactsDropDownList() {
     showAllAssignedContacts();
     document.getElementById('edit_assigned').children[1].setAttribute('open', true);
     document.getElementById('inputAssignContacts').focus();
-    setTimeout(() => {
-        document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
-    }, 200);
+    document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
 }
 
 

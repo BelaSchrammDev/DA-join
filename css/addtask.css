@@ -31,6 +31,7 @@
     padding-left: 16px;
     padding-right: 16px;
     transition: background-color 100ms ease-in-out;
+    cursor: pointer;
 }
 
 .btnAddOk {
@@ -188,7 +189,7 @@
 }
 
 .edit_assigned[dropdownopen='true']+div {
-    max-height: 200px;
+    max-height: 210px;
     min-height: 100px;
     overflow: auto;
 }
@@ -411,6 +412,7 @@
     background-color: white;
     gap: 8px;
     box-shadow: 0px 0px 4px 0px #0000001A;
+    cursor: pointer;
 }
 
 .addtask_priority>label:hover {
