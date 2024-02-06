@@ -1,3 +1,8 @@
+async function initBoardSite() {
+    await initJoin();
+    // renderfunctions
+}
+
 function debug_view_taskbigcard() {
     let taskBigWidth = document.getElementById('task_big').clientWidth;
     document.getElementById('board_overlay').style = "z-index: 10;";

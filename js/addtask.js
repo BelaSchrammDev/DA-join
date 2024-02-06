@@ -2,14 +2,8 @@ let openAssignedContactsList = false;
 let openTaskCategoryList = false;
 
 
-const taskCategorys = [
-    { id: 1, name: 'User Story' },
-    { id: 2, name: 'Technical Task' }
-]
-
-
 async function initAddtaskSite() {
-    await includeHTML();
+    await initJoin();
     renderAddtaskFields();
 }
 
