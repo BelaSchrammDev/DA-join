@@ -92,6 +92,7 @@ a:visited {
 
 .show-contact-container {
     display: flex;
+    flex-direction: column;
     margin-top: 110px;
     margin-left: 55px;
     flex: 1;
@@ -104,6 +105,7 @@ a:visited {
     align-items: center;
     height: 73px;
     gap: 30px;
+    margin-bottom: 32px;
 }
 
 .headline-contact {
@@ -122,6 +124,55 @@ a:visited {
 .subheadline-contact {
     font-size: 27px;
     font-weight: 400;
+}
+
+.show-contact-large-container {
+    display: flex;
+    align-items: center;
+    gap: 54px;
+}
+
+.edit-delete-contact {
+    display: flex;
+    gap: 16px;
+}
+
+.edit-contact {
+    width: 63px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    transition: font-weight 70ms ease-in-out;
+}
+
+.edit-contact:hover {
+    color: var(--accent);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit-contact:hover img {
+    content: url('../img/icons/contacts/pen-blue.svg');
+}
+
+.delete-contact {
+    width: 81px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    transition: font-weight 70ms ease-in-out;
+}
+
+.delete-contact:hover {
+    color: var(--accent);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-contact:hover img {
+    content: url('../img/icons/contacts/trash-blue.svg');
 }
 
 /* BUTTON */
@@ -205,10 +256,29 @@ a:visited {
     align-items: center;
 }
 
+.contact-bg-large {
+    width: 120px;
+    height: 120px;
+    background-color: #FF7A00;
+    border: 3px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--btn-shdw-td);
+}
+
 .contact-short {
     color: white;
     font-size: 12px;
     font-weight: 400;
+
+}
+
+.contact-short-large {
+    color: white;
+    font-size: 47px;
+    font-weight: 500;
 
 }
 
@@ -221,6 +291,13 @@ a:visited {
 .contact-name {
     font-size: 20px;
     font-weight: 400;
+}
+
+.contact-name-large {
+    display: block;
+    font-size: 47px;
+    font-weight: 500;
+    margin-bottom: 12px;
 }
 
 .contact-email {
