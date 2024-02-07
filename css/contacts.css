@@ -130,6 +130,7 @@ a:visited {
     display: flex;
     align-items: center;
     gap: 54px;
+    margin-bottom: 50px;
 }
 
 .edit-delete-contact {
@@ -173,6 +174,11 @@ a:visited {
 
 .delete-contact:hover img {
     content: url('../img/icons/contacts/trash-blue.svg');
+}
+
+.info-headline span {
+    font-size: 20px;
+    font-weight: 400;
 }
 
 /* BUTTON */
