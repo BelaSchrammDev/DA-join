@@ -134,3 +134,12 @@ async function includeHTML() {
 }
 
 
+function setFocus(elementID) {
+    document.getElementById(elementID).focus();
+}
+
+
+function setInputValue(elementID, newvalue = '') {
+    document.getElementById(elementID).value = newvalue;
+}
+

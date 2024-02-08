@@ -9,6 +9,44 @@ async function initAddtaskSite() {
 
 
 function renderAddtaskFields() {
+    renderCategorys();
+    renderSubTasks();
+}
+
+
+function renderSubTasks() {
+    let subtasksHTML = '';
+    subtasksHTML += getSubTaskHTML(1, 'Erster task');
+    subtasksHTML += getSubTaskHTML(2, 'Zweiter task');
+    subtasksHTML += getSubTaskHTML(3, 'Dritter task');
+    document.getElementById('subtask_list').innerHTML = subtasksHTML;
+}
+
+
+function getSubTaskHTML(subtaskID, subtaskname) {
+    return `
+    <div id="subtaskdiv${subtaskID}" editmode="false" class="subtask_row">
+    <input name="subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
+    <div lipoint class="subtask_point"></div>
+    <span ondblclick="setSubTaskEditMode('${subtaskID}','true')" id="subtaskspan${subtaskID}">${subtaskname}</span>
+    <div showaction>
+        <img onclick="setSubTaskEditMode('${subtaskID}','true')" src="../img/icons/add-task/edit.svg" alt="">
+        <div line></div>
+        <img onclick="deleteSubTask('${subtaskID}')" src="../img/icons/add-task/delete.svg" alt="">
+    </div>
+    <div editaction>
+        <img onclick="deleteSubTask('${subtaskID}')" src="../img/icons/add-task/delete.svg" alt="">
+        <div line></div>
+        <img onmousedown="changeSubTask('${subtaskID}')" src="../img/icons/add-task/ok.svg" alt="">
+    </div>
+    </div>
+    `
+
+
+}
+
+
+function renderCategorys() {
     const taskCategoryDiv = document.getElementById('edit_category_list');
     let html = '';
     for (let index = 0; index < taskCategorys.length; index++) {
@@ -140,4 +178,34 @@ function clickTaskCategoryDropDownList(event) {
 function selectTaskCategory(categoryID) {
     document.getElementById('edit_category').value = taskCategorys[categoryID].name;
     closeTaskCategoryDropDownList();
+}
+
+
+function createNewSubTask() {
+    let newSubTaskName = document.getElementById('edit_subtask_input').value;
+    if (newSubTaskName == '') return;
+    let newSubTaskHTML = getSubTaskHTML(createUniqueID('ST'), newSubTaskName);
+    document.getElementById('subtask_list').innerHTML += newSubTaskHTML;
+    setInputValue('edit_subtask_input');
+}
+
+
+function deleteSubTask(subtaskID) {
+    let subtaskdiv = document.getElementById('subtaskdiv' + subtaskID);
+    subtaskdiv.remove();
+}
+
+
+function changeSubTask(subtaskID) {
+    let newSubTaskName = document.getElementById('subtask' + subtaskID).value;
+    document.getElementById('subtaskspan' + subtaskID).innerHTML = newSubTaskName;
+    setSubTaskEditMode(subtaskID, false);
+}
+
+
+function setSubTaskEditMode(subtaskID, mode) {
+    document.getElementById('subtaskdiv' + subtaskID).setAttribute('editmode', mode);
+    const inputelement = document.getElementById('subtask' + subtaskID);
+    inputelement.setAttribute('tabindex', '0');
+    window.requestAnimationFrame(() => inputelement.focus());
 }

@@ -88,12 +88,18 @@
                 </div>
                 <div class="edit_property">
                     <span>Subtasks</span>
-                    <div class="edit_subtask_div">
-                        <div>
-                            <img src="../img/icons/board/add.svg" alt="">
-                            <img src="../img/icons/add-task/cancel.svg" alt="">
+                    <div edit_property class="edit_subtask_div">
+                        <input id="edit_subtask_input" subtask type="text" placeholder="Add new subtask">
+                        <div subtaskadd>
+                            <img onclick="setFocus('edit_subtask_input')" src="../img/icons/add-task/plus.svg" alt="">
                         </div>
-                        <input type="text" placeholder="Add new subtask">
+                        <div subtaskaction>
+                            <img onmousedown="setInputValueAndFocus('edit_subtask_input')" src="../img/icons/add-task/cancel.svg" alt="">
+                            <div></div>
+                            <img onmousedown="createNewSubTask()" src="../img/icons/add-task/ok.svg" alt="">
+                        </div>
+                    </div>
+                    <div id="subtask_list" class="subtask_list">
                     </div>
                 </div>
             </div>

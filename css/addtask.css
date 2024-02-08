@@ -130,8 +130,9 @@
 }
 
 .edit_property>input,
-.edit_property>div>input,
-.edit_property>textarea {
+.edit_property>div>input:not(input[subtask]),
+.edit_property>textarea,
+.edit_property>div[edit_property] {
     min-width: var(--editfields_minwidth);
     max-width: var(--editfields_maxwidth);
     width: 100%;
@@ -139,10 +140,15 @@
     border: 1px solid #d1d1d1;
     font-size: 20px;
     font-weight: 400;
-    padding: 12px 21px 12px 21px;
-    outline: unset;
     color: black;
     background-color: white;
+}
+
+.edit_property>input,
+.edit_property>div>input,
+.edit_property>textarea {
+    padding: 12px 21px 12px 21px;
+    outline: unset;
 }
 
 .edit_property>input::placeholder,
@@ -185,7 +191,7 @@
 }
 
 .edit_property>input:focus,
-.edit_property>div>input:focus,
+.edit_subtask_div:has(input[subtask]:focus),
 .edit_property>textarea:focus {
     border: 1px solid #29abe2;
 }
@@ -438,16 +444,15 @@
     display: none;
 }
 
-.edit_category{
-    /* background: url('../img/icons/add-task/arrow_drop_downaa.svg') no-repeat right; */
+.edit_category {
     caret-color: transparent;
 }
 
-.edit_category_div{
+.edit_category_div {
     position: relative;
 }
 
-.edit_category_div>div:first-child{
+.edit_category_div>div:first-child {
     position: absolute;
     width: 100%;
     height: var(--editfields_height);
@@ -456,7 +461,7 @@
     cursor: pointer;
 }
 
-.edit_category_div>img{
+.edit_category_div>img {
     height: 24px;
     width: 24px;
     z-index: 2;
@@ -469,30 +474,178 @@
         transform 100ms ease-in-out;
 }
 
-.edit_category_div>img:hover{
+.edit_category_div>img:hover {
     background-color: #d1d1d1;
 }
 
-.edit_category_div[dropdownopen='true']>img{
+.edit_category_div[dropdownopen='true']>img {
     transform: rotate(180deg);
 }
 
-.edit_subtask_div{
-    position: relative;
+.edit_subtask_div {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.edit_subtask_div>img:first-child{
+.edit_subtask_div>input {
+    border: unset;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.edit_subtask_div>div {
+    height: 100%;
+    display: none;
+    padding-right: 20px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    transition: display 125ms ease-in-out;
+}
+
+.edit_subtask_div>div[subtaskaction]>div {
+    height: 60%;
+    width: 1px;
+    background-color: #D1D1D1;
+}
+
+.edit_subtask_div:has(input:focus)>div[subtaskaction] {
+    display: flex;
+}
+
+.edit_subtask_div:has(input:not(:focus))>div[subtaskadd] {
+    display: flex;
+}
+
+.edit_subtask_div img {
     height: 24px;
     width: 24px;
     z-index: 2;
-    position: absolute;
     border-radius: 1000px;
     cursor: pointer;
-    right: 20px;
-    top: calc(var(--editfields_height) / 3.5);
     transition: background-color 100ms ease-in-out;
 }
 
+.edit_subtask_div img:hover {
+    background-color: #D1D1D1;
+}
+
+.subtask_list {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    align-items: stretch;
+    min-width: var(--editfields_minwidth);
+    max-width: var(--editfields_maxwidth);
+    height: 132px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.subtask_row {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    height: 32px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.subtask_row>input {
+    font-size: 16px;
+    font-weight: 400;
+    outline: unset;
+    border: unset;
+}
+
+.subtask_row[editmode=true],
+.subtask_row[editmode=true]:hover {
+    background-color: white;
+    border-radius: 0;
+    border-bottom: 1px solid #005DFF;
+}
+
+.subtask_row[editmode=false]>div[showaction] {
+    display: none;
+}
+
+.subtask_row[editmode=false]:hover>div[showaction] {
+    display: flex;
+}
+
+.subtask_row[editmode=true]>div[editaction] {
+    display: flex;
+}
+
+.subtask_row[editmode=true]>div[showaction] {
+    display: none;
+}
+
+.subtask_row[editmode=true]>div[lipoint] {
+    display: none;
+}
+
+.subtask_row[editmode=true]>span {
+    display: none;
+}
+
+.subtask_row[editmode=false]>input,
+.subtask_row[editmode=false]>div[editaction] {
+    display: none;
+}
+
+.subtask_row[editmode=fasle]>div[showaction] {
+    display: flex;
+}
+
+
+.subtask_row>div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.subtask_row img {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.subtask_row div[line] {
+    width: 1px;
+    height: 30px;
+    background-color: #d1d1d1;
+}
+
+.subtask_row>input,
+.subtask_row>span {
+    flex-grow: 1;
+}
+
+.subtask_row:hover {
+    background-color: #e1e1e1;
+}
+
+.subtask_point {
+    height: 5px;
+    width: 5px;
+    background-color: black;
+    border-radius: 1000px;
+}
+
+/* TASK */
 .task_action {
     margin-top: 146px;
     margin-bottom: 50px;
