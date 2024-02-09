@@ -26,7 +26,7 @@ function renderSubTasks() {
 function getSubTaskHTML(subtaskID, subtaskname) {
     return `
     <div id="subtaskdiv${subtaskID}" editmode="false" class="subtask_row">
-    <input name="subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
+    <input name="task_subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
     <div lipoint class="subtask_point"></div>
     <span ondblclick="setSubTaskEditMode('${subtaskID}','true')" id="subtaskspan${subtaskID}">${subtaskname}</span>
     <div showaction>
@@ -47,7 +47,7 @@ function getSubTaskHTML(subtaskID, subtaskname) {
 
 
 function renderCategorys() {
-    const taskCategoryDiv = document.getElementById('edit_category_list');
+    const taskCategoryDiv = document.getElementById('addtask_category_list');
     let html = '';
     for (let index = 0; index < taskCategorys.length; index++) {
         const category = taskCategorys[index];
@@ -61,9 +61,9 @@ function openTaskCategoryDropDownList() {
     closeAssignedContactsDropDownList();
     if (openTaskCategoryList == true) return;
     openTaskCategoryList = true;
-    const list = document.getElementById('edit_category_list');
-    document.getElementById('edit_category_div').setAttribute('dropdownopen', 'true');
-    document.getElementById('edit_category').style = 'border: 1px solid #29abe2;'
+    const list = document.getElementById('addtask_category_list');
+    document.getElementById('addtask_category_div').setAttribute('dropdownopen', 'true');
+    document.getElementById('addtask_category').style = 'border: 1px solid #29abe2;'
     list.style['max-height'] = '300px';
     setTimeout(() => {
         list.style.overflow = 'auto';
@@ -75,9 +75,9 @@ function openTaskCategoryDropDownList() {
 function closeTaskCategoryDropDownList() {
     if (openTaskCategoryList == false) return;
     openTaskCategoryList = false;
-    const list = document.getElementById('edit_category_list');
-    document.getElementById('edit_category').style = '';
-    document.getElementById('edit_category_div').setAttribute('dropdownopen', 'false');
+    const list = document.getElementById('addtask_category_list');
+    document.getElementById('addtask_category').style = '';
+    document.getElementById('addtask_category_div').setAttribute('dropdownopen', 'false');
     list.style.overflow = 'hidden';
     list.style['max-height'] = '0';
 }
@@ -93,10 +93,10 @@ function openAssignedContactsDropDownList() {
     closeTaskCategoryDropDownList();
     if (openAssignedContactsList == true) return;
     openAssignedContactsList = true;
-    document.getElementById('edit_assigned').setAttribute('dropdownopen', true);
+    document.getElementById('addtask_assigned').setAttribute('dropdownopen', true);
     document.getElementById('inputAssignContacts').placeholder = 'Search contact';
     showAllAssignedContacts();
-    document.getElementById('edit_assigned').children[1].setAttribute('open', true);
+    document.getElementById('addtask_assigned').children[1].setAttribute('open', true);
     document.getElementById('inputAssignContacts').focus();
     document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
 }
@@ -105,8 +105,8 @@ function openAssignedContactsDropDownList() {
 function closeAssignedContactsDropDownList() {
     if (openAssignedContactsList == false) return;
     openAssignedContactsList = false;
-    document.getElementById('edit_assigned').setAttribute('dropdownopen', false);
-    document.getElementById('edit_assigned').children[1].setAttribute('open', false);
+    document.getElementById('addtask_assigned').setAttribute('dropdownopen', false);
+    document.getElementById('addtask_assigned').children[1].setAttribute('open', false);
     const input = document.getElementById('inputAssignContacts');
     input.placeholder = 'Select contacts to assign';
     input.value = '';
@@ -114,7 +114,7 @@ function closeAssignedContactsDropDownList() {
 
 
 function setCheckedStateForAllContacts() {
-    let contactsDivs = document.getElementById('edit_assigned_list').children;
+    let contactsDivs = document.getElementById('addtask_assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
 
     }
@@ -129,7 +129,7 @@ function closeAllDropDowns() {
 
 
 function showAllAssignedContacts() {
-    let contactsDivs = document.getElementById('edit_assigned_list').children;
+    let contactsDivs = document.getElementById('addtask_assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
         contactsDivs[index].style = 'display: flex;'
     }
@@ -138,7 +138,7 @@ function showAllAssignedContacts() {
 
 function changeAssignedContactsSearchTerm() {
     const searchTerm = document.getElementById('inputAssignContacts').value;
-    let contactsDivs = document.getElementById('edit_assigned_list').children;
+    let contactsDivs = document.getElementById('addtask_assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
         const contactDiv = contactsDivs[index];
         const nameTerm = contactDiv.children[1].innerText.toLowerCase();
@@ -149,7 +149,7 @@ function changeAssignedContactsSearchTerm() {
 
 
 function clickAddTaskTemplate(event) {
-    const excludedIDs = ['edit_assigned_list', 'edit_assigned', 'inputAssignContacts', 'atncddm',]
+    const excludedIDs = ['addtask_assigned_list', 'addtask_assigned', 'inputAssignContacts', 'atncddm',]
     if (event.target.id.startsWith('assignedContacts_')) return;
     for (let index = 0; index < excludedIDs.length; index++) {
         const elementID = excludedIDs[index];
@@ -162,31 +162,31 @@ function clickAddTaskTemplate(event) {
 
 function clickAssignedContactsDropDownList(event) {
     event.stopPropagation();
-    const list = document.getElementById('edit_assigned_list');
+    const list = document.getElementById('addtask_assigned_list');
     if (list.clientHeight == 0) openAssignedContactsDropDownList();
     else closeAssignedContactsDropDownList();
 }
 
 function clickTaskCategoryDropDownList(event) {
     event.stopPropagation();
-    const list = document.getElementById('edit_category_list');
+    const list = document.getElementById('addtask_category_list');
     if (list.clientHeight == 0) openTaskCategoryDropDownList();
     else closeTaskCategoryDropDownList();
 }
 
 
 function selectTaskCategory(categoryID) {
-    document.getElementById('edit_category').value = taskCategorys[categoryID].name;
+    document.getElementById('addtask_category').value = taskCategorys[categoryID].name;
     closeTaskCategoryDropDownList();
 }
 
 
 function createNewSubTask() {
-    let newSubTaskName = document.getElementById('edit_subtask_input').value;
+    let newSubTaskName = document.getElementById('addtask_subtask_input').value;
     if (newSubTaskName == '') return;
     let newSubTaskHTML = getSubTaskHTML(createUniqueID('ST'), newSubTaskName);
     document.getElementById('subtask_list').innerHTML += newSubTaskHTML;
-    setInputValue('edit_subtask_input');
+    setInputValue('addtask_subtask_input');
 }
 
 
@@ -215,5 +215,28 @@ function submitAddTaskForm() {
     const searchForm = document.getElementById('addtask_form');
     let formData = new FormData(searchForm);
     console.log(Object.fromEntries(formData));
-    console.log(formData);
+    console.log(createTaskObjectFromForm(Object.fromEntries(formData)));
+}
+
+
+function createTaskObjectFromForm(formData) {
+    let newTask = new Object();
+    newTask.id = createUniqueID('T');
+    newTask.title = formData.task_title;
+    newTask.description = formData.task_description;
+    newTask.date = formData.task_date;
+    newTask.priority = formData.task_priority;
+    newTask.assignedto = addPropertysToArray('task_assigned_', formData, (key) => { return key; })
+    newTask.subtasks = addPropertysToArray('task_subtask', formData, (key) => { return { name: key, done: false } });
+    return newTask;
+}
+
+
+function addPropertysToArray(searchString, formData, pushFunction) {
+    let newArray = [];
+    const relevantStrings = Object.keys(formData).filter((key) => key.startsWith(searchString));
+    for (let index = 0; index < relevantStrings.length; index++) {
+        newArray.push(pushFunction(relevantStrings[index].substring(searchString.length)));
+    }
+    return newArray;
 }
