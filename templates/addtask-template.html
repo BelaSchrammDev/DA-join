@@ -1,15 +1,15 @@
 <div id="addtaskTemplate" class="content_maindiv">
     <span class="addtask_title">Add Task</span>
-    <form action="">
+    <form id="addtask_form" action="javascript:;" onsubmit="submitAddTaskForm()">
         <div class="addtask_form">
             <div class="addtask_edit">
                 <div class="edit_property required">
                     <span>Title</span>
-                    <input type="text" placeholder="Enter a title" required>
+                    <input name="task_title" type="text" placeholder="Enter a title" required>
                 </div>
                 <div class="edit_property">
                     <span>Description</span>
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+                    <textarea name="task_description" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
                 </div>
                 <div class="edit_property">
                     <span>Assigned to</span>
@@ -27,25 +27,25 @@
                                 <span id="atncddm" style="background-color: red;">BS</span>
                                 <span id="atncddm">Bela Schramm</span>
                                 <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input type="checkbox" name="contactsID" id="contactsCheckbox_1">
+                                <input name="task_assigned_id" type="checkbox" name="contactsID" id="contactsCheckbox_1">
                             </div>
                             <div id="assignedContacts_2" checked="false" onclick="toggleAssignedContactsCheckState(2)">
                                 <span id="atncddm" style="background-color: red;">BS</span>
                                 <span id="atncddm">Nadja Reuther</span>
                                 <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input type="checkbox" name="contactsID" id="contactsCheckbox_2">
+                                <input name="task_assigned_id" type="checkbox" name="contactsID" id="contactsCheckbox_2">
                             </div>
                             <div id="assignedContacts_3" checked="false" onclick="toggleAssignedContactsCheckState(3)">
                                 <span id="atncddm" style="background-color: red;">BS</span>
                                 <span id="atncddm">Simon Henke</span>
                                 <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input type="checkbox" name="contactsID" id="contactsCheckbox_3">
+                                <input name="task_assigned_id" type="checkbox" name="contactsID" id="contactsCheckbox_3">
                             </div>
                             <div id="assignedContacts_4" checked="true" onclick="toggleAssignedContactsCheckState(4)">
                                 <span id="atncddm" style="background-color: red;">BS</span>
                                 <span id="atncddm">Michael Buschmann</span>
                                 <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input type="checkbox" name="contactsID" id="contactsCheckbox_4">
+                                <input name="task_assigned_id" type="checkbox" name="contactsID" id="contactsCheckbox_4">
                             </div>
                         </div>
                         <div id="assignedcontacts_bar" class="assignedcontacts_bar">
@@ -60,18 +60,18 @@
             <div class="addtask_edit">
                 <div class="edit_property required">
                     <span>Due Date</span>
-                    <input type="date" placeholder="dd/mm/yyyy" required>
+                    <input name="task_date" type="date" placeholder="dd/mm/yyyy" required>
                 </div>
                 <div class="edit_property">
                     <span>Prio</span>
                     <div class="addtask_priority">
-                        <input type="radio" id="taskprio_urgent" name="taskpriority" value="urgent">
+                        <input name="task_priority" type="radio" id="taskprio_urgent" name="taskpriority" value="urgent">
                         <label for="taskprio_urgent"><span>Urgent</span><img
                                 src="../img/icons/add-task/Prio-urgent.svg"></label>
-                        <input type="radio" id="taskprio_medium" name="taskpriority" value="medium">
+                        <input name="task_priority" type="radio" id="taskprio_medium" name="taskpriority" value="medium">
                         <label for="taskprio_medium"><span>Medium</span><img
                                 src="../img/icons/add-task/Prio-medium.svg"></label>
-                        <input type="radio" id="taskprio_low" name="taskpriority" value="low">
+                        <input name="task_priority" type="radio" id="taskprio_low" name="taskpriority" value="low">
                         <label for="taskprio_low"><span>Low</span><img src="../img/icons/add-task/Prio-low.svg"></label>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     <div id="edit_category_div" class="edit_category_div">
                         <div onclick="clickTaskCategoryDropDownList(event)"></div>
                         <img onclick="clickTaskCategoryDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
-                        <input type="text" tabindex="-1"
+                        <input name="task_category" type="text" tabindex="-1"
                             required placeholder="Select Task Category" id="edit_category" class="edit_category">
                         <div id="edit_category_list" class="edit_category_list list_scrollbar">
                         </div>

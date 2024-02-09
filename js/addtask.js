@@ -209,3 +209,11 @@ function setSubTaskEditMode(subtaskID, mode) {
     inputelement.setAttribute('tabindex', '0');
     window.requestAnimationFrame(() => inputelement.focus());
 }
+
+
+function submitAddTaskForm() {
+    const searchForm = document.getElementById('addtask_form');
+    let formData = new FormData(searchForm);
+    console.log(Object.fromEntries(formData));
+    console.log(formData);
+}
