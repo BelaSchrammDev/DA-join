@@ -379,10 +379,6 @@ a:visited {
     transition: transform 700ms ease-in-out;
 }
 
-.add-edit-contact-show {
-    transform: translateX(0);
-}
-
 .add-edit-contact-left {
     width: 467px;
     height: 100%;

@@ -18,8 +18,8 @@ async function showAddToContactWindow() {
     await setTimeout(() => {
         background.classList.add('add-edit-contact-container');
     }, 50);
-    await setTimeout(() => {
-        window.classList.add('add-edit-contact-show');
+    setTimeout(() => {
+        window.style.transform = 'translateX(0)';
     }, 50);
     
 }
