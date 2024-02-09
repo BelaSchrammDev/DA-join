@@ -9,3 +9,17 @@ function contactActive() {
     container.classList.add('contact-data-container-active');
     container.classList.remove('contact-data-container');
 }
+
+
+async function showAddToContactWindow() {
+    let background = document.getElementById('addEditContactContainer');
+    let window = document.getElementById('addEditContact');
+    background.classList.remove('hide');
+    await setTimeout(() => {
+        background.classList.add('add-edit-contact-container');
+    }, 50);
+    await setTimeout(() => {
+        window.classList.add('add-edit-contact-show');
+    }, 50);
+    
+}

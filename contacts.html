@@ -16,8 +16,8 @@
 <body onload="initContactsSite()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <!--Add new contact//Start-->
-    <section class="add-edit-contact-container">
-        <div class="add-edit-contact">
+    <section id="addEditContactContainer" class="hide">
+        <div id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
                 <img src="./img/logo/join-small.png" alt="join-logo">
                 <h2>Add contact</h2>
@@ -32,7 +32,7 @@
         <main>
             <section class="contact-container">
                 <div class="add-button-container">
-                    <button class="add-contact-btn">
+                    <button onclick="showAddToContactWindow()" class="add-contact-btn">
                         <span>Add new contact</span>
                         <img src="./img/icons/contacts/add_contact-white.svg" alt="">
                     </button>

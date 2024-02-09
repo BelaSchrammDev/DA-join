@@ -361,7 +361,7 @@ a:visited {
     left: 0;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 10;
-    transition: background-color 250ms ease-in-out;
+    transition: background-color 700ms ease-in-out;
 }
 
 .add-edit-contact {
@@ -369,12 +369,18 @@ a:visited {
     height: 594px;
     position: fixed;
     top: 0;
-    right: 0;
     left: 0;
+    right: 0;
     bottom: 0;
     margin: auto;
     background-color: white; 
     border-radius: 30px;
+    transform: translateX(200%);
+    transition: transform 700ms ease-in-out;
+}
+
+.add-edit-contact-show {
+    transform: translateX(0);
 }
 
 .add-edit-contact-left {
@@ -412,4 +418,8 @@ a:visited {
     height: 3px;
     border-radius: 3px;
     background-color: var(--accent);
+}
+
+.hide {
+    display: none;
 }
