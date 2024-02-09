@@ -295,7 +295,7 @@
 }
 
 .addtask_assigned_list>div>input {
-    /* display: none; */
+    display: none;
 }
 
 .addtask_assigned_list>div:has(input[type='checkbox']:checked) {

@@ -15,7 +15,7 @@ function resetAddTaskForm() {
 
 function renderAddtaskFields() {
     renderCategorys();
-    // renderAssignedContacts();
+    renderAssignedContacts();
 }
 
 
@@ -30,13 +30,15 @@ function renderAssignedContacts() {
 
 function getAssignedContactHTML(contact) {
     return `
-    <div id="assignedContacts_${contact.id}" checked="true" onclick="toggleAssignedContactsCheckState('${contact.id}')">
-        <span nolistclose style="background-color: ${contact.color};">${contact.initial}</span>
-        <span nolistclose>${contact.name}</span>
-        <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-        <input name="task_assigned_${contact.id}" type="checkbox" name="contactsID" id="contactsCheckbox_${contact.id}">
+    <div nolistclose id="assignedContacts_${contact.id}" checked="true">
+        <label nolistclose for="task_assigned_${contact.id}">
+            <span nolistclose style="background-color: ${contact.color};">${contact.initial}</span>
+            <span nolistclose>${contact.name}</span>
+            <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+        </label>
+        <input nolistclose id="task_assigned_${contact.id}" name="task_assigned_${contact.id}" type="checkbox" id="contactsCheckbox_${contact.id}">
     </div>
-    `;
+`;
 }
 
 
@@ -67,8 +69,6 @@ function getSubTaskHTML(subtaskID, subtaskname) {
     </div>
     </div>
     `
-
-
 }
 
 
@@ -230,7 +230,6 @@ function setSubTaskEditMode(subtaskID, mode) {
 function submitAddTaskForm() {
     const searchForm = document.getElementById('addtask_form');
     let formData = new FormData(searchForm);
-    // console.log(Object.fromEntries(formData));
     sessionTasks.push(createTaskObjectFromForm(Object.fromEntries(formData)));
     searchForm.reset();
 }
