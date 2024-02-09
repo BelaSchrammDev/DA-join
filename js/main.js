@@ -44,37 +44,49 @@ let sessionContacts = [
     {
         id: 'C123',
         name: 'Bela Schramm',
+        initial: 'BS',
         email: 'belaschramm@aol.de',
+        color: '#0038FF',
         passwort: 'BS'
     },
     {
         id: 'C456',
         name: 'Nadja Reuther',
+        initial: 'NR',
         email: 'belaschramm@aol.de',
+        color: '#00BEE8',
         passwort: 'NR'
     },
     {
         id: 'C789',
-        name: 'SImon Henke',
+        name: 'Simon Henke',
+        initial: 'SH',
         email: 'belaschramm@aol.de',
+        color: '#1FD7C1',
         passwort: 'SH'
     },
     {
         id: 'C321',
         name: 'Michael Buschmann',
+        initial: 'MB',
         email: 'belaschramm@aol.de',
+        color: '#6E52FF',
         passwort: 'MB'
     },
     {
         id: 'C654',
         name: 'Bruse Willis',
+        initial: 'BW',
         email: 'belaschramm@aol.de',
+        color: '#9747FF',
         passwort: 'BW'
     },
     {
         id: 'C987',
         name: 'Max Mustermann',
+        initial: 'MM',
         email: 'belaschramm@aol.de',
+        color: '#C3FF2B',
         passwort: 'MM'
     },
 ]

@@ -15,7 +15,28 @@ function resetAddTaskForm() {
 
 function renderAddtaskFields() {
     renderCategorys();
-    renderSubTasks();
+    // renderAssignedContacts();
+}
+
+
+function renderAssignedContacts() {
+    let listHTML = '';
+    for (let index = 0; index < sessionContacts.length; index++) {
+        listHTML += getAssignedContactHTML(sessionContacts[index]);
+    }
+    document.getElementById('addtask_assigned_list').innerHTML = listHTML;
+}
+
+
+function getAssignedContactHTML(contact) {
+    return `
+    <div id="assignedContacts_${contact.id}" checked="true" onclick="toggleAssignedContactsCheckState('${contact.id}')">
+        <span nolistclose style="background-color: ${contact.color};">${contact.initial}</span>
+        <span nolistclose>${contact.name}</span>
+        <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+        <input name="task_assigned_${contact.id}" type="checkbox" name="contactsID" id="contactsCheckbox_${contact.id}">
+    </div>
+    `;
 }
 
 
@@ -88,12 +109,6 @@ function closeTaskCategoryDropDownList() {
 }
 
 
-function toggleAssignedContactsCheckState(contactsID) {
-    const contactsCheckBox = document.getElementById('contactsCheckbox_' + contactsID);
-    contactsCheckBox.checked = !contactsCheckBox.checked;
-}
-
-
 function openAssignedContactsDropDownList() {
     closeTaskCategoryDropDownList();
     if (openAssignedContactsList == true) return;
@@ -146,7 +161,7 @@ function changeAssignedContactsSearchTerm() {
     let contactsDivs = document.getElementById('addtask_assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
         const contactDiv = contactsDivs[index];
-        const nameTerm = contactDiv.children[1].innerText.toLowerCase();
+        const nameTerm = contactDiv.children[0].children[1].innerText.toLowerCase();
         if (nameTerm.includes(searchTerm)) contactDiv.style = 'display: flex;'
         else contactDiv.style = 'display: none;';
     }
@@ -155,11 +170,7 @@ function changeAssignedContactsSearchTerm() {
 
 function clickAddTaskTemplate(event) {
     const excludedIDs = ['addtask_assigned_list', 'addtask_assigned', 'inputAssignContacts', 'atncddm',]
-    if (event.target.id.startsWith('assignedContacts_')) return;
-    for (let index = 0; index < excludedIDs.length; index++) {
-        const elementID = excludedIDs[index];
-        if (event.target.id == elementID) return;
-    }
+    if (event.target.getAttribute('nolistclose') != null) return false;
     event.stopPropagation();
     closeAllDropDowns()
 }

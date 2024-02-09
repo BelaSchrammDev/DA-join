@@ -9,43 +9,57 @@
                 </div>
                 <div class="addtask_property">
                     <span>Description</span>
-                    <textarea name="task_description" id="" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+                    <textarea name="task_description" id="" cols="30" rows="10"
+                        placeholder="Enter a Description"></textarea>
                 </div>
                 <div class="addtask_property">
                     <span>Assigned to</span>
                     <div style="position: relative;">
-                        <div onclick="openAssignedContactsDropDownList()" id="addtask_assigned" class="addtask_assigned">
-                            <input autocomplete="off" id="inputAssignContacts"
+                        <div nolistclose onclick="openAssignedContactsDropDownList()" id="addtask_assigned"
+                            class="addtask_assigned">
+                            <input nolistclose autocomplete="off" id="inputAssignContacts"
                                 onkeyup="changeAssignedContactsSearchTerm()"
                                 onfocus="openAssignedContactsDropDownList()" type="text"
                                 placeholder="Select contacts to assign">
                             <img class="dropdown_arrow" onclick="clickAssignedContactsDropDownList(event)"
                                 src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                         </div>
-                        <div id="addtask_assigned_list" class="addtask_assigned_list list_scrollbar">
-                            <div id="assignedContacts_1" checked="true" onclick="toggleAssignedContactsCheckState(1)">
-                                <span id="atncddm" style="background-color: red;">BS</span>
-                                <span id="atncddm">Bela Schramm</span>
-                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input name="task_assigned_id1" type="checkbox" name="contactsID" id="contactsCheckbox_1">
+                        <div nolistclose id="addtask_assigned_list" class="addtask_assigned_list list_scrollbar">
+                            <div nolistclose id="assignedContacts_1" checked="true" onclick="toggleAssignedContactsCheckState(1)">
+                                <label nolistclose for="task_assigned_id1">
+                                    <span nolistclose style="background-color: red;">BS</span>
+                                    <span nolistclose>Bela Schramm</span>
+                                    <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                </label>
+                                <input nolistclose id="task_assigned_id1" name="task_assigned_id1" type="checkbox"
+                                    id="contactsCheckbox_1">
                             </div>
-                            <div id="assignedContacts_2" checked="false" onclick="toggleAssignedContactsCheckState(2)">
-                                <span id="atncddm" style="background-color: red;">BS</span>
-                                <span id="atncddm">Nadja Reuther</span>
-                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input name="task_assigned_id2" type="checkbox" name="contactsID" id="contactsCheckbox_2">
+                            <div nolistclose id="assignedContacts_2" checked="false" onclick="toggleAssignedContactsCheckState(2)">
+                                <label nolistclose for="task_assigned_id2">
+                                    <span nolistclose style="background-color: red;">BS</span>
+                                    <span nolistclose>Nadja Reuther</span>
+                                    <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                </label>
+                                <input nolistclose id="task_assigned_id2" name="task_assigned_id2" type="checkbox"
+                                    id="contactsCheckbox_2">
                             </div>
-                            <div id="assignedContacts_3" checked="false" onclick="toggleAssignedContactsCheckState(3)">
-                                <span id="atncddm" style="background-color: red;">BS</span>
-                                <span id="atncddm">Simon Henke</span>
-                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input name="task_assigned_id3" type="checkbox" name="contactsID" id="contactsCheckbox_3">
+                            <div nolistclose id="assignedContacts_3" checked="false" onclick="toggleAssignedContactsCheckState(3)">
+                                <label nolistclose for="task_assigned_id3">
+                                    <span nolistclose style="background-color: red;">BS</span>
+                                    <span nolistclose>Simon Henke</span>
+                                    <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                </label>
+                                <input nolistclose id="task_assigned_id3" name="task_assigned_id3" type="checkbox"
+                                    id="contactsCheckbox_3">
                             </div>
-                            <div id="assignedContacts_4" checked="true" onclick="toggleAssignedContactsCheckState(4)">
-                                <span id="atncddm" style="background-color: red;">BS</span>
-                                <span id="atncddm">Michael Buschmann</span>
-                                <img id="atncddm" src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-                                <input name="task_assigned_id4" type="checkbox" name="contactsID" id="contactsCheckbox_4">
+                            <div nolistclose id="assignedContacts_4" checked="true" onclick="toggleAssignedContactsCheckState(4)">
+                                <label nolistclose for="task_assigned_id4">
+                                    <span nolistclose style="background-color: red;">BS</span>
+                                    <span nolistclose>Michael Buschmann</span>
+                                    <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
+                                </label>
+                                <input nolistclose id="task_assigned_id4" name="task_assigned_id4" type="checkbox"
+                                    id="contactsCheckbox_4">
                             </div>
                         </div>
                         <div id="assignedcontacts_bar" class="assignedcontacts_bar">
@@ -65,10 +79,12 @@
                 <div class="addtask_property">
                     <span>Prio</span>
                     <div class="addtask_priority">
-                        <input name="task_priority" type="radio" id="taskprio_urgent" name="taskpriority" value="urgent">
+                        <input name="task_priority" type="radio" id="taskprio_urgent" name="taskpriority"
+                            value="urgent">
                         <label for="taskprio_urgent"><span>Urgent</span><img
                                 src="../img/icons/add-task/Prio-urgent.svg"></label>
-                        <input name="task_priority" type="radio" id="taskprio_medium" name="taskpriority" value="medium">
+                        <input name="task_priority" type="radio" id="taskprio_medium" name="taskpriority"
+                            value="medium">
                         <label for="taskprio_medium"><span>Medium</span><img
                                 src="../img/icons/add-task/Prio-medium.svg"></label>
                         <input name="task_priority" type="radio" id="taskprio_low" name="taskpriority" value="low">
@@ -79,9 +95,10 @@
                     <span>Category</span>
                     <div id="addtask_category_div" class="addtask_category_div">
                         <div onclick="clickTaskCategoryDropDownList(event)"></div>
-                        <img onclick="clickTaskCategoryDropDownList(event)" src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
-                        <input name="task_category" type="text" tabindex="-1"
-                            required placeholder="Select Task Category" id="addtask_category" class="addtask_category">
+                        <img onclick="clickTaskCategoryDropDownList(event)"
+                            src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
+                        <input name="task_category" type="text" tabindex="-1" required
+                            placeholder="Select Task Category" id="addtask_category" class="addtask_category">
                         <div id="addtask_category_list" class="addtask_category_list list_scrollbar">
                         </div>
                     </div>
@@ -91,10 +108,12 @@
                     <div addtask_property class="addtask_subtask_div">
                         <input id="addtask_subtask_input" subtask type="text" placeholder="Add new subtask">
                         <div subtaskadd>
-                            <img onclick="setFocus('addtask_subtask_input')" src="../img/icons/add-task/plus.svg" alt="">
+                            <img onclick="setFocus('addtask_subtask_input')" src="../img/icons/add-task/plus.svg"
+                                alt="">
                         </div>
                         <div subtaskaction>
-                            <img onmousedown="setInputValueAndFocus('addtask_subtask_input')" src="../img/icons/add-task/cancel.svg" alt="">
+                            <img onmousedown="setInputValueAndFocus('addtask_subtask_input')"
+                                src="../img/icons/add-task/cancel.svg" alt="">
                             <div></div>
                             <img onmousedown="createNewSubTask()" src="../img/icons/add-task/ok.svg" alt="">
                         </div>

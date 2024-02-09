@@ -286,8 +286,16 @@
     user-select: none;
 }
 
+.addtask_assigned_list>div>label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
 .addtask_assigned_list>div>input {
-    display: none;
+    /* display: none; */
 }
 
 .addtask_assigned_list>div:has(input[type='checkbox']:checked) {
@@ -298,11 +306,11 @@
     background-color: #091931;
 }
 
-.addtask_assigned_list>div:has(input[type='checkbox']:checked)>span:nth-child(2) {
+.addtask_assigned_list>div:has(input[type='checkbox']:checked)>label>span:nth-child(2) {
     color: white;
 }
 
-.addtask_assigned_list>div:has(input[type='checkbox']:checked)>img {
+.addtask_assigned_list>div:has(input[type='checkbox']:checked)>label>img {
     content: url('../img/icons/add-task/cf-checked-white.svg');
 }
 
@@ -311,7 +319,7 @@
     background-color: #eeeeee;
 }
 
-.addtask_assigned_list>div>span:first-child {
+.addtask_assigned_list>div>label>span:first-child {
     width: 42px;
     height: 42px;
     border-radius: 1000px;
@@ -324,7 +332,7 @@
     align-items: center;
 }
 
-.addtask_assigned_list>div>span:nth-child(2) {
+.addtask_assigned_list>div>label>span:nth-child(2) {
     flex-grow: 1;
 }
 
