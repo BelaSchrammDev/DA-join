@@ -1,6 +1,6 @@
 <div id="addtaskTemplate" class="content_maindiv">
     <span class="addtask_title">Add Task</span>
-    <form id="addtask_form" action="javascript:;" onsubmit="submitAddTaskForm()">
+    <form id="addtask_form" action="javascript:;" onreset="resetAddTaskForm()" onsubmit="submitAddTaskForm()">
         <div class="addtask_form">
             <div class="addtask_edit">
                 <div class="addtask_property required">
@@ -99,8 +99,7 @@
                             <img onmousedown="createNewSubTask()" src="../img/icons/add-task/ok.svg" alt="">
                         </div>
                     </div>
-                    <div id="subtask_list" class="subtask_list">
-                    </div>
+                    <div id="subtask_list" class="subtask_list list_scrollbar"></div>
                 </div>
             </div>
         </div>

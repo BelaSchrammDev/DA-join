@@ -264,6 +264,7 @@
     transition: max-height 125ms ease-in-out;
 }
 
+.subtask_list,
 .addtask_assigned_list {
     scrollbar-gutter: stable;
 }
@@ -327,13 +328,6 @@
     flex-grow: 1;
 }
 
-/* Firefox */
-.list_scrollbar {
-    /* scrollbar-width: thin;
-    scrollbar-color: #78879c white; */
-}
-
-/* Chrome, Edge, and Safari */
 .list_scrollbar::-webkit-scrollbar {
     width: 8px;
 }
@@ -547,13 +541,14 @@
     height: 132px;
     font-size: 16px;
     font-weight: 400;
+    overflow-x: auto;
 }
 
 .subtask_row {
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 10px;
-    height: 32px;
+    min-height: 32px;
     display: flex;
     justify-content: flex-start;
     align-items: center;

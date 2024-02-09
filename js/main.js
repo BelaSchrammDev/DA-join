@@ -95,11 +95,28 @@ function createUniqueID(prefix) {
 }
 
 
+// DEBUG SECTION BEGIN -----------------------------
 function testGuestLogin() {
     sessionStorage.setItem('currentuser', 'Guest');
     sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
     window.location.href = './summary.html';
 }
+
+
+function loadAllFromLocalStorage() {
+    let tasks = localStorage.getItem('testtasks');
+    if (tasks) sessionTasks = JSON.parse(tasks);
+    let contacts = localStorage.getItem('testcontacts');
+    if (contacts) sessionContacts = JSON.parse(contacts);
+}
+
+
+function saveAllToLocalStorage() {
+    localStorage.setItem('testtasks', JSON.stringify(sessionTasks));
+    localStorage.setItem('testcontacts', JSON.stringify(sessionContacts));
+}
+// DEBUG SECTION END -----------------------------
+
 
 async function initJoin() {
     // test if user logged in

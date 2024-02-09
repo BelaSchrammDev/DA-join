@@ -8,6 +8,11 @@ async function initAddtaskSite() {
 }
 
 
+function resetAddTaskForm() {
+    document.getElementById('subtask_list').innerHTML = '';
+}
+
+
 function renderAddtaskFields() {
     renderCategorys();
     renderSubTasks();
@@ -214,8 +219,9 @@ function setSubTaskEditMode(subtaskID, mode) {
 function submitAddTaskForm() {
     const searchForm = document.getElementById('addtask_form');
     let formData = new FormData(searchForm);
-    console.log(Object.fromEntries(formData));
-    console.log(createTaskObjectFromForm(Object.fromEntries(formData)));
+    // console.log(Object.fromEntries(formData));
+    sessionTasks.push(createTaskObjectFromForm(Object.fromEntries(formData)));
+    searchForm.reset();
 }
 
 
@@ -227,7 +233,7 @@ function createTaskObjectFromForm(formData) {
     newTask.date = formData.task_date;
     newTask.priority = formData.task_priority;
     newTask.assignedto = addPropertysToArray('task_assigned_', formData, (key) => { return key; })
-    newTask.subtasks = addPropertysToArray('task_subtask', formData, (key) => { return { name: key, done: false } });
+    newTask.subtasks = addPropertysToArray('task_subtask', formData, (key, property) => { return { name: property, done: false } });
     return newTask;
 }
 
@@ -236,7 +242,9 @@ function addPropertysToArray(searchString, formData, pushFunction) {
     let newArray = [];
     const relevantStrings = Object.keys(formData).filter((key) => key.startsWith(searchString));
     for (let index = 0; index < relevantStrings.length; index++) {
-        newArray.push(pushFunction(relevantStrings[index].substring(searchString.length)));
+        const inputProperty = formData[relevantStrings[index]];
+        const keyID = relevantStrings[index].substring(searchString.length);
+        newArray.push(pushFunction(keyID, inputProperty));
     }
     return newArray;
 }
