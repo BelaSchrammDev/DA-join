@@ -286,7 +286,7 @@ a:visited {
     background-color: var(--primary);
 }
 
-.contact-data-container-active .contact-name{
+.contact-data-container-active .contact-name {
     color: white;
 }
 
@@ -373,11 +373,12 @@ a:visited {
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: white; 
-    background: linear-gradient(90deg, rgba(42,54,71,1) 15%, rgba(255,255,255,1) 20%);
+    background-color: white;
+    background: linear-gradient(90deg, rgba(42, 54, 71, 1) 15%, rgba(255, 255, 255, 1) 20%);
     border-radius: 30px;
     transform: translateX(200%);
     transition: transform 700ms ease-in-out;
+    display: flex;
 }
 
 .add-edit-contact-left {
@@ -416,6 +417,128 @@ a:visited {
     border-radius: 3px;
     background-color: var(--accent);
 }
+
+.add-edit-contact-middle {
+    padding: 204px 0 0 83px;
+}
+
+.add-edit-contact-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 48px;
+}
+
+.add-edit-contact-right>img {
+    margin-bottom: 57px;
+}
+
+.add-edit-contact-right>img:hover {
+    cursor: pointer;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.input-class {
+    width: 422px;
+    height: 50px;
+    border-radius: 10px;
+    padding: 13px 21px 13px 21px;
+    border: 1px solid #d1d1d1;
+    background-repeat: no-repeat;
+    background-position: center right 21px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.input-class:focus {
+    border: 1px solid var(--accent);
+    outline: none;
+}
+
+.name-input {
+    background-image: url('../img/icons/contacts/person.svg');
+}
+
+.email-input {
+    background-image: url('../img/icons/contacts/mail.svg');
+}
+
+.phone-input {
+    background-image: url('../img/icons/contacts/call.svg');
+}
+
+.button-container {
+    width: 422px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.cancel-button {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid var(--primary);
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    gap: 8px;
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.cancel-button:hover>img {
+    content: url('../img/icons/contacts/cancel-accent.svg');
+}
+
+.cancel-button:active {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.cancel-button:active>img {
+    content: url('../img/icons/contacts/cancel-active.svg');
+}
+
+.create-button {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: var(--primary);
+    border: 0;
+    transition: background-color 80ms ease-in-out;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    color: white;
+    gap: 8px;
+}
+
+.create-button:hover {
+    cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.create-button:active {
+    background-color: #091931;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 
 .hide {
     display: none;
