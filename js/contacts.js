@@ -29,7 +29,7 @@ async function closeAddToContactWindow() {
     let window = document.getElementById('addEditContact');
     await setTimeout(() => {
         window.style.transform = 'translateX(200%)';
-    }, 50);
+    }, 0);
     await setTimeout(() => {
         background.classList.remove('add-edit-contact-container');
     }, 500);
