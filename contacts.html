@@ -16,8 +16,8 @@
 <body onload="initContactsSite()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <!--Add new contact//Start-->
-    <section id="addEditContactContainer" class="hide">
-        <div id="addEditContact" class="add-edit-contact">
+    <section onclick="closeAddToContactWindow()" id="addEditContactContainer" class="hide">
+        <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
                 <img src="./img/logo/join-small.png" alt="join-logo">
                 <h2>Add contact</h2>
@@ -30,11 +30,13 @@
                 </div>
             </div>
             <div class="add-edit-contact-right">
-                <img src="./img/icons/contacts/cancel.svg" alt="exit">
+                <div onclick="closeAddToContactWindow()">
+                    <img src="./img/icons/contacts/cancel.svg" alt="exit">
+                </div>
                 <div class="input-container">
                     <input placeholder="Name" class="input-class name-input" type="text">
-                    <input placeholder="Email" class="input-class email-input" type="text">
-                    <input placeholder="Phone" class="input-class phone-input" type="text">
+                    <input placeholder="Email" class="input-class email-input" type="email">
+                    <input placeholder="Phone" class="input-class phone-input" type="tel">
                 </div>
                 <div class="button-container">
                     <button class="cancel-button">
@@ -45,7 +47,7 @@
                         <span>Create Contact</span>
                         <img src="./img/icons/contacts/check-white.svg" alt="check">
                     </button>
-                </div>                      
+                </div>
             </div>
         </div>
     </section>

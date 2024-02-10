@@ -430,12 +430,24 @@ a:visited {
     padding: 48px;
 }
 
-.add-edit-contact-right>img {
-    margin-bottom: 57px;
+.add-edit-contact-right>div>img {
+    margin-right: -1.5px;
 }
 
-.add-edit-contact-right>img:hover {
+.add-edit-contact-right>div:first-child {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 53px;
+    transition: background-color 100ms ease-in-out;
+}
+
+.add-edit-contact-right>div:first-child:hover {
     cursor: pointer;
+    background-color: #E1E6EC;
 }
 
 .input-container {
