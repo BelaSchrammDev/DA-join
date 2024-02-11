@@ -9,7 +9,7 @@ let sessionTasks = [
         category: 1,
         subtasks: [
             { name: 'subtask 1', done: true },
-            { name: 'subtask 2', done: false },
+            { name: 'subtask 2', done: true },
         ]
     },
     {
@@ -20,16 +20,13 @@ let sessionTasks = [
         date: '14.04.2024',
         priority: 'low',
         category: 2,
-        subtasks: [
-            { name: 'subtask 1', done: true },
-            { name: 'subtask 2', done: false },
-        ]
+        subtasks: []
     },
     {
         id: 'T123454',
         title: 'Testtask 3',
         description: 'Titel 3 beschreibung',
-        assignedto: ['C789'],
+        assignedto: ['C789','C456'],
         date: '14.02.2025',
         priority: 'medium',
         category: 1,
@@ -95,10 +92,10 @@ let sessionContacts = [
 let currentuser = '';
 
 
-const taskCategorys = [
-    { id: 1, name: 'User Story' },
-    { id: 2, name: 'Technical Task' }
-]
+const taskCategorys = {
+    1: { id: 1, name: 'User Story', color: '#0038ff', },
+    2: { id: 2, name: 'Technical Task', color: '#1FD7C1', }
+}
 
 
 function createUniqueID(prefix) {

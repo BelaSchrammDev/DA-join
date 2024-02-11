@@ -75,9 +75,10 @@ function getSubTaskHTML(subtaskID, subtaskname) {
 function renderCategorys() {
     const taskCategoryDiv = document.getElementById('addtask_category_list');
     let html = '';
-    for (let index = 0; index < taskCategorys.length; index++) {
-        const category = taskCategorys[index];
-        html += `<div onclick="selectTaskCategory(${index})"><span>${category.name}</span></div>`
+    categoryKeys = Object.keys(taskCategorys);
+    for (let index = 0; index < categoryKeys.length; index++) {
+        const category = taskCategorys[categoryKeys[index]];
+        html += `<div onclick="selectTaskCategory(${categoryKeys[index]})"><span>${category.name}</span></div>`
     }
     taskCategoryDiv.innerHTML = html;
 }
