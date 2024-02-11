@@ -153,6 +153,7 @@
 
 .addtask_property>input::placeholder,
 .addtask_property>div>input::placeholder,
+.addtask_property>input[type=date]:invalid::-webkit-datetime-edit,
 .addtask_property>textarea::placeholder {
     color: #d1d1d1;
 }
