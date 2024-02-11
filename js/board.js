@@ -1,14 +1,25 @@
+const rowIdName = [
+    { id: 'todo', name: 'ToDo' },
+    { id: 'inprogress', name: 'In Progress' },
+    { id: 'awaitfeedback', name: 'Await Feedback' },
+    { id: 'done', name: 'Done' },
+]
+
+
 async function initBoardSite() {
     await initJoin();
-    // renderfunctions
+    clearRows();
     renderTasks();
+    renderEmptyRowMessage();
 }
+
 
 function debug_view_taskbigcard() {
     let taskBigWidth = document.getElementById('task_big').clientWidth;
     document.getElementById('board_overlay').style = "z-index: 10;";
     document.getElementById('task_big').style = `right: calc(50% - ${taskBigWidth / 2}px);`;
 }
+
 
 function debug_hide_taskbigcard() {
     let taskBigWidth = document.getElementById('task_big').clientWidth;
@@ -18,12 +29,31 @@ function debug_hide_taskbigcard() {
     }, 200);
 }
 
+
 function renderTasks() {
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
         const tasksHTML = getTaskHTML(task);
         const tasklist = document.getElementById('tasklist_' + task.status);
         if (tasklist) tasklist.innerHTML += tasksHTML;
+    }
+}
+
+
+function renderEmptyRowMessage() {
+    for (let index = 0; index < rowIdName.length; index++) {
+        const tasklist = document.getElementById('tasklist_' + rowIdName[index].id);
+        if (tasklist.innerHTML == '') {
+            tasklist.innerHTML = `<div class="board_task_empty">No tasks ${rowIdName[index].name}</div>`;
+        }
+    }
+}
+
+
+function clearRows() {
+    for (let index = 0; index < rowIdName.length; index++) {
+        const tasklist = document.getElementById('tasklist_' + rowIdName[index].id);
+        tasklist.innerHTML = ``;
     }
 }
 

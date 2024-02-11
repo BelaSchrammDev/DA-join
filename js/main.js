@@ -28,7 +28,7 @@ let sessionTasks = [
     },
     {
         id: 'T123454',
-        status: 'done',
+        status: 'awaitfeedback',
         title: 'Join fertigmachen',
         description: '',
         assignedto: ['C789','C456'],
