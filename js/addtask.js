@@ -239,6 +239,7 @@ function submitAddTaskForm() {
 function createTaskObjectFromForm(formData) {
     let newTask = new Object();
     newTask.id = createUniqueID('T');
+    newTask.status = 'todo';
     newTask.title = formData.task_title;
     newTask.description = formData.task_description;
     newTask.date = formData.task_date;

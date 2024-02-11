@@ -1,21 +1,25 @@
 let sessionTasks = [
     {
         id: 'T12',
-        title: 'Testtask 2',
-        description: 'Titel 2 beschreibung',
+        status: 'todo',
+        title: 'Kochwelt Page & Recipe Recommender',
+        description: 'Build start page with recipe recommendation',
         assignedto: ['C123'],
         date: '14.02.2024',
         priority: '',
         category: 1,
         subtasks: [
             { name: 'subtask 1', done: true },
-            { name: 'subtask 2', done: true },
+            { name: 'subtask 2', done: false },
+            { name: 'subtask 3', done: false },
+            { name: 'subtask 4', done: false },
         ]
     },
     {
         id: 'T123',
-        title: 'Testtask 2',
-        description: 'Titel 2 beschreibung',
+        status: 'inprogress',
+        title: 'HTML Base Template Creation',
+        description: 'Create reusable HTML base templates',
         assignedto: ['C456'],
         date: '14.04.2024',
         priority: 'low',
@@ -24,8 +28,9 @@ let sessionTasks = [
     },
     {
         id: 'T123454',
-        title: 'Testtask 3',
-        description: 'Titel 3 beschreibung',
+        status: 'done',
+        title: 'Join fertigmachen',
+        description: '',
         assignedto: ['C789','C456'],
         date: '14.02.2025',
         priority: 'medium',

@@ -19,18 +19,18 @@ function debug_hide_taskbigcard() {
 }
 
 function renderTasks() {
-    let tasksHTML = '';
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
-        tasksHTML += getTaskHTML(task);
+        const tasksHTML = getTaskHTML(task);
+        const tasklist = document.getElementById('tasklist_' + task.status);
+        if (tasklist) tasklist.innerHTML += tasksHTML;
     }
-    document.getElementById('tasklist_todo').innerHTML = tasksHTML;
 }
 
 
 function getTaskHTML(task) {
     return `
-        <div onclick="debug_view_taskbigcard()" class="board_task">
+    <div onclick="debug_view_taskbigcard()" class="board_task">
         <span style="background-color: ${taskCategorys[task.category].color};">${taskCategorys[task.category].name}</span>
         <div class="board_tast_description">
             <span>${task.title}</span>
@@ -41,10 +41,19 @@ function getTaskHTML(task) {
             <div class="board_task_assign">
             ${getTaskAssignedContactsHTML(task)}
             </div>
-            <img src="./img/icons/board/medium.svg" alt="">
+            ${getTaskPriorityHTML(task)}
         </div>
-    </div>
-`;
+    </div>`;
+}
+
+
+function getTaskPriorityHTML(task) {
+    const priorityIMGs = {
+        urgent: './img/icons/board/urgent.svg',
+        medium: './img/icons/board/medium.svg',
+        low: './img/icons/board/low.svg',
+    }
+    return `<img src="${priorityIMGs[task.priority] ? priorityIMGs[task.priority] : ''}">`;
 }
 
 
@@ -55,8 +64,8 @@ function getSubTaskHTML(task) {
         let taskDone = 0;
         task.subtasks.forEach(t => { if (t.done) taskDone++; })
         subtaskHTML += `
-        <div><div style="width: ${taskDone / task.subtasks.length * 100}%;"></div>
-        </div><span>${taskDone}/${task.subtasks.length} Subtask</span>
+            <div><div style="width: ${taskDone / task.subtasks.length * 100}%;"></div>
+            </div><span>${taskDone}/${task.subtasks.length} Subtask</span>
         `;
     }
     subtaskHTML += '</div>';
@@ -69,11 +78,13 @@ function getTaskAssignedContactsHTML(task) {
     for (let index = 0; index < task.assignedto.length; index++) {
         const contactID = task.assignedto[index];
         const contact = sessionContacts.find(c => c.id == contactID);
-        assignedcontactsHTML += `
+        if (contact) {
+            assignedcontactsHTML += `
             <span style="background-color: ${contact.color}; color: black;">
             ${contact.initial}
             </span>
-        `;
+            `;
+        }
     }
     return assignedcontactsHTML;
 }
