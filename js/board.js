@@ -50,6 +50,11 @@ function renderEmptyRowMessage() {
 }
 
 
+function renderBigTaskView(){
+    
+}
+
+
 function clearRows() {
     for (let index = 0; index < rowIdName.length; index++) {
         const tasklist = document.getElementById('tasklist_' + rowIdName[index].id);
@@ -61,7 +66,7 @@ function clearRows() {
 function getTaskHTML(task) {
     return `
     <div onclick="debug_view_taskbigcard()" class="board_task">
-        <span style="background-color: ${taskCategorys[task.category].color};">${taskCategorys[task.category].name}</span>
+        ${getCategoryHTML(task)}
         <div class="board_tast_description">
             <span>${task.title}</span>
             <span>${task.description}</span>
@@ -74,6 +79,15 @@ function getTaskHTML(task) {
             ${getTaskPriorityHTML(task)}
         </div>
     </div>`;
+}
+
+
+function getCategoryHTML(task) {
+    return `
+        <span style="background-color: ${taskCategorys[task.category].color};">
+        ${taskCategorys[task.category].name}
+        </span>
+    `;
 }
 
 
