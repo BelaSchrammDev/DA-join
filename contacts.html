@@ -15,7 +15,7 @@
 <body onload="initContactsSite()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <!--Add new contact//Start-->
-    <section onclick="closeAddToContactWindow()" id="addEditContactContainer" class="hide">
+    <section onclick="closeAddEditWindow()" id="addEditContactContainer" class="hide">
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
                 <img src="./img/logo/join-small.png" alt="join-logo">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="add-edit-contact-right">
-                <div onclick="closeAddToContactWindow()">
+                <div onclick="closeAddEditWindow()">
                     <img src="./img/icons/contacts/cancel.svg" alt="exit">
                 </div>
                 <div class="input-container">

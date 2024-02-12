@@ -27,7 +27,7 @@ function showAddToContactWindow() {
                 </div>
             </div>
             <div class="add-edit-contact-right">
-                <div onclick="closeAddToContactWindow()">
+                <div onclick="closeAddEditWindow()">
                     <img src="./img/icons/contacts/cancel.svg" alt="exit">
                 </div>
                 <div class="input-container">
@@ -59,21 +59,6 @@ function showAddToContactWindow() {
 }
 
 
-function closeAddToContactWindow() {
-    let background = document.getElementById('addEditContactContainer');
-    let window = document.getElementById('addEditContact');
-    setTimeout(() => {
-        window.style.transform = 'translateX(200%)';
-    }, 0);
-    setTimeout(() => {
-        background.classList.remove('add-edit-contact-container');
-    }, 500);
-    setTimeout(() => {
-        background.classList.add('hide');
-    }, 700);
-}
-
-
 function showEditWindow() {
     let background = document.getElementById('addEditContactContainer');
     background.innerHTML = `
@@ -89,7 +74,7 @@ function showEditWindow() {
                 </div>
             </div>
             <div class="add-edit-contact-right">
-                <div onclick="closeAddToContactWindow()">
+                <div onclick="closeAddEditWindow()">
                     <img src="./img/icons/contacts/cancel.svg" alt="exit">
                 </div>
                 <div class="input-container">
@@ -117,5 +102,20 @@ function showEditWindow() {
     setTimeout(() => {
         window.style.transform = 'translateX(0)';
     }, 50);
+}
+
+
+function closeAddEditWindow() {
+    let background = document.getElementById('addEditContactContainer');
+    let window = document.getElementById('addEditContact');
+    setTimeout(() => {
+        window.style.transform = 'translateX(200%)';
+    }, 0);
+    setTimeout(() => {
+        background.classList.remove('add-edit-contact-container');
+    }, 500);
+    setTimeout(() => {
+        background.classList.add('hide');
+    }, 700);
 }
 
