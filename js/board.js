@@ -6,6 +6,9 @@ const rowIdName = [
 ]
 
 
+/**
+ * initfunction for the board site
+ */
 async function initBoardSite() {
     await initJoin();
     clearRows();
@@ -14,13 +17,7 @@ async function initBoardSite() {
 }
 
 
-function debug_view_taskbigcard() {
-    let taskBigWidth = document.getElementById('task_big').clientWidth;
-    document.getElementById('board_overlay').style = "z-index: 10;";
-    document.getElementById('task_big').style = `right: calc(50% - ${taskBigWidth / 2}px);`;
-}
-
-
+// DEBUGING ##################################################################
 function debug_hide_taskbigcard() {
     let taskBigWidth = document.getElementById('task_big').clientWidth;
     document.getElementById('task_big').style = `right: -${taskBigWidth}px;`;
@@ -28,8 +25,12 @@ function debug_hide_taskbigcard() {
         document.getElementById('board_overlay').style = "z-index: -1;";
     }, 200);
 }
+//############################################################################
 
 
+/**
+ * render all task in the related rows
+ */
 function renderTasks() {
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
@@ -40,6 +41,9 @@ function renderTasks() {
 }
 
 
+/**
+ * render info in empty rows
+ */
 function renderEmptyRowMessage() {
     for (let index = 0; index < rowIdName.length; index++) {
         const tasklist = document.getElementById('tasklist_' + rowIdName[index].id);
@@ -50,19 +54,39 @@ function renderEmptyRowMessage() {
 }
 
 
+/**
+ * clear all the rows of the board
+ */
+function clearRows() {
+    for (let index = 0; index < rowIdName.length; index++) {
+        const tasklist = document.getElementById('tasklist_' + rowIdName[index].id);
+        tasklist.innerHTML = ``;
+    }
+}
+
+
+/**
+ * render and show the big task view window
+ * 
+ * @param {string} taskID 
+ */
 function showBigTaskView(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task) {
         setInnerHTML('task_big', getBigTaskHTML(task));
         let taskBigWidth = document.getElementById('task_big').clientWidth;
         setStyle('board_overlay', 'z-index', '10');
-        // document.getElementById('board_overlay').style = "z-index: 10;";
         setStyle('task_big', 'right', `calc(50% - ${taskBigWidth / 2}px)`);
-        // document.getElementById('task_big').style = `right: calc(50% - ${taskBigWidth / 2}px);`;
     }
 }
 
 
+/**
+ * get the rendered html structure of the big task view
+ * 
+ * @param {Object} task 
+ * @returns {string} rendered html
+ */
 function getBigTaskHTML(task) {
     return `
         <div class="task_big_headline">
@@ -74,7 +98,7 @@ function getBigTaskHTML(task) {
         <div class="task_big_property"><span class="">Due Date:</span><span>${task.date}</span></div>
         <div class="task_big_property">
             <span>Priority:</span>
-            <span>${task.priority}</span>
+            <span>${getPascalCaseWord(task.priority)}</span>
             ${getTaskPriorityHTML(task)}
         </div>
         <div>
@@ -91,14 +115,12 @@ function getBigTaskHTML(task) {
 }
 
 
-function clearRows() {
-    for (let index = 0; index < rowIdName.length; index++) {
-        const tasklist = document.getElementById('tasklist_' + rowIdName[index].id);
-        tasklist.innerHTML = ``;
-    }
-}
-
-
+/**
+ * get the rendered html structure of the mini task view for board rows
+ * 
+ * @param {Object} task 
+ * @returns {string} rendered html
+ */
 function getTaskHTML(task) {
     return `
     <div onclick="showBigTaskView('${task.id}')" class="board_task">
@@ -118,6 +140,12 @@ function getTaskHTML(task) {
 }
 
 
+/**
+ * get the contactslist that assigned to the task for big task view
+ * 
+ * @param {Object} task 
+ * @returns {string} rendered html
+ */
 function getAssignedToHTML(task) {
     let assignedHTML = '';
     for (let index = 0; index < task.assignedto.length; index++) {
@@ -133,6 +161,12 @@ function getAssignedToHTML(task) {
 }
 
 
+/**
+ * get the html structure of the task category for big and mini view
+ * 
+ * @param {Object} task 
+ * @returns {string} rendered html
+ */
 function getCategoryHTML(task) {
     return `
         <span style="background-color: ${taskCategorys[task.category].color};">
@@ -142,6 +176,12 @@ function getCategoryHTML(task) {
 }
 
 
+/**
+ * get the img tag for task priority with the right picture src
+ * 
+ * @param {Object} task 
+ * @returns {string} rendered html
+ */
 function getTaskPriorityHTML(task) {
     const priorityIMGs = {
         urgent: './img/icons/board/urgent.svg',
@@ -152,6 +192,12 @@ function getTaskPriorityHTML(task) {
 }
 
 
+/**
+ * get the subtasklist for the mini task view
+ * 
+ * @param {Object} task 
+ * @returns {string} rednered html
+ */
 function getSubTaskHTML(task) {
     if (task.subtasks.length == 0) return '';
     let subtaskHTML = '<div class="board_task_sub">';
@@ -166,6 +212,12 @@ function getSubTaskHTML(task) {
 }
 
 
+/**
+ * get the bubtasklist for the big task view
+ * 
+ * @param {Object} task 
+ * @returns {string} rendered html
+ */
 function getSubTaskBigHTML(task) {
     if (task.subtasks.length == 0) return '';
     let subtaskHTML = '<span>Subtasks</span><div class="task_big_subtask_list">';
@@ -183,11 +235,24 @@ function getSubTaskBigHTML(task) {
 }
 
 
+/**
+ * get the right (checked/unchecked) src for the subtask
+ * 
+ * @param {boolean} state 
+ * @returns {string} image src path
+ */
 function getSubTaskStateImgSrc(state) {
     return `./img/icons/board/${state ? 'cf_checked.svg' : 'cf_unchecked.svg'}`;
 }
 
 
+/**
+ * function executes when a subtask is clicked an change the state
+ * in the picture and the taskObject itself
+ * 
+ * @param {string} taskID 
+ * @param {number} subtaskNumber subtaskindex
+ */
 function clickSubTaskDone(taskID, subtaskNumber) {
     let task = sessionTasks.find(t => t.id == taskID);
     let subtask = task.subtasks[subtaskNumber];
@@ -196,6 +261,12 @@ function clickSubTaskDone(taskID, subtaskNumber) {
 }
 
 
+/**
+ * get the contacts that assigned to the task for the mini task view
+ * 
+ * @param {Object} task 
+ * @returns {string} rednered html
+ */
 function getTaskAssignedContactsHTML(task) {
     let assignedcontactsHTML = '';
     for (let index = 0; index < task.assignedto.length; index++) {

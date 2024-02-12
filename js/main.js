@@ -165,6 +165,17 @@ async function includeHTML() {
 }
 
 
+/**
+ * converts a string to pascalcase
+ * 
+ * @param {string} word - string that be converted
+ * @returns {string} to pascalcase converted string
+ */
+function getPascalCaseWord(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+
 function getElement(elementIdOrObj) {
     if (typeof elementIdOrObj === 'string') return document.getElementById(elementIdOrObj);
     return elementIdOrObj;
