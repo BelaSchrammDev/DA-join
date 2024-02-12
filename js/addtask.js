@@ -1,36 +1,29 @@
-let dropDownObjects = {
-    'addtask_assignet': {
-        openDropDown() {
-            openAssignedContactsDropDownList(this.fromprefix);
-            this.stateDropDown = 'open';
-        },
-        closeDropDown() {
-            closeAssignedContactsDropDownList(this.fromprefix);
-            this.stateDropDown = 'close'
-        },
-        toggleDropDown() {
-            if (this.stateDropDown == 'open') this.closeDropDown();
-            else this.openDropDown();
-        },
-        stateDropDown: 'close',
-        fromprefix: 'addtask_'
-    },
-    'addtask_category': {
-        openDropDown() {
-            openTaskCategoryDropDownList(this.fromprefix);
-            this.stateDropDown = 'open';
-        },
-        closeDropDown() {
-            closeTaskCategoryDropDownList(this.fromprefix);
-            this.stateDropDown = 'close'
-        },
-        toggleDropDown() {
-            if (this.stateDropDown == 'open') this.closeDropDown();
-            else this.openDropDown();
-        },
-        stateDropDown: 'close',
-        fromprefix: 'addtask_'
+class DropDownList {
+    constructor(openFunc, closeFunc, formPrefix) {
+        this.openFunction = openFunc;
+        this.closeFunction = closeFunc;
+        this.formprefix = formPrefix;
+        this.stateDropDown = 'close';
     }
+    openDropDown() {
+        this.openFunction(this.formprefix);
+        setAttribute(document.body, 'onclick', 'clickAddTaskTemplate(event)');
+        this.stateDropDown = 'open';
+    }
+    closeDropDown() {
+        this.closeFunction(this.formprefix);
+        this.stateDropDown = 'close';
+    }
+    toggleDropDown() {
+        if (this.stateDropDown == 'open') this.closeDropDown();
+        else this.openDropDown();
+    }
+}
+
+
+let dropDownObjects = {
+    'addtask_assignet': new DropDownList(openAssignedContactsDropDownList, closeAssignedContactsDropDownList, 'addtask_'),
+    'addtask_category': new DropDownList(openTaskCategoryDropDownList, closeTaskCategoryDropDownList, 'addtask_'),
 }
 
 
@@ -41,7 +34,8 @@ async function initAddtaskSite() {
 
 
 function resetAddTaskForm() {
-    document.getElementById('subtask_list').innerHTML = '';
+    setInnerHTML('subtask_list', '');
+    setInnerHTML('assignedcontacts_bar', '');
 }
 
 
@@ -56,7 +50,7 @@ function renderAssignedContacts() {
     for (let index = 0; index < sessionContacts.length; index++) {
         listHTML += getAssignedContactHTML(sessionContacts[index]);
     }
-    document.getElementById('addtask_assigned_list').innerHTML = listHTML;
+    setInnerHTML('addtask_assigned_list', listHTML);
 }
 
 
@@ -74,12 +68,16 @@ function getAssignedContactHTML(contact) {
 }
 
 
-function renderSubTasks() {
-    let subtasksHTML = '';
-    subtasksHTML += getSubTaskHTML(1, 'Erster task');
-    subtasksHTML += getSubTaskHTML(2, 'Zweiter task');
-    subtasksHTML += getSubTaskHTML(3, 'Dritter task');
-    document.getElementById('subtask_list').innerHTML = subtasksHTML;
+function setAssignedContactsBar() {
+    let contactsBarHTML = '';
+    for (let index = 0; index < sessionContacts.length; index++) {
+        const contact = sessionContacts[index];
+        const contactsAssignedCheckbox = getElement('task_assigned_' + contact.id);
+        if (contactsAssignedCheckbox.checked) {
+            contactsBarHTML += `<span style="background-color: ${contact.color}">${contact.initial}</span>`
+        }
+    }
+    setInnerHTML('assignedcontacts_bar', contactsBarHTML);
 }
 
 
@@ -105,19 +103,13 @@ function getSubTaskHTML(subtaskID, subtaskname) {
 
 
 function renderCategorys() {
-    const taskCategoryDiv = document.getElementById('addtask_category_list');
     let html = '';
     categoryKeys = Object.keys(taskCategorys);
     for (let index = 0; index < categoryKeys.length; index++) {
         const category = taskCategorys[categoryKeys[index]];
         html += `<div onclick="selectTaskCategory(${categoryKeys[index]})"><span>${category.name}</span></div>`
     }
-    taskCategoryDiv.innerHTML = html;
-}
-
-
-function addCloseDropDownListBehavior() {
-    setAttribute(document.body, 'onclick', 'clickAddTaskTemplate(event)');
+    setInnerHTML('addtask_category_list', html);
 }
 
 
@@ -133,7 +125,6 @@ function openTaskCategoryDropDownList(prefix) {
     setAttribute(prefix + 'category_div', 'dropdownopen', 'true');
     setStyle(prefix + 'category', 'border', '1px solid #29abe2');
     setStyle(prefix + 'category_list', 'max-height', '300px');
-    addCloseDropDownListBehavior();
 }
 
 
@@ -151,7 +142,6 @@ function openAssignedContactsDropDownList(prefix) {
     showAllAssignedContacts();
     setAttribute(prefix + 'assigned_arrow', 'open', true);
     setFocus(prefix + 'assignedinput');
-    addCloseDropDownListBehavior();
 }
 
 
@@ -160,14 +150,7 @@ function closeAssignedContactsDropDownList(prefix) {
     setAttribute(prefix + 'assigned_arrow', 'open', false);
     setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
     setInputValue(prefix + 'assignedinput', '');
-}
-
-
-function setCheckedStateForAllContacts() {
-    let contactsDivs = document.getElementById('addtask_assigned_list').children;
-    for (let index = 0; index < contactsDivs.length; index++) {
-
-    }
+    setAssignedContactsBar();
 }
 
 
@@ -225,8 +208,8 @@ function closeAllDropDowns(exclusionID = '') {
 
 
 function selectTaskCategory(categoryID) {
-    document.getElementById('addtask_category').value = taskCategorys[categoryID].name;
-    closeTaskCategoryDropDownList();
+    setInputValue('addtask_category', taskCategorys[categoryID].name);
+    closeAllDropDowns();
 }
 
 
@@ -240,23 +223,21 @@ function createNewSubTask() {
 
 
 function deleteSubTask(subtaskID) {
-    let subtaskdiv = document.getElementById('subtaskdiv' + subtaskID);
-    subtaskdiv.remove();
+    getElement('subtaskdiv' + subtaskID).remove();
 }
 
 
 function changeSubTask(subtaskID) {
     let newSubTaskName = document.getElementById('subtask' + subtaskID).value;
-    document.getElementById('subtaskspan' + subtaskID).innerHTML = newSubTaskName;
+    setInnerHTML('subtaskspan' + subtaskID, newSubTaskName);
     setSubTaskEditMode(subtaskID, false);
 }
 
 
 function setSubTaskEditMode(subtaskID, mode) {
-    document.getElementById('subtaskdiv' + subtaskID).setAttribute('editmode', mode);
-    const inputelement = document.getElementById('subtask' + subtaskID);
-    inputelement.setAttribute('tabindex', '0');
-    window.requestAnimationFrame(() => inputelement.focus());
+    setAttribute('subtaskdiv' + subtaskID, 'editmode', mode);
+    setAttribute('subtask' + subtaskID, 'tabindex', '0');
+    window.requestAnimationFrame(() => setFocus('subtask' + subtaskID));
 }
 
 

@@ -194,3 +194,8 @@ function setAttribute(elementIdOrObj, attribute, value) {
 function setPlaceHolder(elementIdOrObj, placeholderString) {
     getElement(elementIdOrObj).placeholder = placeholderString;
 }
+
+
+function setInnerHTML(elementIdOrObj, htmlString) {
+    getElement(elementIdOrObj).innerHTML = htmlString;
+}
