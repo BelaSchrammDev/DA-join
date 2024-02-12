@@ -15,13 +15,14 @@
                 <div class="addtask_property">
                     <span>Assigned to</span>
                     <div style="position: relative;">
-                        <div nolistclose onclick="openAssignedContactsDropDownList()" id="addtask_assigned"
+                        <div nolistclose onclick="openDropDownList('addtask_assignet')" id="addtask_assigned"
                             class="addtask_assigned">
                             <input nolistclose autocomplete="off" id="addtask_assignedinput"
                                 onkeyup="changeAssignedContactsSearchTerm()"
-                                onfocus="openAssignedContactsDropDownList()" type="text"
+                                onfocus="openDropDownList('addtask_assignet')" type="text"
                                 placeholder="Select contacts to assign">
-                            <img id="addtask_assigned_arrow" class="dropdown_arrow" onclick="clickAssignedContactsDropDownList(event)"
+                            <img id="addtask_assigned_arrow" class="dropdown_arrow"
+                                onclick="clickDropDownList(event,'addtask_assignet')"
                                 src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                         </div>
                         <div nolistclose id="addtask_assigned_list" class="addtask_assigned_list list_scrollbar">
@@ -55,8 +56,8 @@
                 <div class="addtask_property required">
                     <span>Category</span>
                     <div id="addtask_category_div" class="addtask_category_div">
-                        <div onclick="clickTaskCategoryDropDownList(event)"></div>
-                        <img onclick="clickTaskCategoryDropDownList(event)"
+                        <div onclick="clickDropDownList(event,'addtask_category')"></div>
+                        <img onclick="clickDropDownList(event,'addtask_category')"
                             src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                         <input name="task_category" type="text" tabindex="-1" required
                             placeholder="Select Task Category" id="addtask_category" class="addtask_category">
