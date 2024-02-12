@@ -1,5 +1,6 @@
 let openAssignedContactsList = false;
 let openTaskCategoryList = false;
+let closeListCallBackFunction = null;
 
 
 async function initAddtaskSite() {
@@ -84,18 +85,31 @@ function renderCategorys() {
 }
 
 
+function addCloseDropDownListBehavior(closeFunction) {
+    if (closeListCallBackFunction) closeListCallBackFunction();
+    closeListCallBackFunction = closeFunction;
+    document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
+}
+
+
+function clickAddTaskTemplate(event) {
+    if (event.target.getAttribute('nolistclose') != null) return false;
+    event.stopPropagation();
+    if (closeListCallBackFunction) {
+        closeListCallBackFunction();
+        closeListCallBackFunction = null;
+    }
+    document.body.removeAttribute("onclick");
+}
+
+
 function openTaskCategoryDropDownList() {
-    closeAssignedContactsDropDownList();
     if (openTaskCategoryList == true) return;
     openTaskCategoryList = true;
-    const list = document.getElementById('addtask_category_list');
     document.getElementById('addtask_category_div').setAttribute('dropdownopen', 'true');
-    document.getElementById('addtask_category').style = 'border: 1px solid #29abe2;'
-    list.style['max-height'] = '300px';
-    setTimeout(() => {
-        list.style.overflow = 'auto';
-        document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
-    }, 200);
+    setStyle('addtask_category', 'border', '1px solid #29abe2');
+    setStyle('addtask_category_list', 'max-height', '300px');
+    addCloseDropDownListBehavior(() => { closeTaskCategoryDropDownList() });
 }
 
 
@@ -111,26 +125,27 @@ function closeTaskCategoryDropDownList() {
 
 
 function openAssignedContactsDropDownList() {
-    closeTaskCategoryDropDownList();
     if (openAssignedContactsList == true) return;
     openAssignedContactsList = true;
-    document.getElementById('addtask_assigned').setAttribute('dropdownopen', true);
-    document.getElementById('inputAssignContacts').placeholder = 'Search contact';
+    setAttribute('addtask_assigned', 'dropdownopen', true);
+    setPlaceHolder('inputAssignContacts', 'Search contact');
     showAllAssignedContacts();
-    document.getElementById('addtask_assigned').children[1].setAttribute('open', true);
-    document.getElementById('inputAssignContacts').focus();
-    document.body.setAttribute("onclick", "clickAddTaskTemplate(event)");
+    setAttribute('addtask_assigned_arrow', 'open', true);
+    setFocus('inputAssignContacts');
+    addCloseDropDownListBehavior(() => { closeAssignedContactsDropDownList() });
 }
 
 
 function closeAssignedContactsDropDownList() {
     if (openAssignedContactsList == false) return;
     openAssignedContactsList = false;
-    document.getElementById('addtask_assigned').setAttribute('dropdownopen', false);
-    document.getElementById('addtask_assigned').children[1].setAttribute('open', false);
-    const input = document.getElementById('inputAssignContacts');
-    input.placeholder = 'Select contacts to assign';
-    input.value = '';
+    setAttribute('addtask_assigned', 'dropdownopen', false);
+    setAttribute('addtask_assigned_arrow', 'open', false);
+    setPlaceHolder('inputAssignContacts', 'Select contacts to assign');
+    setInputValue('inputAssignContacts', '');
+    // const input = document.getElementById('inputAssignContacts');
+    // input.placeholder = 'Select contacts to assign';
+    // input.value = '';
 }
 
 
@@ -139,13 +154,6 @@ function setCheckedStateForAllContacts() {
     for (let index = 0; index < contactsDivs.length; index++) {
 
     }
-}
-
-
-function closeAllDropDowns() {
-    closeAssignedContactsDropDownList();
-    closeTaskCategoryDropDownList();
-    document.body.removeAttribute("onclick");
 }
 
 
@@ -166,14 +174,6 @@ function changeAssignedContactsSearchTerm() {
         if (nameTerm.includes(searchTerm)) contactDiv.style = 'display: flex;'
         else contactDiv.style = 'display: none;';
     }
-}
-
-
-function clickAddTaskTemplate(event) {
-    const excludedIDs = ['addtask_assigned_list', 'addtask_assigned', 'inputAssignContacts', 'atncddm',]
-    if (event.target.getAttribute('nolistclose') != null) return false;
-    event.stopPropagation();
-    closeAllDropDowns()
 }
 
 

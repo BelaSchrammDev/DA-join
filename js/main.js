@@ -31,7 +31,7 @@ let sessionTasks = [
         status: 'awaitfeedback',
         title: 'Join fertigmachen',
         description: '',
-        assignedto: ['C789','C456'],
+        assignedto: ['C789', 'C456'],
         date: '14.02.2025',
         priority: 'medium',
         category: 1,
@@ -165,12 +165,32 @@ async function includeHTML() {
 }
 
 
-function setFocus(elementID) {
-    document.getElementById(elementID).focus();
+function getElement(elementIdOrObj) {
+    if (typeof elementIdOrObj === 'string') return document.getElementById(elementIdOrObj);
+    return elementIdOrObj;
 }
 
 
-function setInputValue(elementID, newvalue = '') {
-    document.getElementById(elementID).value = newvalue;
+function setFocus(elementIdOrObj) {
+    getElement(elementIdOrObj).focus();
 }
 
+
+function setInputValue(elementIdOrObj, newvalue = '') {
+    getElement(elementIdOrObj).value = newvalue;
+}
+
+
+function setStyle(elementIdOrObj, styleProperty, styleValue) {
+    getElement(elementIdOrObj).style[styleProperty] = styleValue;
+}
+
+
+function setAttribute(elementIdOrObj, attribute, value) {
+    getElement(elementIdOrObj).setAttribute(attribute, value);
+}
+
+
+function setPlaceHolder(elementIdOrObj, placeholderString) {
+    getElement(elementIdOrObj).placeholder = placeholderString;
+}
