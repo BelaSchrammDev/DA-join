@@ -50,8 +50,44 @@ function renderEmptyRowMessage() {
 }
 
 
-function renderBigTaskView(){
-    
+function showBigTaskView(taskID) {
+    const task = sessionTasks.find(t => t.id == taskID);
+    if (task) {
+        setInnerHTML('task_big', getBigTaskHTML(task));
+        let taskBigWidth = document.getElementById('task_big').clientWidth;
+        setStyle('board_overlay', 'z-index', '10');
+        // document.getElementById('board_overlay').style = "z-index: 10;";
+        setStyle('task_big', 'right', `calc(50% - ${taskBigWidth / 2}px)`);
+        // document.getElementById('task_big').style = `right: calc(50% - ${taskBigWidth / 2}px);`;
+    }
+}
+
+
+function getBigTaskHTML(task) {
+    return `
+        <div class="task_big_headline">
+            ${getCategoryHTML(task)}
+            <img onclick="debug_hide_taskbigcard()" src="./img/icons/board/close.svg" alt="">
+        </div>
+        <span class="task_big_title">${task.title}</span>
+        <span class="task_big_description">${task.description ? task.description : ''}</span>
+        <div class="task_big_property"><span class="">Due Date:</span><span>${task.date}</span></div>
+        <div class="task_big_property">
+            <span>Priority:</span>
+            <span>${task.priority}</span>
+            ${getTaskPriorityHTML(task)}
+        </div>
+        <div>
+            <span>Assigned To:</span>
+            <div class="task_big_assign_list">${getAssignedToHTML(task)}</div>
+        </div>
+        <div>${getSubTaskBigHTML(task)}</div>
+        <div class="task_big_buttons">
+            <button><img src="./img/icons/board/delete-img.png" alt=""></button>
+            <div></div>
+            <button><img src="./img/icons/board/edit-img.png" alt=""></button>
+        </div>
+    `;
 }
 
 
@@ -65,7 +101,7 @@ function clearRows() {
 
 function getTaskHTML(task) {
     return `
-    <div onclick="debug_view_taskbigcard()" class="board_task">
+    <div onclick="showBigTaskView('${task.id}')" class="board_task">
         ${getCategoryHTML(task)}
         <div class="board_tast_description">
             <span>${task.title}</span>
@@ -79,6 +115,21 @@ function getTaskHTML(task) {
             ${getTaskPriorityHTML(task)}
         </div>
     </div>`;
+}
+
+
+function getAssignedToHTML(task) {
+    let assignedHTML = '';
+    for (let index = 0; index < task.assignedto.length; index++) {
+        const contact = sessionContacts.find(c => c.id == task.assignedto[index]);
+        if (contact) assignedHTML += `
+            <div>
+                <span style="background-color: ${contact.color};">${contact.initial}</span>
+                <span>${contact.name}</span>
+            </div>
+        `;
+    }
+    return assignedHTML;
 }
 
 
@@ -104,16 +155,44 @@ function getTaskPriorityHTML(task) {
 function getSubTaskHTML(task) {
     if (task.subtasks.length == 0) return '';
     let subtaskHTML = '<div class="board_task_sub">';
-    if (task.subtasks.length > 0) {
-        let taskDone = 0;
-        task.subtasks.forEach(t => { if (t.done) taskDone++; })
-        subtaskHTML += `
+    let taskDone = 0;
+    task.subtasks.forEach(t => { if (t.done) taskDone++; })
+    subtaskHTML += `
             <div><div style="width: ${taskDone / task.subtasks.length * 100}%;"></div>
             </div><span>${taskDone}/${task.subtasks.length} Subtask</span>
         `;
+    subtaskHTML += '</div>';
+    return subtaskHTML;
+}
+
+
+function getSubTaskBigHTML(task) {
+    if (task.subtasks.length == 0) return '';
+    let subtaskHTML = '<span>Subtasks</span><div class="task_big_subtask_list">';
+    for (let index = 0; index < task.subtasks.length; index++) {
+        const subtask = task.subtasks[index];
+        subtaskHTML += `
+            <div>
+                <img id="${task.id + '_' + index}" onclick="clickSubTaskDone('${task.id}',${index})" src="${getSubTaskStateImgSrc(subtask.done)}">
+                <span>${subtask.name}</span>
+            </div>
+            `;
     }
     subtaskHTML += '</div>';
     return subtaskHTML;
+}
+
+
+function getSubTaskStateImgSrc(state) {
+    return `./img/icons/board/${state ? 'cf_checked.svg' : 'cf_unchecked.svg'}`;
+}
+
+
+function clickSubTaskDone(taskID, subtaskNumber) {
+    let task = sessionTasks.find(t => t.id == taskID);
+    let subtask = task.subtasks[subtaskNumber];
+    subtask.done = !subtask.done;
+    document.getElementById(task.id + '_' + subtaskNumber).src = getSubTaskStateImgSrc(subtask.done);
 }
 
 
