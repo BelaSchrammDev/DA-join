@@ -26,15 +26,25 @@ function afterAddTask() {
 }
 
 
+function showOverlay(windowID) {
+    current_flyingwindow_id = windowID;
+    setStyle('board_overlay', 'z-index', '10');
+    setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.2)');
+    setStyle(windowID, 'transform', `translateX(0)`);
+}
+
+
 /**
  * close the current showing overlay
  */
 function closeOverlay() {
     if (current_flyingwindow_id != '') {
-        setStyle(current_flyingwindow_id, 'transform', 'translateX(200%)');
+        setStyle(current_flyingwindow_id, 'transform', 'translateX(100vw)');
+        setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.0)');
         current_flyingwindow_id = '';
         setTimeout(() => {
-            document.getElementById('board_overlay').style = "z-index: -1;";
+            setStyle('board_overlay', 'z-index', '-1');
+            // document.getElementById('board_overlay').style = "z-index: -1;";
         }, 200);
     }
 }
@@ -87,19 +97,15 @@ function clearRows() {
 function showBigTaskView(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task) {
-        current_flyingwindow_id = 'task_big';
         setInnerHTML('task_big', getBigTaskHTML(task));
-        setStyle('board_overlay', 'z-index', '10');
-        setStyle('task_big', 'transform', `translateX(0)`);
+        showOverlay('task_big')
     }
 }
 
 
 function showAddTaskOverlay(newtaskStatus) {
-    current_flyingwindow_id = 'addtask_overlay';
     presetStatusByAddTask = newtaskStatus;
-    setStyle('board_overlay', 'z-index', '10');
-    setStyle('addtask_overlay', 'transform', `translateX(0)`);
+    showOverlay('addtask_overlay');
 }
 
 

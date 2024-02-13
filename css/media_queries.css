@@ -3,7 +3,9 @@
         width: auto;
         height: auto;
         position: relative;
+        z-index: 20;
     }
+
     .nav_elements {
         background-color: #2A3647;
         margin: 0;
@@ -15,13 +17,30 @@
         left: 0;
         width: 100vw;
     }
+
     .nav_list_element {
         padding: 0;
         display: flex;
         flex-direction: column;
         margin-top: 24px;
     }
-    .navbar_logo, .nav_security_links {
+
+    .navbar_logo,
+    .nav_security_links {
         display: none;
+    }
+
+    .header-kanbanboard-headline {
+        margin-left: 16px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 600px) {
+    .content_maindiv {
+        margin-top: 48px;
+        margin-left: 16px;
+        margin-right: 16px;
     }
 }
