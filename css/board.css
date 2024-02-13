@@ -237,9 +237,14 @@ div[tasksearchfield]:has(>input:focus) {
     }
 }
 
-@media (max-width: 600px){
-    .addtask_overlay{
+@media (max-width: 600px) {
+    .addtask_overlay {
         padding: 16px;
+        border-radius: 10px;
     }
 
+    .addtask_overlay>button {
+        right: 10px;
+        top: 10px;
+    }
 }
