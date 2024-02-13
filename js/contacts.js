@@ -86,7 +86,7 @@ function showEditWindow() {
                         <input placeholder="Phone" class="input-class phone-input" type="tel" required>
                     </div>
                     <div class="button-container">
-                        <button type="button" class="cancel-button">
+                        <button type="button" class="cancel-button" onclick="deleteContactProof()">
                             <span>Delete</span>
                         </button>
                         <button type="submit" class="create-button">
