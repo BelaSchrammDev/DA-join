@@ -1,9 +1,8 @@
 /* variables setup */
 :root {
     --editfields_minwidth: 280px;
-    --editfields_maxwidth: 770px;
+    --editfields_maxwidth: 1000px;
     --editfields_height: 48px;
-    --property_description_gap: 8px;
 }
 
 /* buttonstyle for multiple use */
@@ -92,6 +91,7 @@
 }
 
 .addtask_title {
+    display: block;
     font-size: 61px;
     font-weight: 700;
     color: black;
@@ -185,7 +185,7 @@
 }
 
 .addtask_property>textarea {
-    height: calc(vat(--editfields_height) * 3);
+    height: calc(var(--editfields_height) * 3);
     resize: none;
     min-height: 80px;
     max-height: 150px;
@@ -651,8 +651,7 @@
 
 /* TASK */
 .task_action {
-    margin-top: 146px;
-    margin-bottom: 50px;
+    margin-top: 80px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -684,5 +683,37 @@
         justify-content: flex-end;
         align-items: flex-end;
         gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --editfields_minwidth: 200px;
+        --editfields_maxwidth: 1000px;
+        --editfields_height: 40px;
+    }
+
+    .addtask_title {
+        font-size: 47px;
+    }
+
+    .addtask_subtask_div>input,
+    .addtask_assigned>input,
+    .addtask_assigned>input::placeholder,
+    .addtask_assigned,
+    .addtask_category,
+    .addtask_priority,
+    .addtask_property>input,
+    .addtask_property>div>input:not(input[subtask]),
+    .addtask_property>textarea,
+    .addtask_property>div[addtask_property],
+    .addtask_property>span {
+        font-size: 16px;
+        padding: 6px 11px 6px 11px;
+    }
+
+    .addtask_assigned_list,
+    .addtask_category_list {
+        font-size: 16px;
     }
 }

@@ -12,10 +12,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: background-color 125ms ease-in-out;
 }
 
 .task_big {
     width: var(--task_big_width);
+    max-height: 90dvh;
     z-index: 11;
     position: fixed;
     background-color: white;
@@ -31,7 +34,7 @@
     font-weight: 400;
     color: #2a3647;
     transition: transform 125ms ease-in-out;
-    transform: translateX(200%);
+    transform: translateX(120vw);
 }
 
 .task_big_headline {
