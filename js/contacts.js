@@ -123,3 +123,48 @@ function closeAddEditWindow() {
     }, 700);
 }
 
+
+function deleteContactProof() {
+    let background = document.getElementById('deleteProofWindow');
+    background.innerHTML = `
+        <div onclick="event.stopPropagation()" id="deleteContactProof" class="delete-contact-proof-window">
+            <div class="delete-question-container">
+                <span class="delete-question">Are you sure you want to delete this contact permanently?</span>
+            </div>
+            <div class="delete-button-container">   
+                <button type="button" class="cancel-button cancel-delete" onclick="closeDeleteProofWindow()">
+                    <span>Cancel</span>
+                    <img src="./img/icons/contacts/cancel.svg" alt="cancel">
+                </button>
+                <button type="button" class="create-button yes-delete">
+                    <span>Yes</span>
+                    <img src="./img/icons/contacts/check-white.svg" alt="check">
+                </button>
+            </div>
+        </div>
+    `;
+    let window = document.getElementById('deleteContactProof');
+    background.classList.remove('hide');
+    setTimeout(() => {
+        background.classList.add('add-edit-contact-container');
+    }, 0);
+    setTimeout(() => {
+        window.style.transform = 'translateX(0)';
+    }, 50);
+}
+
+
+function closeDeleteProofWindow() {
+    let background = document.getElementById('deleteProofWindow');
+    let window = document.getElementById('deleteContactProof');
+    setTimeout(() => {
+        window.style.transform = 'translateX(1000%)';
+    }, 0);
+    setTimeout(() => {
+        background.classList.remove('add-edit-contact-container');
+    }, 500);
+    setTimeout(() => {
+        background.classList.add('hide');
+    }, 700);
+}
+

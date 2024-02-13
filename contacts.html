@@ -14,7 +14,7 @@
 
 <body onload="initContactsSite()">
     <div w3-include-html="./templates/sidebar.html"></div>
-    <!--Add new contact//Start-->
+    <!--Add new contact window//Start-->
     <section onclick="closeAddEditWindow()" id="addEditContactContainer" class="hide">
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
@@ -52,7 +52,26 @@
             </div>
         </div>
     </section>
-    <!--Add new contact//End-->
+    <!--Add new contact window//End-->
+    <!--Delete contact window//Start-->
+    <section onclick="closeDeleteProofWindow()" id="deleteProofWindow" class="hide">
+        <div onclick="event.stopPropagation()" id="deleteContactProof" class="delete-contact-proof-window">
+            <div class="delete-question-container">
+                <span class="delete-question">Are you sure you want to delete this contact permanently?</span>
+            </div>
+            <div class="delete-button-container">
+                <button type="button" class="cancel-button cancel-delete">
+                    <span>Cancel</span>
+                    <img src="./img/icons/contacts/cancel.svg" alt="cancel">
+                </button>
+                <button type="button" class="create-button yes-delete">
+                    <span>Yes</span>
+                    <img src="./img/icons/contacts/check-white.svg" alt="check">
+                </button>
+            </div>
+        </div>
+    </section>
+    <!--Delete contact window//End-->
     <div class="header-main-container">
         <header w3-include-html="./templates/header.html"></header>
         <main>
@@ -241,7 +260,7 @@
                                     <img src="./img/icons/contacts/pen-black.svg" alt="">
                                     <span>Edit</span>
                                 </div>
-                                <div class="delete-contact">
+                                <div onclick="deleteContactProof()" class="delete-contact">
                                     <img src="./img/icons/contacts/trash-black.svg" alt="">
                                     <span>Delete</span>
                                 </div>
