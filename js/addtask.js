@@ -42,6 +42,7 @@ function resetAddTaskForm() {
 function renderAddtaskFields() {
     renderCategorys();
     renderAssignedContacts();
+    setAttribute('addtask_duedate', 'min', new Date().toISOString().split('T')[0]);
 }
 
 

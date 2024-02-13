@@ -1,3 +1,4 @@
+// example arrays for testing only ---------------------------------------------------
 let sessionTasks = [
     {
         id: 'T12',
@@ -87,7 +88,6 @@ let sessionContacts = [
     },
 ]
 
-
 let users = [
     {
         id: 'U123',
@@ -108,26 +108,12 @@ let users = [
         passwort: 'SH',
     },
 ]
-
+// example arrays for testing only ---------------------------------------------------END
 
 let currentuser = '';
-
-
 const taskCategorys = {
     1: { id: 1, name: 'User Story', color: '#0038ff', },
     2: { id: 2, name: 'Technical Task', color: '#1FD7C1', }
-}
-
-
-/**
- * create and return an unique id with optional prefix string
- * 
- * @param {string} prefix 
- * @returns {string}
- */
-function createUniqueID(prefix) {
-    const idnumber = new Date().getTime();
-    return prefix + idnumber;
 }
 
 
@@ -152,6 +138,18 @@ function saveAllToLocalStorage() {
     localStorage.setItem('testcontacts', JSON.stringify(sessionContacts));
 }
 // DEBUG SECTION END -----------------------------
+
+
+/**
+ * create and return an unique id with optional prefix string
+ * 
+ * @param {string} prefix 
+ * @returns {string}
+ */
+function createUniqueID(prefix) {
+    const idnumber = new Date().getTime();
+    return prefix + idnumber;
+}
 
 
 /**
