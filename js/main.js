@@ -88,6 +88,28 @@ let sessionContacts = [
 ]
 
 
+let users = [
+    {
+        id: 'U123',
+        name: 'Bela Schramm',
+        email: 'belaschramm@aol.de',
+        passwort: 'BS',
+    },
+    {
+        id: 'U456',
+        name: 'Nadja Reuther',
+        email: 'nadjareuther@aol.de',
+        passwort: 'NR',
+    },
+    {
+        id: 'U789',
+        name: 'Simon Henke',
+        email: 'simonhenke@aol.de',
+        passwort: 'SH',
+    },
+]
+
+
 let currentuser = '';
 
 
