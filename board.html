@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <script src="./js/main.js"></script>
     <script src="./js/remotestorage.js"></script>
     <script src="./js/board.js"></script>
+    <script src="./js/addtask.js"></script>
     <script src="./js/header.js"></script>
     <title>Join - Board</title>
 </head>
@@ -21,48 +23,14 @@
 
     <div onclick="debug_hide_taskbigcard()" id="board_overlay" class="board_overlay">
         <!-- task big begin -->
-        <div onclick="event.stopPropagation();" id="task_big" class="task_big" style="right: -600px;">
-            <!-- slide in with margin-left: 150vw / unset -->
-            <div class="task_big_headline">
-                <span style="background-color: #0038ff;">User Story</span>
-                <img onclick="debug_hide_taskbigcard()" src="./img/icons/board/close.svg" alt="">
-            </div>
-            <span class="task_big_title">Kochwelt Page & Recipe Recommender</span>
-            <span class="task_big_description">Build start page with recipe recommendation.</span>
-            <div class="task_big_property"><span class="">Due Date:</span><span>10/05/2023</span></div>
-            <div class="task_big_property">
-                <span>Priority:</span>
-                <span>Medium</span>
-                <img src="./img/icons/board/medium.svg" alt="">
-            </div>
-            <div>
-                <span>Assigned To:</span>
-                <div class="task_big_assign_list">
-                    <div><span style="background-color: #0038ff;">NR</span><span>Nadja Reuther</span></div>
-                    <div><span style="background-color: #249900;">SH</span><span>Simon Henke</span></div>
-                    <div><span style="background-color: #ff00ff;">BS</span><span>Bela Schramm</span></div>
-                </div>
-            </div>
-            <div>
-                <span>Subtasks</span>
-                <div class="task_big_subtask_list">
-                    <div>
-                        <img src="./img/icons/board/cf_checked.svg" alt="">
-                        <span>Implement Recipe Recommendation</span>
-                    </div>
-                    <div>
-                        <img src="./img/icons/board/cf_unchecked.svg" alt="">
-                        <span>Start Page Layout</span>
-                    </div>
-                </div>
-            </div>
-            <div class="task_big_buttons">
-                <button><img src="./img/icons/board/delete-img.png" alt=""></button>
-                <div></div>
-                <button><img src="./img/icons/board/edit-img.png" alt=""></button>
-            </div>
+        <div onclick="event.stopPropagation();" id="task_big" class="task_big">
         </div>
         <!-- task big end -->
+        <!-- addtask begin -->
+        <div onclick="event.stopPropagation();" id="addtask_overlay" class="addtask_overlay" style="right: -200%;">
+            <div w3-include-html="./templates/addtask-template.html"></div>
+        </div>
+        <!-- addtask end -->
     </div>
 
     <div class="maindiv">

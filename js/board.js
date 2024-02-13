@@ -14,13 +14,14 @@ async function initBoardSite() {
     clearRows();
     renderTasks();
     renderEmptyRowMessage();
+    renderAddtaskFields();
 }
 
 
 // DEBUGING ##################################################################
+// change for addtask and bigtask
 function debug_hide_taskbigcard() {
-    let taskBigWidth = document.getElementById('task_big').clientWidth;
-    document.getElementById('task_big').style = `right: -${taskBigWidth}px;`;
+    setStyle('task_big', 'transform', 'translateX(200%)');
     setTimeout(() => {
         document.getElementById('board_overlay').style = "z-index: -1;";
     }, 200);
@@ -76,7 +77,7 @@ function showBigTaskView(taskID) {
         setInnerHTML('task_big', getBigTaskHTML(task));
         let taskBigWidth = document.getElementById('task_big').clientWidth;
         setStyle('board_overlay', 'z-index', '10');
-        setStyle('task_big', 'right', `calc(50% - ${taskBigWidth / 2}px)`);
+        setStyle('task_big', 'transform', `translateX(0)`);
     }
 }
 
@@ -129,7 +130,7 @@ function getTaskHTML(task) {
             <span>${task.title}</span>
             <span>${task.description}</span>
         </div>
-        ${getSubTaskHTML(task)}
+        ${getMiniSubTaskHTML(task)}
         <div class="board_task_footer">
             <div class="board_task_assign">
             ${getTaskAssignedContactsHTML(task)}
@@ -198,7 +199,7 @@ function getTaskPriorityHTML(task) {
  * @param {Object} task 
  * @returns {string} rednered html
  */
-function getSubTaskHTML(task) {
+function getMiniSubTaskHTML(task) {
     if (task.subtasks.length == 0) return '';
     let subtaskHTML = '<div class="board_task_sub">';
     let taskDone = 0;

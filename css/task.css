@@ -1,4 +1,4 @@
-:root{
+:root {
     --task_big_width: 525px;
 }
 
@@ -30,7 +30,8 @@
     font-size: 20px;
     font-weight: 400;
     color: #2a3647;
-    transition: all 125ms ease-in-out;
+    transition: transform 125ms ease-in-out;
+    transform: translateX(200%);
 }
 
 .task_big_headline {
