@@ -49,7 +49,6 @@ let sessionContacts = [
         initial: 'BS',
         email: 'belaschramm@aol.de',
         color: '#0038FF',
-        passwort: 'BS'
     },
     {
         id: 'C456',
@@ -57,7 +56,6 @@ let sessionContacts = [
         initial: 'NR',
         email: 'belaschramm@aol.de',
         color: '#00BEE8',
-        passwort: 'NR'
     },
     {
         id: 'C789',
@@ -65,7 +63,6 @@ let sessionContacts = [
         initial: 'SH',
         email: 'belaschramm@aol.de',
         color: '#1FD7C1',
-        passwort: 'SH'
     },
     {
         id: 'C321',
@@ -73,7 +70,6 @@ let sessionContacts = [
         initial: 'MB',
         email: 'belaschramm@aol.de',
         color: '#6E52FF',
-        passwort: 'MB'
     },
     {
         id: 'C654',
@@ -81,7 +77,6 @@ let sessionContacts = [
         initial: 'BW',
         email: 'belaschramm@aol.de',
         color: '#9747FF',
-        passwort: 'BW'
     },
     {
         id: 'C987',
@@ -89,7 +84,6 @@ let sessionContacts = [
         initial: 'MM',
         email: 'belaschramm@aol.de',
         color: '#C3FF2B',
-        passwort: 'MM'
     },
 ]
 
@@ -103,6 +97,12 @@ const taskCategorys = {
 }
 
 
+/**
+ * create and return an unique id with optional prefix string
+ * 
+ * @param {string} prefix 
+ * @returns {string}
+ */
 function createUniqueID(prefix) {
     const idnumber = new Date().getTime();
     return prefix + idnumber;
@@ -132,6 +132,9 @@ function saveAllToLocalStorage() {
 // DEBUG SECTION END -----------------------------
 
 
+/**
+ * main init function with check if user loged in
+ */
 async function initJoin() {
     // test if user logged in
     currentuser = sessionStorage.getItem('currentuser');
@@ -142,6 +145,9 @@ async function initJoin() {
 }
 
 
+/**
+ * init function for the login site
+ */
 async function initLoginSite() {
     await includeHTML();
     // load contacts from remotestorage for login
@@ -149,6 +155,9 @@ async function initLoginSite() {
 }
 
 
+/**
+ * includes html templates to the site
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -176,37 +185,101 @@ function getPascalCaseWord(word) {
 }
 
 
+/**
+ * gets a html element with the id or the element itself
+ * 
+ * @param {string|Object} elementIdOrObj 
+ * @returns {Object} htmlelement
+ */
 function getElement(elementIdOrObj) {
     if (typeof elementIdOrObj === 'string') return document.getElementById(elementIdOrObj);
     return elementIdOrObj;
 }
 
 
+/**
+ * set the focus to the given element or element id
+ * 
+ * @param {string|Object} elementIdOrObj 
+ */
 function setFocus(elementIdOrObj) {
     getElement(elementIdOrObj).focus();
 }
 
 
+/**
+ * set the value of a input element or element id
+ * 
+ * @param {string|Object} elementIdOrObj 
+ * @param {string} newvalue 
+ */
 function setInputValue(elementIdOrObj, newvalue = '') {
     getElement(elementIdOrObj).value = newvalue;
 }
 
 
+/**
+ * get the value of the given input element or input element id
+ * 
+ * @param {string|Object} elementIdOrObj 
+ */
+function getInputValue(elementIdOrObj) {
+    return getElement(elementIdOrObj).value;
+}
+
+
+/**
+ * set the givent style property of the elemnet or the element id with the stylevalue
+ * 
+ * @param {string|Object} elementIdOrObj 
+ * @param {string} styleProperty 
+ * @param {string} styleValue 
+ */
 function setStyle(elementIdOrObj, styleProperty, styleValue) {
     getElement(elementIdOrObj).style[styleProperty] = styleValue;
 }
 
 
+/**
+ * set the attribute of the element or the element id with the value
+ * 
+ * @param {string|Object} elementIdOrObj 
+ * @param {string} attribute 
+ * @param {string} value 
+ */
 function setAttribute(elementIdOrObj, attribute, value) {
     getElement(elementIdOrObj).setAttribute(attribute, value);
 }
 
 
+/**
+ * set the placeholder property of a input element or a element id
+ * 
+ * @param {string|Object} elementIdOrObj 
+ * @param {string} placeholderString 
+ */
 function setPlaceHolder(elementIdOrObj, placeholderString) {
     getElement(elementIdOrObj).placeholder = placeholderString;
 }
 
 
-function setInnerHTML(elementIdOrObj, htmlString) {
+/**
+ * set the innerHTML property of an element or an element id with the new htmlstring
+ * 
+ * @param {string|Object} elementIdOrObj 
+ * @param {string} htmlString 
+ */
+function setInnerHTML(elementIdOrObj, htmlString = '') {
     getElement(elementIdOrObj).innerHTML = htmlString;
+}
+
+
+/**
+ * add the htmlstring to the innerHTML property of an element or an element id
+ * 
+ * @param {string|Object} elementIdOrObj 
+ * @param {string} htmlString 
+ */
+function addInnerHTML(elementIdOrObj, htmlString) {
+    getElement(elementIdOrObj).innerHTML += htmlString;
 }

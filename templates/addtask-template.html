@@ -1,6 +1,6 @@
 <div id="addtaskTemplate" class="content_maindiv">
     <span class="addtask_title">Add Task</span>
-    <form id="addtask_form" action="javascript:;" onreset="resetAddTaskForm()" onsubmit="submitAddTaskForm()">
+    <form id="addtask_form" action="javascript:;" onkeydown="return event.key != 'Enter';" onreset="resetAddTaskForm()" onsubmit="submitAddTaskForm()">
         <div class="addtask_form">
             <div class="addtask_edit">
                 <div class="addtask_property required">
@@ -67,7 +67,7 @@
                 <div class="addtask_property">
                     <span>Subtasks</span>
                     <div addtask_property class="addtask_subtask_div">
-                        <input id="addtask_subtask_input" subtask type="text" placeholder="Add new subtask">
+                        <input onkeydown="enterSubtaskInput(event)" id="addtask_subtask_input" subtask type="text" placeholder="Add new subtask">
                         <div subtaskadd>
                             <img onclick="setFocus('addtask_subtask_input')" src="../img/icons/add-task/plus.svg"
                                 alt="">

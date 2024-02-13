@@ -84,7 +84,7 @@ function setAssignedContactsBar() {
 function getSubTaskHTML(subtaskID, subtaskname) {
     return `
     <div id="subtaskdiv${subtaskID}" editmode="false" class="subtask_row">
-    <input name="task_subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
+    <input onkeydown="if(event.key == 'Enter') changeSubTask('${subtaskID}')" name="task_subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
     <div lipoint class="subtask_point"></div>
     <span ondblclick="setSubTaskEditMode('${subtaskID}','true')" id="subtaskspan${subtaskID}">${subtaskname}</span>
     <div showaction>
@@ -183,6 +183,14 @@ function clickDropDownList(event, listID) {
 }
 
 
+function enterSubtaskInput(event) {
+    if (event.key == 'Enter') {
+        createNewSubTask();
+        setFocus('addtask_subtask_input');
+    }
+}
+
+
 function openDropDownList(listID) {
     closeAllDropDowns();
     if (dropDownObjects[listID]) {
@@ -214,10 +222,10 @@ function selectTaskCategory(categoryID) {
 
 
 function createNewSubTask() {
-    let newSubTaskName = document.getElementById('addtask_subtask_input').value;
+    let newSubTaskName = getInputValue('addtask_subtask_input');
     if (newSubTaskName == '') return;
     let newSubTaskHTML = getSubTaskHTML(createUniqueID('ST'), newSubTaskName);
-    document.getElementById('subtask_list').innerHTML += newSubTaskHTML;
+    addInnerHTML('subtask_list', newSubTaskHTML);
     setInputValue('addtask_subtask_input');
 }
 
@@ -228,7 +236,7 @@ function deleteSubTask(subtaskID) {
 
 
 function changeSubTask(subtaskID) {
-    let newSubTaskName = document.getElementById('subtask' + subtaskID).value;
+    let newSubTaskName = getInputValue('subtask' + subtaskID);
     setInnerHTML('subtaskspan' + subtaskID, newSubTaskName);
     setSubTaskEditMode(subtaskID, false);
 }
