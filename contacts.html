@@ -32,21 +32,23 @@
                 <div onclick="closeAddEditWindow()">
                     <img src="./img/icons/contacts/cancel.svg" alt="exit">
                 </div>
-                <div class="input-container">
-                    <input placeholder="Name" class="input-class name-input" type="text">
-                    <input placeholder="Email" class="input-class email-input" type="email">
-                    <input placeholder="Phone" class="input-class phone-input" type="tel">
-                </div>
-                <div class="button-container">
-                    <button class="cancel-button">
-                        <span>Cancel</span>
-                        <img src="./img/icons/contacts/cancel.svg" alt="cancel">
-                    </button>
-                    <button class="create-button">
-                        <span>Create Contact</span>
-                        <img src="./img/icons/contacts/check-white.svg" alt="check">
-                    </button>
-                </div>
+                <form onsubmit="createContact(); return false;">
+                    <div class="input-container">
+                        <input placeholder="Name" class="input-class name-input" type="text" required>
+                        <input placeholder="Email" class="input-class email-input" type="email" required>
+                        <input placeholder="Phone" class="input-class phone-input" type="tel" required>
+                    </div>
+                    <div class="button-container">
+                        <button type="button" class="cancel-button">
+                            <span>Cancel</span>
+                            <img src="./img/icons/contacts/cancel.svg" alt="cancel">
+                        </button>
+                        <button type="submit" class="create-button">
+                            <span>Create Contact</span>
+                            <img src="./img/icons/contacts/check-white.svg" alt="check">
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
