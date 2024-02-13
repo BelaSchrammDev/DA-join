@@ -7,7 +7,8 @@ class DropDownList {
     }
     openDropDown() {
         this.openFunction(this.formprefix);
-        setAttribute(document.body, 'onclick', 'clickAddTaskTemplate(event)');
+        setCloseDropDownBehavior();
+        // setAttribute(document.body, 'onclick', 'clickAddTaskTemplate(event)');
         this.stateDropDown = 'open';
     }
     closeDropDown() {
@@ -19,12 +20,13 @@ class DropDownList {
         else this.openDropDown();
     }
 }
-
-
 let dropDownObjects = {
     'addtask_assignet': new DropDownList(openAssignedContactsDropDownList, closeAssignedContactsDropDownList, 'addtask_'),
     'addtask_category': new DropDownList(openTaskCategoryDropDownList, closeTaskCategoryDropDownList, 'addtask_'),
 }
+let actionAfterAddTask = null;
+let setCloseDropDownBehavior = () => { setAttribute(document.body, 'onclick', 'clickAddTaskTemplate(event)'); }
+let presetStatusByAddTask = 'todo';
 
 
 async function initAddtaskSite() {
@@ -255,20 +257,29 @@ function submitAddTaskForm() {
     let formData = new FormData(searchForm);
     sessionTasks.push(createTaskObjectFromForm(Object.fromEntries(formData)));
     searchForm.reset();
+    if (actionAfterAddTask) actionAfterAddTask();
 }
 
 
 function createTaskObjectFromForm(formData) {
     let newTask = new Object();
     newTask.id = createUniqueID('T');
-    newTask.status = 'todo';
+    newTask.status = presetStatusByAddTask;
+    newTask.category = getCategoryID(formData.task_category);
     newTask.title = formData.task_title;
     newTask.description = formData.task_description;
     newTask.date = formData.task_date;
     newTask.priority = formData.task_priority;
-    newTask.assignedto = addPropertysToArray('task_assigned_', formData, (key) => { return key; })
+    newTask.assignedto = addPropertysToArray('task_assigned_', formData, (key) => { return key; });
     newTask.subtasks = addPropertysToArray('task_subtask', formData, (key, property) => { return { name: property, done: false } });
     return newTask;
+}
+
+
+function getCategoryID(category) {
+    if (category == 'User Story') return 1;
+    else if (category == 'Technical Task') return 2;
+    return 0;
 }
 
 

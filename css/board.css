@@ -42,7 +42,7 @@
     margin-right: 16px;
 }
 
-div:has(>input:focus){
+div[tasksearchfield]:has(>input:focus) {
     border: 1px solid #29ABE2;
 }
 
@@ -74,7 +74,7 @@ div:has(>input:focus){
     margin-left: 64px;
 }
 
-.board_task_empty{
+.board_task_empty {
     border: 1px dashed #A8A8A8;
     box-shadow: 0px 0px 4px 0px #00000029;
     border-radius: 10px;
@@ -97,11 +97,11 @@ div:has(>input:focus){
     margin-bottom: 15.5px;
 }
 
-.board_task_head>img:hover{
+.board_task_head>img:hover {
     content: url('../img/icons/board/plus-button_high.svg');
 }
 
-.board_task_head>img:active{
+.board_task_head>img:active {
     content: url('../img/icons/board/plus-button-press.svg');
 }
 
@@ -199,9 +199,12 @@ div:has(>input:focus){
 }
 
 .addtask_overlay {
+    min-width: 1100px;
     position: fixed;
     padding: 60px;
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px #0000001A;
     background-color: #FFFFFF;
+    transition: transform 125ms ease-in-out;
+    transform: translateX(200%);
 }

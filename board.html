@@ -21,13 +21,13 @@
 
 <body onload="initBoardSite()">
 
-    <div onclick="debug_hide_taskbigcard()" id="board_overlay" class="board_overlay">
+    <div onclick="closeOverlay()" id="board_overlay" class="board_overlay">
         <!-- task big begin -->
         <div onclick="event.stopPropagation();" id="task_big" class="task_big">
         </div>
         <!-- task big end -->
         <!-- addtask begin -->
-        <div onclick="event.stopPropagation();" id="addtask_overlay" class="addtask_overlay" style="right: -200%;">
+        <div onclick="event.stopPropagation();" id="addtask_overlay" class="addtask_overlay">
             <div w3-include-html="./templates/addtask-template.html"></div>
         </div>
         <!-- addtask end -->
@@ -42,11 +42,11 @@
                     <div class="board_header">
                         <div class="board_headline">
                             <span>Board</span>
-                            <div>
+                            <div tasksearchfield>
                                 <input type="text" placeholder="Find Task">
                                 <img src="./img/icons/board/search.svg" alt="">
                             </div>
-                            <button class="btnAddOk">
+                            <button onclick="showAddTaskOverlay('todo')" class="btnAddOk">
                                 <div>
                                     <span>Add task</span>
                                     <img src="./img/icons/board/add.svg" alt="">
@@ -58,21 +58,24 @@
                         <div>
                             <div class="board_task_head">
                                 <span>To do</span>
-                                <img src="./img/icons/board/plus-button.svg" alt="">
+                                <img onclick="showAddTaskOverlay('todo')" src="./img/icons/board/plus-button.svg"
+                                    alt="">
                             </div>
                             <div id="tasklist_todo" class="board_task_list"></div>
                         </div>
                         <div>
                             <div class="board_task_head">
                                 <span>In progress</span>
-                                <img src="./img/icons/board/plus-button.svg" alt="">
+                                <img onclick="showAddTaskOverlay('inprogress')" src="./img/icons/board/plus-button.svg"
+                                    alt="">
                             </div>
                             <div id="tasklist_inprogress" class="board_task_list"></div>
                         </div>
                         <div>
                             <div class="board_task_head">
                                 <span>Await feedback</span>
-                                <img src="./img/icons/board/plus-button.svg" alt="">
+                                <img onclick="showAddTaskOverlay('awaitfeedback')"
+                                    src="./img/icons/board/plus-button.svg" alt="">
                             </div>
                             <div id="tasklist_awaitfeedback" class="board_task_list"></div>
                         </div>

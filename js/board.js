@@ -5,40 +5,53 @@ const rowIdName = [
     { id: 'done', name: 'Done' },
 ]
 
+let current_flyingwindow_id = '';
+
 
 /**
  * initfunction for the board site
  */
 async function initBoardSite() {
     await initJoin();
-    clearRows();
     renderTasks();
-    renderEmptyRowMessage();
     renderAddtaskFields();
+    actionAfterAddTask = afterAddTask;
+    setCloseDropDownBehavior = () => { setAttribute('addtaskTemplate', 'onclick', 'clickAddTaskTemplate(event)'); }
 }
 
 
-// DEBUGING ##################################################################
-// change for addtask and bigtask
-function debug_hide_taskbigcard() {
-    setStyle('task_big', 'transform', 'translateX(200%)');
-    setTimeout(() => {
-        document.getElementById('board_overlay').style = "z-index: -1;";
-    }, 200);
+function afterAddTask() {
+    closeOverlay();
+    renderTasks();
 }
-//############################################################################
+
+
+/**
+ * close the current showing overlay
+ */
+function closeOverlay() {
+    if (current_flyingwindow_id != '') {
+        setStyle(current_flyingwindow_id, 'transform', 'translateX(200%)');
+        current_flyingwindow_id = '';
+        setTimeout(() => {
+            document.getElementById('board_overlay').style = "z-index: -1;";
+        }, 200);
+    }
+}
 
 
 /**
  * render all task in the related rows
  */
 function renderTasks() {
+    clearRows();
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
         const tasksHTML = getTaskHTML(task);
         const tasklist = document.getElementById('tasklist_' + task.status);
         if (tasklist) tasklist.innerHTML += tasksHTML;
     }
+    renderEmptyRowMessage();
 }
 
 
@@ -74,11 +87,19 @@ function clearRows() {
 function showBigTaskView(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task) {
+        current_flyingwindow_id = 'task_big';
         setInnerHTML('task_big', getBigTaskHTML(task));
-        let taskBigWidth = document.getElementById('task_big').clientWidth;
         setStyle('board_overlay', 'z-index', '10');
         setStyle('task_big', 'transform', `translateX(0)`);
     }
+}
+
+
+function showAddTaskOverlay(newtaskStatus) {
+    current_flyingwindow_id = 'addtask_overlay';
+    presetStatusByAddTask = newtaskStatus;
+    setStyle('board_overlay', 'z-index', '10');
+    setStyle('addtask_overlay', 'transform', `translateX(0)`);
 }
 
 
@@ -92,7 +113,7 @@ function getBigTaskHTML(task) {
     return `
         <div class="task_big_headline">
             ${getCategoryHTML(task)}
-            <img onclick="debug_hide_taskbigcard()" src="./img/icons/board/close.svg" alt="">
+            <img onclick="closeOverlay()" src="./img/icons/board/close.svg" alt="">
         </div>
         <span class="task_big_title">${task.title}</span>
         <span class="task_big_description">${task.description ? task.description : ''}</span>
