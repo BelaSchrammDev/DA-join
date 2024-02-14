@@ -668,6 +668,11 @@
     gap: 16px;
 }
 
+form[addtask]:invalid button.btnAddOk {
+    pointer-events: none;
+    background-color: #D1D1D1;
+}
+
 @media (max-width: 1200px) {
     .addtask_form {
         flex-direction: column;
