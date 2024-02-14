@@ -16,7 +16,7 @@ async function initBoardSite() {
     renderTasks();
     renderAddtaskFields();
     actionAfterAddTask = afterAddTask;
-    setCloseDropDownBehavior = () => { setAttribute('addtaskTemplate', 'onclick', 'clickAddTaskTemplate(event)'); }
+    setCloseDropDownBehavior = () => { setAttribute('addtask_template', 'onclick', 'clickAddTaskTemplate(event)'); }
 }
 
 
