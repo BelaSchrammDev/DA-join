@@ -1,31 +1,6 @@
-class DropDownList {
-    constructor(openFunc, closeFunc, formPrefix) {
-        this.openFunction = openFunc;
-        this.closeFunction = closeFunc;
-        this.formprefix = formPrefix;
-        this.stateDropDown = 'close';
-    }
-    openDropDown() {
-        this.openFunction(this.formprefix);
-        setCloseDropDownBehavior();
-        // setAttribute(document.body, 'onclick', 'clickAddTaskTemplate(event)');
-        this.stateDropDown = 'open';
-    }
-    closeDropDown() {
-        this.closeFunction(this.formprefix);
-        this.stateDropDown = 'close';
-    }
-    toggleDropDown() {
-        if (this.stateDropDown == 'open') this.closeDropDown();
-        else this.openDropDown();
-    }
-}
-let dropDownObjects = {
-    'addtask_assignet': new DropDownList(openAssignedContactsDropDownList, closeAssignedContactsDropDownList, 'addtask_'),
-    'addtask_category': new DropDownList(openTaskCategoryDropDownList, closeTaskCategoryDropDownList, 'addtask_'),
-}
+
 let actionAfterAddTask = null;
-let setCloseDropDownBehavior = () => { setAttribute(document.body, 'onclick', 'clickAddTaskTemplate(event)'); }
+
 let presetStatusByAddTask = 'todo';
 
 
@@ -35,52 +10,52 @@ async function initAddtaskSite() {
 }
 
 
-function resetAddTaskForm() {
-    setInnerHTML('subtask_list', '');
-    setInnerHTML('assignedcontacts_bar', '');
+function resetAddTaskForm(prefix) {
+    setInnerHTML(prefix + 'subtask_list', '');
+    setInnerHTML(prefix + 'assignedcontacts_bar', '');
 }
 
 
 function renderAddtaskFields() {
     renderCategorys();
-    renderAssignedContacts();
+    renderAssignedContacts('addtask_assigned_list', 'addtask_');
     setAttribute('addtask_duedate', 'min', new Date().toISOString().split('T')[0]);
 }
 
 
-function renderAssignedContacts() {
+function renderAssignedContacts(listDropDownID, prefix) {
     let listHTML = '';
     for (let index = 0; index < sessionContacts.length; index++) {
-        listHTML += getAssignedContactHTML(sessionContacts[index]);
+        listHTML += getAssignedContactHTML(sessionContacts[index], prefix);
     }
-    setInnerHTML('addtask_assigned_list', listHTML);
+    setInnerHTML(listDropDownID, listHTML);
 }
 
 
-function getAssignedContactHTML(contact) {
+function getAssignedContactHTML(contact, prefix) {
     return `
-    <div nolistclose id="assignedContacts_${contact.id}" checked="true">
-        <label nolistclose for="task_assigned_${contact.id}">
+    <div nolistclose id="${prefix}assignedContacts_${contact.id}" checked="true">
+        <label nolistclose for="${prefix}task_assigned_${contact.id}">
             <span nolistclose style="background-color: ${contact.color};">${contact.initial}</span>
             <span nolistclose>${contact.name}</span>
             <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
         </label>
-        <input nolistclose id="task_assigned_${contact.id}" name="task_assigned_${contact.id}" type="checkbox" id="contactsCheckbox_${contact.id}">
+        <input nolistclose id="${prefix}task_assigned_${contact.id}" name="${prefix}task_assigned_${contact.id}" type="checkbox" id="contactsCheckbox_${contact.id}">
     </div>
 `;
 }
 
 
-function setAssignedContactsBar() {
+function setAssignedContactsBar(prefix) {
     let contactsBarHTML = '';
     for (let index = 0; index < sessionContacts.length; index++) {
         const contact = sessionContacts[index];
-        const contactsAssignedCheckbox = getElement('task_assigned_' + contact.id);
+        const contactsAssignedCheckbox = getElement(prefix + 'task_assigned_' + contact.id);
         if (contactsAssignedCheckbox.checked) {
             contactsBarHTML += `<span style="background-color: ${contact.color}">${contact.initial}</span>`
         }
     }
-    setInnerHTML('assignedcontacts_bar', contactsBarHTML);
+    setInnerHTML(prefix + 'assignedcontacts_bar', contactsBarHTML);
 }
 
 
@@ -116,14 +91,6 @@ function renderCategorys() {
 }
 
 
-function clickAddTaskTemplate(event) {
-    if (event.target.getAttribute('nolistclose') != null) return false;
-    event.stopPropagation();
-    closeAllDropDowns();
-    document.body.removeAttribute("onclick");
-}
-
-
 function openTaskCategoryDropDownList(prefix) {
     setAttribute(prefix + 'category_div', 'dropdownopen', 'true');
     setStyle(prefix + 'category', 'border', '1px solid #29abe2');
@@ -153,7 +120,7 @@ function closeAssignedContactsDropDownList(prefix) {
     setAttribute(prefix + 'assigned_arrow', 'open', false);
     setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
     setInputValue(prefix + 'assignedinput', '');
-    setAssignedContactsBar();
+    setAssignedContactsBar(prefix);
 }
 
 
@@ -177,43 +144,10 @@ function changeAssignedContactsSearchTerm() {
 }
 
 
-function clickDropDownList(event, listID) {
-    closeAllDropDowns(listID);
-    if (dropDownObjects[listID]) {
-        event.stopPropagation();
-        dropDownObjects[listID].toggleDropDown();
-    }
-}
-
-
-function enterSubtaskInput(event) {
+function enterSubtaskInput(event, prefix) {
     if (event.key == 'Enter') {
-        createNewSubTask();
-        setFocus('addtask_subtask_input');
-    }
-}
-
-
-function openDropDownList(listID) {
-    closeAllDropDowns();
-    if (dropDownObjects[listID]) {
-        dropDownObjects[listID].openDropDown();
-    }
-}
-
-
-function closeDropDownList(listID) {
-    if (dropDownObjects[listID]) {
-        dropDownObjects[listID].closeDropDown();
-    }
-}
-
-
-function closeAllDropDowns(exclusionID = '') {
-    const listIDs = Object.keys(dropDownObjects);
-    for (let index = 0; index < listIDs.length; index++) {
-        const listID = listIDs[index];
-        if (listID != exclusionID) dropDownObjects[listIDs[index]].closeDropDown();
+        createNewSubTask(prefix);
+        setFocus(prefix + 'subtask_input');
     }
 }
 
@@ -224,12 +158,11 @@ function selectTaskCategory(categoryID) {
 }
 
 
-function createNewSubTask() {
-    let newSubTaskName = getInputValue('addtask_subtask_input');
+function createNewSubTask(prefix) {
+    let newSubTaskName = getInputValue(prefix + 'subtask_input');
     if (newSubTaskName == '') return;
-    let newSubTaskHTML = getSubTaskHTML(createUniqueID('ST'), newSubTaskName);
-    addInnerHTML('subtask_list', newSubTaskHTML);
-    setInputValue('addtask_subtask_input');
+    addInnerHTML(prefix + 'subtask_list', getSubTaskHTML(createUniqueID('ST'), newSubTaskName));
+    setInputValue(prefix + 'subtask_input');
 }
 
 
