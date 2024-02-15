@@ -173,10 +173,10 @@ function closeDeleteProofWindow() {
 }
 
 
-function showUserEntry(number) {
-    resetContactButton(number);
+async function showUserEntry(number) {
     let container = document.getElementById('showUserEntry');
     let user = document.getElementById(`contact${number}`);
+    resetContactButton(number, container);
     user.classList.add('contact-data-container-active');
     user.classList.remove('contact-data-container');
     container.innerHTML = `
@@ -210,12 +210,13 @@ function showUserEntry(number) {
     `;
     user.onclick = null;
     setTimeout(() => {
-        container.style.transform = 'translateX(0)';
+        container.classList.remove('translateX');
     }, 0);
 }
 
 
-function resetContactButton(number) {
+function resetContactButton(number, container) {
+    container.classList.add('translateX');
     for (let index = 0; index < sessionContacts.length; index++) {
         let user = document.getElementById(`contact${index}`);
         if (number != index) {

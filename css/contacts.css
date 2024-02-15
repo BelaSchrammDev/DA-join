@@ -345,7 +345,6 @@ a:visited {
 }
 
 #showUserEntry {
-    transform: translateX(1000%);
     transition: transform 700ms ease-in-out;
 }
 
@@ -380,7 +379,7 @@ a:visited {
     background-color: white;
     background: linear-gradient(90deg, rgba(42, 54, 71, 1) 15%, rgba(255, 255, 255, 1) 20%);
     border-radius: 30px;
-    transform: translateX(200%);
+    transform: translateX(1000%);
     transition: transform 700ms ease-in-out;
     display: flex;
 }
@@ -603,6 +602,9 @@ a:visited {
     height: 60px;
 }
 
+.translateX {
+    transform: translateX(1000%);
+}
 
 .hide {
     display: none;
