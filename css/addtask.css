@@ -671,6 +671,7 @@
 form[addtask]:invalid button.btnAddOk {
     pointer-events: none;
     background-color: #D1D1D1;
+    border: #E1E1E1;
 }
 
 @media (max-width: 1200px) {

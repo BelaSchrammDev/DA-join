@@ -2,15 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Inter';
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    max-width: 1920px;
-    margin: auto;
-}
-
 main {
     background-color: var(--site-bg);
     flex: 1;
@@ -62,12 +53,6 @@ a:visited {
 }
 
 /* STRUCTURE MAIN SECTION */
-
-.header-main-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
 
 .main-info-container {
     display: flex;
