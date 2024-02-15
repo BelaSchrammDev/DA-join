@@ -168,3 +168,45 @@ function closeDeleteProofWindow() {
     }, 700);
 }
 
+
+function showUserEntry() {
+    let container = document.getElementById('showUserEntry');
+    let user = document.getElementById('contact1');
+    user.classList.add('contact-data-container-active');
+    user.classList.remove('contact-data-container');
+    
+    container.innerHTML = `
+        <div class="show-contact-large-container">
+            <div class="contact-bg-large">
+                <span class="contact-short-large">AM</span>
+            </div>
+            <div>
+                <span class="contact-name-large">Anton Mayer</span>
+                <div class="edit-delete-contact">
+                    <div onclick="showEditWindow()" class="edit-contact">
+                        <img src="./img/icons/contacts/pen-black.svg" alt="">
+                        <span>Edit</span>
+                    </div>
+                    <div onclick="deleteContactProof()" class="delete-contact">
+                        <img src="./img/icons/contacts/trash-black.svg" alt="">
+                        <span>Delete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-headline">
+            <span>Contact Information</span>
+        </div>
+        <div class="info-entry-container">
+            <span class="bold">Email</span>
+            <span class="contact-email">antom@gmail.com</span>
+            <span class="bold">Phone</span>
+            <span>+491111111111</span>
+        </div>
+    `;
+
+    setTimeout(() => {
+        container.style.transform = 'translateX(0)';
+    }, 0);
+}
+

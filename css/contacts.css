@@ -344,6 +344,11 @@ a:visited {
     margin-bottom: 12px;
 }
 
+#showUserEntry {
+    transform: translateX(1000%);
+    transition: transform 700ms ease-in-out;
+}
+
 .contact-email {
     font-size: 16px;
     font-weight: 400;
