@@ -132,9 +132,9 @@ function showAllAssignedContacts() {
 }
 
 
-function changeAssignedContactsSearchTerm() {
-    const searchTerm = document.getElementById('addtask_assignedinput').value;
-    let contactsDivs = document.getElementById('addtask_assigned_list').children;
+function changeAssignedContactsSearchTerm(prefix) {
+    const searchTerm = document.getElementById(prefix + 'assignedinput').value;
+    let contactsDivs = document.getElementById(prefix + 'assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
         const contactDiv = contactsDivs[index];
         const nameTerm = contactDiv.children[0].children[1].innerText.toLowerCase();
