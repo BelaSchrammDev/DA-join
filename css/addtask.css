@@ -422,30 +422,30 @@
     box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
-#taskprio_urgent:checked+label {
+.taskprio_urgent:checked+label {
     color: white;
     background-color: #FF3D00;
 }
 
-#taskprio_medium:checked+label {
+.taskprio_medium:checked+label {
     color: white;
     background-color: #FFA800;
 }
 
-#taskprio_low:checked+label {
+.taskprio_low:checked+label {
     color: white;
     background: #7AE229;
 }
 
-#taskprio_urgent:checked+label>img {
+.taskprio_urgent:checked+label>img {
     content: url('../img/icons/add-task/Prio-urgent-white.svg');
 }
 
-#taskprio_medium:checked+label>img {
+.taskprio_medium:checked+label>img {
     content: url('../img/icons/add-task/Prio-medium-white.svg');
 }
 
-#taskprio_low:checked+label>img {
+.taskprio_low:checked+label>img {
     content: url('../img/icons/add-task/Prio-low-white.svg');
 }
 

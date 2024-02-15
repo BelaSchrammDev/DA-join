@@ -53,7 +53,6 @@ async function getItem(key) {
  */
 async function getItemAsJson(key) {
     let response = await getItem(key);
-    console.log(response);
     if (response) return JSON.parse(response);
     return undefined;
 }

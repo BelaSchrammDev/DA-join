@@ -1,11 +1,7 @@
 <div id="addtask_template">
     <span class="addtask_title">Add Task</span>
-    <form addtask
-        id="addtask_form"
-        action="javascript:;"
-        onkeydown="return event.key != 'Enter';"
-        onreset="resetAddTaskForm()"
-        onsubmit="submitAddTaskForm()">
+    <form addtask id="addtask_form" action="javascript:;" onkeydown="return event.key != 'Enter';"
+        onreset="resetAddTaskForm('addtask_')" onsubmit="submitAddTaskForm()">
         <div class="addtask_form">
             <div class="addtask_edit">
                 <div class="addtask_property required">
@@ -32,7 +28,7 @@
                         </div>
                         <div nolistclose id="addtask_assigned_list" class="addtask_assigned_list list_scrollbar">
                         </div>
-                        <div id="assignedcontacts_bar" class="assignedcontacts_bar"></div>
+                        <div id="addtask_assignedcontacts_bar" class="assignedcontacts_bar"></div>
                     </div>
                 </div>
             </div>
@@ -45,15 +41,16 @@
                 <div class="addtask_property">
                     <span>Prio</span>
                     <div class="addtask_priority">
-                        <input name="task_priority" type="radio" id="taskprio_urgent" name="taskpriority"
-                            value="urgent">
+                        <input name="task_priority" type="radio" class="taskprio_urgent" id="taskprio_urgent"
+                            name="taskpriority" value="urgent">
                         <label for="taskprio_urgent"><span>Urgent</span><img
                                 src="../img/icons/add-task/Prio-urgent.svg"></label>
-                        <input name="task_priority" type="radio" id="taskprio_medium" name="taskpriority"
-                            checked="checked" value="medium">
+                        <input name="task_priority" type="radio" class="taskprio_medium" id="taskprio_medium"
+                            name="taskpriority" checked="checked" value="medium">
                         <label for="taskprio_medium"><span>Medium</span><img
                                 src="../img/icons/add-task/Prio-medium.svg"></label>
-                        <input name="task_priority" type="radio" id="taskprio_low" name="taskpriority" value="low">
+                        <input name="task_priority" type="radio" class="taskprio_low" id="taskprio_low"
+                            name="taskpriority" value="low">
                         <label for="taskprio_low"><span>Low</span><img src="../img/icons/add-task/Prio-low.svg"></label>
                     </div>
                 </div>
@@ -72,8 +69,8 @@
                 <div class="addtask_property">
                     <span>Subtasks</span>
                     <div addtask_property class="addtask_subtask_div">
-                        <input onkeydown="enterSubtaskInput(event)" id="addtask_subtask_input" subtask type="text"
-                            placeholder="Add new subtask">
+                        <input onkeydown="enterSubtaskInput(event,'addtask_')" id="addtask_subtask_input" subtask
+                            type="text" placeholder="Add new subtask">
                         <div subtaskadd>
                             <img onclick="setFocus('addtask_subtask_input')" src="../img/icons/add-task/plus.svg"
                                 alt="">
@@ -82,10 +79,10 @@
                             <img onmousedown="setInputValueAndFocus('addtask_subtask_input')"
                                 src="../img/icons/add-task/cancel.svg" alt="">
                             <div></div>
-                            <img onmousedown="createNewSubTask()" src="../img/icons/add-task/ok.svg" alt="">
+                            <img onmousedown="createNewSubTask('addtask_')" src="../img/icons/add-task/ok.svg" alt="">
                         </div>
                     </div>
-                    <div id="subtask_list" class="subtask_list list_scrollbar"></div>
+                    <div id="addtask_subtask_list" class="subtask_list list_scrollbar"></div>
                 </div>
             </div>
         </div>

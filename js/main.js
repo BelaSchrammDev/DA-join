@@ -111,6 +111,7 @@ let users = [
 // example arrays for testing only ---------------------------------------------------END
 
 let currentuser = '';
+
 const taskCategorys = {
     1: { id: 1, name: 'User Story', color: '#0038ff', },
     2: { id: 2, name: 'Technical Task', color: '#1FD7C1', }

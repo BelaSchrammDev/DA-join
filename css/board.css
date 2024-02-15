@@ -198,6 +198,11 @@ div[tasksearchfield]:has(>input:focus) {
     margin-right: -10px;
 }
 
+/* EDIT TASK */
+
+
+/* ADDTASK OVERLAY */
+
 .addtask_overlay {
     position: relative;
     overflow-y: auto;

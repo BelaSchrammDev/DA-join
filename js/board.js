@@ -15,8 +15,9 @@ async function initBoardSite() {
     await initJoin();
     renderTasks();
     renderAddtaskFields();
+    renderAssignedContacts('edittask_assigned_list', 'edittask_');
+    setAttribute('edittask_duedate', 'min', new Date().toISOString().split('T')[0]);
     actionAfterAddTask = afterAddTask;
-    setCloseDropDownBehavior = () => { setAttribute('addtask_template', 'onclick', 'clickAddTaskTemplate(event)'); }
 }
 
 
@@ -37,15 +38,12 @@ function showOverlay(windowID) {
 /**
  * close the current showing overlay
  */
-function closeOverlay() {
+function closeOverlay(event = null) {
     if (current_flyingwindow_id != '') {
         setStyle(current_flyingwindow_id, 'transform', 'translateX(100vw)');
         setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.0)');
         current_flyingwindow_id = '';
-        setTimeout(() => {
-            setStyle('board_overlay', 'z-index', '-1');
-            // document.getElementById('board_overlay').style = "z-index: -1;";
-        }, 200);
+        setTimeout(() => { setStyle('board_overlay', 'z-index', '-1'); }, 200);
     }
 }
 
@@ -97,7 +95,7 @@ function clearRows() {
 function showBigTaskView(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task) {
-        setInnerHTML('task_big', getBigTaskHTML(task));
+        setInnerHTML('task_big_showing', getBigTaskHTML(task));
         showOverlay('task_big')
     }
 }
@@ -119,7 +117,7 @@ function getBigTaskHTML(task) {
     return `
         <div class="task_big_headline">
             ${getCategoryHTML(task)}
-            <img onclick="closeOverlay()" src="./img/icons/board/close.svg" alt="">
+            <img onclick="closeOverlay(event)" src="./img/icons/board/close.svg" alt="">
         </div>
         <span class="task_big_title">${task.title}</span>
         <span class="task_big_description">${task.description ? task.description : ''}</span>
