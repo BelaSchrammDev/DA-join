@@ -175,17 +175,18 @@ function closeDeleteProofWindow() {
 
 async function showUserEntry(number) {
     let container = document.getElementById('showUserEntry');
-    let user = document.getElementById(`contact${number}`);
+    let contact = document.getElementById(`contact${number}`);
+    let user = sessionContacts[number];
     resetContactButton(number, container);
-    user.classList.add('contact-data-container-active');
-    user.classList.remove('contact-data-container');
+    contact.classList.add('contact-data-container-active');
+    contact.classList.remove('contact-data-container');
     container.innerHTML = `
         <div class="show-contact-large-container">
             <div class="contact-bg-large">
-                <span class="contact-short-large">AM</span>
+                <span class="contact-short-large">${user.initial}</span>
             </div>
             <div>
-                <span class="contact-name-large">Anton Mayer</span>
+                <span class="contact-name-large">${user.name}</span>
                 <div class="edit-delete-contact">
                     <div onclick="showEditWindow()" class="edit-contact">
                         <img src="./img/icons/contacts/pen-black.svg" alt="">
@@ -203,12 +204,12 @@ async function showUserEntry(number) {
         </div>
         <div class="info-entry-container">
             <span class="bold">Email</span>
-            <span class="contact-email">antom@gmail.com</span>
+            <span class="contact-email">${user.email}</span>
             <span class="bold">Phone</span>
             <span>+491111111111</span>
         </div>
     `;
-    user.onclick = null;
+    contact.onclick = null;
     setTimeout(() => {
         container.classList.remove('translateX');
     }, 0);
@@ -218,11 +219,11 @@ async function showUserEntry(number) {
 function resetContactButton(number, container) {
     container.classList.add('translateX');
     for (let index = 0; index < sessionContacts.length; index++) {
-        let user = document.getElementById(`contact${index}`);
+        let contact = document.getElementById(`contact${index}`);
         if (number != index) {
-            user.classList.remove('contact-data-container-active');
-            user.classList.add('contact-data-container');
-            user.onclick = () => { showUserEntry(index); };
+            contact.classList.remove('contact-data-container-active');
+            contact.classList.add('contact-data-container');
+            contact.onclick = () => { showUserEntry(index); };
         }
     }
 }
