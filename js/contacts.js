@@ -1,5 +1,9 @@
-async function initContactsSite(){
+const USER_STARTING_LETTER = [];
+
+
+async function initContactsSite() {
     await initJoin();
+    renderContacts();
     // renderfunctions
 }
 
@@ -169,12 +173,12 @@ function closeDeleteProofWindow() {
 }
 
 
-function showUserEntry() {
+function showUserEntry(number) {
+    resetContactButton(number);
     let container = document.getElementById('showUserEntry');
-    let user = document.getElementById('contact1');
+    let user = document.getElementById(`contact${number}`);
     user.classList.add('contact-data-container-active');
     user.classList.remove('contact-data-container');
-    
     container.innerHTML = `
         <div class="show-contact-large-container">
             <div class="contact-bg-large">
@@ -204,9 +208,63 @@ function showUserEntry() {
             <span>+491111111111</span>
         </div>
     `;
-
+    user.onclick = null;
     setTimeout(() => {
         container.style.transform = 'translateX(0)';
     }, 0);
 }
 
+
+function resetContactButton(number) {
+    for (let index = 0; index < sessionContacts.length; index++) {
+        let user = document.getElementById(`contact${index}`);
+        if (number != index) {
+            user.classList.remove('contact-data-container-active');
+            user.classList.add('contact-data-container');
+            user.onclick = () => { showUserEntry(index); };
+        }
+    }
+}
+
+
+async function renderContacts() {
+    await saveUserStartingLetters();
+    let container = document.getElementById('contactsContainer');
+    container.innerHTML = '';
+    for (let letter = 0; letter < USER_STARTING_LETTER.length; letter++) {
+        let userLetter = USER_STARTING_LETTER[letter];
+        container.innerHTML += `
+            <h3 class="contact-letter">${userLetter}</h3>
+            <div class="contact-seperator"></div>
+        `;
+        for (let user = 0; user < sessionContacts.length; user++) {
+            let contact = sessionContacts[user];
+            let firstLetter = contact.name.charAt(0).toUpperCase();
+            if (userLetter == firstLetter) {
+                container.innerHTML += `
+                    <div onclick="showUserEntry(${user})" id="contact${user}" class="contact-data-container">
+                        <div class="contact-bg">
+                            <span class="contact-short">${contact.initial}</span>
+                        </div>
+                        <div class="contact-name-email-container">
+                            <span class="contact-name">${contact.name}</span>
+                            <span class="contact-email">${contact.email}</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    }
+}
+
+
+function saveUserStartingLetters() {
+    for (let u = 0; u < sessionContacts.length; u++) {
+        let contact = sessionContacts[u].name
+        let letter = contact.charAt(0).toUpperCase();
+        if (!USER_STARTING_LETTER.includes(letter)) {
+            USER_STARTING_LETTER.push(letter);
+        }
+    }
+    USER_STARTING_LETTER.sort();
+}
