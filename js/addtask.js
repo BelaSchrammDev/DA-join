@@ -99,28 +99,27 @@ function openTaskCategoryDropDownList(prefix) {
 
 
 function closeTaskCategoryDropDownList(prefix) {
-    setStyle(prefix + 'category', 'border', '');
     setAttribute(prefix + 'category_div', 'dropdownopen', 'false');
-    setStyle(prefix + 'category_list', 'overflow', 'hidden');
+    setStyle(prefix + 'category', 'border', '');
     setStyle(prefix + 'category_list', 'max-height', '0');
 }
 
 
 function openAssignedContactsDropDownList(prefix) {
+    showAllAssignedContacts();
     setAttribute(prefix + 'assigned', 'dropdownopen', true);
     setPlaceHolder(prefix + 'assignedinput', 'Search contact');
-    showAllAssignedContacts();
     setAttribute(prefix + 'assigned_arrow', 'open', true);
     setFocus(prefix + 'assignedinput');
 }
 
 
 function closeAssignedContactsDropDownList(prefix) {
-    setAttribute(prefix + 'assigned', 'dropdownopen', false);
-    setAttribute(prefix + 'assigned_arrow', 'open', false);
-    setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
-    setInputValue(prefix + 'assignedinput', '');
     setAssignedContactsBar(prefix);
+    setAttribute(prefix + 'assigned', 'dropdownopen', false);
+    setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
+    setAttribute(prefix + 'assigned_arrow', 'open', false);
+    setInputValue(prefix + 'assignedinput', '');
 }
 
 
@@ -133,7 +132,7 @@ function showAllAssignedContacts() {
 
 
 function changeAssignedContactsSearchTerm(prefix) {
-    const searchTerm = document.getElementById(prefix + 'assignedinput').value;
+    const searchTerm = document.getElementById(prefix + 'assignedinput').value.toLowerCase();
     let contactsDivs = document.getElementById(prefix + 'assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
         const contactDiv = contactsDivs[index];

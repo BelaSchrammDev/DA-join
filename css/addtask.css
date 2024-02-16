@@ -161,7 +161,8 @@
 .addtask_property>input::placeholder,
 .addtask_property>div>input::placeholder,
 .addtask_property>input[type=date]:invalid::-webkit-datetime-edit,
-.addtask_property>textarea::placeholder {
+.addtask_property>textarea::placeholder,
+.addtask_assigned>input::placeholder {
     color: #d1d1d1;
 }
 
@@ -179,10 +180,6 @@
 
 .addtask_assigned[dropdownopen='true'] {
     border: 1px solid #29abe2;
-}
-
-.addtask_assigned[dropdownopen='true']>input::placeholder {
-    color: #d1d1d1;
 }
 
 .addtask_assigned[dropdownopen='true']+div {
@@ -226,14 +223,12 @@
     cursor: default;
 }
 
-.addtask_assigned>input,
-.addtask_assigned>input::placeholder {
+.addtask_assigned>input {
     border: unset;
     outline: unset;
     font-size: 20px;
     font-weight: 400;
     cursor: pointer;
-    color: black;
 }
 
 .dropdown_arrow {
@@ -687,9 +682,10 @@ form[addtask]:invalid button.btnAddOk {
 }
 
 @media (max-width: 600px) {
-    .addtask_maindiv{
+    .addtask_maindiv {
         padding: 32px;
     }
+
     :root {
         --editfields_minwidth: 200px;
         --editfields_maxwidth: 1000px;
