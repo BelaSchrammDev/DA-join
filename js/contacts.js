@@ -174,16 +174,16 @@ function closeDeleteProofWindow() {
 
 
 async function showUserEntry(number) {
+    resetContactButton(number);
     let container = document.getElementById('showUserEntry');
     let contact = document.getElementById(`contact${number}`);
     let user = sessionContacts[number];
-    resetContactButton(number);
     contact.classList.add('contact-data-container-active');
     contact.classList.remove('contact-data-container');
     container.innerHTML = `
     <div id="userEntry" class="user-entry translateX">
         <div class="show-contact-large-container">
-            <div class="contact-bg-large">
+            <div class="contact-bg-large"  style="background-color: ${user.color}">
                 <span class="contact-short-large">${user.initial}</span>
             </div>
             <div>
@@ -246,7 +246,7 @@ async function renderContacts() {
             if (userLetter == firstLetter) {
                 container.innerHTML += `
                     <div onclick="showUserEntry(${user})" id="contact${user}" class="contact-data-container">
-                        <div class="contact-bg">
+                        <div class="contact-bg" style="background-color: ${contact.color}">
                             <span class="contact-short">${contact.initial}</span>
                         </div>
                         <div class="contact-name-email-container">
