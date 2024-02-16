@@ -207,7 +207,7 @@ async function showUserEntry(number) {
             <span class="bold">Email</span>
             <span class="contact-email">${user.email}</span>
             <span class="bold">Phone</span>
-            <span>+491111111111</span>
+            <span>${user.phone.replace(/(\d{2})(\d{4})(\d{3})(\d{2})(\d{1})/, `+$1 $2 $3 $4 $5`)}</span>
         </div>
     </div>
     `;

@@ -50,6 +50,7 @@ let sessionContacts = [
         initial: 'BS',
         email: 'belaschramm@aol.de',
         color: '#0038FF',
+        phone: '491111111111',
     },
     {
         id: 'C456',
@@ -57,6 +58,7 @@ let sessionContacts = [
         initial: 'NR',
         email: 'belaschramm@aol.de',
         color: '#00BEE8',
+        phone: '491111111345',
     },
     {
         id: 'C789',
@@ -64,6 +66,7 @@ let sessionContacts = [
         initial: 'SH',
         email: 'belaschramm@aol.de',
         color: '#1FD7C1',
+        phone: '491118731111',
     },
     {
         id: 'C321',
@@ -71,6 +74,7 @@ let sessionContacts = [
         initial: 'MB',
         email: 'belaschramm@aol.de',
         color: '#6E52FF',
+        phone: '491111128011',
     },
     {
         id: 'C654',
@@ -78,6 +82,7 @@ let sessionContacts = [
         initial: 'BW',
         email: 'belaschramm@aol.de',
         color: '#9747FF',
+        phone: '494711151111',
     },
     {
         id: 'C987',
@@ -85,6 +90,7 @@ let sessionContacts = [
         initial: 'MM',
         email: 'belaschramm@aol.de',
         color: '#C3FF2B',
+        phone: '4911468011111',
     },
 ]
 
