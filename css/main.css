@@ -71,6 +71,46 @@ body {
     margin: auto;
 }
 
+/* SCROLLBAR */
+
+/* width */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 24px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 24px;
+    border: 8px solid white;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #868686;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:single-button:start {
+    background-image: url('../img/icons/contacts/scrollup.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:single-button:end {
+    background-image: url('../img/icons/contacts/scrolldown.svg');
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 20px;
+}
+
+
+
 /********** MAIN-CONTENT **********/
 
 .header-main-container {
