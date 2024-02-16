@@ -47,6 +47,7 @@ a:visited {
     overflow-x: hidden;
     z-index: 3;
     box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
+    position: relative;
 }
 
 .show-contact-container {
@@ -158,11 +159,14 @@ a:visited {
 /* BUTTON */
 
 .add-button-container {
-    margin: 22.5px 0;
+    padding: 22.5px 0;
+    background-color: white;
     height: 101px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: sticky;
+    top: 0px;
 }
 
 .add-contact-btn {
