@@ -1,4 +1,7 @@
 @media screen and (max-width: 800px) {
+    body {
+        margin-bottom: 100px;
+    }
     nav {
         width: auto;
         height: auto;
@@ -34,13 +37,5 @@
         margin-left: 16px;
         font-size: 16px;
         font-weight: 400;
-    }
-}
-
-@media (max-width: 600px) {
-    .content_maindiv {
-        margin-top: 48px;
-        margin-left: 16px;
-        margin-right: 16px;
     }
 }

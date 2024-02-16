@@ -9,6 +9,7 @@
     padding-left: 90px;
     padding-right: 90px;
     padding-top: 140px;
+    padding-bottom: 140px;
 }
 
 /* buttonstyle for multiple use */
@@ -699,6 +700,9 @@ form[addtask]:invalid button.btnAddOk {
 }
 
 @media (max-width: 600px) {
+    .addtask_maindiv{
+        padding: 32px;
+    }
     :root {
         --editfields_minwidth: 200px;
         --editfields_maxwidth: 1000px;
