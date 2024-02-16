@@ -177,10 +177,11 @@ async function showUserEntry(number) {
     let container = document.getElementById('showUserEntry');
     let contact = document.getElementById(`contact${number}`);
     let user = sessionContacts[number];
-    resetContactButton(number, container);
+    resetContactButton(number);
     contact.classList.add('contact-data-container-active');
     contact.classList.remove('contact-data-container');
     container.innerHTML = `
+    <div id="userEntry" class="user-entry translateX">
         <div class="show-contact-large-container">
             <div class="contact-bg-large">
                 <span class="contact-short-large">${user.initial}</span>
@@ -208,16 +209,16 @@ async function showUserEntry(number) {
             <span class="bold">Phone</span>
             <span>+491111111111</span>
         </div>
+    </div>
     `;
     contact.onclick = null;
     setTimeout(() => {
-        container.classList.remove('translateX');
+        document.getElementById('userEntry').classList.remove('translateX');
     }, 0);
 }
 
 
-function resetContactButton(number, container) {
-    container.classList.add('translateX');
+function resetContactButton(number) {
     for (let index = 0; index < sessionContacts.length; index++) {
         let contact = document.getElementById(`contact${index}`);
         if (number != index) {

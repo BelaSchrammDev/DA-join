@@ -301,7 +301,7 @@ a:visited {
     margin-bottom: 12px;
 }
 
-#showUserEntry {
+.user-entry {
     transition: transform 700ms ease-in-out;
 }
 
