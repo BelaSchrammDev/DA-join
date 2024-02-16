@@ -72,12 +72,6 @@ a:visited {
 
 /* STRUCTURE */
 
-.header-main-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
 .contact-container {
     width: calc(456px);
     height: calc(100vh - 96px);
