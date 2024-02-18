@@ -1,6 +1,4 @@
-
 let actionAfterAddTask = null;
-
 let presetStatusByAddTask = 'todo';
 
 
@@ -120,12 +118,12 @@ function closeAssignedContactsDropDownList(prefix) {
 function showAllAssignedContacts() {
     let contactsDivs = document.getElementById('addtask_assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
-        contactsDivs[index].style = 'display: flex;'
+        setStyle(contactsDivs[index], 'display', 'flex');
     }
 }
 
 
-function changeAssignedContactsSearchTerm(prefix) {
+function changeAssignedContactsSearchTerm(event, prefix) {
     const searchTerm = document.getElementById(prefix + 'assignedinput').value.toLowerCase();
     let contactsDivs = document.getElementById(prefix + 'assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
@@ -134,6 +132,7 @@ function changeAssignedContactsSearchTerm(prefix) {
         if (nameTerm.includes(searchTerm)) contactDiv.style = 'display: flex;'
         else contactDiv.style = 'display: none;';
     }
+    event.preventDefault();
 }
 
 
@@ -141,6 +140,8 @@ function enterSubtaskInput(event, prefix) {
     if (event.key == 'Enter') {
         createNewSubTask(prefix);
         setFocus(prefix + 'subtask_input');
+        event.stopPropagation();
+        event.preventDefault();
     }
 }
 
@@ -197,8 +198,20 @@ function fillTaskObjectFromFormData(task, formData) {
     task.description = formData.task_description;
     task.date = formData.task_date;
     task.priority = formData.task_priority;
-    task.assignedto = addPropertysToArray('task_assigned_', formData, (key) => { return key; });
-    task.subtasks = addPropertysToArray('task_subtask', formData, (key, property) => { return { name: property, done: false } });
+    task.assignedto = addPropertysToArray('task_assigned_', formData,
+        (key) => {
+            return key;
+        });
+    task.subtasks = addPropertysToArray('task_subtask', formData,
+        (key, property) => {
+            let _done = false;
+            const oldSubtask = task.subtasks.find(st => st.name == property);
+            if (oldSubtask) _done = oldSubtask.done;
+            return {
+                name: property,
+                done: _done
+            }
+        });
 }
 
 

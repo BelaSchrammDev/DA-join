@@ -154,9 +154,8 @@ function saveAllToLocalStorage() {
  * @returns {string}
  */
 function createUniqueID(prefix) {
-    // const idnumber = new Date().getTime();
-    const idnumber = Math.random().toString(16).slice(2);
-    return prefix + idnumber;
+    const uniqueID = Math.random().toString(16).slice(2);
+    return prefix + uniqueID;
 }
 
 
@@ -203,13 +202,13 @@ async function includeHTML() {
 
 
 /**
- * converts a string to pascalcase
+ * converts a string to pascalcase, undefined parameter returns a empty string
  * 
  * @param {string} word - string that be converted
  * @returns {string} to pascalcase converted string
  */
 function getPascalCaseWord(word) {
-    if (word) return word.charAt(0).toUpperCase() + word.slice(1);
+    if (word) return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     else return '';
 }
 
@@ -311,4 +310,19 @@ function setInnerHTML(elementIdOrObj, htmlString = '') {
  */
 function addInnerHTML(elementIdOrObj, htmlString) {
     getElement(elementIdOrObj).innerHTML += htmlString;
+}
+
+
+/**
+ * set the focus to the input with id nextInputID when enter key is pressed
+ * 
+ * @param {Object} event 
+ * @param {string} nextInputID 
+ */
+function getToNextInputOnKeyEnter(event, nextInputID = '') {
+    if (event.key == 'Enter') {
+        const nextElement = getElement(nextInputID);
+        if (nextElement) nextElement.focus();
+        event.preventDefault();
+    }
 }

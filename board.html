@@ -33,21 +33,24 @@
                     <img onclick="hideEditTaskMode()" class="round_button" src="./img/icons/board/close.svg">
                 </div>
                 <form class="task_big_inner" edittask id="edittask_form" action="javascript:;"
-                    onsubmit="submitEditTaskForm()" onkeydown="return event.key != 'Enter';">
+                    onsubmit="submitEditTaskForm()">
                     <div class="task_big_inner">
                         <div class="addtask_property required">
                             <span>Title</span>
                             <input id="edittask_title" name="task_title" type="text" placeholder="Enter a title"
-                                required>
+                                onkeydown="getToNextInputOnKeyEnter(event,'edittask_decription')" required>
                         </div>
                         <div class="addtask_property">
                             <span>Description</span>
-                            <textarea name="task_description" id="edittask_decription" cols="30" rows="10"
-                                placeholder="Enter a Description"></textarea>
+                            <textarea class="custom-scrollbar" name="task_description" id="edittask_decription"
+                                cols="30" rows="10" placeholder="Enter a Description"
+                                onkeydown="if(event.key == 'enter') alert('enter');">
+                            </textarea>
                         </div>
                         <div class="addtask_property required">
                             <span>Due Date</span>
-                            <input id="edittask_duedate" name="task_date" type="date" placeholder="dd/mm/yyyy" required>
+                            <input onkeydown="getToNextInputOnKeyEnter(event,'edittask_subtask_input')"
+                                id="edittask_duedate" name="task_date" type="date" placeholder="dd/mm/yyyy" required>
                         </div>
                         <div class="addtask_property">
                             <span>Prio</span>
@@ -77,8 +80,9 @@
                             <div style="position: relative;">
                                 <div nolistclose onclick="openDropDownList('edittask_assignet')" id="edittask_assigned"
                                     class="addtask_assigned">
-                                    <input nolistclose autocomplete="off" id="edittask_assignedinput"
-                                        onkeyup="changeAssignedContactsSearchTerm('edittask_')"
+                                    <input tabindex="-1" nolistclose autocomplete="off" id="edittask_assignedinput"
+                                        onkeydown="getToNextInputOnKeyEnter(event)"
+                                        onkeyup="changeAssignedContactsSearchTerm(event, 'edittask_')"
                                         onfocus="openDropDownList('edittask_assignet')" type="text"
                                         placeholder="Select contacts to assign">
                                     <img id="edittask_assigned_arrow" class="dropdown_arrow"
@@ -86,7 +90,7 @@
                                         src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                                 </div>
                                 <div nolistclose id="edittask_assigned_list"
-                                    class="addtask_assigned_list list_scrollbar">
+                                    class="addtask_assigned_list custom-scrollbar">
                                 </div>
                                 <div id="edittask_assignedcontacts_bar" class="assignedcontacts_bar"></div>
                             </div>
