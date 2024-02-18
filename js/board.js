@@ -57,7 +57,7 @@ function renderTasks() {
     clearRows();
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
-        const tasksHTML = getTaskHTML(task);
+        const tasksHTML = `<div id="taskcard_${task.id}">${getTaskHTML(task)}</div>`;
         const tasklist = document.getElementById('tasklist_' + task.status);
         if (tasklist) tasklist.innerHTML += tasksHTML;
     }
@@ -144,13 +144,22 @@ function getBigTaskHTML(task) {
 }
 
 
+function updateMiniTaskCard(taskID) {
+    const task = sessionTasks.find(t => t.id == taskID);
+    const taskCard = getElement('taskcard_' + taskID);
+    if (task && taskCard) {
+        taskCard.innerHTML = getTaskHTML(task);
+    }
+}
+
+
 function submitEditTaskForm() {
     const searchForm = document.getElementById('edittask_form');
     let formData = new FormData(searchForm);
     const task = sessionTasks.find(t => t.id == current_taskID);
     if (task) fillTaskObjectFromFormData(task, Object.fromEntries(formData));
+    updateMiniTaskCard(current_taskID);
     hideEditTaskMode();
-    current_taskID = '';
 }
 
 
@@ -308,7 +317,7 @@ function getMiniSubTaskHTML(task) {
 
 
 /**
- * get the bubtasklist for the big task view
+ * get the subtasklist for the big task view
  * 
  * @param {Object} task 
  * @returns {string} rendered html
@@ -350,9 +359,12 @@ function getSubTaskStateImgSrc(state) {
  */
 function clickSubTaskDone(taskID, subtaskNumber) {
     let task = sessionTasks.find(t => t.id == taskID);
-    let subtask = task.subtasks[subtaskNumber];
-    subtask.done = !subtask.done;
-    document.getElementById(task.id + '_' + subtaskNumber).src = getSubTaskStateImgSrc(subtask.done);
+    if (task) {
+        let subtask = task.subtasks[subtaskNumber];
+        subtask.done = !subtask.done;
+        document.getElementById(task.id + '_' + subtaskNumber).src = getSubTaskStateImgSrc(subtask.done);
+        updateMiniTaskCard(taskID);
+    }
 }
 
 
