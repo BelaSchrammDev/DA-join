@@ -154,7 +154,8 @@ function saveAllToLocalStorage() {
  * @returns {string}
  */
 function createUniqueID(prefix) {
-    const idnumber = new Date().getTime();
+    // const idnumber = new Date().getTime();
+    const idnumber = Math.random().toString(16).slice(2);
     return prefix + idnumber;
 }
 
@@ -208,7 +209,8 @@ async function includeHTML() {
  * @returns {string} to pascalcase converted string
  */
 function getPascalCaseWord(word) {
-    return word.charAt(0).toUpperCase() + word.slice(1);
+    if (word) return word.charAt(0).toUpperCase() + word.slice(1);
+    else return '';
 }
 
 

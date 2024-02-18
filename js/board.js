@@ -6,6 +6,7 @@ const rowIdName = [
 ]
 
 let current_flyingwindow_id = '';
+let current_taskID = '';
 
 
 /**
@@ -44,6 +45,7 @@ function closeOverlay(event = null) {
         setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.0)');
         current_flyingwindow_id = '';
         setTimeout(() => { setStyle('board_overlay', 'z-index', '-1'); }, 200);
+        hideEditTaskMode();
     }
 }
 
@@ -95,6 +97,7 @@ function clearRows() {
 function showBigTaskView(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task) {
+        current_taskID = taskID;
         setInnerHTML('task_big_showing', getBigTaskHTML(task));
         showOverlay('task_big')
     }
@@ -141,6 +144,16 @@ function getBigTaskHTML(task) {
 }
 
 
+function submitEditTaskForm() {
+    const searchForm = document.getElementById('edittask_form');
+    let formData = new FormData(searchForm);
+    const task = sessionTasks.find(t => t.id == current_taskID);
+    if (task) fillTaskObjectFromFormData(task, Object.fromEntries(formData));
+    hideEditTaskMode();
+    current_taskID = '';
+}
+
+
 function showEditTaskMode(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task) {
@@ -148,6 +161,13 @@ function showEditTaskMode(taskID) {
         setStyle('task_big_showing', 'display', 'none');
         setStyle('task_big_edit', 'display', 'flex');
     }
+}
+
+
+function hideEditTaskMode() {
+    current_taskID = '';
+    setStyle('task_big_showing', 'display', 'flex');
+    setStyle('task_big_edit', 'display', 'none');
 }
 
 
