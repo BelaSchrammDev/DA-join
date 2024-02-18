@@ -77,7 +77,7 @@ const clickFunction = function (event) { clickWhenDropDownListOpen(event); }
 function clickWhenDropDownListOpen(event) {
     event.stopPropagation();
     if (event.target.getAttribute('nolistclose') != null) return false;
-    closeAllDropDowns();
+    DropDownList.closeAll();
 }
 
 
@@ -99,15 +99,6 @@ function openDropDownList(listID) {
 function closeDropDownList(listID) {
     if (dropDownObjects[listID]) {
         dropDownObjects[listID].closeDropDown();
-    }
-}
-
-
-function closeAllDropDowns(exclusionID = '') {
-    const listIDs = Object.keys(dropDownObjects);
-    for (let index = 0; index < listIDs.length; index++) {
-        const listID = listIDs[index];
-        if (listID != exclusionID) dropDownObjects[listIDs[index]].closeDropDown();
     }
 }
 

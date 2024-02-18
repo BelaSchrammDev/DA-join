@@ -117,7 +117,7 @@ function getBigTaskHTML(task) {
     return `
         <div class="task_big_headline">
             ${getCategoryHTML(task)}
-            <img onclick="closeOverlay(event)" src="./img/icons/board/close.svg" alt="">
+            <img class="round_button" onclick="closeOverlay(event)" src="./img/icons/board/close.svg" alt="">
         </div>
         <span class="task_big_title">${task.title}</span>
         <span class="task_big_description">${task.description ? task.description : ''}</span>
@@ -133,11 +133,60 @@ function getBigTaskHTML(task) {
         </div>
         <div>${getSubTaskBigHTML(task)}</div>
         <div class="task_big_buttons">
-            <button><img src="./img/icons/board/delete-img.png" alt=""></button>
+            <button onclick=""><img src="./img/icons/board/delete-img.png" alt=""></button>
             <div></div>
-            <button><img src="./img/icons/board/edit-img.png" alt=""></button>
+            <button onclick="showEditTaskMode('${task.id}')"><img src="./img/icons/board/edit-img.png" alt=""></button>
         </div>
     `;
+}
+
+
+function showEditTaskMode(taskID) {
+    const task = sessionTasks.find(t => t.id == taskID);
+    if (task) {
+        fillEditTaskFormular(task);
+        setStyle('task_big_showing', 'display', 'none');
+        setStyle('task_big_edit', 'display', 'flex');
+    }
+}
+
+
+function fillEditTaskFormular(task) {
+    setInputValue('edittask_title', task.title);
+    setInputValue('edittask_decription', task.description);
+    setInputValue('edittask_duedate', task.date);
+    setPriorityRadioButton(task.priority);
+    setAssignedToButtons(task.assignedto);
+    setSubTasks(task.subtasks);
+}
+
+
+function setSubTasks(subtaskList) {
+    let subtaskHTML = '';
+    for (let index = 0; index < subtaskList.length; index++) {
+        const subtask = subtaskList[index];
+        subtaskHTML += getSubTaskHTML(createUniqueID('est_'), subtask.name);
+    }
+    setInnerHTML('edittask_subtask_list', subtaskHTML);
+}
+
+
+function setAssignedToButtons(assignedToList) {
+    for (let index = 0; index < sessionContacts.length; index++) {
+        const contactsID = sessionContacts[index].id;
+        const assignedCheckBox = getElement('edittask_task_assigned_' + contactsID);
+        if (assignedCheckBox) assignedCheckBox.checked = assignedToList.includes(contactsID);
+    }
+    setAssignedContactsBar('edittask_')
+}
+
+
+function setPriorityRadioButton(priority) {
+    const prioTypes = ['urgent', 'medium', 'low'];
+    for (let index = 0; index < prioTypes.length; index++) {
+        const prioInput = getElement('edittaskprio_' + prioTypes[index]);
+        prioInput.checked = prioTypes[index] == priority;
+    }
 }
 
 

@@ -6,7 +6,7 @@ let sessionTasks = [
         title: 'Kochwelt Page & Recipe Recommender',
         description: 'Build start page with recipe recommendation',
         assignedto: ['C123'],
-        date: '14.02.2024',
+        date: '2024-03-16',
         priority: '',
         category: 1,
         subtasks: [
@@ -22,7 +22,7 @@ let sessionTasks = [
         title: 'HTML Base Template Creation',
         description: 'Create reusable HTML base templates',
         assignedto: ['C456'],
-        date: '14.04.2024',
+        date: '2024-03-16',
         priority: 'low',
         category: 2,
         subtasks: []
@@ -33,7 +33,7 @@ let sessionTasks = [
         title: 'Join fertigmachen',
         description: '',
         assignedto: ['C789', 'C456'],
-        date: '14.02.2025',
+        date: '2024-03-16',
         priority: 'medium',
         category: 1,
         subtasks: [

@@ -93,15 +93,11 @@ function renderCategorys() {
 
 function openTaskCategoryDropDownList(prefix) {
     setAttribute(prefix + 'category_div', 'dropdownopen', 'true');
-    setStyle(prefix + 'category', 'border', '1px solid #29abe2');
-    setStyle(prefix + 'category_list', 'max-height', '300px');
 }
 
 
 function closeTaskCategoryDropDownList(prefix) {
     setAttribute(prefix + 'category_div', 'dropdownopen', 'false');
-    setStyle(prefix + 'category', 'border', '');
-    setStyle(prefix + 'category_list', 'max-height', '0');
 }
 
 
@@ -109,7 +105,6 @@ function openAssignedContactsDropDownList(prefix) {
     showAllAssignedContacts();
     setAttribute(prefix + 'assigned', 'dropdownopen', true);
     setPlaceHolder(prefix + 'assignedinput', 'Search contact');
-    setAttribute(prefix + 'assigned_arrow', 'open', true);
     setFocus(prefix + 'assignedinput');
 }
 
@@ -118,7 +113,6 @@ function closeAssignedContactsDropDownList(prefix) {
     setAssignedContactsBar(prefix);
     setAttribute(prefix + 'assigned', 'dropdownopen', false);
     setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
-    setAttribute(prefix + 'assigned_arrow', 'open', false);
     setInputValue(prefix + 'assignedinput', '');
 }
 
@@ -153,7 +147,7 @@ function enterSubtaskInput(event, prefix) {
 
 function selectTaskCategory(categoryID) {
     setInputValue('addtask_category', taskCategorys[categoryID].name);
-    closeAllDropDowns();
+    DropDownList.closeAll();
 }
 
 

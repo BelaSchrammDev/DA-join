@@ -56,13 +56,15 @@
     padding: 4px 24px 4px 24px;
 }
 
-.task_big_headline>img {
+.round_button {
+    width: 32px;
+    height: 32px;
     border-radius: 1000px;
     cursor: pointer;
     padding: 4px;
 }
 
-.task_big_headline>img:hover {
+.round_button:hover {
     background-color: #ebebeb;
 }
 
@@ -189,4 +191,10 @@
     width: 1px;
     height: 24px;
     background-color: #d1d1d1;
+}
+
+.edittask_headline{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
