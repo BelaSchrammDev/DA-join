@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="./css/addtask.css">
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/task.css">
+
     <script src="./js/main.js"></script>
     <script src="./js/remotestorage.js"></script>
+    <script src="./js/tasktemplate.js"></script>
     <script src="./js/addtask.js"></script>
     <script src="./js/dropdownlist.js"></script>
     <script src="./js/board.js"></script>
@@ -35,6 +37,7 @@
                 <form class="task_big_inner" edittask id="edittask_form" action="javascript:;"
                     onsubmit="submitEditTaskForm()">
                     <div class="task_big_inner">
+                        <input style="display: none;" id="edittask_category" name="task_category" type="text">
                         <div class="addtask_property required">
                             <span>Title</span>
                             <input id="edittask_title" name="task_title" type="text" placeholder="Enter a title"

@@ -39,9 +39,8 @@ class DropDownList {
     }
 
 
-    constructor(openFunc, closeFunc, formPrefix) {
+    constructor(openFunc, formPrefix) {
         this.openFunction = openFunc;
-        this.closeFunction = closeFunc;
         this.formprefix = formPrefix;
         this.stateDropDown = 'close';
     }
@@ -50,7 +49,7 @@ class DropDownList {
     openDropDown() {
         if (this.stateDropDown == 'open') return;
         if (DropDownList.isOneOpen()) DropDownList.closeAll();
-        this.openFunction(this.formprefix);
+        this.openFunction(this.formprefix, true);
         DropDownList.setCloseEventElements();
         this.stateDropDown = 'open';
     }
@@ -58,7 +57,7 @@ class DropDownList {
 
     closeDropDown() {
         if (this.stateDropDown == 'close') return;
-        this.closeFunction(this.formprefix);
+        this.openFunction(this.formprefix, false);
         this.stateDropDown = 'close';
         DropDownList.unsetCloseEventElements()
     }
@@ -104,7 +103,7 @@ function closeDropDownList(listID) {
 
 
 let dropDownObjects = {
-    'addtask_assignet': new DropDownList(openAssignedContactsDropDownList, closeAssignedContactsDropDownList, 'addtask_'),
-    'edittask_assignet': new DropDownList(openAssignedContactsDropDownList, closeAssignedContactsDropDownList, 'edittask_'),
-    'addtask_category': new DropDownList(openTaskCategoryDropDownList, closeTaskCategoryDropDownList, 'addtask_'),
+    'addtask_assignet': new DropDownList(openAssignedContactsDropDownList, 'addtask_'),
+    'edittask_assignet': new DropDownList(openAssignedContactsDropDownList, 'edittask_'),
+    'addtask_category': new DropDownList(openTaskCategoryDropDownList, 'addtask_'),
 }

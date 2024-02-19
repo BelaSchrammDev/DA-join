@@ -30,20 +30,6 @@ function renderAssignedContacts(listDropDownID, prefix) {
 }
 
 
-function getAssignedContactHTML(contact, prefix) {
-    return `
-    <div nolistclose id="${prefix}assignedContacts_${contact.id}" checked="true">
-        <label nolistclose for="${prefix}task_assigned_${contact.id}">
-            <span nolistclose style="background-color: ${contact.color};">${contact.initial}</span>
-            <span nolistclose>${contact.name}</span>
-            <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
-        </label>
-        <input nolistclose id="${prefix}task_assigned_${contact.id}" name="task_assigned_${contact.id}" type="checkbox" id="contactsCheckbox_${contact.id}">
-    </div>
-`;
-}
-
-
 function setAssignedContactsBar(prefix) {
     let contactsBarHTML = '';
     for (let index = 0; index < sessionContacts.length; index++) {
@@ -54,27 +40,6 @@ function setAssignedContactsBar(prefix) {
         }
     }
     setInnerHTML(prefix + 'assignedcontacts_bar', contactsBarHTML);
-}
-
-
-function getSubTaskHTML(subtaskID, subtaskname) {
-    return `
-    <div id="subtaskdiv${subtaskID}" editmode="false" class="subtask_row">
-    <input onkeydown="if(event.key == 'Enter') changeSubTask('${subtaskID}')" name="task_subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
-    <div lipoint class="subtask_point"></div>
-    <span ondblclick="setSubTaskEditMode('${subtaskID}','true')" id="subtaskspan${subtaskID}">${subtaskname}</span>
-    <div showaction>
-        <img onclick="setSubTaskEditMode('${subtaskID}','true')" src="../img/icons/add-task/edit.svg" alt="">
-        <div line></div>
-        <img onclick="deleteSubTask('${subtaskID}')" src="../img/icons/add-task/delete.svg" alt="">
-    </div>
-    <div editaction>
-        <img onclick="deleteSubTask('${subtaskID}')" src="../img/icons/add-task/delete.svg" alt="">
-        <div line></div>
-        <img onmousedown="changeSubTask('${subtaskID}')" src="../img/icons/add-task/ok.svg" alt="">
-    </div>
-    </div>
-    `
 }
 
 
@@ -89,29 +54,23 @@ function renderCategorys() {
 }
 
 
-function openTaskCategoryDropDownList(prefix) {
-    setAttribute(prefix + 'category_div', 'dropdownopen', 'true');
+function openTaskCategoryDropDownList(prefix, open) {
+    setAttribute(prefix + 'category_div', 'dropdownopen', open);
 }
 
 
-function closeTaskCategoryDropDownList(prefix) {
-    setAttribute(prefix + 'category_div', 'dropdownopen', 'false');
-}
-
-
-function openAssignedContactsDropDownList(prefix) {
-    showAllAssignedContacts();
-    setAttribute(prefix + 'assigned', 'dropdownopen', true);
-    setPlaceHolder(prefix + 'assignedinput', 'Search contact');
-    setFocus(prefix + 'assignedinput');
-}
-
-
-function closeAssignedContactsDropDownList(prefix) {
-    setAssignedContactsBar(prefix);
-    setAttribute(prefix + 'assigned', 'dropdownopen', false);
-    setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
-    setInputValue(prefix + 'assignedinput', '');
+function openAssignedContactsDropDownList(prefix, open) {
+    if (open) {
+        showAllAssignedContacts();
+        setPlaceHolder(prefix + 'assignedinput', 'Search contact');
+        setFocus(prefix + 'assignedinput');
+    }
+    else {
+        setAssignedContactsBar(prefix);
+        setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
+        setInputValue(prefix + 'assignedinput', '');
+    }
+    setAttribute(prefix + 'assigned', 'dropdownopen', open);
 }
 
 
@@ -166,8 +125,10 @@ function deleteSubTask(subtaskID) {
 
 
 function changeSubTask(subtaskID) {
-    let newSubTaskName = getInputValue('subtask' + subtaskID);
-    setInnerHTML('subtaskspan' + subtaskID, newSubTaskName);
+    const inputSubTask = getElement('subtask' + subtaskID);
+    const spanSubTask = getElement('subtaskspan' + subtaskID);
+    if (inputSubTask.value != '') spanSubTask.innerHTML = inputSubTask.value;
+    else inputSubTask.value = spanSubTask.innerHTML;
     setSubTaskEditMode(subtaskID, false);
 }
 
