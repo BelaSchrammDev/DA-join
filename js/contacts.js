@@ -325,4 +325,5 @@ function deleteContact(number) {
     document.getElementById('showUserEntry').innerHTML = '';
     renderContacts();
     closeDeleteProofWindow();
+    closeAddEditWindow();
 }
