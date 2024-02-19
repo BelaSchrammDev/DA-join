@@ -65,7 +65,8 @@ function showAddToContactWindow() {
 }
 
 
-function showEditWindow() {
+function showEditWindow(number) {
+    let contactData = sessionContacts[number];
     let background = document.getElementById('addEditContactContainer');
     background.innerHTML = `
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
@@ -83,11 +84,11 @@ function showEditWindow() {
                 <div onclick="closeAddEditWindow()">
                     <img src="./img/icons/contacts/cancel.svg" alt="exit">
                 </div>
-                <form onsubmit="editContact(); return false;">
+                <form onsubmit="editContact(${number}); return false;">
                     <div class="input-container">
-                        <input placeholder="Name" class="input-class name-input" type="text" required>
-                        <input placeholder="Email" class="input-class email-input" type="email" required>
-                        <input placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
+                        <input id="nameEdit" placeholder="Name" class="input-class name-input" type="text" required>
+                        <input id="emailEdit" placeholder="Email" class="input-class email-input" type="email" required>
+                        <input id="phoneEdit" placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
                         <button type="button" class="cancel-button" onclick="deleteContactProof()">
@@ -102,6 +103,9 @@ function showEditWindow() {
             </div>
         </div>
     `;
+    document.getElementById('nameEdit').value = contactData.name;
+    document.getElementById('emailEdit').value = contactData.email;
+    document.getElementById('phoneEdit').value = contactData.phone;
     let window = document.getElementById('addEditContact');
     background.classList.remove('hide');
     setTimeout(() => {
@@ -189,7 +193,7 @@ async function showUserEntry(number) {
             <div>
                 <span class="contact-name-large">${user.name}</span>
                 <div class="edit-delete-contact">
-                    <div onclick="showEditWindow()" class="edit-contact">
+                    <div onclick="showEditWindow(${number})" class="edit-contact">
                         <img src="./img/icons/contacts/pen-black.svg" alt="">
                         <span>Edit</span>
                     </div>
@@ -297,4 +301,20 @@ function getId() {
     let date = new Date();
     let time = date.getTime().toString();
     return time.slice(-3);
+}
+
+
+function editContact(number) {
+    let nameInput = document.getElementById('nameEdit').value;
+    let name = nameInput.split(' ').map((name) => {return name[0].toUpperCase() + name.substring(1)}).join(' ');
+    let initial = nameInput.split(' ').map((item) => {return item[0].toUpperCase()}).join('');
+    let email = document.getElementById('emailEdit').value;
+    let phone = document.getElementById('phoneEdit').value;
+    sessionContacts[number].name = name;
+    sessionContacts[number].initial = initial;
+    sessionContacts[number].email = email;
+    sessionContacts[number].phone = phone;
+    showUserEntry(number);
+    renderContacts();
+    closeAddEditWindow();
 }
