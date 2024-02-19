@@ -90,7 +90,7 @@ let sessionContacts = [
         initial: 'MM',
         email: 'belaschramm@aol.de',
         color: '#C3FF2B',
-        phone: '4911468011111',
+        phone: '491146801111',
     },
 ]
 

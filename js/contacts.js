@@ -36,9 +36,9 @@ function showAddToContactWindow() {
                 </div>
                 <form onsubmit="createContact(); return false;">
                     <div class="input-container">
-                        <input placeholder="Name" class="input-class name-input" type="text" required>
-                        <input placeholder="Email" class="input-class email-input" type="email" required>
-                        <input placeholder="Phone" class="input-class phone-input" type="tel" required>
+                        <input id="nameCreate" placeholder="Name" class="input-class name-input" type="text" required>
+                        <input id="emailCreate" placeholder="Email" class="input-class email-input" type="email" required>
+                        <input id="phoneCreate" placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
                         <button type="button" class="cancel-button">
@@ -87,7 +87,7 @@ function showEditWindow() {
                     <div class="input-container">
                         <input placeholder="Name" class="input-class name-input" type="text" required>
                         <input placeholder="Email" class="input-class email-input" type="email" required>
-                        <input placeholder="Phone" class="input-class phone-input" type="tel" required>
+                        <input placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
                         <button type="button" class="cancel-button" onclick="deleteContactProof()">
@@ -117,7 +117,7 @@ function closeAddEditWindow() {
     let background = document.getElementById('addEditContactContainer');
     let window = document.getElementById('addEditContact');
     setTimeout(() => {
-        window.style.transform = 'translateX(200%)';
+        window.style.transform = 'translateX(1000%)';
     }, 0);
     setTimeout(() => {
         background.classList.remove('add-edit-contact-container');
@@ -270,4 +270,30 @@ function saveUserStartingLetters() {
         }
     }
     USER_STARTING_LETTER.sort();
+}
+
+
+function createContact() {
+    let nameInput = document.getElementById('nameCreate').value;
+    let name = nameInput.split(' ').map((name) => {return name[0].toUpperCase() + name.substring(1)}).join(' ');
+    let initial = nameInput.split(' ').map((item) => {return item[0].toUpperCase()}).join('');
+    let email = document.getElementById('emailCreate').value;
+    let phone = document.getElementById('phoneCreate').value;
+    let contactData = {
+        id: `C${getId()}`,
+        name: name,
+        initial: initial,
+        email: email,
+        color: hexColors[randomColor()],
+        phone: phone.toString()
+    }
+
+    sessionContacts.push(contactData);
+}
+
+
+function getId() {
+    let date = new Date();
+    let time = date.getTime().toString();
+    return time.slice(-3);
 }

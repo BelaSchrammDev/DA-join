@@ -15,3 +15,9 @@ const hexColors = [
   '#FFC701',
   '#FFE62B',
 ];
+
+
+function randomColor() {
+  let randomColor = Math.floor(Math.random() * hexColors.length);
+  return randomColor;
+}
