@@ -287,8 +287,9 @@ function createContact() {
         color: hexColors[randomColor()],
         phone: phone.toString()
     }
-
     sessionContacts.push(contactData);
+    renderContacts();
+    closeAddEditWindow();
 }
 
 
