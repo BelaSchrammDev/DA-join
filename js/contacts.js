@@ -91,7 +91,7 @@ function showEditWindow(number) {
                         <input id="phoneEdit" placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
-                        <button type="button" class="cancel-button" onclick="deleteContactProof()">
+                        <button type="button" class="cancel-button" onclick="deleteContactProof(${number})">
                             <span>Delete</span>
                         </button>
                         <button type="submit" class="create-button">
@@ -132,7 +132,7 @@ function closeAddEditWindow() {
 }
 
 
-function deleteContactProof() {
+function deleteContactProof(number) {
     let background = document.getElementById('deleteProofWindow');
     background.innerHTML = `
         <div onclick="event.stopPropagation()" id="deleteContactProof" class="delete-contact-proof-window">
@@ -144,7 +144,7 @@ function deleteContactProof() {
                     <span>Cancel</span>
                     <img src="./img/icons/contacts/cancel.svg" alt="cancel">
                 </button>
-                <button type="button" class="create-button yes-delete">
+                <button type="button" class="create-button yes-delete" onclick="deleteContact(${number})">
                     <span>Yes</span>
                     <img src="./img/icons/contacts/check-white.svg" alt="check">
                 </button>
@@ -317,4 +317,12 @@ function editContact(number) {
     showUserEntry(number);
     renderContacts();
     closeAddEditWindow();
+}
+
+
+function deleteContact(number) {
+    sessionContacts.splice(number, 1);
+    document.getElementById('showUserEntry').innerHTML = '';
+    renderContacts();
+    closeDeleteProofWindow();
 }
