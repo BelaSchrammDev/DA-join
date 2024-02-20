@@ -197,7 +197,7 @@ async function showUserEntry(number) {
                         <img src="./img/icons/contacts/pen-black.svg" alt="">
                         <span>Edit</span>
                     </div>
-                    <div onclick="deleteContactProof()" class="delete-contact">
+                    <div onclick="deleteContactProof(${number})" class="delete-contact">
                         <img src="./img/icons/contacts/trash-black.svg" alt="">
                         <span>Delete</span>
                     </div>
@@ -235,6 +235,7 @@ function resetContactButton(number) {
 
 
 async function renderContacts() {
+    USER_STARTING_LETTER.length = 0;
     await saveUserStartingLetters();
     let container = document.getElementById('contactsContainer');
     container.innerHTML = '';
