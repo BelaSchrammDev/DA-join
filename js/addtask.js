@@ -173,8 +173,10 @@ function fillTaskObjectFromFormData(task, formData) {
     task.subtasks = addPropertysToArray('task_subtask', formData,
         (key, property) => {
             let _done = false;
-            const oldSubtask = task.subtasks.find(st => st.name == property);
-            if (oldSubtask) _done = oldSubtask.done;
+            if (task.subtasks) {
+                const oldSubtask = task.subtasks.find(st => st.name == property);
+                if (oldSubtask) _done = oldSubtask.done;
+            }
             return {
                 name: property,
                 done: _done

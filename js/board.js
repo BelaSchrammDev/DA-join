@@ -1,12 +1,19 @@
 const rowIdName = [
-    { id: 'todo', name: 'ToDo' },
-    { id: 'inprogress', name: 'In Progress' },
-    { id: 'awaitfeedback', name: 'Await Feedback' },
-    { id: 'done', name: 'Done' },
+    { id: 'todo', name: 'ToDo', addbutton: true },
+    { id: 'inprogress', name: 'In Progress', addbutton: true },
+    { id: 'awaitfeedback', name: 'Await Feedback', addbutton: true },
+    { id: 'done', name: 'Done', addbutton: false },
 ]
 
 let current_flyingwindow_id = '';
 let current_taskID = '';
+
+
+function testrequest() {
+    let div = getElement('requestdiv');
+    div.innerHTML = getRequestWindowHTML(1, 'testfrage?');
+    showOverlay('requestdiv');
+}
 
 
 /**
@@ -14,6 +21,7 @@ let current_taskID = '';
  */
 async function initBoardSite() {
     await initJoin();
+    renderRows();
     renderTasks();
     renderAddtaskFields();
     renderAssignedContacts('edittask_assigned_list', 'edittask_');
@@ -48,6 +56,15 @@ function closeOverlay(event = null) {
         setTimeout(() => { setStyle('board_overlay', 'z-index', '-1'); }, 200);
         hideEditTaskMode();
     }
+}
+
+
+function renderRows() {
+    let rowsHTML = '';
+    for (let index = 0; index < rowIdName.length; index++) {
+        rowsHTML += getTaskRowHTML(rowIdName[index]);
+    }
+    setInnerHTML('board_task_rows', rowsHTML);
 }
 
 
@@ -224,3 +241,28 @@ function deletetask(taskID) {
         renderTasks();
     }
 }
+
+let currentDraggableTaskID = '';
+
+function draggableBegin(event, taskID) {
+    currentDraggableTaskID = taskID;
+    getElement('minitask_' + taskID).classList.add('task_draggable');
+}
+
+
+function draggableEnd(event, taskID) {
+    getElement('minitask_' + taskID).classList.remove('task_draggable');
+}
+
+function draggableOver(event, rowID = '') {
+    event.preventDefault();
+    getElement(rowID).classList.add('row_draggable');
+    currentDragHighlightID = event.target.id;
+}
+
+
+function draggableLeave(event, rowID = '') {
+    event.preventDefault();
+    if (currentDragHighlightID === event.target.id) getElement(rowID).classList.remove('row_draggable');
+}
+

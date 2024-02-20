@@ -25,8 +25,8 @@
 <body onload="initBoardSite()">
 
     <div onclick="closeOverlay(event)" id="board_overlay" class="board_overlay">
+        <div id="requestdiv" class="requestdiv"></div>
         <div onclick="event.stopPropagation();" id="task_big" class="task_big">
-            <div id="requestdiv" style="display: none;"></div>
             <!-- task big begin -->
             <div id="task_big_showing" class="task_big_inner"></div>
             <!-- task big end -->
@@ -146,6 +146,7 @@
             <div class="board_header">
                 <div class="board_headline">
                     <span>Board</span>
+                    <button onclick="testrequest()">test</button>
                     <div tasksearchfield>
                         <input type="text" placeholder="Find Task">
                         <img src="./img/icons/board/search.svg" alt="">
@@ -158,36 +159,7 @@
                     </button>
                 </div>
             </div>
-            <div class="board_task_rows">
-                <div>
-                    <div class="board_task_head">
-                        <span>To do</span>
-                        <img onclick="showAddTaskOverlay('todo')" src="./img/icons/board/plus-button.svg" alt="">
-                    </div>
-                    <div id="tasklist_todo" class="board_task_list"></div>
-                </div>
-                <div>
-                    <div class="board_task_head">
-                        <span>In progress</span>
-                        <img onclick="showAddTaskOverlay('inprogress')" src="./img/icons/board/plus-button.svg" alt="">
-                    </div>
-                    <div id="tasklist_inprogress" class="board_task_list"></div>
-                </div>
-                <div>
-                    <div class="board_task_head">
-                        <span>Await feedback</span>
-                        <img onclick="showAddTaskOverlay('awaitfeedback')" src="./img/icons/board/plus-button.svg"
-                            alt="">
-                    </div>
-                    <div id="tasklist_awaitfeedback" class="board_task_list"></div>
-                </div>
-                <div>
-                    <div class="board_task_head">
-                        <span>Done </span>
-                    </div>
-                    <div id="tasklist_done" class="board_task_list"></div>
-                </div>
-            </div>
+            <div id="board_task_rows" class="board_task_rows"></div>
         </div>
     </div>
 </body>

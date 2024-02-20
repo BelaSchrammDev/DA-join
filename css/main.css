@@ -332,22 +332,6 @@ header img:hover {
 
 /* REQUEST WINDOW */
 
-.request-proof-window {
-    width: 500px;
-    height: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background-color: white;
-    background: linear-gradient(180deg, rgba(42, 54, 71, 1) 40%, rgba(255, 255, 255, 1) 20%);
-    border-radius: 30px;
-    transform: translateX(1000%);
-    transition: transform 700ms ease-in-out;
-}
-
 .request-question-container {
     height: 40%;
     display: flex;
@@ -356,6 +340,9 @@ header img:hover {
 }
 
 .request-question {
+    background-color: rgba(42, 54, 71, 1);
+    padding: 20px;
+    width: 100%;
     font-size: 24px;
     font-weight: 700;
     color: white;
@@ -364,8 +351,11 @@ header img:hover {
 }
 
 .request-button-container {
+    padding: 20px;
+    background-color: white;
     height: 60%;
     display: flex;
+    gap: 20px;
     justify-content: space-evenly;
     align-items: center;
 }
