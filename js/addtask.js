@@ -5,6 +5,7 @@ let presetStatusByAddTask = 'todo';
 async function initAddtaskSite() {
     await initJoin();
     renderAddtaskFields();
+    actionAfterAddTask = afterAddTaskTemplateSubmit;
 }
 
 
@@ -150,6 +151,12 @@ function submitAddTaskForm() {
     sessionTasks.push(newTask);
     searchForm.reset();
     if (actionAfterAddTask) actionAfterAddTask();
+}
+
+
+function afterAddTaskTemplateSubmit() {
+    storeSessionTasksToRemoteStorage();
+    window.location.href = './board.html';
 }
 
 
