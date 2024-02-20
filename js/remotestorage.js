@@ -2,6 +2,30 @@ const STORAGE_TOKEN = "QRFWKZVNK81DEAU7AMO2GVI5JL8YYYMLU187EAAJ";
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 
+async function storeSessionTasksToRemoteStorage() {
+    sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
+    // await setItemFromJson(currentuser.id + 'tasks', sessiontasks);
+}
+
+
+async function storeSessionContactsToRemoteStorage() {
+    sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
+    // await setItemFromJson(currentuser.id + 'contacts', sessioncontacts);
+}
+
+
+async function loadSessionTasksFromRemoteStorage() {
+    let taskString = sessionStorage.getItem('sessiontasks');
+    if (taskString) sessionTasks = JSON.parse(taskString);
+}
+
+
+async function loadSessionContactsFromRemoteStorage() {
+    let contactString = sessionStorage.getItem('sessioncontacts');
+    if (contactString) sessionContacts = JSON.parse(contactString);
+}
+
+
 /**
  * stored a string to remotestorage
  * 

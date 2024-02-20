@@ -23,6 +23,7 @@ async function initBoardSite() {
 
 
 function afterAddTask() {
+    storeSessionTasksToRemoteStorage();
     closeOverlay();
     renderTasks();
 }
@@ -133,6 +134,7 @@ function submitEditTaskForm() {
         fillTaskObjectFromFormData(task, Object.fromEntries(formData));
         updateMiniTaskCard(current_taskID);
         updateBigTaskView(task);
+        storeSessionTasksToRemoteStorage();
     }
     hideEditTaskMode();
 }

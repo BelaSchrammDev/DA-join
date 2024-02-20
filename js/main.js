@@ -116,7 +116,15 @@ let users = [
 ]
 // example arrays for testing only ---------------------------------------------------END
 
-let currentuser = '';
+let currentuser = undefined;
+const userGuest = {
+    id: 'UXXXXXXX',
+    name: 'Guest',
+    initial: 'G',
+    email: 'guest@gmail.com',
+    color: '#0038FF',
+    phone: '',
+}
 
 const taskCategorys = {
     1: { id: 1, name: 'User Story', color: '#0038ff', },
@@ -126,23 +134,9 @@ const taskCategorys = {
 
 // DEBUG SECTION BEGIN -----------------------------
 function testGuestLogin() {
-    sessionStorage.setItem('currentuser', 'Guest');
+    sessionStorage.setItem('currentuser', JSON.stringify(userGuest));
     sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
     window.location.href = './summary.html';
-}
-
-
-function loadAllFromLocalStorage() {
-    let tasks = localStorage.getItem('testtasks');
-    if (tasks) sessionTasks = JSON.parse(tasks);
-    let contacts = localStorage.getItem('testcontacts');
-    if (contacts) sessionContacts = JSON.parse(contacts);
-}
-
-
-function saveAllToLocalStorage() {
-    localStorage.setItem('testtasks', JSON.stringify(sessionTasks));
-    localStorage.setItem('testcontacts', JSON.stringify(sessionContacts));
 }
 // DEBUG SECTION END -----------------------------
 
@@ -164,11 +158,15 @@ function createUniqueID(prefix) {
  */
 async function initJoin() {
     // test if user logged in
-    currentuser = sessionStorage.getItem('currentuser');
-    if (currentuser == null || currentuser == '') window.location.href = './index.html';
+    let currentUserString = sessionStorage.getItem('currentuser');
+    if (!currentUserString) window.location.href = './index.html';
+    currentuser = JSON.parse(currentUserString);
+    if (!currentuser.id) window.location.href = './index.html';
     // user is correct logged in
     await includeHTML();
     // load task from sessionstorage and or from remotestorage
+    loadSessionContactsFromRemoteStorage();
+    loadSessionTasksFromRemoteStorage();
 }
 
 

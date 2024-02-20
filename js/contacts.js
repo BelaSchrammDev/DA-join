@@ -279,8 +279,8 @@ function saveUserStartingLetters() {
 
 function createContact() {
     let nameInput = document.getElementById('nameCreate').value;
-    let name = nameInput.split(' ').map((name) => {return name[0].toUpperCase() + name.substring(1)}).join(' ');
-    let initial = nameInput.split(' ').map((item) => {return item[0].toUpperCase()}).join('');
+    let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
+    let initial = nameInput.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
     let email = document.getElementById('emailCreate').value;
     let phone = document.getElementById('phoneCreate').value;
     let contactData = {
@@ -293,6 +293,9 @@ function createContact() {
     }
     sessionContacts.push(contactData);
     renderContacts();
+    // insert by bela, only stored to sessionstorage
+    storeSessionContactsToRemoteStorage();
+    // ----------------------------------------------
     closeAddEditWindow();
 }
 
@@ -306,8 +309,8 @@ function getId() {
 
 function editContact(number) {
     let nameInput = document.getElementById('nameEdit').value;
-    let name = nameInput.split(' ').map((name) => {return name[0].toUpperCase() + name.substring(1)}).join(' ');
-    let initial = nameInput.split(' ').map((item) => {return item[0].toUpperCase()}).join('');
+    let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
+    let initial = nameInput.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
     let email = document.getElementById('emailEdit').value;
     let phone = document.getElementById('phoneEdit').value;
     sessionContacts[number].name = name;
@@ -316,6 +319,9 @@ function editContact(number) {
     sessionContacts[number].phone = phone;
     showUserEntry(number);
     renderContacts();
+    // insert by bela, only stored to sessionstorage
+    storeSessionContactsToRemoteStorage();
+    // ----------------------------------------------
     closeAddEditWindow();
 }
 
@@ -324,6 +330,9 @@ function deleteContact(number) {
     sessionContacts.splice(number, 1);
     document.getElementById('showUserEntry').innerHTML = '';
     renderContacts();
+    // insert by bela, only stored to sessionstorage
+    storeSessionContactsToRemoteStorage();
+    // ----------------------------------------------
     closeDeleteProofWindow();
     closeAddEditWindow();
 }
