@@ -236,9 +236,8 @@ function getTaskAssignedContactsHTML(task) {
 
 
 function getTaskRowHTML(rowObj) {
-    const rowID = "taskrow_" + rowObj.id;
     return `
-        <div id="${rowID}" class="board_task_row" ondragenter="draggableOver(event,'${rowID}')" ondragleave="draggableLeave(event,'${rowID}')">
+        <div id="taskrow_${rowObj.id}" class="board_task_row" ondragenter="draggableEnter(event,'${rowObj.id}')" ondragleave="draggableLeave(event,'${rowObj.id}')">
         <div class="board_task_head">
             <span>${rowObj.name}</span>
             ${rowObj.addbutton

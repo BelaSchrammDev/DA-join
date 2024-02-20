@@ -90,7 +90,7 @@ function renderEmptyRowMessage() {
     for (let index = 0; index < rowIdName.length; index++) {
         const tasklist = document.getElementById('tasklist_' + rowIdName[index].id);
         if (tasklist.innerHTML == '') {
-            tasklist.innerHTML = `<div class="board_task_empty">No tasks ${rowIdName[index].name}</div>`;
+            tasklist.innerHTML = `<div class="board_task_empty">No tasks<br>${rowIdName[index].name}</div>`;
         }
     }
 }
@@ -242,27 +242,53 @@ function deletetask(taskID) {
     }
 }
 
+
+function setNewStatus(taskID, newStatus) {
+    const task = sessionTasks.find(t => t.id == taskID);
+    if (task && newStatus != '') task.status = newStatus;
+    renderTasks();
+}
+
 let currentDraggableTaskID = '';
+let currentRowID = '';
 
 function draggableBegin(event, taskID) {
     currentDraggableTaskID = taskID;
     getElement('minitask_' + taskID).classList.add('task_draggable');
 }
 
-
 function draggableEnd(event, taskID) {
+    event.preventDefault();
     getElement('minitask_' + taskID).classList.remove('task_draggable');
+    setNewStatus(taskID, getRowIDFromMousePosition(event.clientX, event.clientY));
 }
 
-function draggableOver(event, rowID = '') {
+function getRowIDFromMousePosition(posX, posY) {
+    const isBetween = (num1, value, num2) => num1 < value && value < num2;
+    for (let index = 0; index < rowIdName.length; index++) {
+        const element = getElement('taskrow_' + rowIdName[index].id);
+        const rect = element.getBoundingClientRect();
+        if (isBetween(rect.left, posX, rect.right) && isBetween(rect.top, posY, rect.bottom))
+            return rowIdName[index].id;
+    }
+    return '';
+}
+
+function draggableEnter(event, rowID) {
     event.preventDefault();
-    getElement(rowID).classList.add('row_draggable');
+    getElement('taskrow_' + rowID).classList.add('row_draggable');
     currentDragHighlightID = event.target.id;
+    currentRowID = rowID;
 }
 
 
-function draggableLeave(event, rowID = '') {
+function draggableLeave(event, rowID) {
     event.preventDefault();
-    if (currentDragHighlightID === event.target.id) getElement(rowID).classList.remove('row_draggable');
+    if (currentDragHighlightID === event.target.id) {
+        getElement('taskrow_' + rowID).classList.remove('row_draggable');
+        currentDragHighlightID = '';
+        // console.log('leave ' + currentRowID);
+        currentRowID = '';
+    }
 }
 
