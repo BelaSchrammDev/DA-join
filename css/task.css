@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.0);
     transition: background-color 125ms ease-in-out;
 }
 
@@ -193,7 +193,7 @@
     background-color: #d1d1d1;
 }
 
-.edittask_headline{
+.edittask_headline {
     display: flex;
     justify-content: flex-end;
     align-items: center;

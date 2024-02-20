@@ -215,3 +215,12 @@ function clickSubTaskDone(taskID, subtaskNumber) {
 }
 
 
+function deletetask(taskID) {
+    const taskArrayIndex = sessionTasks.findIndex(t => t.id == taskID);
+    if (taskArrayIndex) {
+        sessionTasks.splice(taskArrayIndex, 1);
+        storeSessionTasksToRemoteStorage();
+        closeOverlay();
+        renderTasks();
+    }
+}
