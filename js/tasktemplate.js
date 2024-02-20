@@ -241,7 +241,7 @@ function getTaskRowHTML(rowObj) {
         <div class="board_task_head">
             <span>${rowObj.name}</span>
             ${rowObj.addbutton
-            ? '<img onclick="showAddTaskOverlay(' + rowObj.id + ')" src="./img/icons/board/plus-button.svg" alt="">'
+            ? `<img onclick="showAddTaskOverlay('${rowObj.id}')" src="./img/icons/board/plus-button.svg" alt="">`
             : ''
         }
         </div>
