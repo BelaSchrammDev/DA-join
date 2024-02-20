@@ -56,6 +56,7 @@ a:visited {
     margin-top: 110px;
     margin-left: 55px;
     flex: 1;
+    overflow: hidden;
 }
 
 /* SHOW CONTACT VIEW */
@@ -307,6 +308,7 @@ a:visited {
 
 .user-entry {
     transition: transform 700ms ease-in-out;
+    transform: translateX(1000%);
 }
 
 .contact-email {
@@ -316,6 +318,25 @@ a:visited {
 }
 
 /* ADD & EDIT CONTACT */
+
+.created-msg-bg {
+    width: 326px;
+    height: 74px;
+    border-radius: 20px;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    transform: translateX(1000%);
+    transition: transform 700ms ease-in-out;
+}
+
+.created-msg-text {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}
 
 .add-edit-contact-container {
     width: 100%;
@@ -561,10 +582,6 @@ a:visited {
 
 .yes-delete {
     height: 60px;
-}
-
-.translateX {
-    transform: translateX(1000%);
 }
 
 .hide {

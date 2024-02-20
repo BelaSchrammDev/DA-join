@@ -185,7 +185,7 @@ async function showUserEntry(number) {
     contact.classList.add('contact-data-container-active');
     contact.classList.remove('contact-data-container');
     container.innerHTML = `
-    <div id="userEntry" class="user-entry translateX">
+    <div id="userEntry" class="user-entry">
         <div class="show-contact-large-container">
             <div class="contact-bg-large"  style="background-color: ${user.color}">
                 <span class="contact-short-large">${user.initial}</span>
@@ -217,7 +217,7 @@ async function showUserEntry(number) {
     `;
     contact.onclick = null;
     setTimeout(() => {
-        document.getElementById('userEntry').classList.remove('translateX');
+        document.getElementById('userEntry').style.transform = 'translateX(0)';
     }, 0);
 }
 
@@ -278,7 +278,7 @@ function saveUserStartingLetters() {
 }
 
 
-function createContact() {
+async function createContact() {
     let nameInput = document.getElementById('nameCreate').value;
     let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
     let initial = nameInput.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
@@ -293,7 +293,14 @@ function createContact() {
         phone: phone.toString()
     }
     sessionContacts.push(contactData);
-    renderContacts();
+    await renderContacts();
+    showUserEntry(sessionContacts.length - 1);
+    setTimeout(() => {
+        document.getElementById('createdMsg').style.transform = 'translateX(0)';
+    }, 300);
+    setTimeout(() => {
+        document.getElementById('createdMsg').style.transform = 'translateX(1000%)';
+    }, 3500);
     // insert by bela, only stored to sessionstorage
     storeSessionContactsToRemoteStorage();
     // ----------------------------------------------
