@@ -76,8 +76,8 @@ function showEditWindow(number) {
                 <div></div>
             </div>
             <div class="add-edit-contact-middle">
-                <div>
-                    <img src="./img/icons/contacts/profile.svg" alt="user">
+                <div class="contact-bg-large"  style="background-color: ${contactData.color}">
+                    <span class="contact-short-large">${contactData.initial}</span>
                 </div>
             </div>
             <div class="add-edit-contact-right">
