@@ -21,6 +21,7 @@ function testrequest() {
  */
 async function initBoardSite() {
     await initJoin();
+    initDropDowns();
     renderRows();
     renderTasks();
     renderAddtaskFields();

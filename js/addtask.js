@@ -4,6 +4,7 @@ let presetStatusByAddTask = 'todo';
 
 async function initAddtaskSite() {
     await initJoin();
+    initDropDowns();
     renderAddtaskFields();
     actionAfterAddTask = afterAddTaskTemplateSubmit;
 }

@@ -16,7 +16,7 @@
     <script src="./js/remotestorage.js"></script>
     <script src="./js/tasktemplate.js"></script>
     <script src="./js/addtask.js"></script>
-    <script src="./js/dropdownlist.js"></script>
+    <script src="./js/dropdown.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/header.js"></script>
     <title>Join - Board</title>
@@ -81,15 +81,15 @@
                         <div class="addtask_property">
                             <span>Assigned to</span>
                             <div style="position: relative;">
-                                <div nolistclose onclick="openDropDownList('edittask_assignet')" id="edittask_assigned"
+                                <div nolistclose onclick="openDropDown('edittask_assignet')" id="edittask_assigned"
                                     class="addtask_assigned">
                                     <input tabindex="-1" nolistclose autocomplete="off" id="edittask_assignedinput"
                                         onkeydown="getToNextInputOnKeyEnter(event)"
                                         onkeyup="changeAssignedContactsSearchTerm(event, 'edittask_')"
-                                        onfocus="openDropDownList('edittask_assignet')" type="text"
+                                        onfocus="openDropDown('edittask_assignet')" type="text"
                                         placeholder="Select contacts to assign">
                                     <img id="edittask_assigned_arrow" class="dropdown_arrow"
-                                        onclick="clickDropDownList(event,'edittask_assignet')"
+                                        onclick="clickDropDown(event,'edittask_assignet')"
                                         src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
                                 </div>
                                 <div nolistclose id="edittask_assigned_list"
