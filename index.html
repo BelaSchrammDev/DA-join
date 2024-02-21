@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
     <script src="./js/main.js"></script>
-    <script src="./js/func.js"></script>
     <script src="./js/remotestorage.js"></script>
 
-    <link rel="stylesheet" href="./css/sidebar.css">
     <title>Join</title>
 </head>
+
 <body onload="initLoginSite()">
 
     <h1>Join</h1>
 
-    <button onclick="testGuestLogin()">Login as guest</button>
+    <button onclick="testLogin()">Login as guest</button>
+    <button onclick="testLogin('U123')">Login as Bela</button>
+    <button onclick="testLogin('U789')">Login as Simon</button>
+    <button onclick="testLogin('U456')">Login as Nadja</button>
 
 </body>
+
 </html>
