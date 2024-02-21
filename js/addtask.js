@@ -109,7 +109,7 @@ function enterSubtaskInput(event, prefix) {
 
 function selectTaskCategory(categoryID) {
     setInputValue('addtask_category', taskCategorys[categoryID].name);
-    DropDownList.closeAll();
+    closeDropDown();
 }
 
 
@@ -155,8 +155,8 @@ function submitAddTaskForm() {
 }
 
 
-function afterAddTaskTemplateSubmit() {
-    storeSessionTasksToRemoteStorage();
+async function afterAddTaskTemplateSubmit() {
+    await storeSessionTasksToRemoteStorage();
     window.location.href = './board.html';
 }
 

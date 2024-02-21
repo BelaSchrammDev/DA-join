@@ -132,10 +132,62 @@ const taskCategorys = {
 }
 
 
+const hexColors = [
+    '#0038FF',
+    '#00BEE8',
+    '#1FD7C1',
+    '#6E52FF',
+    '#9747FF',
+    '#C3FF2B',
+    '#FC71FF',
+    '#FF4646',
+    '#FF5EB3',
+    '#FF745E',
+    '#FF7A00',
+    '#FFA35E',
+    '#FFBB2B',
+    '#FFC701',
+    '#FFE62B',
+];
+
+
+function randomColor() {
+    let randomColor = Math.floor(Math.random() * hexColors.length);
+    return randomColor;
+}
+
+
+function createUserObjectFromLoginData(loginObject) {
+    const initials = loginObject.name.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
+    return {
+        id: loginObject.id,
+        name: loginObject.name,
+        initial: initials,
+        email: loginObject.email,
+        color: hexColors[randomColor()],
+    }
+}
+
+
 // DEBUG SECTION BEGIN -----------------------------
-function testGuestLogin() {
-    sessionStorage.setItem('currentuser', JSON.stringify(userGuest));
-    sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
+async function testLogin(userID = '') {
+    if (userID == '') {
+        sessionStorage.setItem('currentuser', JSON.stringify(userGuest));
+        sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
+        sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
+    }
+    else {
+        let user = users.find(u => u.id == userID);
+        if (user) {
+            currentuser = createUserObjectFromLoginData(user);
+            sessionStorage.setItem('currentuser', JSON.stringify(currentuser));
+            await loadSessionTasksFromRemoteStorage();
+            sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
+            await loadSessionContactsFromRemoteStorage();
+            sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
+        }
+        else console.error('user with id ' + userID + ' not found.');
+    }
     window.location.href = './summary.html';
 }
 // DEBUG SECTION END -----------------------------
@@ -164,9 +216,9 @@ async function initJoin() {
     if (!currentuser.id) window.location.href = './index.html';
     // user is correct logged in
     await includeHTML();
-    // load task from sessionstorage and or from remotestorage
-    loadSessionContactsFromRemoteStorage();
-    loadSessionTasksFromRemoteStorage();
+    const initialSpan = getElement('currentuser-initial');
+    if (initialSpan) setInnerHTML(initialSpan, currentuser.initial);
+    await loadSessionDataFromSessionStorage();
 }
 
 
@@ -175,8 +227,7 @@ async function initJoin() {
  */
 async function initLoginSite() {
     await includeHTML();
-    // load contacts from remotestorage for login
-    sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
+    // load users from remotestorage for login
 }
 
 

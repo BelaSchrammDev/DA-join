@@ -31,8 +31,8 @@ async function initBoardSite() {
 }
 
 
-function afterAddTask() {
-    storeSessionTasksToRemoteStorage();
+async function afterAddTask() {
+    await storeSessionTasksToRemoteStorage();
     closeOverlay();
     renderTasks();
 }
@@ -144,7 +144,7 @@ function updateMiniTaskCard(taskID) {
 }
 
 
-function submitEditTaskForm() {
+async function submitEditTaskForm() {
     const searchForm = document.getElementById('edittask_form');
     let formData = new FormData(searchForm);
     const task = sessionTasks.find(t => t.id == current_taskID);
@@ -152,7 +152,7 @@ function submitEditTaskForm() {
         fillTaskObjectFromFormData(task, Object.fromEntries(formData));
         updateMiniTaskCard(current_taskID);
         updateBigTaskView(task);
-        storeSessionTasksToRemoteStorage();
+        await storeSessionTasksToRemoteStorage();
     }
     hideEditTaskMode();
 }
@@ -233,11 +233,11 @@ function clickSubTaskDone(taskID, subtaskNumber) {
 }
 
 
-function deletetask(taskID) {
+async function deletetask(taskID) {
     const taskArrayIndex = sessionTasks.findIndex(t => t.id == taskID);
     if (taskArrayIndex) {
         sessionTasks.splice(taskArrayIndex, 1);
-        storeSessionTasksToRemoteStorage();
+        await storeSessionTasksToRemoteStorage();
         closeOverlay();
         renderTasks();
     }

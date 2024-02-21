@@ -302,7 +302,7 @@ async function createContact() {
         document.getElementById('createdMsg').style.transform = 'translateX(1000%)';
     }, 3500);
     // insert by bela, only stored to sessionstorage
-    storeSessionContactsToRemoteStorage();
+    await storeSessionContactsToRemoteStorage();
     // ----------------------------------------------
     closeAddEditWindow();
 }
@@ -315,7 +315,7 @@ function getId() {
 }
 
 
-function editContact(number) {
+async function editContact(number) {
     let nameInput = document.getElementById('nameEdit').value;
     let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
     let initial = nameInput.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
@@ -328,18 +328,18 @@ function editContact(number) {
     showUserEntry(number);
     renderContacts();
     // insert by bela, only stored to sessionstorage
-    storeSessionContactsToRemoteStorage();
+    await storeSessionContactsToRemoteStorage();
     // ----------------------------------------------
     closeAddEditWindow();
 }
 
 
-function deleteContact(number) {
+async function deleteContact(number) {
     sessionContacts.splice(number, 1);
     document.getElementById('showUserEntry').innerHTML = '';
     renderContacts();
     // insert by bela, only stored to sessionstorage
-    storeSessionContactsToRemoteStorage();
+    await storeSessionContactsToRemoteStorage();
     // ----------------------------------------------
     closeDeleteProofWindow();
     closeAddEditWindow();
