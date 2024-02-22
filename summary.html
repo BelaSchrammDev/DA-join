@@ -30,7 +30,7 @@
                                 <img src="./img/icons/summary/pencil.svg" alt="">
                             </div>
                             <div>
-                                <div class="task-amount">1</div>
+                                <div id="toDoAmount" class="task-amount">1</div>
                                 <span class="upper-task-text">To-Do</span>
                             </div>
                         </a>
@@ -39,7 +39,7 @@
                                 <img src="./img/icons/summary/hook.svg" alt="">
                             </div>
                             <div>
-                                <div class="task-amount">1</div>
+                                <div id="doneAmount" class="task-amount">1</div>
                                 <span class="upper-task-text">Done</span>
                             </div>
                         </a>
@@ -51,7 +51,7 @@
                                     <img class="hover-test" src="./img/icons/summary/cappa.svg" alt="">
                                 </div>
                                 <div>
-                                    <div class="task-amount">1</div>
+                                    <div id="urgentAmount" class="task-amount">1</div>
                                     <span class="important-text">Urgent</span>
                                 </div>
                             </div>
@@ -64,15 +64,15 @@
                     </div>
                     <div class="task-counter-container">
                         <a class="task-counter hover-to-the-right-small" href="./board.html">
-                            <div class="task-amount">5</div>
+                            <div id="taskAmount" class="task-amount">5</div>
                             <span class="upper-task-text tib-width">Tasks in Board</span>
                         </a>
                         <a class="task-counter hover-to-the-middel" href="./board.html">
-                            <div class="task-amount">2</div>
+                            <div id="inProgressAmount" class="task-amount">2</div>
                             <span class="upper-task-text">Tasks in Progress</span>
                         </a>
                         <a class="task-counter hover-to-the-left-small" href="./board.html">
-                            <div class="task-amount">2</div>
+                            <div id="feedbackAmount" class="task-amount">2</div>
                             <span class="upper-task-text">Awaiting Feedback</span>
                         </a>
                     </div>
@@ -86,6 +86,7 @@
     </div>
     <script src="./js/remotestorage.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/defaultdata.js"></script>
     <script src="./js/summary.js"></script>
     <script src="./js/header.js"></script>
 </body>
