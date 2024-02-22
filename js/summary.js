@@ -1,6 +1,7 @@
 async function initSummarySite(){
     await initJoin();
     getAmounts();
+    getUserName();
     // other render functions...
 }
 
@@ -54,4 +55,11 @@ function getFeedbackAmount() {
     let card = document.getElementById('feedbackAmount');
     let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'awaitfeedback').length;
     card.innerHTML = amount;
+}
+
+
+function getUserName() {
+    let container = document.getElementById('userName');
+    let name = currentuser.name;
+    container.innerHTML = name;
 }
