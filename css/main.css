@@ -216,6 +216,14 @@ header img:hover {
     cursor: pointer;
 }
 
+.header-logo {
+    width: 32px;
+    height: 39px;
+    padding: 0;
+    margin-left: 16px;
+    display: none;
+}
+
 .header-kanbanboard-headline {
     margin-left: 116px;
     font-size: 20px;

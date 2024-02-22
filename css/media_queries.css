@@ -1,3 +1,11 @@
+@media (max-width: 850px) {
+    /********** HEADER **********/
+
+    .header-help-link {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 800px) {
     body {
         margin-bottom: 100px;
@@ -37,5 +45,23 @@
         margin-left: 16px;
         font-size: 16px;
         font-weight: 400;
+    }
+
+    /********** HEADER **********/
+
+    .header-logo {
+        display: block;
+    }
+
+    .header-kanbanboard-headline {
+        display: none;
+    }
+
+    .header-help-user-container {
+        margin-right: 16px;
+    }
+
+    .header-menu-container {
+        right: 8px;
     }
 }
