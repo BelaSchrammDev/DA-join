@@ -33,6 +33,12 @@ function randomColor() {
 }
 
 
+/**
+ * return the object for the current user
+ * 
+ * @param {Object} loginObject from usersarray
+ * @returns {Object} object for store data of the current user
+ */
 function createUserObjectFromLoginData(loginObject) {
     const initials = loginObject.name.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
     return {
@@ -42,6 +48,14 @@ function createUserObjectFromLoginData(loginObject) {
         email: loginObject.email,
         color: hexColors[randomColor()],
     }
+}
+
+
+function logOut() {
+    sessionStorage.removeItem('currentuser');
+    sessionStorage.removeItem('sessiontasks');
+    sessionStorage.removeItem('sessioncontacts');
+    window.location.href = './index.html';
 }
 
 
