@@ -17,41 +17,41 @@ function getAmounts() {
 
 function getToDoAmount() {
     let card = document.getElementById('toDoAmount');
-    let amount = defaultTasks.filter(defaultTasks => defaultTasks.status === 'todo').length;
+    let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'todo').length;
     card.innerHTML = amount;
 }
 
 
 function getDoneAmount() {
     let card = document.getElementById('doneAmount');
-    let amount = defaultTasks.filter(defaultTasks => defaultTasks.status === 'done').length;
+    let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'done').length;
     card.innerHTML = amount;
 }
 
 
 function getUrgentAmount() {
     let card = document.getElementById('urgentAmount');
-    let amount = defaultTasks.filter(defaultTasks => defaultTasks.priority === 'urgent').length;
+    let amount = sessionTasks.filter(sessionTasks => sessionTasks.priority === 'urgent').length;
     card.innerHTML = amount;
 }
 
 
 function getTaskAmount() {
     let card = document.getElementById('taskAmount');
-    let amount = defaultTasks.length;
+    let amount = sessionTasks.length;
     card.innerHTML = amount;
 }
 
 
 function getInProgressAmount() {
     let card = document.getElementById('inProgressAmount');
-    let amount = defaultTasks.filter(defaultTasks => defaultTasks.status === 'inprogress').length;
+    let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'inprogress').length;
     card.innerHTML = amount;
 }
 
 
 function getFeedbackAmount() {
     let card = document.getElementById('feedbackAmount');
-    let amount = defaultTasks.filter(defaultTasks => defaultTasks.status === 'awaitfeedback').length;
+    let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'awaitfeedback').length;
     card.innerHTML = amount;
 }
