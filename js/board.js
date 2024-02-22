@@ -5,6 +5,7 @@ const rowIdName = [
     { id: 'done', name: 'Done', addbutton: false },
 ]
 
+let currentDraggableTaskID = '';
 let current_flyingwindow_id = '';
 let current_taskID = '';
 
@@ -31,8 +32,8 @@ async function initBoardSite() {
 }
 
 
-async function afterAddTask() {
-    await storeSessionTasksToRemoteStorage();
+function afterAddTask() {
+    storeSessionTasksToRemoteStorage();
     closeOverlay();
     renderTasks();
 }
@@ -144,7 +145,7 @@ function updateMiniTaskCard(taskID) {
 }
 
 
-async function submitEditTaskForm() {
+function submitEditTaskForm() {
     const searchForm = document.getElementById('edittask_form');
     let formData = new FormData(searchForm);
     const task = sessionTasks.find(t => t.id == current_taskID);
@@ -152,7 +153,7 @@ async function submitEditTaskForm() {
         fillTaskObjectFromFormData(task, Object.fromEntries(formData));
         updateMiniTaskCard(current_taskID);
         updateBigTaskView(task);
-        await storeSessionTasksToRemoteStorage();
+        storeSessionTasksToRemoteStorage();
     }
     hideEditTaskMode();
 }
@@ -229,15 +230,16 @@ function clickSubTaskDone(taskID, subtaskNumber) {
         subtask.done = !subtask.done;
         document.getElementById(task.id + '_' + subtaskNumber).src = getSubTaskStateImgSrc(subtask.done);
         updateMiniTaskCard(taskID);
+        storeSessionTasksToRemoteStorage();
     }
 }
 
 
-async function deletetask(taskID) {
+function deletetask(taskID) {
     const taskArrayIndex = sessionTasks.findIndex(t => t.id == taskID);
     if (taskArrayIndex) {
         sessionTasks.splice(taskArrayIndex, 1);
-        await storeSessionTasksToRemoteStorage();
+        storeSessionTasksToRemoteStorage();
         closeOverlay();
         renderTasks();
     }
@@ -250,8 +252,6 @@ function setNewStatus(taskID, newStatus) {
     renderTasks();
 }
 
-let currentDraggableTaskID = '';
-let currentRowID = '';
 
 function draggableBegin(event, taskID) {
     currentDraggableTaskID = taskID;
@@ -262,6 +262,7 @@ function draggableEnd(event, taskID) {
     event.preventDefault();
     getElement('minitask_' + taskID).classList.remove('task_draggable');
     setNewStatus(taskID, getRowIDFromMousePosition(event.clientX, event.clientY));
+    storeSessionTasksToRemoteStorage();
 }
 
 function getRowIDFromMousePosition(posX, posY) {
@@ -279,7 +280,6 @@ function draggableEnter(event, rowID) {
     event.preventDefault();
     getElement('taskrow_' + rowID).classList.add('row_draggable');
     currentDragHighlightID = event.target.id;
-    currentRowID = rowID;
 }
 
 
@@ -288,8 +288,6 @@ function draggableLeave(event, rowID) {
     if (currentDragHighlightID === event.target.id) {
         getElement('taskrow_' + rowID).classList.remove('row_draggable');
         currentDragHighlightID = '';
-        // console.log('leave ' + currentRowID);
-        currentRowID = '';
     }
 }
 
