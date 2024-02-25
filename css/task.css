@@ -4,6 +4,7 @@
     --task_title_fontsize: 60px;
     --task_linegap: 24px;
     --task_assignedto_badge: 42px;
+    --bigtask_padding: 48px 40px 48px 40px;
 }
 
 @media (max-width: 630px) {
@@ -13,6 +14,7 @@
         --task_title_fontsize: 32px;
         --task_linegap: 16px;
         --task_assignedto_badge: 38px;
+        --bigtask_padding: 32px 24px 32px 24px;
     }
 }
 
@@ -42,7 +44,7 @@
     background-color: white;
     box-shadow: 0px 0px 4px 0px #00000029;
     border-radius: 30px;
-    padding: 48px 40px 48px 40px;
+    padding: var(--bigtask_padding);
     transition: transform 125ms ease-in-out;
     transform: translateX(130vw);
 }

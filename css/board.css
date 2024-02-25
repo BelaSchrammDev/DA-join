@@ -285,6 +285,16 @@ div[tasksearchfield]:has(>input:focus) {
         min-width: 280px;
         max-width: 1000px;
     }
+
+    .edittask_action button[type=reset] {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .addtask_overlay {
+        margin-bottom: 80px;
+    }
 }
 
 @media (max-width: 600px) {
