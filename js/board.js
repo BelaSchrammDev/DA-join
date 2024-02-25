@@ -57,6 +57,7 @@ function closeOverlay(event = null) {
         current_flyingwindow_id = '';
         setTimeout(() => { setStyle('board_overlay', 'z-index', '-1'); }, 200);
         hideEditTaskMode();
+        current_taskID = '';
     }
 }
 
@@ -170,7 +171,6 @@ function showEditTaskMode(taskID) {
 
 
 function hideEditTaskMode() {
-    current_taskID = '';
     setStyle('task_big_showing', 'display', 'flex');
     setStyle('edittask_form', 'display', 'none');
 }

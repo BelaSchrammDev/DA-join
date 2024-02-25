@@ -247,10 +247,12 @@ div[tasksearchfield]:has(>input:focus) {
 /* ADDTASK OVERLAY */
 
 .addtask_overlay {
+    display: -webkit-box;
     position: relative;
     overflow-y: auto;
     min-width: 1100px;
     max-height: 90dvh;
+    min-height: 90dvh;
     position: fixed;
     padding: 60px;
     border-radius: 30px;

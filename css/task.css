@@ -53,6 +53,14 @@
     }
 }
 
+.task_scrolldiv {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+    overflow-x: hidden;
+}
+
 .task_big_inner {
     display: flex;
     flex-direction: column;
@@ -63,14 +71,6 @@
     font-weight: 400;
     color: #2a3647;
     width: 100%;
-}
-
-.task_scrolldiv {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex-grow: 1;
-    overflow-x: hidden;
 }
 
 .task_big_headline {

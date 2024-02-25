@@ -118,9 +118,12 @@
 
 .addtask_form {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
+    height: 100%;
+    flex-grow: 1;
     gap: 48px;
+    overflow-x: hidden;
 }
 
 .addtask_edit {
@@ -129,7 +132,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: 32px;
-    width: 45%;
+    width: 50%;
 }
 
 .addtask_property {
@@ -698,8 +701,17 @@ form[addtask]:invalid button.btnAddOk {
     }
 
     .addtask_form {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex-grow: 1;
+        overflow-x: hidden;
     }
+
+    div.separatorline {
+        display: none;
+    }
+
 }
 
 @media (max-width: 630px) {
@@ -713,10 +725,6 @@ form[addtask]:invalid button.btnAddOk {
         --editfields_padding_y: 10px;
         --editfields_badgesize: 30px;
         --editfields_title_fontsize: 42px;
-    }
-
-    .addtask_form {
-        display: block;
     }
 
     .addtask_maindiv {
