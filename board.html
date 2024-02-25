@@ -22,7 +22,7 @@
     <title>Join - Board</title>
 </head>
 
-<body onload="initBoardSite()">
+<body onload="initBoardSite()" class="custom-scrollbar">
     <div onclick="closeOverlay(event)" id="board_overlay" class="board_overlay">
         <div id="requestdiv" class="requestdiv"></div>
         <div onclick="event.stopPropagation();" id="task_big" class="task_big">
@@ -30,93 +30,98 @@
             <div id="task_big_showing" class="task_big_inner"></div>
             <!-- task big end -->
             <!-- task edit begin -->
-            <div id="task_big_edit" class="task_big_inner custom-scrollbar" style="display: none;">
+            <!-- <div id="task_big_edit" class="task_big_inner" style="display: none;"> -->
+            <form class="task_big_inner" edittask id="edittask_form" action="javascript:;"
+                onsubmit="submitEditTaskForm()" style="display: none;">
                 <div class="edittask_headline">
+                    <span>Edit Task</span>
                     <img onclick="hideEditTaskMode()" class="round_button" src="./img/icons/board/close.svg">
                 </div>
-                <form class="task_big_inner" edittask id="edittask_form" action="javascript:;"
-                    onsubmit="submitEditTaskForm()">
-                    <div class="task_big_inner">
-                        <input style="display: none;" id="edittask_category" name="task_category" type="text">
-                        <div class="addtask_property required">
-                            <span>Title</span>
-                            <input id="edittask_title" name="task_title" type="text" placeholder="Enter a title"
-                                onkeydown="getToNextInputOnKeyEnter(event,'edittask_decription')" required>
-                        </div>
-                        <div class="addtask_property">
-                            <span>Description</span>
-                            <textarea class="custom-scrollbar" name="task_description" id="edittask_decription"
-                                cols="30" rows="10" placeholder="Enter a Description"
-                                onkeydown="if(event.key == 'enter') alert('enter');">
+                <div class="task_scrolldiv custom-scrollbar">
+                    <input style="display: none;" id="edittask_category" name="task_category" type="text">
+                    <div class="addtask_property required">
+                        <span>Title</span>
+                        <input id="edittask_title" name="task_title" type="text" placeholder="Enter a title"
+                            onkeydown="getToNextInputOnKeyEnter(event,'edittask_decription')" required>
+                    </div>
+                    <div class="addtask_property">
+                        <span>Description</span>
+                        <textarea class="custom-scrollbar" name="task_description" id="edittask_decription" cols="30"
+                            rows="10" placeholder="Enter a Description"
+                            onkeydown="if(event.key == 'enter') alert('enter');">
                             </textarea>
+                    </div>
+                    <div class="addtask_property required">
+                        <span>Due Date</span>
+                        <input onkeydown="getToNextInputOnKeyEnter(event,'edittask_subtask_input')"
+                            id="edittask_duedate" name="task_date" type="date" placeholder="dd/mm/yyyy" required>
+                    </div>
+                    <div class="addtask_property">
+                        <span>Prio</span>
+                        <div class="addtask_priority">
+                            <input name="task_priority" type="radio" class="taskprio_urgent" id="edittaskprio_urgent"
+                                value="urgent">
+                            <label for="edittaskprio_urgent">
+                                <span>Urgent</span>
+                                <img src="../img/icons/add-task/Prio-urgent.svg">
+                            </label>
+                            <input name="task_priority" type="radio" class="taskprio_medium" id="edittaskprio_medium"
+                                checked="checked" value="medium">
+                            <label for="edittaskprio_medium">
+                                <span>Medium</span>
+                                <img src="../img/icons/add-task/Prio-medium.svg">
+                            </label>
+                            <input name="task_priority" type="radio" class="taskprio_low" id="edittaskprio_low"
+                                value="low">
+                            <label for="edittaskprio_low">
+                                <span>Low</span>
+                                <img src="../img/icons/add-task/Prio-low.svg">
+                            </label>
                         </div>
-                        <div class="addtask_property required">
-                            <span>Due Date</span>
-                            <input onkeydown="getToNextInputOnKeyEnter(event,'edittask_subtask_input')"
-                                id="edittask_duedate" name="task_date" type="date" placeholder="dd/mm/yyyy" required>
+                    </div>
+                    <div class="addtask_property">
+                        <span>Assigned to</span>
+                        <div style="position: relative;">
+                            <div nolistclose onclick="openDropDown('edittask_assignet')" id="edittask_assigned"
+                                class="addtask_assigned">
+                                <input tabindex="-1" nolistclose autocomplete="off" id="edittask_assignedinput"
+                                    onkeydown="getToNextInputOnKeyEnter(event)"
+                                    onkeyup="changeAssignedContactsSearchTerm(event, 'edittask_')"
+                                    onfocus="openDropDown('edittask_assignet')" type="text"
+                                    placeholder="Select contacts to assign">
+                                <img id="edittask_assigned_arrow" class="dropdown_arrow"
+                                    onclick="clickDropDown(event,'edittask_assignet')"
+                                    src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
+                            </div>
+                            <div nolistclose id="edittask_assigned_list" class="addtask_assigned_list custom-scrollbar">
+                            </div>
+                            <div id="edittask_assignedcontacts_bar" class="assignedcontacts_bar"></div>
                         </div>
-                        <div class="addtask_property">
-                            <span>Prio</span>
-                            <div class="addtask_priority">
-                                <input name="task_priority" type="radio" class="taskprio_urgent"
-                                    id="edittaskprio_urgent" value="urgent">
-                                <label for="edittaskprio_urgent">
-                                    <span>Urgent</span>
-                                    <img src="../img/icons/add-task/Prio-urgent.svg">
-                                </label>
-                                <input name="task_priority" type="radio" class="taskprio_medium"
-                                    id="edittaskprio_medium" checked="checked" value="medium">
-                                <label for="edittaskprio_medium">
-                                    <span>Medium</span>
-                                    <img src="../img/icons/add-task/Prio-medium.svg">
-                                </label>
-                                <input name="task_priority" type="radio" class="taskprio_low" id="edittaskprio_low"
-                                    value="low">
-                                <label for="edittaskprio_low">
-                                    <span>Low</span>
-                                    <img src="../img/icons/add-task/Prio-low.svg">
-                                </label>
+                    </div>
+                    <div class="addtask_property">
+                        <span>Subtasks</span>
+                        <div addtask_property class="addtask_subtask_div">
+                            <input onkeydown="enterSubtaskInput(event,'edittask_')" id="edittask_subtask_input" subtask
+                                type="text" placeholder="Add new subtask">
+                            <div subtaskadd>
+                                <img onclick="setFocus('edittask_subtask_input')" src="../img/icons/add-task/plus.svg"
+                                    alt="">
+                            </div>
+                            <div subtaskaction>
+                                <img onmousedown="setInputValueAndFocus('edittask_subtask_input')"
+                                    src="../img/icons/add-task/cancel.svg" alt="">
+                                <div></div>
+                                <img onmousedown="createNewSubTask('edittask_')" src="../img/icons/add-task/ok.svg"
+                                    alt="">
                             </div>
                         </div>
-                        <div class="addtask_property">
-                            <span>Assigned to</span>
-                            <div style="position: relative;">
-                                <div nolistclose onclick="openDropDown('edittask_assignet')" id="edittask_assigned"
-                                    class="addtask_assigned">
-                                    <input tabindex="-1" nolistclose autocomplete="off" id="edittask_assignedinput"
-                                        onkeydown="getToNextInputOnKeyEnter(event)"
-                                        onkeyup="changeAssignedContactsSearchTerm(event, 'edittask_')"
-                                        onfocus="openDropDown('edittask_assignet')" type="text"
-                                        placeholder="Select contacts to assign">
-                                    <img id="edittask_assigned_arrow" class="dropdown_arrow"
-                                        onclick="clickDropDown(event,'edittask_assignet')"
-                                        src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
-                                </div>
-                                <div nolistclose id="edittask_assigned_list"
-                                    class="addtask_assigned_list custom-scrollbar">
-                                </div>
-                                <div id="edittask_assignedcontacts_bar" class="assignedcontacts_bar"></div>
-                            </div>
-                        </div>
-                        <div class="addtask_property">
-                            <span>Subtasks</span>
-                            <div addtask_property class="addtask_subtask_div">
-                                <input onkeydown="enterSubtaskInput(event,'edittask_')" id="edittask_subtask_input"
-                                    subtask type="text" placeholder="Add new subtask">
-                                <div subtaskadd>
-                                    <img onclick="setFocus('edittask_subtask_input')"
-                                        src="../img/icons/add-task/plus.svg" alt="">
-                                </div>
-                                <div subtaskaction>
-                                    <img onmousedown="setInputValueAndFocus('edittask_subtask_input')"
-                                        src="../img/icons/add-task/cancel.svg" alt="">
-                                    <div></div>
-                                    <img onmousedown="createNewSubTask('edittask_')" src="../img/icons/add-task/ok.svg"
-                                        alt="">
-                                </div>
-                            </div>
-                            <div id="edittask_subtask_list" class="subtask_list custom-scrollbar"></div>
-                        </div>
+                        <div id="edittask_subtask_list" class="subtask_list"></div>
+                    </div>
+                </div>
+                <div class="edittask_action">
+                    <div class="smallfontsize">
+                        <span>*</span>
+                        <span>This field is required</span>
                     </div>
                     <button class="btnAddOk btnRightAlign">
                         <div>
@@ -124,13 +129,14 @@
                             <img src="./img/icons/board/add.svg" alt="">
                         </div>
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
+            <!-- </div> -->
             <!-- task edit end -->
         </div>
         <!-- addtask begin -->
         <div onclick="event.stopPropagation();" id="addtask_overlay" class="addtask_overlay">
-            <div w3-include-html="./templates/addtask-template.html"></div>
+            <div boardsite w3-include-html="./templates/addtask-template.html"></div>
             <button onclick="closeOverlay(event)">
                 <img src="./img/icons/add-task/cancel.svg">
             </button>

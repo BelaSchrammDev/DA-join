@@ -10,6 +10,7 @@
     body {
         margin-bottom: 100px;
     }
+
     nav {
         width: auto;
         height: auto;
@@ -27,13 +28,15 @@
         bottom: -1px;
         left: 0;
         width: 100vw;
+        height: 80px;
     }
 
     .nav_list_element {
         padding: 0;
         display: flex;
         flex-direction: column;
-        margin-top: 24px;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
     .navbar_logo,
@@ -48,6 +51,12 @@
     }
 
     /********** HEADER **********/
+
+    header {
+        position: sticky;
+        top: 0;
+        height: 80px;
+    }
 
     .header-logo {
         display: block;

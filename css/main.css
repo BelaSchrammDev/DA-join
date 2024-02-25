@@ -73,6 +73,10 @@ body {
 
 /* SCROLLBAR */
 
+.custom-scrollbar {
+    overflow-y: auto;
+}
+
 /* width */
 .custom-scrollbar::-webkit-scrollbar {
     width: 24px;

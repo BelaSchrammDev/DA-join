@@ -18,10 +18,9 @@
                     <div style="position: relative;">
                         <div nolistclose onclick="openDropDown('addtask_assignet')" id="addtask_assigned"
                             class="addtask_assigned">
-                            <input nolistclose autocomplete="off" id="addtask_assignedinput"
+                            <input nolistclose assignedto autocomplete="off" id="addtask_assignedinput"
                                 onkeyup="changeAssignedContactsSearchTerm(event, 'addtask_')"
-                                onfocus="openDropDown('addtask_assignet')" type="text"
-                                placeholder="Select contacts to assign">
+                                onfocus="openDropDown('addtask_assignet')" type="text" placeholder="Choose contacts">
                             <img id="addtask_assigned_arrow" class="dropdown_arrow"
                                 onclick="clickDropDown(event,'addtask_assignet')"
                                 src="../img/icons/add-task/arrow_drop_downaa.svg" alt="">
@@ -82,12 +81,12 @@
                             <img onmousedown="createNewSubTask('addtask_')" src="../img/icons/add-task/ok.svg" alt="">
                         </div>
                     </div>
-                    <div id="addtask_subtask_list" class="subtask_list custom-scrollbar"></div>
+                    <div maxheight id="addtask_subtask_list" class="subtask_list custom-scrollbar"></div>
                 </div>
             </div>
         </div>
         <div class="task_action">
-            <div>
+            <div class="smallfontsize">
                 <span>*</span>
                 <span>This field is required</span>
             </div>

@@ -1,3 +1,7 @@
+:root {
+    --boardsite: true;
+}
+
 .board_main_div {
     display: flex;
     flex-direction: column;

@@ -52,7 +52,7 @@ function showOverlay(windowID) {
  */
 function closeOverlay(event = null) {
     if (current_flyingwindow_id != '') {
-        setStyle(current_flyingwindow_id, 'transform', 'translateX(100vw)');
+        setStyle(current_flyingwindow_id, 'transform', 'translateX(130vw)');
         setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.0)');
         current_flyingwindow_id = '';
         setTimeout(() => { setStyle('board_overlay', 'z-index', '-1'); }, 200);
@@ -164,7 +164,7 @@ function showEditTaskMode(taskID) {
     if (task) {
         fillEditTaskFormular(task);
         setStyle('task_big_showing', 'display', 'none');
-        setStyle('task_big_edit', 'display', 'flex');
+        setStyle('edittask_form', 'display', 'flex');
     }
 }
 
@@ -172,7 +172,7 @@ function showEditTaskMode(taskID) {
 function hideEditTaskMode() {
     current_taskID = '';
     setStyle('task_big_showing', 'display', 'flex');
-    setStyle('task_big_edit', 'display', 'none');
+    setStyle('edittask_form', 'display', 'none');
 }
 
 

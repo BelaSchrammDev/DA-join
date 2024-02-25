@@ -38,7 +38,7 @@ function getSubTaskHTML(subtaskID, subtaskname) {
         <img onclick="deleteSubTask('${subtaskID}')" src="../img/icons/add-task/delete.svg" alt="">
     </div>
     <div editaction>
-        <img onclick="deleteSubTask('${subtaskID}')" src="../img/icons/add-task/delete.svg" alt="">
+        <img onmousedown="deleteSubTask('${subtaskID}')" src="../img/icons/add-task/delete.svg" alt="">
         <div line></div>
         <img onmousedown="changeSubTask('${subtaskID}')" src="../img/icons/add-task/ok.svg" alt="">
     </div>
@@ -59,19 +59,21 @@ function getBigTaskHTML(task) {
             ${getCategoryHTML(task)}
             <img class="round_button" onclick="closeOverlay(event)" src="./img/icons/board/close.svg" alt="">
         </div>
-        <span class="task_big_title">${task.title}</span>
-        <span class="task_big_description">${task.description ? task.description : ''}</span>
-        <div class="task_big_property"><span class="">Due Date:</span><span>${task.date}</span></div>
-        <div class="task_big_property">
-            <span>Priority:</span>
-            <span>${getPascalCaseWord(task.priority)}</span>
-            ${getTaskPriorityHTML(task)}
+            <div class="task_scrolldiv custom-scrollbar">
+            <span class="task_big_title">${task.title}</span>
+            <span class="task_big_description">${task.description ? task.description : ''}</span>
+            <div class="task_big_property"><span class="">Due Date:</span><span>${task.date}</span></div>
+            <div class="task_big_property">
+                <span>Priority:</span>
+                <span>${getPascalCaseWord(task.priority)}</span>
+                ${getTaskPriorityHTML(task)}
+            </div>
+            <div>
+                <span>Assigned To:</span>
+                <div class="task_big_assign_list">${getAssignedToHTML(task)}</div>
+            </div>
+            <div>${getSubTaskBigHTML(task)}</div>
         </div>
-        <div>
-            <span>Assigned To:</span>
-            <div class="task_big_assign_list">${getAssignedToHTML(task)}</div>
-        </div>
-        <div>${getSubTaskBigHTML(task)}</div>
         <div class="task_big_buttons">
             <button onclick="deletetask('${task.id}')"><img src="./img/icons/board/delete-img.png" alt=""></button>
             <div></div>

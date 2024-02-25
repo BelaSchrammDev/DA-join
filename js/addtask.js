@@ -69,7 +69,7 @@ function openAssignedContactsDropDownList(prefix, open) {
     }
     else {
         setAssignedContactsBar(prefix);
-        setPlaceHolder(prefix + 'assignedinput', 'Select contacts to assign');
+        setPlaceHolder(prefix + 'assignedinput', 'Choose contacts');
         setInputValue(prefix + 'assignedinput', '');
     }
     setAttribute(prefix + 'assigned', 'dropdownopen', open);
