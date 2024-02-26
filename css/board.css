@@ -1,5 +1,6 @@
 :root {
-    --boardsite: true;
+    --boardlist_padding: 64px;
+    --task_mobilewidth: 300px;
 }
 
 .board_main_div {
@@ -15,7 +16,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    height: 200.5px;
+    padding: var(--boardlist_padding);
 }
 
 .board_headline {
@@ -23,18 +24,27 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-left: 64px;
-    padding-right: 64px;
-    padding-top: 79.5px;
 }
 
-.board_headline>span {
+.board_headline button[addtask_mobile] {
+    display: none;
+}
+
+.board_headline>div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-grow: 1;
-    font-size: 61px;
+
+}
+
+.board_headline>div>span {
+    flex-grow: 1;
+    font-size: var(--editfields_title_fontsize);
     font-weight: 700;
 }
 
-.board_headline>div {
+div[tasksearchfield] {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,6 +59,27 @@
 
 div[tasksearchfield]:has(>input:focus) {
     border: 1px solid #29ABE2;
+}
+
+div[tasksearchfield]>input {
+    outline: none;
+    border: unset;
+    height: 32px;
+    width: 100%;
+    flex-grow: 1;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+div[tasksearchfield]>input::placeholder {
+    color: #D1D1D1;
+}
+
+div[tasksearchfield]>img {
+    width: 32px;
+    height: 32px;
+    padding-left: 16px;
+    border-left: 1px solid #D1D1D1;
 }
 
 /* DRAGGABLE */
@@ -80,23 +111,6 @@ div[tasksearchfield]:has(>input:focus) {
     transform: translateX(120vw);
 }
 
-.board_headline>div>input {
-    outline: none;
-    border: unset;
-    height: 32px;
-    width: 100%;
-    flex-grow: 1;
-    font-size: 20px;
-    font-weight: 400;
-}
-
-.board_headline>div>img {
-    width: 32px;
-    height: 32px;
-    padding-left: 16px;
-    border-left: 1px solid #D1D1D1;
-}
-
 .board_task_rows {
     display: flex;
     justify-content: flex-start;
@@ -105,8 +119,8 @@ div[tasksearchfield]:has(>input:focus) {
     font-size: 20px;
     font-weight: 700;
     color: #42526E;
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: var(--boardlist_padding);
+    padding-right: var(--boardlist_padding);
     width: 100%;
 }
 
@@ -281,27 +295,127 @@ div[tasksearchfield]:has(>input:focus) {
 }
 
 @media (max-width: 1200px) {
+    :root {
+        --boardlist_padding: 32px;
+    }
+
     .addtask_overlay {
         min-width: 280px;
-        max-width: 1000px;
+        max-width: 500px;
+        width: 90vw;
     }
 
     .edittask_action button[type=reset] {
         display: none;
     }
+
+    .board_task_rows {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .board_task_head {
+        max-width: var(--task_mobilewidth);
+    }
+
+    .board_task_list {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        width: calc(98vw - calc(var(--boardlist_padding) * 2) - 232px);
+    }
+
+    .board_task_list>div {
+        min-width: var(--task_mobilewidth);
+        max-width: var(--task_mobilewidth);
+    }
+
+    /* Add x scrollbar to tasklist */
+    .board_task_list::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    .board_task_list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    /* Handle */
+    .board_task_list::-webkit-scrollbar-thumb {
+        background: #A8A8A8;
+        border-radius: 16px;
+        border: 3px solid white;
+    }
+
+    /* Handle on hover */
+    .board_task_list::-webkit-scrollbar-thumb:hover {
+        background: #868686;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .board_headline {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+    .board_headline button[addtask_mobile] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .board_headline button[addtask_desktop] {
+        display: none;
+    }
+
+    div[tasksearchfield] {
+        width: unset;
+        padding: 0 16px;
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 800px) {
     .addtask_overlay {
-        margin-bottom: 80px;
+        margin-bottom: 85px;
+        max-height: calc(100dvh - 120px);
+        min-height: calc(100dvh - 120px);
+    }
+
+    .board_task_list {
+        width: calc(98vw - calc(var(--boardlist_padding) * 2));
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
+    :root {
+        --task_mobilewidth: 250px;
+    }
+
+    .board_headline button[addtask_mobile] {
+        min-height: 42px;
+        width: 42px;
+        height: 42px;
+    }
+
     .addtask_overlay {
         padding: 16px;
+        margin-bottom: 0;
         border-radius: 10px;
+        max-width: 1000px;
+        min-width: 0;
+        width: unset;
+        max-height: 2000px;
+        min-height: 0;
+        left: 5px;
+        right: 5px;
+        top: 5px;
+        bottom: 85px;
     }
+
 
     .addtask_overlay>button {
         right: 10px;

@@ -259,12 +259,17 @@
         <div class="board_main_div">
             <div class="board_header">
                 <div class="board_headline">
-                    <span>Board</span>
+                    <div>
+                        <span>Board</span>
+                        <button addtask_mobile onclick="showAddTaskOverlay('todo')" class="btnAddOk">
+                            <img src="./img/icons/board/add.svg" alt="">
+                        </button>
+                    </div>
                     <div tasksearchfield>
                         <input type="text" placeholder="Find Task">
                         <img src="./img/icons/board/search.svg" alt="">
                     </div>
-                    <button onclick="showAddTaskOverlay('todo')" class="btnAddOk">
+                    <button addtask_desktop onclick="showAddTaskOverlay('todo')" class="btnAddOk">
                         <div>
                             <span>Add task</span>
                             <img src="./img/icons/board/add.svg" alt="">

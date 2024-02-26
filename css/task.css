@@ -7,17 +7,6 @@
     --bigtask_padding: 48px 40px 48px 40px;
 }
 
-@media (max-width: 630px) {
-    :root {
-        --task_big_width: 95vw;
-        --task_fontsize: 16px;
-        --task_title_fontsize: 32px;
-        --task_linegap: 16px;
-        --task_assignedto_badge: 38px;
-        --bigtask_padding: 32px 24px 32px 24px;
-    }
-}
-
 .board_overlay {
     z-index: -1;
     position: fixed;
@@ -47,12 +36,6 @@
     padding: var(--bigtask_padding);
     transition: transform 125ms ease-in-out;
     transform: translateX(130vw);
-}
-
-@media (max-width: 800px) {
-    .task_big {
-        margin-bottom: 80px;
-    }
 }
 
 .task_scrolldiv {
@@ -242,4 +225,35 @@
 
 .edittask_action>div>span:first-child {
     color: #ff8190;
+}
+
+@media (max-width: 800px) {
+    .task_big {
+        margin-bottom: 80px;
+    }
+}
+
+@media (max-width: 650px) {
+    :root {
+        --task_big_width: 95vw;
+    }
+
+    .task_big {
+        max-width: 1000px;
+        min-width: 0;
+        left: 5px;
+        right: 5px;
+        top: 5px;
+        bottom: 85px;
+    }
+}
+
+@media (max-width: 500px) {
+    :root {
+        --task_fontsize: 16px;
+        --task_title_fontsize: 32px;
+        --task_linegap: 16px;
+        --task_assignedto_badge: 38px;
+        --bigtask_padding: 32px 24px 32px 24px;
+    }
 }

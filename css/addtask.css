@@ -714,7 +714,7 @@ form[addtask]:invalid button.btnAddOk {
 
 }
 
-@media (max-width: 630px) {
+@media (max-width: 500px) {
     :root {
         --editfields_minwidth: 200px;
         --editfields_maxwidth: 1000px;
