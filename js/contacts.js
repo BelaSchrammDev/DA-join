@@ -41,7 +41,7 @@ function showAddToContactWindow() {
                         <input id="phoneCreate" placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
-                        <button type="button" class="cancel-button">
+                        <button onclick="closeAddEditWindow()" type="button" class="cancel-button">
                             <span>Cancel</span>
                             <img src="./img/icons/contacts/cancel.svg" alt="cancel">
                         </button>

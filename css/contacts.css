@@ -69,6 +69,12 @@ a:visited {
     margin-bottom: 32px;
 }
 
+.headline-container>div {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .headline-contact {
     font-size: 61px;
     font-weight: 700;
@@ -350,7 +356,7 @@ a:visited {
 }
 
 .add-edit-contact {
-    width: 1212px;
+    max-width: 1212px;
     height: 594px;
     position: fixed;
     top: 0;
@@ -586,4 +592,108 @@ a:visited {
 
 .hide {
     display: none;
+}
+
+@media only screen and (max-width: 1400px) {
+    .headline-container {
+        flex-direction: column;
+        gap: 8px;
+        height: unset;
+        align-items: start;
+    }
+
+    .headline-container>div {
+        flex-direction: column-reverse;
+        align-items: start;
+        gap: 12px;
+    }
+
+    .headline-seperator {
+        width: 90px;
+        height: 3px;
+        border-radius: 6px;
+    }
+
+    .show-contact-large-container {
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    .add-edit-contact-middle {
+        padding: 204px 0 0 20px;
+    }
+
+    .add-edit-contact-right {
+        padding-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 1080px) {
+    .contact-container {
+        display: none;
+    }
+
+    .edit-delete-contact {
+        display: none;
+    }
+
+    .show-contact-container {
+        margin-top: 48px;
+        margin-left: 16px;
+    }
+
+    .headline-contact {
+        font-size: 47px;
+    }
+
+    .subheadline-contact {
+        font-size: 20px;
+    }
+
+    .show-contact-large-container {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 21px;
+    }
+
+    .contact-name-large {
+        font-size: 36px;
+        margin: 0;
+    }
+
+    .contact-bg-large {
+        width: 80px;
+        height: 80px;
+    }
+
+    .contact-short-large {
+        font-size: 27px;
+    }
+
+    .info-headline {
+        margin-bottom: 21px;
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .input-class {
+        width: 300px;
+    }
+
+    .button-container {
+        width: 300px;
+    }
+
+    .create-button span {
+        display: none;
+        flex-direction: row-reverse;
+    }
+
+    .create-button::after {
+        content: 'Create';
+        display: block;
+    }
 }
