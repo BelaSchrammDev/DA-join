@@ -94,6 +94,7 @@ function renderTasks() {
         const tasksHTML = `<div id="taskcard_${task.id}">${getTaskHTML(task)}</div>`;
         const tasklist = document.getElementById('tasklist_' + task.status);
         if (tasklist) tasklist.innerHTML += tasksHTML;
+        addDropDownList('taskmove_' + task.id, openMoveMenu, 'taskmove_' + task.id);
     }
     renderEmptyRowMessage();
 }

@@ -124,19 +124,15 @@ function getTaskHTML(task) {
  */
 function getMoveTaskMenu(task) {
     let menuPoints = '';
-    const dropdownID = 'taskmove_' + task.id;
     rowIdName.forEach((row) => {
         if (task.status != row.id) menuPoints += `
             <span onclick="setNewStatus('${task.id}','${row.id}'); event.stopPropagation();">${row.name}</span>
             `;
     });
-    addDropDownList(dropdownID, openMoveMenu, dropdownID);
     return `
     <div class="taskmove" title="Move task...">
-        <img onclick="clickDropDown(event,'${dropdownID}')" src="./img/icons/general/white/board-white.svg">
-        <div dropdownopen=false class="taskmove_menu" id="${dropdownID}">
-            ${menuPoints}
-        </div>
+        <img onclick="clickDropDown(event,'taskmove_${task.id}')" src="./img/icons/general/white/board-white.svg">
+        <div dropdownopen=false class="taskmove_menu" id="taskmove_${task.id}">${menuPoints}</div>
     </div>
     `;
 }
