@@ -99,7 +99,7 @@ function getTaskHTML(task) {
         draggable="true">
         <div class="minitask_header">
             ${getCategoryHTML(task)}
-            <img src="./img/icons/general/white/board-white.svg">
+            ${getMoveTaskMenu(task)}
         </div>
         <div class="board_tast_description">
             <span>${task.title}</span>
@@ -113,6 +113,25 @@ function getTaskHTML(task) {
             ${getTaskPriorityHTML(task)}
         </div>
     </div>`;
+}
+
+function getMoveTaskMenu(task) {
+    let menuPoints = '';
+    const dropdownID = 'taskmove_' + task.id;
+    rowIdName.forEach((row) => {
+        if (task.status != row.id) menuPoints += `
+            <span onclick="setNewStatus('${task.id}','${row.id}'); event.stopPropagation();">${row.name}</span>
+            `;
+    });
+    addDropDownList(dropdownID, openMoveMenu, dropdownID);
+    return `
+    <div class="taskmove">
+        <img onclick="clickDropDown(event,'${dropdownID}')" src="./img/icons/general/white/board-white.svg">
+        <div class="taskmove_menu" id="${dropdownID}">
+            ${menuPoints}
+        </div>
+    </div>
+    `;
 }
 
 

@@ -85,6 +85,36 @@
     background-color: #ebebeb;
 }
 
+.taskmove{
+    position: relative;
+}
+
+.taskmove_menu{
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    border-radius: 10px;
+    color: white;
+    background-color: #2a3647;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: var(--task_fontsize);
+}
+
+.taskmove_menu span {
+    pointer-events: all;
+    white-space: nowrap;
+    width: fit-content;
+    cursor: pointer;
+    width: 100%;
+}
+
+.taskmove_menu span:hover {
+    background-color: #5b6e88;
+}
+
 .task_big_title {
     font-size: var(--task_title_fontsize);
     font-weight: 700;

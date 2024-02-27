@@ -12,8 +12,16 @@ function initDropDowns() {
 
 
 function addDropDownList(listID, openFunc, formID) {
+    if (dropdownList.find(l => l.id == listID)) return;
     let newDropDown = { id: listID, openFunction: openFunc, formid: formID, open: false };
     dropdownList.push(newDropDown);
+}
+
+
+function removeDropDownList(listID) {
+    const dropdownIndex = dropdownList.findIndex(l => l.id == listID);
+    if (dropdownIndex == -1) return;
+    dropdownList.splice(dropdownIndex, 1);
 }
 
 

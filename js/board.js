@@ -262,6 +262,7 @@ function setNewStatus(taskID, newStatus) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task && newStatus != '') task.status = newStatus;
     renderTasks();
+    storeSessionTasksToRemoteStorage();
 }
 
 
@@ -274,7 +275,6 @@ function draggableEnd(event, taskID) {
     event.preventDefault();
     getElement('minitask_' + taskID).classList.remove('task_draggable');
     setNewStatus(taskID, getRowIDFromMousePosition(event.clientX, event.clientY));
-    storeSessionTasksToRemoteStorage();
 }
 
 function getRowIDFromMousePosition(posX, posY) {
@@ -301,5 +301,11 @@ function draggableLeave(event, rowID) {
         getElement('taskrow_' + rowID).classList.remove('row_draggable');
         currentDragHighlightID = '';
     }
+}
+
+
+function openMoveMenu(menuID, open) {
+    const menu = document.getElementById(menuID);
+    if (menu) setStyle(menu, 'display', open ? 'flex' : 'none');
 }
 
