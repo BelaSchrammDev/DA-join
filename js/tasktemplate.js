@@ -91,8 +91,16 @@ function getBigTaskHTML(task) {
  */
 function getTaskHTML(task) {
     return `
-    <div id="minitask_${task.id}" ondragend="draggableEnd(event, '${task.id}')" ondragstart="draggableBegin(event,'${task.id}')" onclick="showBigTaskView('${task.id}')" class="board_task" draggable="true">
-        ${getCategoryHTML(task)}
+    <div id="minitask_${task.id}"
+        ondragend="draggableEnd(event, '${task.id}')"
+        ondragstart="draggableBegin(event,'${task.id}')"
+        onclick="showBigTaskView('${task.id}')"
+        class="board_task"
+        draggable="true">
+        <div class="minitask_header">
+            ${getCategoryHTML(task)}
+            <img src="./img/icons/general/white/board-white.svg">
+        </div>
         <div class="board_tast_description">
             <span>${task.title}</span>
             <span>${task.description}</span>

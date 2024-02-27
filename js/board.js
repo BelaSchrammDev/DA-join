@@ -29,6 +29,18 @@ async function initBoardSite() {
     renderAssignedContacts('edittask_assigned_list', 'edittask_');
     setAttribute('edittask_duedate', 'min', new Date().toISOString().split('T')[0]);
     actionAfterAddTask = afterAddTask;
+    addMediaQueryForDragToggling();
+}
+
+
+function addMediaQueryForDragToggling() {
+    let query = window.matchMedia("(max-width: 1200px)");
+    query.onchange = (query) => {
+        const taskdivs = document.querySelectorAll('div.board_task');
+        const value = !query.matches;
+        taskdivs.forEach(div => div.draggable = value);
+    }
+    query.onchange(query);
 }
 
 

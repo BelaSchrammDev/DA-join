@@ -190,13 +190,29 @@ div[tasksearchfield]>img {
     padding: 16px;
 }
 
-.board_task>span:first-child {
+.minitask_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.minitask_header span {
     font-size: 16px;
     font-weight: 400;
     color: white;
     height: 27px;
     border-radius: 8px;
     padding: 4px 16px 4px 16px;
+}
+
+.minitask_header img {
+    background-color: #2a3647;
+    padding: 5px;
+    border-radius: 5px;
+    height: 38px;
+    width: 38px;
+    display: none;
 }
 
 .board_tast_description {
@@ -320,6 +336,12 @@ div[tasksearchfield]>img {
     .board_task_rows {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .minitask_header img {
+        display: block;
+        cursor: pointer;
+        pointer-events: all;
     }
 
     .board_task_row {
