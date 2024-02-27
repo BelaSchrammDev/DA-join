@@ -1,5 +1,6 @@
 :root {
     --boardlist_padding: 64px;
+    --tasklist_padding: 0;
     --task_mobilewidth: 300px;
 }
 
@@ -24,6 +25,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-left: var(--tasklist_padding);
+    padding-right: var(--tasklist_padding);
 }
 
 .board_headline button[addtask_mobile] {
@@ -146,6 +149,7 @@ div[tasksearchfield]>img {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .board_task_head {
@@ -155,6 +159,8 @@ div[tasksearchfield]>img {
     width: 100%;
     height: 24px;
     margin-bottom: 15.5px;
+    padding-left: var(--tasklist_padding);
+    padding-right: var(--tasklist_padding);
 }
 
 .board_task_head>img:hover {
@@ -185,7 +191,14 @@ div[tasksearchfield]>img {
     padding: 16px;
 }
 
-.board_task>span:first-child {
+.minitask_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.minitask_header span {
     font-size: 16px;
     font-weight: 400;
     color: white;
@@ -296,7 +309,10 @@ div[tasksearchfield]>img {
 
 @media (max-width: 1200px) {
     :root {
+        --sidebar_width: 232px;
         --boardlist_padding: 32px;
+        --tasklist_padding: 10px;
+        --boardtasklist_width: calc(100vw - calc(calc(var(--boardlist_padding) + var(--tasklist_padding)) * 2));
     }
 
     .addtask_overlay {
@@ -314,18 +330,34 @@ div[tasksearchfield]>img {
         align-items: stretch;
     }
 
-    .board_task_head {
-        max-width: var(--task_mobilewidth);
+    .board_task_row {
+        padding: 0;
+    }
+
+    .board_task {
+        margin: 0;
     }
 
     .board_task_list {
         display: flex;
         gap: 20px;
-        overflow-x: auto;
-        width: calc(98vw - calc(var(--boardlist_padding) * 2) - 232px);
+        overflow-x: scroll;
+        width: calc(var(--boardtasklist_width) - var(--sidebar_width));
+        padding: var(--tasklist_padding);
     }
 
-    .board_task_list>div {
+    .board_task_head {
+        margin-bottom: 0;
+        padding-left: var(--tasklist_padding);
+        padding-right: var(--tasklist_padding);
+    }
+
+    .board_headline {
+        padding-left: var(--tasklist_padding);
+        padding-right: var(--tasklist_padding);
+    }
+
+    .board_task {
         min-width: var(--task_mobilewidth);
         max-width: var(--task_mobilewidth);
     }
@@ -379,20 +411,22 @@ div[tasksearchfield]>img {
 }
 
 @media (max-width: 800px) {
+    :root {
+        --sidebar_width: 0;
+    }
+
     .addtask_overlay {
         margin-bottom: 85px;
         max-height: calc(100dvh - 120px);
         min-height: calc(100dvh - 120px);
     }
 
-    .board_task_list {
-        width: calc(98vw - calc(var(--boardlist_padding) * 2));
-    }
 }
 
 @media (max-width: 500px) {
     :root {
         --task_mobilewidth: 250px;
+        --boardlist_padding: 6px;
     }
 
     .board_headline button[addtask_mobile] {
@@ -415,7 +449,6 @@ div[tasksearchfield]>img {
         top: 5px;
         bottom: 85px;
     }
-
 
     .addtask_overlay>button {
         right: 10px;

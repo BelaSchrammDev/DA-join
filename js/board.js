@@ -22,13 +22,25 @@ function testrequest() {
  */
 async function initBoardSite() {
     await initJoin();
-    initDropDowns();
     renderRows();
     renderTasks();
     renderAddtaskFields();
     renderAssignedContacts('edittask_assigned_list', 'edittask_');
+    addDropDownList('edittask_assignet', openAssignedContactsDropDownList, 'edittask_');
     setAttribute('edittask_duedate', 'min', new Date().toISOString().split('T')[0]);
     actionAfterAddTask = afterAddTask;
+    addMediaQueryForDragToggling();
+}
+
+
+function addMediaQueryForDragToggling() {
+    let query = window.matchMedia("(max-width: 1200px)");
+    query.onchange = (query) => {
+        const taskdivs = document.querySelectorAll('div.board_task');
+        const value = !query.matches;
+        taskdivs.forEach(div => div.draggable = value);
+    }
+    query.onchange(query);
 }
 
 
@@ -75,12 +87,14 @@ function renderRows() {
  * render all task in the related rows
  */
 function renderTasks() {
+    resetAllDropDowns();
     clearRows();
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
         const tasksHTML = `<div id="taskcard_${task.id}">${getTaskHTML(task)}</div>`;
         const tasklist = document.getElementById('tasklist_' + task.status);
         if (tasklist) tasklist.innerHTML += tasksHTML;
+        addDropDownList('taskmove_' + task.id, openMoveMenu, 'taskmove_' + task.id);
     }
     renderEmptyRowMessage();
 }
@@ -250,6 +264,7 @@ function setNewStatus(taskID, newStatus) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task && newStatus != '') task.status = newStatus;
     renderTasks();
+    storeSessionTasksToRemoteStorage();
 }
 
 
@@ -262,7 +277,6 @@ function draggableEnd(event, taskID) {
     event.preventDefault();
     getElement('minitask_' + taskID).classList.remove('task_draggable');
     setNewStatus(taskID, getRowIDFromMousePosition(event.clientX, event.clientY));
-    storeSessionTasksToRemoteStorage();
 }
 
 function getRowIDFromMousePosition(posX, posY) {
@@ -289,5 +303,11 @@ function draggableLeave(event, rowID) {
         getElement('taskrow_' + rowID).classList.remove('row_draggable');
         currentDragHighlightID = '';
     }
+}
+
+
+function openMoveMenu(menuID, open) {
+    const menu = document.getElementById(menuID);
+    if (menu) menu.setAttribute('dropdownopen', open);
 }
 

@@ -91,8 +91,16 @@ function getBigTaskHTML(task) {
  */
 function getTaskHTML(task) {
     return `
-    <div id="minitask_${task.id}" ondragend="draggableEnd(event, '${task.id}')" ondragstart="draggableBegin(event,'${task.id}')" onclick="showBigTaskView('${task.id}')" class="board_task" draggable="true">
-        ${getCategoryHTML(task)}
+    <div id="minitask_${task.id}"
+        ondragend="draggableEnd(event, '${task.id}')"
+        ondragstart="draggableBegin(event,'${task.id}')"
+        onclick="showBigTaskView('${task.id}')"
+        class="board_task"
+        draggable="true">
+        <div class="minitask_header">
+            ${getCategoryHTML(task)}
+            ${getMoveTaskMenu(task)}
+        </div>
         <div class="board_tast_description">
             <span>${task.title}</span>
             <span>${task.description}</span>
@@ -105,6 +113,28 @@ function getTaskHTML(task) {
             ${getTaskPriorityHTML(task)}
         </div>
     </div>`;
+}
+
+
+/**
+ * get the movetask menu
+ * 
+ * @param {Object} task 
+ * @returns {string}
+ */
+function getMoveTaskMenu(task) {
+    let menuPoints = '';
+    rowIdName.forEach((row) => {
+        if (task.status != row.id) menuPoints += `
+            <span onclick="setNewStatus('${task.id}','${row.id}'); event.stopPropagation();">${row.name}</span>
+            `;
+    });
+    return `
+    <div class="taskmove" title="Move task...">
+        <img onclick="clickDropDown(event,'taskmove_${task.id}')" src="./img/icons/general/white/board-white.svg">
+        <div dropdownopen=false class="taskmove_menu" id="taskmove_${task.id}">${menuPoints}</div>
+    </div>
+    `;
 }
 
 
@@ -237,6 +267,12 @@ function getTaskAssignedContactsHTML(task) {
 }
 
 
+/**
+ * get the HTML string for the row header of the tasklist
+ * 
+ * @param {Object} rowObj 
+ * @returns {string}
+ */
 function getTaskRowHTML(rowObj) {
     return `
         <div id="taskrow_${rowObj.id}" class="board_task_row" ondragenter="draggableEnter(event,'${rowObj.id}')" ondragleave="draggableLeave(event,'${rowObj.id}')">

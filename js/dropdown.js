@@ -4,16 +4,23 @@ const clickFunction = function (event) { clickWhenDropDownOpen(event); };
 const closeEventElements = ['body', 'addtask_template', 'task_big_edit', 'addtask_overlay', 'task_big'];
 
 
-function initDropDowns() {
-    addDropDownList('addtask_assignet', openAssignedContactsDropDownList, 'addtask_');
-    addDropDownList('edittask_assignet', openAssignedContactsDropDownList, 'edittask_');
-    addDropDownList('addtask_category', openTaskCategoryDropDownList, 'addtask_');
+function addDropDownList(listID, openFunc, formID) {
+    if (dropdownList.find(l => l.id == listID)) return;
+    let newDropDown = { id: listID, openFunction: openFunc, formid: formID, open: false };
+    dropdownList.push(newDropDown);
 }
 
 
-function addDropDownList(listID, openFunc, formID) {
-    let newDropDown = { id: listID, openFunction: openFunc, formid: formID, open: false };
-    dropdownList.push(newDropDown);
+function resetAllDropDowns() {
+    closeDropDown();
+    dropdownList.forEach(l => l.open == false);
+}
+
+
+function removeDropDownList(listID) {
+    const dropdownIndex = dropdownList.findIndex(l => l.id == listID);
+    if (dropdownIndex == -1) return;
+    dropdownList.splice(dropdownIndex, 1);
 }
 
 
