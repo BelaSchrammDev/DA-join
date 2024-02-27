@@ -239,6 +239,9 @@
     }
 
     .task_big {
+        margin-bottom: 0;
+        min-height: 0;
+        max-height: 2000px;
         max-width: 1000px;
         min-width: 0;
         left: 5px;

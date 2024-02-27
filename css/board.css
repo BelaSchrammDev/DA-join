@@ -362,16 +362,16 @@ div[tasksearchfield]>img {
 
     .board_task_head {
         margin-bottom: 0;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: var(--tasklist_padding);
+        padding-right: var(--tasklist_padding);
     }
 
     .board_headline {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: var(--tasklist_padding);
+        padding-right: var(--tasklist_padding);
     }
 
-    .board_task_list>div {
+    .board_task {
         min-width: var(--task_mobilewidth);
         max-width: var(--task_mobilewidth);
     }
