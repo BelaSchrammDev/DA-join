@@ -635,6 +635,8 @@ a:visited {
     .contact-container {
         flex: 1;
         padding: 24px 38px;
+        z-index: 0;
+        height: unset;
     }
 
     .main-contacts-container {
