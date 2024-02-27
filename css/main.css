@@ -63,10 +63,6 @@
     font-family: 'Inter';
 }
 
-html {
-    overflow-x: hidden;
-}
-
 body {
     margin: 0;
     min-height: 100vh;
@@ -143,12 +139,13 @@ body {
 /********** SIDEBAR **********/
 
 nav {
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
     width: 232px;
-    height: 100%;
+    height: 100dvh;
     margin: 0;
     position: sticky;
     top: 0;
