@@ -22,11 +22,11 @@ function testrequest() {
  */
 async function initBoardSite() {
     await initJoin();
-    initDropDowns();
     renderRows();
     renderTasks();
     renderAddtaskFields();
     renderAssignedContacts('edittask_assigned_list', 'edittask_');
+    addDropDownList('edittask_assignet', openAssignedContactsDropDownList, 'edittask_');
     setAttribute('edittask_duedate', 'min', new Date().toISOString().split('T')[0]);
     actionAfterAddTask = afterAddTask;
     addMediaQueryForDragToggling();
@@ -87,6 +87,7 @@ function renderRows() {
  * render all task in the related rows
  */
 function renderTasks() {
+    resetAllDropDowns();
     clearRows();
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
@@ -306,6 +307,6 @@ function draggableLeave(event, rowID) {
 
 function openMoveMenu(menuID, open) {
     const menu = document.getElementById(menuID);
-    if (menu) setStyle(menu, 'display', open ? 'flex' : 'none');
+    if (menu) menu.setAttribute('dropdownopen', open);
 }
 

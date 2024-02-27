@@ -4,7 +4,6 @@ let presetStatusByAddTask = 'todo';
 
 async function initAddtaskSite() {
     await initJoin();
-    initDropDowns();
     renderAddtaskFields();
     actionAfterAddTask = afterAddTaskTemplateSubmit;
 }
@@ -20,6 +19,8 @@ function renderAddtaskFields() {
     renderCategorys();
     renderAssignedContacts('addtask_assigned_list', 'addtask_');
     setAttribute('addtask_duedate', 'min', new Date().toISOString().split('T')[0]);
+    addDropDownList('addtask_assignet', openAssignedContactsDropDownList, 'addtask_');
+    addDropDownList('addtask_category', openTaskCategoryDropDownList, 'addtask_');
 }
 
 

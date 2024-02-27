@@ -85,26 +85,47 @@
     background-color: #ebebeb;
 }
 
-.taskmove{
+.taskmove {
     position: relative;
 }
 
-.taskmove_menu{
+.taskmove img {
+    background-color: #2a3647;
+    padding: 5px;
+    border-radius: 5px;
+    height: 38px;
+    width: 38px;
+    display: none;
+}
+
+.taskmove_menu {
     padding: 5px;
     position: absolute;
     right: 0;
-    top: 45px;
+    top: 0px;
     border-radius: 10px;
     color: white;
     background-color: #2a3647;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: flex-end;
     font-size: var(--task_fontsize);
+    transform-origin: right;
+    transform: scale(1, 0);
+    transition: transform 125ms ease-in-out,
+        top 100ms ease-in-out;
+}
+
+.taskmove_menu[dropdownopen=true] {
+    transform: scale(1, 1);
+    top: 45px;
+}
+
+.taskmove_menu[dropdownopen=true] span {
+    pointer-events: all;
 }
 
 .taskmove_menu span {
-    pointer-events: all;
     white-space: nowrap;
     width: fit-content;
     cursor: pointer;
@@ -256,6 +277,16 @@
 .edittask_action>div>span:first-child {
     color: #ff8190;
 }
+
+
+@media (max-width: 1200px) {
+    .taskmove img {
+        display: block;
+        cursor: pointer;
+        pointer-events: all;
+    }
+}
+
 
 @media (max-width: 800px) {
     .task_big {

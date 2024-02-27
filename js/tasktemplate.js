@@ -115,6 +115,13 @@ function getTaskHTML(task) {
     </div>`;
 }
 
+
+/**
+ * get the movetask menu
+ * 
+ * @param {Object} task 
+ * @returns {string}
+ */
 function getMoveTaskMenu(task) {
     let menuPoints = '';
     const dropdownID = 'taskmove_' + task.id;
@@ -125,9 +132,9 @@ function getMoveTaskMenu(task) {
     });
     addDropDownList(dropdownID, openMoveMenu, dropdownID);
     return `
-    <div class="taskmove">
+    <div class="taskmove" title="Move task...">
         <img onclick="clickDropDown(event,'${dropdownID}')" src="./img/icons/general/white/board-white.svg">
-        <div class="taskmove_menu" id="${dropdownID}">
+        <div dropdownopen=false class="taskmove_menu" id="${dropdownID}">
             ${menuPoints}
         </div>
     </div>
@@ -264,6 +271,12 @@ function getTaskAssignedContactsHTML(task) {
 }
 
 
+/**
+ * get the HTML string for the row header of the tasklist
+ * 
+ * @param {Object} rowObj 
+ * @returns {string}
+ */
 function getTaskRowHTML(rowObj) {
     return `
         <div id="taskrow_${rowObj.id}" class="board_task_row" ondragenter="draggableEnter(event,'${rowObj.id}')" ondragleave="draggableLeave(event,'${rowObj.id}')">
