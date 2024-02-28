@@ -590,6 +590,20 @@ a:visited {
     height: 60px;
 }
 
+/* MOBILE */
+
+.mobile-back-arrow {
+    position: fixed;
+    top: 128px;
+    right: 16px;
+    transition: transform 80ms ease-in-out;
+}
+
+.mobile-back-arrow:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 .hide {
     display: none;
 }
@@ -663,6 +677,11 @@ a:visited {
         display: none;
         margin-top: 48px;
         margin-left: 16px;
+        position: relative;
+    }
+
+    .user-entry {
+        transform: unset;
     }
 
     .headline-contact {

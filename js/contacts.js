@@ -222,7 +222,42 @@ async function showUserEntry(number) {
         }, 0);
     }
     if (window.innerWidth <= 1080) {
-
+        let contactSection = document.getElementById('contactSection');
+        let showContactSection = document.getElementById('showContactSection');
+        contactSection.style.display = 'none';
+        showContactSection.style.display = 'flex';
+        container.innerHTML = /*html*/`
+            <img onclick="closeMobileUserEntry()" class="mobile-back-arrow" src="../img/icons/contacts/back-arrow.svg" alt="back-arrow">
+            <div id="userEntry" class="user-entry">
+                <div class="show-contact-large-container">
+                    <div class="contact-bg-large"  style="background-color: ${user.color}">
+                        <span class="contact-short-large">${user.initial}</span>
+                    </div>
+                    <div>
+                        <span class="contact-name-large">${user.name}</span>
+                        <div class="edit-delete-contact">
+                            <div onclick="showEditWindow(${number})" class="edit-contact">
+                                <img src="./img/icons/contacts/pen-black.svg" alt="">
+                                <span>Edit</span>
+                            </div>
+                            <div onclick="deleteContactProof(${number})" class="delete-contact">
+                                <img src="./img/icons/contacts/trash-black.svg" alt="">
+                                <span>Delete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-headline">
+                    <span>Contact Information</span>
+                </div>
+                <div class="info-entry-container">
+                    <span class="bold">Email</span>
+                    <span class="contact-email">${user.email}</span>
+                    <span class="bold">Phone</span>
+                    <span>${user.phone.replace(/(\d{2})(\d{4})(\d{3})(\d{2})(\d{1})/, `+$1 $2 $3 $4 $5`)}</span>
+                </div>
+            </div>
+            `;
     }
 }
 
@@ -235,6 +270,25 @@ function resetContactButton(number) {
             contact.classList.add('contact-data-container');
             contact.onclick = () => { showUserEntry(index); };
         }
+    }
+}
+
+
+function closeMobileUserEntry() {
+    let contactSection = document.getElementById('contactSection');
+    let showContactSection = document.getElementById('showContactSection');
+    contactSection.style.display = 'flex';
+    showContactSection.style.display = 'none';
+    resetContactButtonMobile();
+}
+
+
+function resetContactButtonMobile() {
+    for (let index = 0; index < sessionContacts.length; index++) {
+        let contact = document.getElementById(`contact${index}`);
+        contact.classList.remove('contact-data-container-active');
+        contact.classList.add('contact-data-container');
+        contact.onclick = () => { showUserEntry(index); };
     }
 }
 
