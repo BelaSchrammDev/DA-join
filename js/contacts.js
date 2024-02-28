@@ -17,7 +17,7 @@ function contactActive() {
 
 function showAddToContactWindow() {
     let background = document.getElementById('addEditContactContainer');
-    background.innerHTML = `
+    background.innerHTML = /*html*/`
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
                 <img src="./img/logo/join-small.png" alt="join-logo">
@@ -68,7 +68,7 @@ function showAddToContactWindow() {
 function showEditWindow(number) {
     let contactData = sessionContacts[number];
     let background = document.getElementById('addEditContactContainer');
-    background.innerHTML = `
+    background.innerHTML = /*html*/`
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
                 <img src="./img/logo/join-small.png" alt="join-logo">
@@ -134,7 +134,7 @@ function closeAddEditWindow() {
 
 function deleteContactProof(number) {
     let background = document.getElementById('deleteProofWindow');
-    background.innerHTML = `
+    background.innerHTML = /*html*/`
         <div onclick="event.stopPropagation()" id="deleteContactProof" class="delete-contact-proof-window">
             <div class="delete-question-container">
                 <span class="delete-question">Are you sure you want to delete this contact permanently?</span>
@@ -185,7 +185,7 @@ async function showUserEntry(number) {
     contact.classList.add('contact-data-container-active');
     contact.classList.remove('contact-data-container');
     if (window.innerWidth > 1080) {
-        container.innerHTML = `
+        container.innerHTML = /*html*/`
             <div id="userEntry" class="user-entry">
                 <div class="show-contact-large-container">
                     <div class="contact-bg-large"  style="background-color: ${user.color}">
@@ -257,6 +257,21 @@ async function showUserEntry(number) {
                     <span>${user.phone.replace(/(\d{2})(\d{4})(\d{3})(\d{2})(\d{1})/, `+$1 $2 $3 $4 $5`)}</span>
                 </div>
             </div>
+            <div onclick="openMobileMenu(); event.stopPropagation();" class="mobile-menu-button-bg">
+                <img class="mobile-menu-button" src="../img/icons/contacts/mobile-menu.svg" alt="mobile-menu">
+            </div>
+            <div onclick="event.stopPropagation()" id="mobileMenu" class="mobile-menu-bg">
+                <div>
+                    <div class="mobile-menu-nav-button mobile-menu-nav-button-edit">
+                        <img src="../img/icons/contacts/pen-black.svg" alt="black-pen">
+                        <span>Edit</span>
+                    </div>
+                    <div class="mobile-menu-nav-button mobile-menu-nav-button-delete">
+                        <img src="../img/icons/contacts/trash-black.svg" alt="black-trash">
+                        <span>Delete</span>
+                    </div>
+                </div>
+            </div>
             `;
     }
 }
@@ -293,6 +308,16 @@ function resetContactButtonMobile() {
 }
 
 
+function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('mobile-menu-active');
+}
+
+
+function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('mobile-menu-active');
+}
+
+
 async function renderContacts() {
     USER_STARTING_LETTER.length = 0;
     await saveUserStartingLetters();
@@ -300,7 +325,7 @@ async function renderContacts() {
     container.innerHTML = '';
     for (let letter = 0; letter < USER_STARTING_LETTER.length; letter++) {
         let userLetter = USER_STARTING_LETTER[letter];
-        container.innerHTML += `
+        container.innerHTML += /*html*/`
             <h3 class="contact-letter">${userLetter}</h3>
             <div class="contact-seperator"></div>
         `;
@@ -308,7 +333,7 @@ async function renderContacts() {
             let contact = sessionContacts[user];
             let firstLetter = contact.name.charAt(0).toUpperCase();
             if (userLetter == firstLetter) {
-                container.innerHTML += `
+                container.innerHTML += /*html*/`
                     <div onclick="showUserEntry(${user})" id="contact${user}" class="contact-data-container">
                         <div class="contact-bg" style="background-color: ${contact.color}">
                             <span class="contact-short">${contact.initial}</span>

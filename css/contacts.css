@@ -604,6 +604,78 @@ a:visited {
     transform: scale(1.1);
 }
 
+.mobile-menu-button-bg {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    box-shadow: var(--btn-shdw-ttb);
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 80ms ease-in-out;
+    position: fixed;
+    bottom: 112px;
+    right: 16px;
+}
+
+.mobile-menu-button-bg:hover {
+    cursor: pointer;
+    background-color: var(--accent);
+}
+
+.mobile-menu-bg {
+    width: 116px;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px 20px 0 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--btn-shdw-ttb);
+    position: fixed;
+    bottom: 100px;
+    right: 8px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 160ms ease-in-out;
+}
+
+.mobile-menu-bg>div {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.mobile-menu-nav-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobile-menu-nav-button>span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.mobile-menu-nav-button:hover {
+    cursor: pointer;
+    color: var(--accent);
+}
+
+.mobile-menu-nav-button-edit:hover>img {
+    content: url('../img/icons/contacts/pen-blue.svg');
+}
+
+.mobile-menu-nav-button-delete:hover>img {
+    content: url('../img/icons/contacts/trash-blue.svg');
+}
+
+.mobile-menu-active {
+    transform: scaleX(1);
+}
+
 .hide {
     display: none;
 }
