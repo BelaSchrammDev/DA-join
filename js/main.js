@@ -51,6 +51,13 @@ function createUserObjectFromLoginData(loginObject) {
 }
 
 
+function togglePasswortVisibility(inputID) {
+    const passwordInput = document.getElementById(inputID);
+    if (passwordInput.type == 'password') passwordInput.type = 'text';
+    else passwordInput.type = 'password';
+}
+
+
 function logOut() {
     sessionStorage.removeItem('currentuser');
     sessionStorage.removeItem('sessiontasks');

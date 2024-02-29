@@ -5,22 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/login.css">
     <script src="./js/defaultdata.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/remotestorage.js"></script>
-
     <title>Join</title>
 </head>
 
 <body onload="initLoginSite()">
 
-    <div style="margin: auto; width: 200px; display: flex; justify-content: center; flex-direction: column; gap: 20px;">
+    <img src="../img/logo/logo.png" alt="">
+
+    <section id="login_mask">
+        <form id="login_form" action="" class="login_mask">
+            <span class="login_title">Log in</span>
+            <div class="blue_line"></div>
+            <div class="login_input">
+                <input required placeholder="Email" type="text">
+                <img src="./img/icons/login_signup/mail.svg" alt="">
+            </div>
+            <div class="login_input">
+                <input required id="login_passwort" placeholder="Password" type="password">
+                <img class="img_hover" onclick="togglePasswortVisibility('login_passwort')" src="./img/icons/login_signup/lock.svg"
+                    alt="">
+            </div>
+            <div class="login_checkbox">
+                <input type="checkbox" name="" id="login_rememberme">
+                <label for="login_rememberme">
+                    <img src="./img/icons/board/cf_unchecked.svg" alt="">
+                    Remember me
+                </label>
+            </div>
+            <div class="login_actions">
+                <button class="btnDark">
+                    Login
+                </button>
+                <button class="btnWhite" type="button" onclick="testLogin()">
+                    Guest Log in
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section id="signup_mask">
+
+    </section>
+
+    <section id="pwreset_mask">
+
+    </section>
+
+    <!-- <div style="margin: auto; width: 200px; display: flex; justify-content: center; flex-direction: column; gap: 20px;">
         <h1>Join</h1>
         <button onclick="testLogin()">Login as guest</button>
         <button onclick="testLogin('U123')">Login as Bela</button>
         <button onclick="testLogin('U789')">Login as Simon</button>
         <button onclick="testLogin('U456')">Login as Nadja</button>
-    </div>
+    </div> -->
 
 </body>
 
