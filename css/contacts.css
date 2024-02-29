@@ -618,7 +618,7 @@ a:visited {
     position: fixed;
     bottom: 112px;
     right: 16px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .mobile-menu-button-bg:hover {
@@ -642,6 +642,7 @@ a:visited {
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 160ms ease-in-out;
+    z-index: 2;
 }
 
 .mobile-menu-bg>div {
@@ -691,6 +692,7 @@ a:visited {
     position: fixed;
     bottom: 112px;
     right: 16px;
+    z-index: 0;
 }
 
 .mobile-add-contact-button-bg:hover {
