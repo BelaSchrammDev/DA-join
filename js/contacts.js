@@ -184,95 +184,83 @@ async function showUserEntry(number) {
     let user = sessionContacts[number];
     contact.classList.add('contact-data-container-active');
     contact.classList.remove('contact-data-container');
-    if (window.innerWidth > 1080) {
-        container.innerHTML = /*html*/`
-            <div id="userEntry" class="user-entry">
-                <div class="show-contact-large-container">
-                    <div class="contact-bg-large"  style="background-color: ${user.color}">
-                        <span class="contact-short-large">${user.initial}</span>
-                    </div>
-                    <div>
-                        <span class="contact-name-large">${user.name}</span>
-                        <div class="edit-delete-contact">
-                            <div onclick="showEditWindow(${number})" class="edit-contact">
-                                <img src="./img/icons/contacts/pen-black.svg" alt="">
-                                <span>Edit</span>
-                            </div>
-                            <div onclick="deleteContactProof(${number})" class="delete-contact">
-                                <img src="./img/icons/contacts/trash-black.svg" alt="">
-                                <span>Delete</span>
-                            </div>
+    container.innerHTML = /*html*/`
+        <img onclick="closeMobileUserEntry()" class="mobile-back-arrow" src="../img/icons/contacts/back-arrow.svg" alt="back-arrow">
+        <div id="userEntry" class="user-entry">
+            <div class="show-contact-large-container">
+                <div class="contact-bg-large"  style="background-color: ${user.color}">
+                    <span class="contact-short-large">${user.initial}</span>
+                </div>
+                <div>
+                    <span class="contact-name-large">${user.name}</span>
+                    <div class="edit-delete-contact">
+                        <div onclick="showEditWindow(${number})" class="edit-contact">
+                            <img src="./img/icons/contacts/pen-black.svg" alt="">
+                            <span>Edit</span>
+                        </div>
+                        <div onclick="deleteContactProof(${number})" class="delete-contact">
+                            <img src="./img/icons/contacts/trash-black.svg" alt="">
+                            <span>Delete</span>
                         </div>
                     </div>
                 </div>
-                <div class="info-headline">
-                    <span>Contact Information</span>
+            </div>
+            <div class="info-headline">
+                <span>Contact Information</span>
+            </div>
+            <div class="info-entry-container">
+                <span class="bold">Email</span>
+                <span class="contact-email">${user.email}</span>
+                <span class="bold">Phone</span>
+                <span>${user.phone.replace(/(\d{2})(\d{4})(\d{3})(\d{2})(\d{1})/, `+$1 $2 $3 $4 $5`)}</span>
+            </div>
+        </div>
+        <div onclick="openMobileMenu(); event.stopPropagation();" class="mobile-menu-button-bg">
+            <img class="mobile-menu-button" src="../img/icons/contacts/mobile-menu.svg" alt="mobile-menu">
+        </div>
+        <div onclick="event.stopPropagation()" id="mobileMenu" class="mobile-menu-bg">
+            <div>
+                <div class="mobile-menu-nav-button mobile-menu-nav-button-edit">
+                    <img src="../img/icons/contacts/pen-black.svg" alt="black-pen">
+                    <span>Edit</span>
                 </div>
-                <div class="info-entry-container">
-                    <span class="bold">Email</span>
-                    <span class="contact-email">${user.email}</span>
-                    <span class="bold">Phone</span>
-                    <span>${user.phone.replace(/(\d{2})(\d{4})(\d{3})(\d{2})(\d{1})/, `+$1 $2 $3 $4 $5`)}</span>
+                <div class="mobile-menu-nav-button mobile-menu-nav-button-delete">
+                    <img src="../img/icons/contacts/trash-black.svg" alt="black-trash">
+                    <span>Delete</span>
                 </div>
             </div>
-            `;
-        contact.onclick = null;
-        setTimeout(() => {
-            document.getElementById('userEntry').style.transform = 'translateX(0)';
-        }, 0);
-    }
+        </div>
+        `;
+    contact.onclick = null;
+    setTimeout(() => {
+        document.getElementById('userEntry').style.transform = 'translateX(0)';
+    }, 0);
     if (window.innerWidth <= 1080) {
         let contactSection = document.getElementById('contactSection');
         let showContactSection = document.getElementById('showContactSection');
         contactSection.style.display = 'none';
         showContactSection.style.display = 'flex';
-        container.innerHTML = /*html*/`
-            <img onclick="closeMobileUserEntry()" class="mobile-back-arrow" src="../img/icons/contacts/back-arrow.svg" alt="back-arrow">
-            <div id="userEntry" class="user-entry">
-                <div class="show-contact-large-container">
-                    <div class="contact-bg-large"  style="background-color: ${user.color}">
-                        <span class="contact-short-large">${user.initial}</span>
-                    </div>
-                    <div>
-                        <span class="contact-name-large">${user.name}</span>
-                        <div class="edit-delete-contact">
-                            <div onclick="showEditWindow(${number})" class="edit-contact">
-                                <img src="./img/icons/contacts/pen-black.svg" alt="">
-                                <span>Edit</span>
-                            </div>
-                            <div onclick="deleteContactProof(${number})" class="delete-contact">
-                                <img src="./img/icons/contacts/trash-black.svg" alt="">
-                                <span>Delete</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="info-headline">
-                    <span>Contact Information</span>
-                </div>
-                <div class="info-entry-container">
-                    <span class="bold">Email</span>
-                    <span class="contact-email">${user.email}</span>
-                    <span class="bold">Phone</span>
-                    <span>${user.phone.replace(/(\d{2})(\d{4})(\d{3})(\d{2})(\d{1})/, `+$1 $2 $3 $4 $5`)}</span>
-                </div>
-            </div>
-            <div onclick="openMobileMenu(); event.stopPropagation();" class="mobile-menu-button-bg">
-                <img class="mobile-menu-button" src="../img/icons/contacts/mobile-menu.svg" alt="mobile-menu">
-            </div>
-            <div onclick="event.stopPropagation()" id="mobileMenu" class="mobile-menu-bg">
-                <div>
-                    <div class="mobile-menu-nav-button mobile-menu-nav-button-edit">
-                        <img src="../img/icons/contacts/pen-black.svg" alt="black-pen">
-                        <span>Edit</span>
-                    </div>
-                    <div class="mobile-menu-nav-button mobile-menu-nav-button-delete">
-                        <img src="../img/icons/contacts/trash-black.svg" alt="black-trash">
-                        <span>Delete</span>
-                    </div>
-                </div>
-            </div>
-            `;
+    }
+}
+
+
+window.addEventListener("resize", showLargeContactsView);
+
+function showLargeContactsView() {
+    let contactSection = document.getElementById('contactSection');
+    let showContactSection = document.getElementById('showContactSection');
+    if (window.innerWidth > 1080) {
+        contactSection.style.display = 'flex';
+        showContactSection.style.display = 'flex';  
+        document.getElementById('showUserEntry').innerHTML = '';
+        resetContactButtonMobile();
+    }
+    if (window.innerWidth <= 1080) {
+        let contactSection = document.getElementById('contactSection');
+        let showContactSection = document.getElementById('showContactSection');
+        contactSection.style.display = 'flex';
+        showContactSection.style.display = 'none';
+        resetContactButtonMobile();
     }
 }
 
