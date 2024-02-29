@@ -618,6 +618,7 @@ a:visited {
     position: fixed;
     bottom: 112px;
     right: 16px;
+    z-index: 2;
 }
 
 .mobile-menu-button-bg:hover {
@@ -677,6 +678,31 @@ a:visited {
     transform: scaleX(1);
 }
 
+.mobile-add-contact-button-bg {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    box-shadow: var(--btn-shdw-ttb);
+    background-color: var(--primary);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 80ms ease-in-out;
+    position: fixed;
+    bottom: 112px;
+    right: 16px;
+}
+
+.mobile-add-contact-button-bg:hover {
+    cursor: pointer;
+    background-color: var(--accent);
+}
+
+.mobile-add-contact-button {
+    width: 32px;
+    height: 32px;
+}
+
 .hide {
     display: none;
 }
@@ -719,6 +745,10 @@ a:visited {
 }
 
 @media only screen and (max-width: 1080px) {
+    .mobile-add-contact-button-bg {
+        display: flex;
+    }
+
     .mobile-menu-button-bg {
         display: flex;
     }

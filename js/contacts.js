@@ -255,17 +255,11 @@ function showLargeContactsView() {
     if (window.innerWidth > 1080) {
         contactSection.style.display = 'flex';
         showContactSection.style.display = 'flex';
-        // document.getElementById('showUserEntry').innerHTML = '';
-        // resetContactButtonMobile();
         contact.classList.add('contact-data-container-active');
         contact.classList.remove('contact-data-container');
     }
     if (window.innerWidth <= 1080) {
-        let contactSection = document.getElementById('contactSection');
-        let showContactSection = document.getElementById('showContactSection');
-        contactSection.style.display = 'flex';
-        showContactSection.style.display = 'none';
-        resetContactButtonMobile();
+        closeMobileUserEntry();
     }
 }
 
@@ -340,6 +334,11 @@ async function renderContacts() {
             }
         }
     }
+    container.innerHTML += /*html*/`
+        <div class="mobile-add-contact-button-bg">
+            <img class="mobile-add-contact-button" src="../img/icons/contacts/add-person.svg" alt="mobile-add-button"> 
+        </div>
+    `;
 }
 
 
