@@ -849,3 +849,36 @@ a:visited {
         display: block;
     }
 }
+
+@media only screen and (max-width: 400px) {
+    .contact-letter {
+        font-size: 16px;
+    }
+
+    .contact-bg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .contact-short {
+        font-size: 10px;
+    }
+
+    .contact-data-container {
+        gap: 10px;
+    }
+
+    .contact-name {
+        font-size: 16px;
+    }
+
+    .contact-email {
+        font-size: 12px;
+    }
+
+    .show-contact-large-container {
+        flex-direction: column;
+        align-items: start;
+        gap: 14px;
+    }
+}
