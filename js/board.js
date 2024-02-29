@@ -86,15 +86,20 @@ function renderRows() {
 /**
  * render all task in the related rows
  */
-function renderTasks() {
+function renderTasks(filter = '') {
     resetAllDropDowns();
     clearRows();
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
-        const tasksHTML = `<div id="taskcard_${task.id}">${getTaskHTML(task)}</div>`;
-        const tasklist = document.getElementById('tasklist_' + task.status);
-        if (tasklist) tasklist.innerHTML += tasksHTML;
-        addDropDownList('taskmove_' + task.id, openMoveMenu, 'taskmove_' + task.id);
+        if (filter == ''
+            || task.title.toLowerCase().includes(filter.toLowerCase())
+            || task.description.toLowerCase().includes(filter.toLowerCase())) {
+
+            const tasksHTML = `<div id="taskcard_${task.id}">${getTaskHTML(task)}</div>`;
+            const tasklist = document.getElementById('tasklist_' + task.status);
+            if (tasklist) tasklist.innerHTML += tasksHTML;
+            addDropDownList('taskmove_' + task.id, openMoveMenu, 'taskmove_' + task.id);
+        }
     }
     renderEmptyRowMessage();
 }
@@ -311,3 +316,14 @@ function openMoveMenu(menuID, open) {
     if (menu) menu.setAttribute('dropdownopen', open);
 }
 
+
+function changeTaskSearchTerm(event) {
+    const searchTerm = event.target.value;
+    renderTasks(searchTerm);
+}
+
+
+function clickClearTaskSearch() {
+    document.getElementById('tasksearchfield').value = '';
+    renderTasks();
+}

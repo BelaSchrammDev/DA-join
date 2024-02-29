@@ -53,7 +53,7 @@ div[tasksearchfield] {
     align-items: center;
     height: 48px;
     width: 312px;
-    padding: 0 16px;
+    padding-left: 16px;
     background-color: white;
     border: 1px solid #a8a8a8;
     border-radius: 10px;
@@ -72,17 +72,31 @@ div[tasksearchfield]>input {
     flex-grow: 1;
     font-size: 20px;
     font-weight: 400;
+    border-right: 1px solid #D1D1D1;
 }
 
 div[tasksearchfield]>input::placeholder {
     color: #D1D1D1;
 }
 
+div[tasksearchfield]>input:placeholder-shown ~ img[clearsearch] {
+    display: none;
+}
+
+div[tasksearchfield]>input:not(:placeholder-shown) ~ img[tasksearch] {
+    display: none;
+}
+
 div[tasksearchfield]>img {
     width: 32px;
     height: 32px;
-    padding-left: 16px;
-    border-left: 1px solid #D1D1D1;
+    margin: 0 5px;
+}
+
+div[tasksearchfield]>img:last-child:hover {
+    border-radius: 1000px;
+    background-color: #E1E1E1;
+    cursor: pointer;
 }
 
 /* DRAGGABLE */
