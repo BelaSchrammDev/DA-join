@@ -266,8 +266,9 @@
                         </button>
                     </div>
                     <div tasksearchfield>
-                        <input type="text" placeholder="Find Task">
-                        <img src="./img/icons/board/search.svg" alt="">
+                        <input id="tasksearchfield" type="text" placeholder="Find Task" onkeyup="changeTaskSearchTerm(event)">
+                        <img tasksearch src="./img/icons/board/search.svg" alt="">
+                        <img onclick="clickClearTaskSearch()" clearsearch src="./img/icons/add-task/cancel.svg" alt="">
                     </div>
                     <button addtask_desktop onclick="showAddTaskOverlay('todo')" class="btnAddOk">
                         <div>
