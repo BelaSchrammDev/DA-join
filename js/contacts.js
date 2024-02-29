@@ -1,4 +1,5 @@
 const USER_STARTING_LETTER = [];
+let entryNumber = undefined;
 
 
 async function initContactsSite() {
@@ -178,6 +179,7 @@ function closeDeleteProofWindow() {
 
 
 async function showUserEntry(number) {
+    entryNumber = number;
     resetContactButton(number);
     let container = document.getElementById('showUserEntry');
     let contact = document.getElementById(`contact${number}`);
@@ -195,11 +197,11 @@ async function showUserEntry(number) {
                     <span class="contact-name-large">${user.name}</span>
                     <div class="edit-delete-contact">
                         <div onclick="showEditWindow(${number})" class="edit-contact">
-                            <img src="./img/icons/contacts/pen-black.svg" alt="">
+                            <img src="./img/icons/contacts/pen-black.svg" alt="edit">
                             <span>Edit</span>
                         </div>
                         <div onclick="deleteContactProof(${number})" class="delete-contact">
-                            <img src="./img/icons/contacts/trash-black.svg" alt="">
+                            <img src="./img/icons/contacts/trash-black.svg" alt="trash">
                             <span>Delete</span>
                         </div>
                     </div>
@@ -249,11 +251,14 @@ window.addEventListener("resize", showLargeContactsView);
 function showLargeContactsView() {
     let contactSection = document.getElementById('contactSection');
     let showContactSection = document.getElementById('showContactSection');
+    let contact = document.getElementById(`contact${entryNumber}`);
     if (window.innerWidth > 1080) {
         contactSection.style.display = 'flex';
-        showContactSection.style.display = 'flex';  
-        document.getElementById('showUserEntry').innerHTML = '';
-        resetContactButtonMobile();
+        showContactSection.style.display = 'flex';
+        // document.getElementById('showUserEntry').innerHTML = '';
+        // resetContactButtonMobile();
+        contact.classList.add('contact-data-container-active');
+        contact.classList.remove('contact-data-container');
     }
     if (window.innerWidth <= 1080) {
         let contactSection = document.getElementById('contactSection');
