@@ -29,7 +29,7 @@ function getAssignedContactHTML(contact, prefix) {
 function getSubTaskHTML(subtaskID, subtaskname) {
     return `
     <div id="subtaskdiv${subtaskID}" editmode="false" class="subtask_row">
-    <input onfocusout="changeSubTask('${subtaskID}')" onkeydown="if(event.key == 'Enter') changeSubTask('${subtaskID}')" name="task_subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
+    <input maxlength="100" onfocusout="changeSubTask('${subtaskID}')" onkeydown="if(event.key == 'Enter') changeSubTask('${subtaskID}')" name="task_subtask${subtaskID}" id="subtask${subtaskID}" type="text" value="${subtaskname}">
     <div lipoint class="subtask_point"></div>
     <span ondblclick="setSubTaskEditMode('${subtaskID}','true')" id="subtaskspan${subtaskID}">${subtaskname}</span>
     <div showaction>

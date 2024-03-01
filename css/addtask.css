@@ -200,10 +200,23 @@
 }
 
 .addtask_property>textarea {
+    position: relative;
     height: calc(var(--editfields_height) * 3);
     resize: none;
     min-height: 80px;
     max-height: 150px;
+}
+
+.addtask_property>textarea:focus+span.textarea_cleft{
+    color: #29abe2;
+}
+
+.addtask_property>span.textarea_cleft {
+    color: transparent;
+    font-size: var(--editfields_smallfontsize);
+    font-weight: 400;
+    align-self: flex-end;
+    user-select: none;
 }
 
 .addtask_assigned[dropdownopen='true'],

@@ -152,6 +152,7 @@ function updateBigTaskView(task) {
 
 function showAddTaskOverlay(newtaskStatus) {
     presetStatusByAddTask = newtaskStatus;
+    getElement('addtask_form').reset();
     showOverlay('addtask_overlay');
 }
 
@@ -199,6 +200,7 @@ function fillEditTaskFormular(task) {
     setInputValue('edittask_category', taskCategorys[task.category].name);
     setInputValue('edittask_title', task.title);
     setInputValue('edittask_decription', task.description);
+    setCharactersLeft(getElement('edittask_decription'));
     setInputValue('edittask_duedate', task.date);
     setPriorityRadioButton(task.priority);
     setAssignedToButtons(task.assignedto);

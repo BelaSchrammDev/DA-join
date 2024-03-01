@@ -40,15 +40,16 @@
                     <input style="display: none;" id="edittask_category" name="task_category" type="text">
                     <div class="addtask_property required">
                         <span>Title</span>
-                        <input id="edittask_title" name="task_title" type="text" placeholder="Enter a title"
+                        <input maxlength="100" id="edittask_title" name="task_title" type="text"
+                            placeholder="Enter a title"
                             onkeydown="getToNextInputOnKeyEnter(event,'edittask_decription')" required>
                     </div>
                     <div class="addtask_property">
                         <span>Description</span>
-                        <textarea class="custom-scrollbar" name="task_description" id="edittask_decription" cols="30"
-                            rows="10" placeholder="Enter a Description"
-                            onkeydown="if(event.key == 'enter') alert('enter');">
-                            </textarea>
+                        <textarea class="custom-scrollbar" maxlength="300" name="task_description"
+                            id="edittask_decription" cols="30" rows="10" placeholder="Enter a Description"
+                            onkeyup="setCharactersLeft(event.target)"></textarea>
+                        <span class="textarea_cleft">300 characters left</span>
                     </div>
                     <div class="addtask_property required">
                         <span>Due Date</span>
@@ -100,8 +101,8 @@
                     <div class="addtask_property">
                         <span>Subtasks</span>
                         <div addtask_property class="addtask_subtask_div">
-                            <input onkeydown="enterSubtaskInput(event,'edittask_')" id="edittask_subtask_input" subtask
-                                type="text" placeholder="Add new subtask">
+                            <input maxlength="100" onkeydown="enterSubtaskInput(event,'edittask_')"
+                                id="edittask_subtask_input" subtask type="text" placeholder="Add new subtask">
                             <div subtaskadd>
                                 <img onclick="setFocus('edittask_subtask_input')" src="../img/icons/add-task/plus.svg"
                                     alt="">
@@ -145,12 +146,14 @@
                     <div class="addtask_edit">
                         <div class="addtask_property required">
                             <span>Title</span>
-                            <input name="task_title" type="text" placeholder="Enter a title" required>
+                            <input maxlength="100" name="task_title" type="text" placeholder="Enter a title" required>
                         </div>
                         <div class="addtask_property">
                             <span>Description</span>
-                            <textarea name="task_description" id="" cols="30" rows="10"
-                                placeholder="Enter a Description"></textarea>
+                            <textarea class="custom-scrollbar" maxlength="300" name="task_description"
+                                id="edittask_decription" cols="30" rows="10" placeholder="Enter a Description"
+                                onkeyup="setCharactersLeft(event.target)"></textarea>
+                            <span class="textarea_cleft">300 characters left</span>
                         </div>
                         <div class="addtask_property">
                             <span>Assigned to</span>
@@ -210,8 +213,8 @@
                         <div class="addtask_property">
                             <span>Subtasks</span>
                             <div addtask_property class="addtask_subtask_div">
-                                <input onkeydown="enterSubtaskInput(event,'addtask_')" id="addtask_subtask_input"
-                                    subtask type="text" placeholder="Add new subtask">
+                                <input maxlength="100" onkeydown="enterSubtaskInput(event,'addtask_')"
+                                    id="addtask_subtask_input" subtask type="text" placeholder="Add new subtask">
                                 <div subtaskadd>
                                     <img onclick="setFocus('addtask_subtask_input')"
                                         src="../img/icons/add-task/plus.svg" alt="">
@@ -266,7 +269,8 @@
                         </button>
                     </div>
                     <div tasksearchfield>
-                        <input id="tasksearchfield" type="text" placeholder="Find Task" onkeyup="changeTaskSearchTerm(event)">
+                        <input id="tasksearchfield" type="text" placeholder="Find Task"
+                            onkeyup="changeTaskSearchTerm(event)">
                         <img tasksearch src="./img/icons/board/search.svg" alt="">
                         <img onclick="clickClearTaskSearch()" clearsearch src="./img/icons/add-task/cancel.svg" alt="">
                     </div>

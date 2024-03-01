@@ -98,6 +98,13 @@ function changeAssignedContactsSearchTerm(event, prefix) {
 }
 
 
+function setCharactersLeft(taElement) {
+    const spanElement = taElement.nextElementSibling;
+    const cLeft = taElement.maxLength - taElement.value.length;
+    spanElement.innerHTML = cLeft + ' characters left';
+}
+
+
 function enterSubtaskInput(event, prefix) {
     if (event.key == 'Enter') {
         createNewSubTask(prefix);
