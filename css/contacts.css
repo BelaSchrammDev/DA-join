@@ -597,6 +597,7 @@ a:visited {
     top: 128px;
     right: 16px;
     transition: transform 80ms ease-in-out;
+    display: none;
 }
 
 .mobile-back-arrow:hover {
@@ -610,13 +611,14 @@ a:visited {
     border-radius: 50%;
     box-shadow: var(--btn-shdw-ttb);
     background-color: var(--primary);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     transition: background-color 80ms ease-in-out;
     position: fixed;
     bottom: 112px;
     right: 16px;
+    z-index: 1;
 }
 
 .mobile-menu-button-bg:hover {
@@ -640,6 +642,7 @@ a:visited {
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 160ms ease-in-out;
+    z-index: 2;
 }
 
 .mobile-menu-bg>div {
@@ -674,6 +677,32 @@ a:visited {
 
 .mobile-menu-active {
     transform: scaleX(1);
+}
+
+.mobile-add-contact-button-bg {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    box-shadow: var(--btn-shdw-ttb);
+    background-color: var(--primary);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 80ms ease-in-out;
+    position: fixed;
+    bottom: 112px;
+    right: 16px;
+    z-index: 0;
+}
+
+.mobile-add-contact-button-bg:hover {
+    cursor: pointer;
+    background-color: var(--accent);
+}
+
+.mobile-add-contact-button {
+    width: 32px;
+    height: 32px;
 }
 
 .hide {
@@ -718,9 +747,21 @@ a:visited {
 }
 
 @media only screen and (max-width: 1080px) {
+    .mobile-add-contact-button-bg {
+        display: flex;
+    }
+
+    .mobile-menu-button-bg {
+        display: flex;
+    }
+
+    .mobile-back-arrow {
+        display: block;
+    }
+
     .contact-container {
         flex: 1;
-        padding: 24px 38px;
+        padding: 24px 38px 124px 38px;
         z-index: 0;
         height: unset;
     }
@@ -806,5 +847,38 @@ a:visited {
     .create-button::after {
         content: 'Create';
         display: block;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .contact-letter {
+        font-size: 16px;
+    }
+
+    .contact-bg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .contact-short {
+        font-size: 10px;
+    }
+
+    .contact-data-container {
+        gap: 10px;
+    }
+
+    .contact-name {
+        font-size: 16px;
+    }
+
+    .contact-email {
+        font-size: 12px;
+    }
+
+    .show-contact-large-container {
+        flex-direction: column;
+        align-items: start;
+        gap: 14px;
     }
 }
