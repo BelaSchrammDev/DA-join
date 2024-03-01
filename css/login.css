@@ -1,0 +1,147 @@
+:root {
+    --inputfield_fontsize: 20px;
+    --inputfield_height: 48px;
+    --inputfield_maxwidth: 430px;
+    --inputfield_minwidth: 430px;
+}
+
+body {
+    background-color: #F6F7F8;
+}
+
+.img_hover:hover {
+    cursor: pointer;
+}
+
+.login_mask {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 48px 115px 48px 115px;
+    height: fit-content;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+}
+
+.login_title {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.blue_line {
+    height: 3px;
+    width: 40%;
+    background-color: #29ABE2;
+    border-radius: 1000px;
+}
+
+.login_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: var(--inputfield_minwidth);
+    max-width: var(--inputfield_maxwidth);
+    height: var(--inputfield_height);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 0 16px;
+}
+
+.login_input input {
+    outline: unset;
+    border: unset;
+    font-size: var(--inputfield_fontsize);
+}
+
+.login_input input::placeholder {
+    font-size: var(--inputfield_fontsize);
+    color: #D1D1D1;
+}
+
+.login_checkbox {
+    width: 70%;
+}
+
+.login_checkbox>label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.login_checkbox>input[type='checkbox'] {
+    display: none;
+}
+
+.login_checkbox>input[type='checkbox']:checked+label>img {
+    content: url('../img/icons/board/cf_checked.svg');
+}
+
+.login_actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#login_form:invalid button.btnDark {
+    pointer-events: none;
+    background-color: #D1D1D1;
+    border: #E1E1E1;
+}
+
+/* buttonstyle for multiple use */
+.btnDark,
+.btnWhite {
+    min-height: 48px;
+    border-radius: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition:
+        background-color 100ms ease-in-out,
+        border 100ms ease-in-out,
+        color 100ms ease-in-out;
+    cursor: pointer;
+}
+
+.btnDark {
+    background-color: #2a3547;
+    border: 1px solid #2A3647;
+    font-size: var(--editfields_fontsize);
+    font-weight: 700;
+    color: white;
+}
+
+.btnWhite {
+    background-color: white;
+    border: 1px solid #2A3647;
+    font-size: var(--editfields_fontsize);
+    font-weight: 400;
+    color: #2A3647;
+}
+
+.btnWhite:hover {
+    border: 1px solid #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    color: #29ABE2;
+}
+
+.btnWhite:active {
+    border: 1px solid #091931;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    color: #091931;
+}
+
+.btnDark:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: 1px solid #29ABE2;
+}
+
+.btnDark:active {
+    background-color: #091931;
+    border: 1px solid #2A3647;
+}
