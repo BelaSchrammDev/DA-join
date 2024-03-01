@@ -33,63 +33,12 @@ function randomColor() {
 }
 
 
-/**
- * return the object for the current user
- * 
- * @param {Object} loginObject from usersarray
- * @returns {Object} object for store data of the current user
- */
-function createUserObjectFromLoginData(loginObject) {
-    const initials = loginObject.name.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
-    return {
-        id: loginObject.id,
-        name: loginObject.name,
-        initial: initials,
-        email: loginObject.email,
-        color: hexColors[randomColor()],
-    }
-}
-
-
-function togglePasswortVisibility(inputID) {
-    const passwordInput = document.getElementById(inputID);
-    if (passwordInput.type == 'password') passwordInput.type = 'text';
-    else passwordInput.type = 'password';
-}
-
-
 function logOut() {
     sessionStorage.removeItem('currentuser');
     sessionStorage.removeItem('sessiontasks');
     sessionStorage.removeItem('sessioncontacts');
     window.location.href = './index.html';
 }
-
-
-// DEBUG SECTION BEGIN -----------------------------
-async function testLogin(userID = '') {
-    if (userID == '') {
-        sessionStorage.setItem('currentuser', JSON.stringify(userGuest));
-        sessionStorage.setItem('sessiontasks', JSON.stringify(defaultTasks));
-        sessionStorage.setItem('sessioncontacts', JSON.stringify(defaultContacts));
-    }
-    else {
-        let user = users.find(u => u.id == userID);
-        if (user) {
-            currentuser = createUserObjectFromLoginData(user);
-            sessionStorage.setItem('currentuser', JSON.stringify(currentuser));
-            await loadSessionTasksFromRemoteStorage();
-            if (sessionTasks.length == 0) sessionTasks = defaultTasks;
-            sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
-            await loadSessionContactsFromRemoteStorage();
-            if (sessionContacts.length == 0) sessionContacts = defaultContacts;
-            sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
-        }
-        else console.error('user with id ' + userID + ' not found.');
-    }
-    window.location.href = './summary.html';
-}
-// DEBUG SECTION END -----------------------------
 
 
 /**
@@ -170,6 +119,16 @@ function getPascalCaseWord(word) {
 function getElement(elementIdOrObj) {
     if (typeof elementIdOrObj === 'string') return document.getElementById(elementIdOrObj);
     return elementIdOrObj;
+}
+
+
+function addClass(elementIdOrObj, className) {
+    getElement(elementIdOrObj).classList.add(className);
+}
+
+
+function removeClass(elementIdOrObj, className) {
+    getElement(elementIdOrObj).classList.remove(className);
 }
 
 

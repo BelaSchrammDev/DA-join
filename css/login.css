@@ -1,5 +1,6 @@
 :root {
     --inputfield_fontsize: 20px;
+    --inputfield_message: 12px;
     --inputfield_height: 48px;
     --inputfield_maxwidth: 430px;
     --inputfield_minwidth: 430px;
@@ -39,6 +40,7 @@ body {
 }
 
 .login_input {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,6 +61,10 @@ body {
 .login_input input::placeholder {
     font-size: var(--inputfield_fontsize);
     color: #D1D1D1;
+}
+
+.login_input[id='login_password']:has(input[type='text'])>img {
+    content: url('../img/icons/login_signup/visibility.svg');
 }
 
 .login_checkbox {
@@ -85,6 +91,33 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+}
+
+.message {
+    border: 1px solid #FF8190;
+}
+
+.message::after {
+    position: absolute;
+    left: 0;
+    top: var(--inputfield_height);
+    color: #FF8190;
+    font-size: var(--inputfield_message);
+    font-weight: 400;
+}
+
+.message_email::after {
+    content: 'email unknow. try it again.';
+}
+
+.message_password::after {
+    content: 'wrong password. try it again.';
+}
+
+.login_errormessage {
+    color: #FF8190;
+    font-size: var(--inputfield_message);
+    font-weight: 400;
 }
 
 #login_form:invalid button.btnDark {

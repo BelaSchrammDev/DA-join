@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/login.css">
+
     <script src="./js/defaultdata.js"></script>
+    <script src="./js/login.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/remotestorage.js"></script>
+
     <title>Join</title>
 </head>
 
@@ -19,20 +23,21 @@
     <img src="../img/logo/logo.png" alt="">
 
     <section id="login_mask">
-        <form id="login_form" action="" class="login_mask">
+        <form id="login_form" action="javascript:;" class="login_mask" onsubmit="submitLogin(event)">
             <span class="login_title">Log in</span>
             <div class="blue_line"></div>
-            <div class="login_input">
-                <input required placeholder="Email" type="text">
+            <div id="login_email" class="login_input">
+                <input name="email" required placeholder="Email" type="text">
                 <img src="./img/icons/login_signup/mail.svg" alt="">
             </div>
-            <div class="login_input">
-                <input required id="login_passwort" placeholder="Password" type="password">
-                <img class="img_hover" onclick="togglePasswortVisibility('login_passwort')" src="./img/icons/login_signup/lock.svg"
-                    alt="">
+            <div id="login_password" class="login_input">
+                <input name="password" required id="login_passwort" placeholder="Password" type="password">
+                <img class="img_hover" onclick="togglePasswortVisibility('login_passwort')"
+                    src="./img/icons/login_signup/visibility_off.svg" alt="">
             </div>
+            <div id="login_errormessage" class="login_errormessage"></div>
             <div class="login_checkbox">
-                <input type="checkbox" name="" id="login_rememberme">
+                <input type="checkbox" name="rememberme" id="login_rememberme">
                 <label for="login_rememberme">
                     <img src="./img/icons/board/cf_unchecked.svg" alt="">
                     Remember me
@@ -42,7 +47,7 @@
                 <button class="btnDark">
                     Login
                 </button>
-                <button class="btnWhite" type="button" onclick="testLogin()">
+                <button class="btnWhite" type="button" onclick="loginAsGuest()">
                     Guest Log in
                 </button>
             </div>
@@ -57,13 +62,11 @@
 
     </section>
 
-    <!-- <div style="margin: auto; width: 200px; display: flex; justify-content: center; flex-direction: column; gap: 20px;">
-        <h1>Join</h1>
-        <button onclick="testLogin()">Login as guest</button>
-        <button onclick="testLogin('U123')">Login as Bela</button>
-        <button onclick="testLogin('U789')">Login as Simon</button>
-        <button onclick="testLogin('U456')">Login as Nadja</button>
-    </div> -->
+    <!-- preload images to prevent flickering  -->
+    <div style="display: none;">
+        <img src="./img/icons/login_signup/visibility.svg" height="0" width="0">
+        <img src="./img/icons/board/cf_checked.svg" height="0" width="0">
+    </div>
 
 </body>
 
