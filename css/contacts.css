@@ -747,6 +747,86 @@ a:visited {
 }
 
 @media only screen and (max-width: 1080px) {
+    /* ADD-EDIT-WINDOW */
+    .add-edit-contact {
+        max-width: 396px;
+        height: 760px;
+        background: white;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .add-edit-contact-left {
+        width: 100%;
+        height: 352px;
+        border-radius: unset;
+        padding: unset;
+        padding-left: 24px;
+        gap: 16px;
+    }
+
+    .add-edit-contact-left>img {
+        display: none;
+    }
+
+    .add-edit-contact-left>h2 {
+        font-size: 47px;
+    }
+
+    .add-edit-contact-left>span {
+        font-size: 20px;
+    }
+
+    .add-edit-contact-middle {
+        padding: unset;
+        display: flex;
+        justify-content: center;   
+        margin-top: -65px;
+    }
+
+    .add-edit-contact-right {
+        padding: unset;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .add-edit-contact-right>div:first-child {
+        display: none;
+    }
+
+    .add-edit-contact-right>form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .input-container {
+        gap: 15px;
+    }
+
+    .input-class {
+        max-width: 364px;
+        width: 100%;
+        height: 41px;
+    }
+
+    .button-container {
+        width: 396px;
+        margin-top: 32px;
+        gap: unset;
+        justify-content: center;
+    }
+
+    .cancel-button {
+        display: none;
+    }
+
+    .create-button {
+        padding: 18px 10px;
+        gap: 4px;
+    }
+
     .mobile-add-contact-button-bg {
         display: flex;
     }
@@ -827,26 +907,6 @@ a:visited {
 
     .info-headline {
         margin-bottom: 21px;
-    }
-}
-
-@media only screen and (max-width: 980px) {
-    .input-class {
-        width: 300px;
-    }
-
-    .button-container {
-        width: 300px;
-    }
-
-    .create-button span {
-        display: none;
-        flex-direction: row-reverse;
-    }
-
-    .create-button::after {
-        content: 'Create';
-        display: block;
     }
 }
 

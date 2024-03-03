@@ -335,7 +335,7 @@ async function renderContacts() {
         }
     }
     container.innerHTML += /*html*/`
-        <div class="mobile-add-contact-button-bg">
+        <div onclick="showAddToContactWindow()" class="mobile-add-contact-button-bg">
             <img class="mobile-add-contact-button" src="../img/icons/contacts/add-person.svg" alt="mobile-add-button"> 
         </div>
     `;
