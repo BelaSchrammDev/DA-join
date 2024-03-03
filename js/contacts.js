@@ -228,11 +228,11 @@ async function showUserEntry(number) {
         </div>
         <div onclick="event.stopPropagation()" id="mobileMenu" class="mobile-menu-bg">
             <div>
-                <div class="mobile-menu-nav-button mobile-menu-nav-button-edit">
+                <div onclick="showEditWindow(${number})" class="mobile-menu-nav-button mobile-menu-nav-button-edit">
                     <img src="../img/icons/contacts/pen-black.svg" alt="black-pen">
                     <span>Edit</span>
                 </div>
-                <div class="mobile-menu-nav-button mobile-menu-nav-button-delete">
+                <div onclick="deleteContactProof(${number})" class="mobile-menu-nav-button mobile-menu-nav-button-delete">
                     <img src="../img/icons/contacts/trash-black.svg" alt="black-trash">
                     <span>Delete</span>
                 </div>
