@@ -98,7 +98,7 @@ function showEditWindow(number) {
                         <input id="phoneEdit" placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
-                        <button type="button" class="cancel-button" onclick="deleteContactProof(${number})">
+                        <button type="button" class="cancel-button-mobile" onclick="deleteContactProof(${number})">
                             <span>Delete</span>
                         </button>
                         <button type="submit" class="create-button">
@@ -147,7 +147,7 @@ function deleteContactProof(number) {
                 <span class="delete-question">Are you sure you want to delete this contact permanently?</span>
             </div>
             <div class="delete-button-container">   
-                <button type="button" class="cancel-button cancel-delete" onclick="closeDeleteProofWindow()">
+                <button type="button" class="cancel-button-mobile cancel-delete" onclick="closeDeleteProofWindow()">
                     <span>Cancel</span>
                     <img src="./img/icons/contacts/cancel.svg" alt="cancel">
                 </button>

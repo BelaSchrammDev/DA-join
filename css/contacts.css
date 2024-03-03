@@ -484,6 +484,39 @@ a:visited {
     margin-top: 48px;
 }
 
+.cancel-button-mobile {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid var(--primary);
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    gap: 8px; 
+}
+
+.cancel-button-mobile:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.cancel-button-mobile:hover>img {
+    content: url('../img/icons/contacts/cancel-accent.svg');
+}
+
+.cancel-button-mobile:active {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.cancel-button-mobile:active>img {
+    content: url('../img/icons/contacts/cancel-active.svg');
+}
+
 .cancel-button {
     display: flex;
     align-items: center;
@@ -545,7 +578,7 @@ a:visited {
 /* DELETE CONTACT */
 
 .delete-contact-proof-window {
-    width: 500px;
+    max-width: 500px;
     height: 250px;
     position: fixed;
     top: 0;
@@ -562,6 +595,7 @@ a:visited {
 
 .delete-question-container {
     height: 40%;
+    padding: 0 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -820,7 +854,7 @@ a:visited {
     .button-container {
         width: 396px;
         margin-top: 32px;
-        gap: unset;
+        gap: 20px;
         justify-content: center;
     }
 
@@ -924,6 +958,10 @@ a:visited {
 @media only screen and (max-width: 400px) {
     .input-class {
         width: 300px;
+    }
+
+    .delete-question {
+        font-size: 20px;
     }
 
     .contact-letter {
