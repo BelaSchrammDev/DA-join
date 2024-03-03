@@ -21,6 +21,9 @@ function showAddToContactWindow() {
     background.innerHTML = /*html*/`
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
+                <div onclick="closeAddEditWindow()" class="close-mobile">
+                    <img src="./img/icons/contacts/cancel-white.svg" alt="exit">
+                </div>
                 <img src="./img/logo/join-small.png" alt="join-logo">
                 <h2>Add contact</h2>
                 <span>Tasks are better with a team!</span>
@@ -72,6 +75,9 @@ function showEditWindow(number) {
     background.innerHTML = /*html*/`
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
             <div class="add-edit-contact-left">
+                <div onclick="closeAddEditWindow()" class="close-mobile">
+                    <img src="./img/icons/contacts/cancel-white.svg" alt="exit">
+                </div>
                 <img src="./img/logo/join-small.png" alt="join-logo">
                 <h2>Edit contact</h2> 
                 <div></div>

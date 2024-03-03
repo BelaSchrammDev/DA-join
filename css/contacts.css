@@ -384,7 +384,7 @@ a:visited {
     justify-content: center;
 }
 
-.add-edit-contact-left img {
+.add-edit-contact-left>img {
     width: 55px;
     height: 66px;
 }
@@ -402,7 +402,7 @@ a:visited {
     color: white;
 }
 
-.add-edit-contact-left div {
+.add-edit-contact-left>div:last-child {
     width: 90px;
     height: 3px;
     border-radius: 3px;
@@ -705,6 +705,10 @@ a:visited {
     height: 32px;
 }
 
+.close-mobile {
+    display: none;
+}
+
 .hide {
     display: none;
 }
@@ -763,6 +767,7 @@ a:visited {
         padding: unset;
         padding-left: 24px;
         gap: 16px;
+        position: relative;
     }
 
     .add-edit-contact-left>img {
@@ -782,6 +787,7 @@ a:visited {
         display: flex;
         justify-content: center;   
         margin-top: -65px;
+        z-index: 2;
     }
 
     .add-edit-contact-right {
@@ -825,6 +831,20 @@ a:visited {
     .create-button {
         padding: 18px 10px;
         gap: 4px;
+    }
+
+    .close-mobile {
+        display: flex;
+        justify-content: end;
+        padding-top: 24px;
+        padding-right: 16px;
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+
+    .close-mobile:hover {
+        cursor: pointer;
     }
 
     .mobile-add-contact-button-bg {
