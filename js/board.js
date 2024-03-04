@@ -139,7 +139,6 @@ function showBigTaskView(taskID) {
     if (task) {
         current_taskID = taskID;
         updateBigTaskView(task);
-        // setInnerHTML('task_big_showing', getBigTaskHTML(task));
         showOverlay('task_big')
     }
 }

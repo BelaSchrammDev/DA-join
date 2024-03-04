@@ -20,22 +20,31 @@
 
 <body onload="initLoginSite()">
 
-    <img src="../img/logo/logo.png" alt="">
+    <!-- <img src="../img/logo/logo.png" alt=""> -->
+
+    <section id="login_overlay" class="login_overlay">
+        <div class="fly_info_message" id="fly_info_login_success">
+            <span>You Logged In successfully</span>
+        </div>
+        <div class="fly_info_message" id="fly_info_signin_success">
+            <span>You Signed Up successfully</span>
+        </div>
+    </section>
 
     <section id="login_mask">
         <form id="login_form" action="javascript:;" class="login_mask" onsubmit="submitLogin(event)">
             <span class="login_title">Log in</span>
-            <div class="blue_line"></div>
+            <div id="login_blueline" class="blue_line"></div>
+            <div id="login_info" class="login_errormessage"></div>
             <div id="login_email" class="login_input">
                 <input name="email" required placeholder="Email" type="text">
                 <img src="./img/icons/login_signup/mail.svg" alt="">
             </div>
-            <div id="login_password" class="login_input">
-                <input name="password" required id="login_passwort" placeholder="Password" type="password">
-                <img class="img_hover" onclick="togglePasswortVisibility('login_passwort')"
+            <div password id="login_password" class="login_input">
+                <input name="password" required id="input_login_password" placeholder="Password" type="password">
+                <img class="img_hover" onclick="togglePasswortVisibility('input_login_password')"
                     src="./img/icons/login_signup/visibility_off.svg" alt="">
             </div>
-            <div id="login_errormessage" class="login_errormessage"></div>
             <div class="login_checkbox">
                 <input type="checkbox" name="rememberme" id="login_rememberme">
                 <label for="login_rememberme">
@@ -55,11 +64,42 @@
     </section>
 
     <section id="signup_mask">
-
-    </section>
-
-    <section id="pwreset_mask">
-
+        <form id="signin_form" action="javascript:;" class="login_mask" onsubmit="submitSignIn(event)">
+            <span class="login_title">Sign in</span>
+            <div id="signin_blueline" class="blue_line"></div>
+            <div id="signin_info" class="login_errormessage"></div>
+            <div id="signin_name" class="login_input">
+                <input name="name" required placeholder="Name" type="text">
+                <img src="./img/icons/login_signup/person.svg" alt="">
+            </div>
+            <div id="signin_email" class="login_input">
+                <input name="email" required placeholder="Email" type="email">
+                <img src="./img/icons/login_signup/mail.svg" alt="">
+            </div>
+            <div password id="signin_password" class="login_input">
+                <input name="password" required id="input_signin_password" placeholder="Password" type="password">
+                <img class="img_hover" onclick="togglePasswortVisibility('input_signin_password')"
+                    src="./img/icons/login_signup/visibility_off.svg" alt="">
+            </div>
+            <div password id="signin_password_confirm" class="login_input">
+                <input name="confirm_password" required id="input_signin_confirm_password" placeholder="Password"
+                    type="password">
+                <img class="img_hover" onclick="togglePasswortVisibility('input_signin_confirm_password')"
+                    src="./img/icons/login_signup/visibility_off.svg" alt="">
+            </div>
+            <div class="login_checkbox">
+                <input required type="checkbox" name="rememberme" id="signin_accept_policy">
+                <label for="signin_accept_policy">
+                    <img src="./img/icons/board/cf_unchecked.svg" alt="">
+                    I accept the <a href="./privacy_policy.html">Privacy policy</a>
+                </label>
+            </div>
+            <div class="login_actions">
+                <button class="btnDark">
+                    Sign up
+                </button>
+            </div>
+        </form>
     </section>
 
     <!-- preload images to prevent flickering  -->

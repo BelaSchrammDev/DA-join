@@ -383,9 +383,7 @@ async function createContact() {
     setTimeout(() => {
         document.getElementById('createdMsg').style.transform = 'translateX(1000%)';
     }, 3500);
-    // insert by bela, only stored to sessionstorage
     await storeSessionContactsToRemoteStorage();
-    // ----------------------------------------------
     closeAddEditWindow();
 }
 
@@ -409,9 +407,7 @@ async function editContact(number) {
     sessionContacts[number].phone = phone;
     showUserEntry(number);
     renderContacts();
-    // insert by bela, only stored to sessionstorage
     await storeSessionContactsToRemoteStorage();
-    // ----------------------------------------------
     closeAddEditWindow();
 }
 
@@ -420,9 +416,7 @@ async function deleteContact(number) {
     sessionContacts.splice(number, 1);
     document.getElementById('showUserEntry').innerHTML = '';
     renderContacts();
-    // insert by bela, only stored to sessionstorage
     await storeSessionContactsToRemoteStorage();
-    // ----------------------------------------------
     closeDeleteProofWindow();
     closeAddEditWindow();
 }
