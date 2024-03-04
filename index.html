@@ -20,7 +20,14 @@
 
 <body onload="initLoginSite()">
 
-    <!-- <img src="../img/logo/logo.png" alt=""> -->
+    <img class="join_logo" src="../img/logo/logo.png" alt="">
+
+    <div id="signin_button" class="signin_div">
+        <span>Not a Join user?</span>
+        <button onclick="showSignInMask()" class="btnDark">
+            Sign up
+        </button>
+    </div>
 
     <section id="login_overlay" class="login_overlay">
         <div class="fly_info_message" id="fly_info_login_success">
@@ -32,7 +39,8 @@
     </section>
 
     <section id="login_mask">
-        <form id="login_form" action="javascript:;" class="login_mask" onsubmit="submitLogin(event)">
+        <form id="login_form" action="javascript:;" class="login_mask login_mask_animation"
+            onsubmit="submitLogin(event)">
             <span class="login_title">Log in</span>
             <div id="login_blueline" class="blue_line"></div>
             <div id="login_info" class="login_errormessage"></div>
@@ -63,8 +71,10 @@
         </form>
     </section>
 
-    <section id="signup_mask">
+    <section style="display: none;" id="signup_mask">
         <form id="signin_form" action="javascript:;" class="login_mask" onsubmit="submitSignIn(event)">
+            <img onclick="showSignInMask(false)" class="back-arrow" src="../img/icons/contacts/back-arrow.svg"
+                alt="back-arrow">
             <span class="login_title">Sign in</span>
             <div id="signin_blueline" class="blue_line"></div>
             <div id="signin_info" class="login_errormessage"></div>

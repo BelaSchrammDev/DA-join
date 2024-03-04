@@ -4,10 +4,22 @@
     --inputfield_height: 48px;
     --inputfield_maxwidth: 430px;
     --inputfield_minwidth: 430px;
+    --joinlogo_width: 100px;
+    --joinlogo_height: 120px;
+    --joinlogo_topleft: 30px;
 }
 
 body {
     background-color: #F6F7F8;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
 }
 
 .img_hover:hover {
@@ -38,6 +50,7 @@ body {
 }
 
 .login_mask {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -48,7 +61,61 @@ body {
     padding: 48px 115px 48px 115px;
     height: fit-content;
     box-shadow: 0px 0px 14px 3px #0000000A;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
+
+.login_mask_animation {
+    opacity: 1;
+    animation: loginmask;
+    animation-duration: 2s;
+}
+
+@keyframes loginmask {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.join_logo {
+    top: var(--joinlogo_topleft);
+    left: var(--joinlogo_topleft);
+    width: var(--joinlogo_width);
+    height: var(--joinlogo_height);
+    position: absolute;
+    animation: joinlogo;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes joinlogo {
+    0% {
+        transform: scale(1.5);
+        left: calc(calc(100vw - var(--joinlogo_width)) / 2);
+        top: calc(calc(100vh - var(--joinlogo_height)) / 2);
+    }
+
+    30% {
+        transform: scale(1.5);
+        left: calc(calc(100vw - var(--joinlogo_width)) / 2);
+        top: calc(calc(100vh - var(--joinlogo_height)) / 2);
+    }
+
+    100% {
+        transform: scale(1);
+        top: var(--joinlogo_topleft);
+        left: var(--joinlogo_topleft);
+    }
+}
+
 
 .login_title {
     font-size: 60px;
@@ -67,7 +134,6 @@ body {
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    /* animation-fill-mode: both; */
 }
 
 @keyframes bluelinemove {
@@ -86,6 +152,19 @@ body {
     100% {
         transform: translateX(0);
     }
+}
+
+.signin_div {
+    position: absolute;
+    right: var(--joinlogo_topleft);
+    top: var(--joinlogo_topleft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    opacity: 1;
+    animation: loginmask;
+    animation-duration: 2s;
 }
 
 .login_input {
@@ -240,4 +319,16 @@ form:invalid button.btnDark {
 .btnDark:active {
     background-color: #091931;
     border: 1px solid #2A3647;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: transform 80ms ease-in-out;
+}
+
+.back-arrow:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }

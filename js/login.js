@@ -176,3 +176,10 @@ function showFlyinfo(infoID = '') {
         }, nextFlyMS);
     }
 }
+
+
+function showSignInMask(show = true) {
+    removeClass('login_form', 'login_mask_animation');
+    setStyle('login_mask', 'display', show ? 'none' : 'block');
+    setStyle('signup_mask', 'display', show ? 'block' : 'none');
+}
