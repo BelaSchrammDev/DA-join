@@ -1,4 +1,3 @@
-// example arrays for testing only ---------------------------------------------------
 let defaultTasks = [
     {
         id: 'T12',
@@ -30,15 +29,18 @@ let defaultTasks = [
     {
         id: 'T123454',
         status: 'awaitfeedback',
-        title: 'Join fertigmachen',
+        title: 'Join finish off',
         description: '',
         assignedto: ['C789', 'C456'],
-        date: '2024-03-16',
-        priority: 'medium',
+        date: '2024-04-16',
+        priority: 'urgent',
         category: 1,
         subtasks: [
-            { name: 'subtask 1', done: true },
-            { name: 'subtask 2', done: false },
+            { name: 'Addtask', done: true },
+            { name: 'Summary', done: false },
+            { name: 'Login', done: true },
+            { name: 'Board', done: false },
+            { name: 'Sidebar', done: false },
         ]
     },
 ]
