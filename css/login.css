@@ -1,5 +1,6 @@
 :root {
     --inputfield_fontsize: 20px;
+    --notice_fontsize: 19px;
     --inputfield_message: 12px;
     --inputfield_height: 48px;
     --inputfield_maxwidth: 430px;
@@ -26,6 +27,29 @@ body {
     cursor: pointer;
 }
 
+.policy_notice_div {
+    position: absolute;
+    bottom: var(--joinlogo_topleft);
+    font-size: var(--notice_fontsize);
+    font-weight: 400;
+}
+
+.policy_notice_div>a {
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
+.policy_notice_div>a:hover {
+    color: #29ABE2;
+    text-decoration: none;
+    transform: scale(1.5);
+}
+
+.policy_notice_div>a:active {
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
 .login_overlay {
     z-index: -1;
     position: fixed;
@@ -34,6 +58,7 @@ body {
     right: 0;
     bottom: 0;
     display: flex;
+    flex-direction: column;
     background-color: rgba(0, 0, 0, 0.1);
     justify-content: center;
     align-items: center;
@@ -180,10 +205,15 @@ body {
     padding: 0 16px;
 }
 
+.login_input:has(input:focus) {
+    border: 1px solid #29ABE2;
+}
+
 .login_input input {
     outline: unset;
     border: unset;
     font-size: var(--inputfield_fontsize);
+    flex-grow: 1;
 }
 
 .login_input input::placeholder {
@@ -205,6 +235,17 @@ body {
     align-items: center;
     gap: 10px;
     user-select: none;
+}
+
+.login_checkbox>label>a {
+    text-decoration: none;
+    color: #29ABE2;
+}
+
+.login_checkbox>label>a:hover {
+    text-decoration: none;
+    color: #29ABE2;
+    transform: scale(1.05);
 }
 
 .login_checkbox>input[type='checkbox'] {
@@ -236,23 +277,23 @@ body {
 }
 
 .message_email_unknow::after {
-    content: 'email unknow. try it again.';
+    content: 'Email unknow. try it again.';
 }
 
 .message_name_exists::after {
-    content: 'name already exists';
+    content: 'User with the same name already exists';
 }
 
 .message_email_exists::after {
-    content: 'email already exists';
+    content: 'User with this email already exist';
 }
 
 .message_password_wrong::after {
-    content: 'wrong password. try it again.';
+    content: 'Wrong password, Ups! Try again. ';
 }
 
 .message_password_confirm_notconfirm::after {
-    content: 'password is not equal';
+    content: 'Ups! your password don’t match';
 }
 
 .login_errormessage {
