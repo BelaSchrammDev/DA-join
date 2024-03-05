@@ -263,6 +263,7 @@ function showLargeContactsView() {
         showContactSection.style.display = 'flex';
         contact.classList.add('contact-data-container-active');
         contact.classList.remove('contact-data-container');
+        closeMobileMenu();
     }
     if (window.innerWidth <= 1080) {
         closeMobileUserEntry();
@@ -378,11 +379,17 @@ async function createContact() {
     await renderContacts();
     showUserEntry(sessionContacts.length - 1);
     setTimeout(() => {
-        document.getElementById('createdMsg').style.transform = 'translateX(0)';
+        if (window.innerWidth > 1080) {
+            document.getElementById('createdMsg').style.transform = 'translateX(0)';
+        }
+        document.getElementById('createdMsg').style.transform = 'translateY(0)';
     }, 300);
     setTimeout(() => {
-        document.getElementById('createdMsg').style.transform = 'translateX(1000%)';
-    }, 3500);
+        if (window.innerWidth > 1080) {
+            document.getElementById('createdMsg').style.transform = 'translateX(1000%)';
+        }
+        document.getElementById('createdMsg').style.transform = 'translateY(1000%)';
+    }, 2000);
     await storeSessionContactsToRemoteStorage();
     closeAddEditWindow();
 }
@@ -419,4 +426,10 @@ async function deleteContact(number) {
     await storeSessionContactsToRemoteStorage();
     closeDeleteProofWindow();
     closeAddEditWindow();
+    if (window.innerWidth <= 1080) {
+        let contactSection = document.getElementById('contactSection');
+        let showContactSection = document.getElementById('showContactSection');
+        contactSection.style.display = 'flex';
+        showContactSection.style.display = 'none';
+    }
 }

@@ -829,6 +829,11 @@ a:visited {
         justify-content: center;
     }
 
+    .created-msg-bg {
+        margin-top: 20px;
+        transform: translateY(1000%);
+    }
+
     .input-container {
         gap: 15px;
     }
