@@ -13,7 +13,7 @@
 </head>
 
 <body onload="initContactsSite()">
-    <div w3-include-html="./templates/sidebar.html"></div>
+    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
     <!--Add new contact window//Start-->
     <section onclick="closeAddEditWindow()" id="addEditContactContainer" class="hide">
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
@@ -72,7 +72,7 @@
         </div>
     </section>
     <!--Delete contact window//End-->
-    <div class="header-main-container">
+    <div onclick="closeHeaderMenu()" class="header-main-container">
         <header w3-include-html="./templates/header.html"></header>
         <main>
             <section id="contactSection" class="contact-container custom-scrollbar">
@@ -110,7 +110,6 @@
     <script src="./js/remotestorage.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/contacts.js"></script>
-    <script src="./js/header.js"></script>
 </body>
 
 </html>

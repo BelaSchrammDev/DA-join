@@ -13,8 +13,8 @@
 </head>
 
 <body onload="initSummarySite()">
-    <div w3-include-html="./templates/sidebar.html"></div>
-    <div class="header-main-container">
+    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
+    <div onclick="closeHeaderMenu()" class="header-main-container">
         <header w3-include-html="./templates/header.html"></header>
         <main>
             <section class="summary-headline-container">
@@ -87,7 +87,6 @@
     <script src="./js/remotestorage.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/summary.js"></script>
-    <script src="./js/header.js"></script>
 </body>
 
 </html>

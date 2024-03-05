@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
     <script src="./js/main.js"></script>
-    <script src="./js/header.js"></script>
     <script src="./js/func.js"></script>
     <script src="./js/remotestorage.js"></script>
     <link rel="stylesheet" href="./css/main.css">
@@ -19,8 +18,8 @@
 </head>
 
 <body onload="initJoin()">
-    <div w3-include-html="./templates/sidebar.html"></div>
-    <div class="header.main-container">
+    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
+    <div onclick="closeHeaderMenu()" class="header.main-container">
         <header w3-include-html="./templates/header.html"></header>
         <div id="legalNoticeTemplate" class="help_maindiv">
             <p>

@@ -18,7 +18,6 @@
     <script src="./js/addtask.js"></script>
     <script src="./js/dropdown.js"></script>
     <script src="./js/board.js"></script>
-    <script src="./js/header.js"></script>
     <title>Join - Board</title>
 </head>
 
@@ -256,8 +255,8 @@
         <!-- addtask end -->
     </div>
 
-    <div w3-include-html="./templates/sidebar.html"></div>
-    <div class="header-main-container">
+    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
+    <div onclick="closeHeaderMenu()" class="header-main-container">
         <header w3-include-html="./templates/header.html"></header>
         <div class="board_main_div">
             <div class="board_header">

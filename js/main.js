@@ -27,6 +27,16 @@ const hexColors = [
 ];
 
 
+function closeHeaderMenu() {
+    document.getElementById('headerMenu').classList.remove('show-header-menu');
+}
+
+
+function toggleHeaderMenu() {
+    document.getElementById('headerMenu').classList.toggle('show-header-menu');
+}
+
+
 function randomColor() {
     let randomColor = Math.floor(Math.random() * hexColors.length);
     return randomColor;
