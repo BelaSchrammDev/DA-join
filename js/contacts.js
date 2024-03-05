@@ -431,5 +431,6 @@ async function deleteContact(number) {
         let showContactSection = document.getElementById('showContactSection');
         contactSection.style.display = 'flex';
         showContactSection.style.display = 'none';
+        document.getElementById('createdMsg').style.transform = 'translateX(1000%)';
     }
 }
