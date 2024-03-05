@@ -57,6 +57,7 @@ a:visited {
 .main-info-container {
     display: flex;
     gap: 80px;
+    flex-wrap: wrap;
 }
 
 /* SUMMARY MAIN */
@@ -399,4 +400,15 @@ a:visited {
 
 .hover-to-the-right-small:active .task-amount, .hover-to-the-right-small:active .upper-task-text {
     color: black;
+}
+
+@media only screen and (max-width: 910px) {
+    main {
+        padding-left: 32px;
+        padding-top: 32px;
+    }
+}
+
+@media only screen and (max-width: 845px) {
+
 }
