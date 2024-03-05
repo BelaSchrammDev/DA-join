@@ -101,7 +101,6 @@ function setInputErrorMessages(formID, errorMessage) {
         addClass(formID + errorField, 'message');
         addClass(formID + errorField, 'message_' + errorField + '_' + errorType);
     }
-    console.error('[' + formID + '] error : ' + errorField + ' / ' + errorType);
 }
 
 
@@ -180,6 +179,8 @@ function showFlyinfo(infoID = '') {
 
 function showSignInMask(show = true) {
     removeClass('login_form', 'login_mask_animation');
+    removeClass('signin_button', 'login_mask_animation');
+    setStyle('signin_button', 'display', show ? 'none' : 'flex');
     setStyle('login_mask', 'display', show ? 'none' : 'block');
     setStyle('signup_mask', 'display', show ? 'block' : 'none');
 }

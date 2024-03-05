@@ -1,26 +1,32 @@
 :root {
     --inputfield_fontsize: 20px;
     --notice_fontsize: 19px;
+    --headline_fontsize: 60px;
     --inputfield_message: 12px;
     --inputfield_height: 48px;
     --inputfield_maxwidth: 430px;
     --inputfield_minwidth: 430px;
     --joinlogo_width: 100px;
     --joinlogo_height: 120px;
-    --joinlogo_topleft: 30px;
+    --joinlogo_topleft: 50px;
+    --loginmask_padding_x: 115px;
+    --loginmask_padding_y: 48px;
+    --loginmask_margin_y: calc(var(--joinlogo_height) + var(--joinlogo_topleft) + var(--joinlogo_topleft));
 }
 
 body {
     background-color: #F6F7F8;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .main_content {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .img_hover:hover {
@@ -28,10 +34,9 @@ body {
 }
 
 .policy_notice_div {
-    position: absolute;
-    bottom: var(--joinlogo_topleft);
     font-size: var(--notice_fontsize);
     font-weight: 400;
+    margin-bottom: var(--joinlogo_topleft);
 }
 
 .policy_notice_div>a {
@@ -83,11 +88,11 @@ body {
     gap: 20px;
     background-color: white;
     border-radius: 30px;
-    padding: 48px 115px 48px 115px;
+    padding: var(--loginmask_padding_y) var(--loginmask_padding_x);
     height: fit-content;
     box-shadow: 0px 0px 14px 3px #0000000A;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: var(--loginmask_margin_y);
+    margin-bottom: var(--joinlogo_topleft);
 }
 
 .login_mask_animation {
@@ -143,7 +148,7 @@ body {
 
 
 .login_title {
-    font-size: 60px;
+    font-size: var(--headline_fontsize);
     font-weight: 700;
 }
 
@@ -187,9 +192,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    opacity: 1;
-    animation: loginmask;
-    animation-duration: 2s;
 }
 
 .login_input {
@@ -226,6 +228,7 @@ body {
 }
 
 .login_checkbox {
+    font-size: var(--notice_fontsize);
     width: 70%;
 }
 
@@ -372,4 +375,53 @@ form:invalid button.btnDark {
 .back-arrow:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+@media (max-width: 800px) {
+    :root {
+        --notice_fontsize: 16px;
+        --inputfield_minwidth: 280px;
+        --loginmask_padding_x: 50px;
+        --loginmask_padding_y: 32px;
+        --joinlogo_topleft: 30px;
+    }
+
+    .login_checkbox {
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 450px) {
+    :root {
+        --headline_fontsize: 40px;
+        --inputfield_fontsize: 16px;
+        --notice_fontsize: 14px;
+        --inputfield_message: 12px;
+        --inputfield_height: 40px;
+        --inputfield_minwidth: 160px;
+        --joinlogo_width: 75px;
+        --joinlogo_height: 90px;
+        --joinlogo_topleft: 16px;
+        --loginmask_padding_x: 10px;
+        --loginmask_padding_y: 16px;
+    }
+
+    .login_actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .login_mask {
+        margin-bottom: 10px;
+        gap: 10px;
+    }
+
+    .signin_div {
+        position: unset;
+        right: unset;
+        top: unset;
+        margin-bottom: var(--joinlogo_topleft);
+    }
+
 }
