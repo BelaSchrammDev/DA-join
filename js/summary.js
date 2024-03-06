@@ -2,6 +2,7 @@ async function initSummarySite(){
     await initJoin();
     getAmounts();
     getUserName();
+    changeClassesOnWidth();
     // other render functions...
 }
 
@@ -62,4 +63,28 @@ function getUserName() {
     let container = document.getElementById('userName');
     let name = currentuser.name;
     container.innerHTML = name;
+}
+
+
+window.addEventListener("resize", changeClassesOnWidth);
+
+function changeClassesOnWidth() {
+    let right = document.getElementById('toTheRight');
+    let left = document.getElementById('toTheLeft');
+    let bottom = document.getElementById('toTheBottom');
+    let middel = document.getElementById('toTheMiddel');
+    let rightSmall = document.getElementById('toTheRightSmall');
+    let leftSmall = document.getElementById('toTheLeftSmall');
+    if (window.innerWidth < 601) {
+        right.classList.remove('hover-to-the-right');
+        right.classList.add('active-to-the-right');
+        left.classList.remove('hover-to-the-left');
+        left.classList.add('active-to-the-left');
+    }
+    if (window.innerWidth > 600) {
+        right.classList.add('hover-to-the-right');
+        right.classList.remove('active-to-the-right');
+        left.classList.add('hover-to-the-left');
+        left.classList.remove('active-to-the-left');
+    }
 }

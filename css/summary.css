@@ -34,6 +34,12 @@ a:visited {
     gap: 30px;
 }
 
+.summary-headline-container>div {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .summary-headline {
     margin: 0;
     font-size: 61px;
@@ -405,10 +411,122 @@ a:visited {
 @media only screen and (max-width: 910px) {
     main {
         padding-left: 32px;
-        padding-top: 32px;
+        padding-top: 48px;
     }
 }
 
 @media only screen and (max-width: 845px) {
+    main {
+        padding-left: 0px;
+    }
 
+    .welcome-container {
+        display: none;
+    }
+
+    .summary-headline-container {
+        flex-direction: column;
+        align-items: start;
+        gap: 16px;
+        padding-left: 16px;
+    }
+
+    .summary-headline-container>div {
+        flex-direction: column-reverse;
+        align-items: start;
+        gap: 16px;
+    }
+
+    .vector-seperator {
+        width: 90px;
+        height: 3px;
+    }
+
+    .main-info-container {
+        justify-content: center;
+    }
+
+    .summary-main-container {
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 600px) { 
+    .summary-taskinfo {
+        gap: 24px;
+    }
+
+    .task-amount {
+        font-size: 47px;
+    }
+
+    .task-to-do-done {
+        width: 186px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .task-to-do-done:hover {
+        background-color: white;
+    }
+
+    .upper-img-bg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .upper-img-bg>img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .upper-task-text {
+        font-size: 14px;
+    }
+
+    .active-to-the-right:active {
+        width: 194px !important;
+        height: 120px !important;
+        margin-bottom: -5px;
+        margin-top: -5px;
+        margin-right: -8px;
+        background-color: var(--primary);
+        color: white;
+        box-shadow: var(--btn-shdw-ttb);
+    }
+
+    .active-to-the-right:active .upper-img-bg {
+        background-color: white;
+        width: 50px;
+        height: 50px;
+    }
+
+    .active-to-the-right:active .upper-img-bg>img {
+        content: url('../img/icons/summary/pencil-dark.svg');
+        width: 20px;
+        height: 20px;
+    }
+
+    .active-to-the-left:active {
+        width: 194px !important;
+        height: 120px !important;
+        margin-bottom: -5px;
+        margin-top: -5px;
+        margin-left: -8px;
+        background-color: var(--primary);
+        color: white;
+        box-shadow: var(--btn-shdw-ttb);
+    }
+
+    .active-to-the-left:active .upper-img-bg {
+        background-color: white;
+        width: 50px;
+        height: 50px;
+    }
+
+    .active-to-the-left:active .upper-img-bg>img {
+        content: url('../img/icons/summary/hook-dark.svg');
+        width: 20px;
+        height: 20px;
+    }
 }
