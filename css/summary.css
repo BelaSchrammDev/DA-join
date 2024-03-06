@@ -73,6 +73,7 @@ a:visited {
     flex-direction: column;
     gap: 28px;
     margin-top: 56px;
+    padding-bottom: 50px;
 }
 
 .summary-taskinfo {
@@ -406,6 +407,12 @@ a:visited {
 
 .hover-to-the-right-small:active .task-amount, .hover-to-the-right-small:active .upper-task-text {
     color: black;
+}
+
+@media only screen and (max-width: 1300px) {
+    .main-info-container {
+        gap: 20px;
+    }
 }
 
 @media only screen and (max-width: 910px) {
