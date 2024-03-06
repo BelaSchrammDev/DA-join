@@ -88,7 +88,7 @@ function clearAllMessagesFromInputs(formID, inputs) {
             }
         }
     }
-    setStyle(formID + 'info', 'display', 'none');
+    setStyle(formID + 'error', 'display', 'none');
 }
 
 
@@ -136,29 +136,19 @@ async function submitSignIn(event) {
 
 
 function showLoadAnimation(svgID, show) {
+    lockBody(show);
     setStyle(svgID, 'display', show ? 'flex' : 'none');
 }
 
 
+function lockBody(lock = true) {
+    setStyle('login_overlay', 'z-index', lock ? '10' : '-1');
+}
+
+
 function showFlyinfo(infoID = '') {
-    let nextFlyMS = 0;
-    if (current_flyID != '') {
-        setStyle(current_flyID, 'transform', 'translateX(200vw)');
-        nextFlyMS = 200;
-        current_flyID = '';
-    } else {
-        setStyle('login_overlay', 'z-index', '10');
-    }
-    if (infoID == '') {
-        setTimeout(() => {
-            setStyle('login_overlay', 'z-index', '-1');
-        }, nextFlyMS);
-    } else {
-        current_flyID = infoID;
-        setTimeout(() => {
-            setStyle(infoID, 'transform', 'translateX(0)');
-        }, nextFlyMS);
-    }
+    lockBody();
+    setStyle(infoID, 'transform', 'translateX(0)');
 }
 
 
