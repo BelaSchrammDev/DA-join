@@ -33,6 +33,11 @@ body {
     cursor: pointer;
 }
 
+.svg_loadanim {
+    height: 36px;
+    display: none;
+}
+
 .policy_notice_div {
     font-size: var(--notice_fontsize);
     font-weight: 400;
@@ -205,6 +210,7 @@ body {
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     padding: 0 16px;
+    margin-bottom: var(--inputfield_message);
 }
 
 .login_input:has(input:focus) {
@@ -300,10 +306,17 @@ body {
 }
 
 .login_errormessage {
-    color: transparent;
-    height: 20px;
-    font-size: var(--inputfield_message);
-    font-weight: 400;
+    display: none;
+    border-radius: 10px;
+    color: #2A3647;
+    background-color: #ffc5cc;
+    border: 3px solid #FF8190;
+    width: 100%;
+    height: fit-content;
+    font-size: var(--inputfield_fontsize);
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
 }
 
 form:invalid button.btnDark {
@@ -315,7 +328,12 @@ form:invalid button.btnDark {
 /* buttonstyle for multiple use */
 .btnDark,
 .btnWhite {
-    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 150px;
+    min-height: var(--inputfield_height);
     border-radius: 10px;
     padding-left: 16px;
     padding-right: 16px;

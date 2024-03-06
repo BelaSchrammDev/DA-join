@@ -88,7 +88,7 @@ function clearAllMessagesFromInputs(formID, inputs) {
             }
         }
     }
-    setInfoMessage(formID + 'info');
+    setStyle(formID + 'info', 'display', 'none');
 }
 
 
@@ -96,7 +96,7 @@ function setInputErrorMessages(formID, errorMessage) {
     const errorField = errorMessage.split('#')[0];
     const errorType = errorMessage.split('#')[1];
     if (errorType == 'userarray') {
-        setInfoMessage(formID + 'info', '#FF8190', 'could not load userdata, try again later');
+        setStyle(formID + 'error', 'display', 'block');
     } else {
         addClass(formID + errorField, 'message');
         addClass(formID + errorField, 'message_' + errorField + '_' + errorType);
@@ -107,12 +107,10 @@ function setInputErrorMessages(formID, errorMessage) {
 async function submitLogin(event) {
     clearAllMessagesFromInputs('login_', ['password', 'email']);
     const formData = Object.fromEntries(new FormData(event.target));
-    startBlueLineAnim('login_blueline');
-    setInfoMessage('login_info', 'black', 'login in progress...');
+    showLoadAnimation('login_loadanim', true);
     let response = await tryLogin(formData.email, formData.password);
-    endBlueLineAnim('login_blueline');
+    showLoadAnimation('login_loadanim', false);
     if (typeof response === 'string') {
-        setInfoMessage('login_info', '#FF8190', 'login failed');
         setInputErrorMessages('login_', response);
     } else {
         showFlyinfo('fly_info_login_success');
@@ -124,12 +122,10 @@ async function submitLogin(event) {
 async function submitSignIn(event) {
     clearAllMessagesFromInputs('signin_', ['name', 'email', 'confirm_password']);
     const formData = Object.fromEntries(new FormData(event.target));
-    startBlueLineAnim('signin_blueline');
-    setInfoMessage('signin_info', 'black', 'signin in progress...');
+    showLoadAnimation('signin_loadanim', true);
     let response = await trySignIn(formData.name, formData.email, formData.password, formData.confirm_password);
-    endBlueLineAnim('signin_blueline');
+    showLoadAnimation('signin_loadanim', false);
     if (typeof response === 'string') {
-        setInfoMessage('signin_info', '#FF8190', 'signin failed');
         setInputErrorMessages('signin_', response);
     }
     else {
@@ -139,19 +135,8 @@ async function submitSignIn(event) {
 }
 
 
-function setInfoMessage(divID, color = 'transparent', message = '') {
-    setStyle(divID, 'color', color);
-    setInnerHTML(divID, message);
-}
-
-
-function startBlueLineAnim(lineID) {
-    addClass(lineID, 'blue_line_move');
-}
-
-
-function endBlueLineAnim(lineID) {
-    removeClass(lineID, 'blue_line_move');
+function showLoadAnimation(svgID, show) {
+    setStyle(svgID, 'display', show ? 'flex' : 'none');
 }
 
 

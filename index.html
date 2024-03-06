@@ -37,7 +37,9 @@
                 onsubmit="submitLogin(event)">
                 <span class="login_title">Log in</span>
                 <div id="login_blueline" class="blue_line"></div>
-                <div id="login_info" class="login_errormessage"></div>
+                <div id="login_error" class="login_errormessage">
+                    could not load userdata, try again later
+                </div>
                 <div id="login_email" class="login_input">
                     <input name="email" required placeholder="Email" type="text">
                     <img src="./img/icons/login_signup/mail.svg" alt="">
@@ -56,7 +58,23 @@
                 </div>
                 <div class="login_actions">
                     <button class="btnDark">
-                        Login
+                        <span>Login</span>
+                        <svg version="1.1" class="svg_loadanim" id="login_loadanim" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 100"
+                            enable-background="new 0 0 0 0" xml:space="preserve">
+                            <circle fill="#fff" stroke="none" cx="25" cy="50" r="16">
+                                <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite"
+                                    begin="0.1" />
+                            </circle>
+                            <circle fill="#fff" stroke="none" cx="75" cy="50" r="16">
+                                <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite"
+                                    begin="0.2" />
+                            </circle>
+                            <circle fill="#fff" stroke="none" cx="125" cy="50" r="16">
+                                <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite"
+                                    begin="0.3" />
+                            </circle>
+                        </svg>
                     </button>
                     <button class="btnWhite" type="button" onclick="loginAsGuest()">
                         Guest Log in
@@ -71,7 +89,9 @@
                     alt="back-arrow">
                 <span class="login_title">Sign in</span>
                 <div id="signin_blueline" class="blue_line"></div>
-                <div id="signin_info" class="login_errormessage"></div>
+                <div id="signin_error" class="login_errormessage">
+                    could not load userdata, try again later
+                </div>
                 <div id="signin_name" class="login_input">
                     <input name="name" required placeholder="Name" type="text">
                     <img src="./img/icons/login_signup/person.svg" alt="">
@@ -99,8 +119,24 @@
                     </label>
                 </div>
                 <div class="login_actions">
-                    <button class="btnDark">
-                        Sign up
+                    <button class="btnDark" style="width: 180px;">
+                        <span>Sign up</span>
+                        <svg version="1.1" class="svg_loadanim" id="signin_loadanim" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 100"
+                            enable-background="new 0 0 0 0" xml:space="preserve">
+                            <circle fill="#fff" stroke="none" cx="25" cy="50" r="16">
+                                <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite"
+                                    begin="0.1" />
+                            </circle>
+                            <circle fill="#fff" stroke="none" cx="75" cy="50" r="16">
+                                <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite"
+                                    begin="0.2" />
+                            </circle>
+                            <circle fill="#fff" stroke="none" cx="125" cy="50" r="16">
+                                <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite"
+                                    begin="0.3" />
+                            </circle>
+                        </svg>
                     </button>
                 </div>
             </form>
