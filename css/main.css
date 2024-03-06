@@ -136,6 +136,65 @@ body {
     color: var(--accent);
 }
 
+/********** LEGAL NOTICE **********/
+
+.headline{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.blue_arrow {
+    transition: transform 80ms ease-in-out;
+}
+
+.blue_arrow:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.legal_notice {
+    padding: 90px;
+}
+
+.legal_notice p,
+.legal_notice span {
+    font-size: 16px;
+}
+
+.legal_notice h1 {
+    font-size: 45px;
+}
+
+.legal_notice h2 {
+    font-size: 24px;
+}
+
+@media (max-width: 800px) {
+    .legal_notice {
+        padding: 30px;
+    }
+
+    .legal_notice p,
+    .legal_notice span {
+        font-size: 12px;
+    }
+
+    .legal_notice h1 {
+        font-size: 30px;
+    }
+
+    .legal_notice h2 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .legal_notice {
+        padding: 12px;
+    }
+}
+
 /********** SIDEBAR **********/
 
 nav {

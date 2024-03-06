@@ -68,17 +68,37 @@ function createUniqueID(prefix) {
  */
 async function initJoin() {
     // test if user logged in
-    let currentUserString = sessionStorage.getItem('currentuser');
-    if (!currentUserString) window.location.href = './index.html';
-    currentuser = JSON.parse(currentUserString);
-    if (!currentuser.id) window.location.href = './index.html';
-    // user is correct logged in
+    loadCurrentUser(true);
     await includeHTML();
-    const initialSpan = getElement('currentuser-initial');
-    if (initialSpan) setInnerHTML(initialSpan, currentuser.initial);
+    setInitialSpan();
     await loadSessionDataFromSessionStorage();
 }
 
+
+async function loadCurrentUser(forceLogin = false) {
+    let currentUserString = await sessionStorage.getItem('currentuser');
+    if (forceLogin && !currentUserString) window.location.href = './index.html';
+    currentuser = JSON.parse(currentUserString);
+    if (forceLogin && !currentuser.id) window.location.href = './index.html';
+}
+
+
+async function initLegalNoticePrivacyPolicy() {
+    loadCurrentUser();
+    await includeHTML();
+    hideMenuIfEmptyUser();
+    setInitialSpan();
+}
+
+
+function setInitialSpan() {
+    if (currentuser) {
+        const initialSpan = getElement('currentuser-initial');
+        if (initialSpan) setInnerHTML(initialSpan, currentuser.initial);
+    } else {
+        setStyle('current_user_badge', 'display', 'none');
+    }
+}
 
 /**
  * init function for the login site
@@ -105,6 +125,12 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+}
+
+
+function hideMenuIfEmptyUser() {
+    if (currentuser) return;
+    setStyle('nav_elements', 'display', 'none');
 }
 
 
