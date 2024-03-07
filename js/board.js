@@ -211,7 +211,8 @@ function setSubTasks(subtaskList) {
     let subtaskHTML = '';
     for (let index = 0; index < subtaskList.length; index++) {
         const subtask = subtaskList[index];
-        subtaskHTML += getSubTaskHTML(createUniqueID('est_'), subtask.name);
+        if (!subtask.id) subtask.id = createUniqueID('est_');
+        subtaskHTML += getSubTaskHTML(subtask.id, subtask.name);
     }
     setInnerHTML('edittask_subtask_list', subtaskHTML);
 }
