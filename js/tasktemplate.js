@@ -103,7 +103,7 @@ function getTaskHTML(task) {
         </div>
         <div class="board_tast_description">
             <span>${task.title}</span>
-            <span>${task.description}</span>
+            <span>${getTaskDescriptionHTML(task)}</span>
         </div>
         ${getMiniSubTaskHTML(task)}
         <div class="board_task_footer">
@@ -113,6 +113,19 @@ function getTaskHTML(task) {
             ${getTaskPriorityHTML(task)}
         </div>
     </div>`;
+}
+
+
+/**
+ * get a short task description, max 3 lines and max 50 characters
+ * 
+ * @param {Object} task 
+ * @returns {string}
+ */
+function getTaskDescriptionHTML(task) {
+    let taskShortDecription = task.description.split('\n').slice(0, 3).join('\n');
+    let taskDecription = taskShortDecription.substring(0, 50).replaceAll('\n', '<br>');
+    return taskDecription;
 }
 
 
@@ -191,7 +204,7 @@ function getTaskPriorityHTML(task) {
 
 
 /**
- * get the subtasklist for the mini task view
+ * get the subtasklist for the mini task view or empty string if 0 subtask added
  * 
  * @param {Object} task 
  * @returns {string} rednered html
@@ -246,6 +259,7 @@ function getSubTaskStateImgSrc(state) {
 
 /**
  * get the contacts that assigned to the task for the mini task view
+ * max 3 contacts
  * 
  * @param {Object} task 
  * @returns {string} rednered html
@@ -266,6 +280,13 @@ function getTaskAssignedContactsHTML(task) {
 }
 
 
+/**
+ * get the HTML string for one contactbadge
+ * 
+ * @param {string} badgeColor 
+ * @param {string} badgeInitials 
+ * @returns {string}
+ */
 function getAssignedToSpan(badgeColor, badgeInitials) {
     return `
     <span style="background-color: ${badgeColor}; color: black;">${badgeInitials}</span>
