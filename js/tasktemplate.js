@@ -61,7 +61,7 @@ function getBigTaskHTML(task) {
         </div>
             <div class="task_scrolldiv custom-scrollbar">
             <span class="task_big_title">${task.title}</span>
-            <span class="task_big_description">${task.description ? task.description : ''}</span>
+            <span class="task_big_description">${task.description ? task.description.replaceAll('\n', '<br>') : ''}</span>
             <div class="task_big_property"><span class="">Due Date:</span><span>${task.date}</span></div>
             <div class="task_big_property">
                 <span>Priority:</span>

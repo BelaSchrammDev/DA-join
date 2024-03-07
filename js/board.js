@@ -269,6 +269,7 @@ function deletetask(taskID) {
 function setNewStatus(taskID, newStatus) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task && newStatus != '') task.status = newStatus;
+    setInputValue('tasksearchfield');
     renderTasks();
     storeSessionTasksToRemoteStorage();
 }
@@ -319,12 +320,11 @@ function openMoveMenu(menuID, open) {
 
 
 function changeTaskSearchTerm(event) {
-    const searchTerm = event.target.value;
-    renderTasks(searchTerm);
+    renderTasks(event.target.value);
 }
 
 
 function clickClearTaskSearch() {
-    document.getElementById('tasksearchfield').value = '';
+    setInputValue('tasksearchfield');
     renderTasks();
 }
