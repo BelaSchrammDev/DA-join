@@ -252,18 +252,24 @@ function getSubTaskStateImgSrc(state) {
  */
 function getTaskAssignedContactsHTML(task) {
     let assignedcontactsHTML = '';
-    for (let index = 0; index < task.assignedto.length; index++) {
+    for (let index = 0; index < task.assignedto.length && index < 3; index++) {
         const contactID = task.assignedto[index];
         const contact = sessionContacts.find(c => c.id == contactID);
         if (contact) {
-            assignedcontactsHTML += `
-            <span style="background-color: ${contact.color}; color: black;">
-            ${contact.initial}
-            </span>
-            `;
+            assignedcontactsHTML += getAssignedToSpan(contact.color, contact.initial);
         }
     }
+    if (task.assignedto.length > 3) {
+        assignedcontactsHTML += getAssignedToSpan('lightgray', '&plus;' + (task.assignedto.length - 3));
+    }
     return assignedcontactsHTML;
+}
+
+
+function getAssignedToSpan(badgeColor, badgeInitials) {
+    return `
+    <span style="background-color: ${badgeColor}; color: black;">${badgeInitials}</span>
+    `;
 }
 
 
