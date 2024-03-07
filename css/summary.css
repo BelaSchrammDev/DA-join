@@ -220,6 +220,36 @@ a:visited {
     margin: 0;
 }
 
+.welcome-container-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-left: 232px;
+    margin: auto;
+    background-color: var(--site-bg);
+    width: 100%;
+    max-width: 1688px;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center; 
+    filter: opacity(1);
+    transition: filter 2s linear;   
+}
+
+.welcome-message-mobile {
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.welcome-message-mobile>span {
+    font-size: 47px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
 /* HOVER EFFECTS */
 
 .hover-to-the-right:hover {

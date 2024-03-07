@@ -104,3 +104,16 @@ function changeClassesOnWidth() {
         leftSmall.classList.remove('active-to-the-left-small');
     }
 }
+
+
+function mobileWelcomeMsg() {
+    let welcome = document.getElementById('welcomeContainerMobile');
+    if (window.innerWidth < 846) {
+        welcome.style.display = 'flex';
+        setTimeout(() => {welcome.style.filter = 'opacity(0)'}, 1500);
+        setTimeout(() => {welcome.style.display = 'none'}, 4000);
+    }
+    if (window.innerWidth > 845) {
+        welcome.style.display = 'none';
+    }
+}
