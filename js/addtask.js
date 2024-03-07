@@ -175,21 +175,15 @@ function fillTaskObjectFromFormData(task, formData) {
     task.description = formData.task_description;
     task.date = formData.task_date;
     task.priority = formData.task_priority;
-    task.assignedto = addPropertysToArray('task_assigned_', formData,
-        (key) => {
-            return key;
-        });
+    task.assignedto = addPropertysToArray('task_assigned_', formData, (key) => { return key; });
     task.subtasks = addPropertysToArray('task_subtask', formData,
         (key, property) => {
             let _done = false;
             if (task.subtasks) {
-                const oldSubtask = task.subtasks.find(st => st.name == property);
+                const oldSubtask = task.subtasks.find(st => st.id == key);
                 if (oldSubtask) _done = oldSubtask.done;
             }
-            return {
-                name: property,
-                done: _done
-            }
+            return { id: key, name: property, done: _done }
         });
 }
 

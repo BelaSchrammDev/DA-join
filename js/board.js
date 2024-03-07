@@ -211,7 +211,8 @@ function setSubTasks(subtaskList) {
     let subtaskHTML = '';
     for (let index = 0; index < subtaskList.length; index++) {
         const subtask = subtaskList[index];
-        subtaskHTML += getSubTaskHTML(createUniqueID('est_'), subtask.name);
+        if (!subtask.id) subtask.id = createUniqueID('est_');
+        subtaskHTML += getSubTaskHTML(subtask.id, subtask.name);
     }
     setInnerHTML('edittask_subtask_list', subtaskHTML);
 }
@@ -269,6 +270,7 @@ function deletetask(taskID) {
 function setNewStatus(taskID, newStatus) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task && newStatus != '') task.status = newStatus;
+    setInputValue('tasksearchfield');
     renderTasks();
     storeSessionTasksToRemoteStorage();
 }
@@ -276,14 +278,23 @@ function setNewStatus(taskID, newStatus) {
 
 function draggableBegin(event, taskID) {
     currentDraggableTaskID = taskID;
-    getElement('minitask_' + taskID).classList.add('task_draggable');
+    addClass('minitask_' + taskID, 'task_draggable');
 }
+
 
 function draggableEnd(event, taskID) {
     event.preventDefault();
-    getElement('minitask_' + taskID).classList.remove('task_draggable');
+    removeClass('minitask_' + taskID, 'task_draggable');
+    const hightlightedRow = document.querySelector('.row_draggable');
+    if (hightlightedRow) removeClass(hightlightedRow, 'row_draggable');
     setNewStatus(taskID, getRowIDFromMousePosition(event.clientX, event.clientY));
 }
+
+
+function dragOver(event) {
+    event.preventDefault();
+}
+
 
 function getRowIDFromMousePosition(posX, posY) {
     const isBetween = (num1, value, num2) => num1 < value && value < num2;
@@ -296,9 +307,10 @@ function getRowIDFromMousePosition(posX, posY) {
     return '';
 }
 
+
 function draggableEnter(event, rowID) {
     event.preventDefault();
-    getElement('taskrow_' + rowID).classList.add('row_draggable');
+    addClass('taskrow_' + rowID, 'row_draggable');
     currentDragHighlightID = event.target.id;
 }
 
@@ -306,7 +318,7 @@ function draggableEnter(event, rowID) {
 function draggableLeave(event, rowID) {
     event.preventDefault();
     if (currentDragHighlightID === event.target.id) {
-        getElement('taskrow_' + rowID).classList.remove('row_draggable');
+        removeClass('taskrow_' + rowID, 'row_draggable');
         currentDragHighlightID = '';
     }
 }
@@ -319,12 +331,11 @@ function openMoveMenu(menuID, open) {
 
 
 function changeTaskSearchTerm(event) {
-    const searchTerm = event.target.value;
-    renderTasks(searchTerm);
+    renderTasks(event.target.value);
 }
 
 
 function clickClearTaskSearch() {
-    document.getElementById('tasksearchfield').value = '';
+    setInputValue('tasksearchfield');
     renderTasks();
 }

@@ -61,7 +61,7 @@ function getBigTaskHTML(task) {
         </div>
             <div class="task_scrolldiv custom-scrollbar">
             <span class="task_big_title">${task.title}</span>
-            <span class="task_big_description">${task.description ? task.description : ''}</span>
+            <span class="task_big_description">${task.description ? task.description.replaceAll('\n', '<br>') : ''}</span>
             <div class="task_big_property"><span class="">Due Date:</span><span>${task.date}</span></div>
             <div class="task_big_property">
                 <span>Priority:</span>
@@ -103,7 +103,7 @@ function getTaskHTML(task) {
         </div>
         <div class="board_tast_description">
             <span>${task.title}</span>
-            <span>${task.description}</span>
+            <span>${getTaskDescriptionHTML(task)}</span>
         </div>
         ${getMiniSubTaskHTML(task)}
         <div class="board_task_footer">
@@ -113,6 +113,19 @@ function getTaskHTML(task) {
             ${getTaskPriorityHTML(task)}
         </div>
     </div>`;
+}
+
+
+/**
+ * get a short task description, max 3 lines and max 50 characters
+ * 
+ * @param {Object} task 
+ * @returns {string}
+ */
+function getTaskDescriptionHTML(task) {
+    let taskShortDecription = task.description.split('\n').slice(0, 3).join('\n');
+    let taskDecription = taskShortDecription.substring(0, 50).replaceAll('\n', '<br>');
+    return taskDecription;
 }
 
 
@@ -191,7 +204,7 @@ function getTaskPriorityHTML(task) {
 
 
 /**
- * get the subtasklist for the mini task view
+ * get the subtasklist for the mini task view or empty string if 0 subtask added
  * 
  * @param {Object} task 
  * @returns {string} rednered html
@@ -246,24 +259,38 @@ function getSubTaskStateImgSrc(state) {
 
 /**
  * get the contacts that assigned to the task for the mini task view
+ * max 3 contacts
  * 
  * @param {Object} task 
  * @returns {string} rednered html
  */
 function getTaskAssignedContactsHTML(task) {
     let assignedcontactsHTML = '';
-    for (let index = 0; index < task.assignedto.length; index++) {
+    for (let index = 0; index < task.assignedto.length && index < 3; index++) {
         const contactID = task.assignedto[index];
         const contact = sessionContacts.find(c => c.id == contactID);
         if (contact) {
-            assignedcontactsHTML += `
-            <span style="background-color: ${contact.color}; color: black;">
-            ${contact.initial}
-            </span>
-            `;
+            assignedcontactsHTML += getAssignedToSpan(contact.color, contact.initial);
         }
     }
+    if (task.assignedto.length > 3) {
+        assignedcontactsHTML += getAssignedToSpan('lightgray', '&plus;' + (task.assignedto.length - 3));
+    }
     return assignedcontactsHTML;
+}
+
+
+/**
+ * get the HTML string for one contactbadge
+ * 
+ * @param {string} badgeColor 
+ * @param {string} badgeInitials 
+ * @returns {string}
+ */
+function getAssignedToSpan(badgeColor, badgeInitials) {
+    return `
+    <span style="background-color: ${badgeColor}; color: black;">${badgeInitials}</span>
+    `;
 }
 
 
@@ -275,7 +302,7 @@ function getTaskAssignedContactsHTML(task) {
  */
 function getTaskRowHTML(rowObj) {
     return `
-        <div id="taskrow_${rowObj.id}" class="board_task_row" ondragenter="draggableEnter(event,'${rowObj.id}')" ondragleave="draggableLeave(event,'${rowObj.id}')">
+        <div id="taskrow_${rowObj.id}" class="board_task_row" ondragover="dragOver(event)" ondragenter="draggableEnter(event,'${rowObj.id}')" ondragleave="draggableLeave(event,'${rowObj.id}')">
         <div class="board_task_head">
             <span>${rowObj.name}</span>
             ${rowObj.addbutton
