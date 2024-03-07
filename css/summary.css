@@ -238,7 +238,8 @@ a:visited {
     content: url('../img/icons/summary/pencil-dark.svg');
 }
 
-.hover-to-the-right:hover .task-amount, .hover-to-the-right:hover .upper-task-text {
+.hover-to-the-right:hover .task-amount,
+.hover-to-the-right:hover .upper-task-text {
     color: white;
 }
 
@@ -262,7 +263,8 @@ a:visited {
     filter: unset;
 }
 
-.hover-to-the-right:active .task-amount, .hover-to-the-right:active .upper-task-text {
+.hover-to-the-right:active .task-amount,
+.hover-to-the-right:active .upper-task-text {
     color: black;
 }
 
@@ -282,7 +284,8 @@ a:visited {
     content: url('../img/icons/summary/hook-dark.svg');
 }
 
-.hover-to-the-left:hover .task-amount, .hover-to-the-left:hover .upper-task-text {
+.hover-to-the-left:hover .task-amount,
+.hover-to-the-left:hover .upper-task-text {
     color: white;
 }
 
@@ -306,7 +309,8 @@ a:visited {
     filter: unset;
 }
 
-.hover-to-the-left:active .task-amount, .hover-to-the-left:active .upper-task-text {
+.hover-to-the-left:active .task-amount,
+.hover-to-the-left:active .upper-task-text {
     color: black;
 }
 
@@ -318,7 +322,9 @@ a:visited {
     box-shadow: var(--btn-shdw-ttb);
 }
 
-.hover-to-the-bottom-right:hover .task-amount, .hover-to-the-bottom-right:hover .important-text, .hover-to-the-bottom-right:hover .important-text-bold {
+.hover-to-the-bottom-right:hover .task-amount,
+.hover-to-the-bottom-right:hover .important-text,
+.hover-to-the-bottom-right:hover .important-text-bold {
     color: white;
 }
 
@@ -330,7 +336,9 @@ a:visited {
     margin: 0;
 }
 
-.hover-to-the-bottom-right:active .task-amount, .hover-to-the-bottom-right:active .important-text, .hover-to-the-bottom-right:active .important-text-bold {
+.hover-to-the-bottom-right:active .task-amount,
+.hover-to-the-bottom-right:active .important-text,
+.hover-to-the-bottom-right:active .important-text-bold {
     color: black;
 }
 
@@ -344,7 +352,8 @@ a:visited {
     box-shadow: var(--btn-shdw-ttb);
 }
 
-.hover-to-the-middel:hover .task-amount, .hover-to-the-middel:hover .upper-task-text {
+.hover-to-the-middel:hover .task-amount,
+.hover-to-the-middel:hover .upper-task-text {
     color: white;
 }
 
@@ -356,7 +365,8 @@ a:visited {
     margin: 0;
 }
 
-.hover-to-the-middel:active .task-amount, .hover-to-the-middel:active .upper-task-text {
+.hover-to-the-middel:active .task-amount,
+.hover-to-the-middel:active .upper-task-text {
     color: black;
 }
 
@@ -369,7 +379,8 @@ a:visited {
     box-shadow: var(--btn-shdw-ttb);
 }
 
-.hover-to-the-left-small:hover .task-amount, .hover-to-the-left-small:hover .upper-task-text {
+.hover-to-the-left-small:hover .task-amount,
+.hover-to-the-left-small:hover .upper-task-text {
     color: white;
 }
 
@@ -381,7 +392,8 @@ a:visited {
     margin: 0;
 }
 
-.hover-to-the-left-small:active .task-amount, .hover-to-the-left-small:active .upper-task-text {
+.hover-to-the-left-small:active .task-amount,
+.hover-to-the-left-small:active .upper-task-text {
     color: black;
 }
 
@@ -394,7 +406,8 @@ a:visited {
     box-shadow: var(--btn-shdw-ttb);
 }
 
-.hover-to-the-right-small:hover .task-amount, .hover-to-the-right-small:hover .upper-task-text {
+.hover-to-the-right-small:hover .task-amount,
+.hover-to-the-right-small:hover .upper-task-text {
     color: white;
 }
 
@@ -406,7 +419,8 @@ a:visited {
     margin: 0;
 }
 
-.hover-to-the-right-small:active .task-amount, .hover-to-the-right-small:active .upper-task-text {
+.hover-to-the-right-small:active .task-amount,
+.hover-to-the-right-small:active .upper-task-text {
     color: black;
 }
 
@@ -459,7 +473,7 @@ a:visited {
     }
 }
 
-@media only screen and (max-width: 600px) { 
+@media only screen and (max-width: 600px) {
     a:hover {
         background-color: white;
     }
@@ -636,5 +650,152 @@ a:visited {
         margin-left: -8px;
         margin-bottom: -5px;
         margin-top: -5px;
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    .task-to-do-done {
+        width: 139.5px;
+        height: 82.5px;
+        border-radius: 14px;
+    }
+
+    .task-important {
+        width: 297px;
+        height: 82.5px;
+        border-radius: 14px;
+        gap: 10px;
+    }
+
+    .task-counter {
+        width: 87px;
+        height: 87px;
+        border-radius: 14px;
+    }
+
+    .summary-headline-container {
+        gap: 12px;
+    }
+
+    .summary-headline-container>div {
+        gap: 12px;
+    }
+
+    .summary-headline {
+        font-size: 40px;
+    }
+
+    .summary-subheadline {
+        font-size: 18px;
+    }
+
+    .summary-main-container {
+        gap: 18px;
+        margin-top: 30px;
+    }
+
+    .summary-taskinfo {
+        gap: 18px;
+    }
+
+    .task-counter-container {
+        gap: 18px;
+    }
+
+    .task-amount {
+        font-size: 36px;
+    }
+
+    .important-text-bold {
+        font-size: 16px;
+    }
+
+    .important-task-date {
+        gap: 6px;
+    }
+
+    .important-task-amount {
+        gap: 12px;
+    }
+
+    .important-seperator {
+        height: 50px;
+    }
+
+    .active-to-the-left:active {
+        width: 145.5px !important;
+        height: 90px !important;
+        margin-bottom: -5px;
+        margin-top: -5px;
+        margin-left: -6px;
+    }
+
+    .active-to-the-left:active .upper-img-bg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .active-to-the-left:active .upper-img-bg>img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .active-to-the-right:active {
+        width: 145.5px !important;
+        height: 90px !important;
+        margin-bottom: -5px;
+        margin-top: -5px;
+        margin-right: -6px;
+    }
+
+    .active-to-the-right:active .upper-img-bg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .active-to-the-right:active .upper-img-bg>img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .active-to-the-bottom-right:active {
+        height: 90px;
+        margin-bottom: -3.5px;
+        margin-top: -3.5px;
+    }
+
+    .active-to-the-bottom-right:active .important-img-bg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .active-to-the-bottom-right:active .important-img-bg>img {
+        width: 26px;
+        height: 26px;
+    }
+
+    .active-to-the-left-small:active {
+        width: 93px;
+        height: 93px;
+        margin-left: -6px;
+        margin-bottom: -2px;
+        margin-top: -2px;
+    }
+
+    .active-to-the-middel:active {
+        width: 93px;
+        height: 93px;
+        margin-left: -3px;
+        margin-right: -3px;
+        margin-bottom: -2px;
+        margin-top: -2px;
+    }
+
+    .active-to-the-right-small:active {
+        width: 93px;
+        height: 93px;
+        margin-right: -6px;
+        margin-bottom: -2px;
+        margin-top: -2px;
     }
 }

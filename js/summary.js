@@ -94,5 +94,13 @@ function changeClassesOnWidth() {
         right.classList.remove('active-to-the-right');
         left.classList.add('hover-to-the-left');
         left.classList.remove('active-to-the-left');
+        bottom.classList.add('hover-to-the-bottom-right');
+        bottom.classList.remove('active-to-the-bottom-right');
+        middel.classList.add('hover-to-the-middel');
+        middel.classList.remove('active-to-the-middel');
+        rightSmall.classList.add('hover-to-the-right-small');
+        rightSmall.classList.remove('active-to-the-right-small');
+        leftSmall.classList.add('hover-to-the-left-small');
+        leftSmall.classList.remove('active-to-the-left-small');
     }
 }
