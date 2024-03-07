@@ -171,6 +171,7 @@ a:visited {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 120ms ease-in-out;
 }
 
 .important-task-date {
@@ -459,6 +460,18 @@ a:visited {
 }
 
 @media only screen and (max-width: 600px) { 
+    a:hover {
+        background-color: white;
+    }
+
+    .summary-headline {
+        font-size: 47px;
+    }
+
+    .summary-subheadline {
+        font-size: 20px;
+    }
+
     .summary-taskinfo {
         gap: 24px;
     }
@@ -471,10 +484,6 @@ a:visited {
         width: 186px;
         height: 110px;
         border-radius: 20px;
-    }
-
-    .task-to-do-done:hover {
-        background-color: white;
     }
 
     .upper-img-bg {
@@ -535,5 +544,97 @@ a:visited {
         content: url('../img/icons/summary/hook-dark.svg');
         width: 20px;
         height: 20px;
+    }
+
+    .important-task-date {
+        align-items: start;
+        gap: 8px;
+    }
+
+    .important-text {
+        font-size: 14px;
+    }
+
+    .important-seperator {
+        height: 68px;
+    }
+
+    .important-img-bg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .important-img-bg>img {
+        width: 22px;
+        height: 22px;
+        transition: 120ms ease-in-out;
+    }
+
+    .task-important {
+        width: 396px;
+        height: 110px;
+        gap: 20px;
+    }
+
+    .active-to-the-bottom-right:active {
+        height: 120px;
+        margin-bottom: -5px;
+        margin-top: -5px;
+        background-color: var(--primary);
+        color: white;
+        box-shadow: var(--btn-shdw-ttb);
+    }
+
+    .active-to-the-bottom-right:active .important-img-bg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .active-to-the-bottom-right:active .important-img-bg>img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .task-counter-container {
+        gap: 24px;
+    }
+
+    .task-counter {
+        width: 116px;
+        height: 116px;
+    }
+
+    .active-to-the-right-small:active {
+        width: 124px;
+        height: 124px;
+        background-color: var(--primary);
+        color: white;
+        box-shadow: var(--btn-shdw-ttb);
+        margin-right: -8px;
+        margin-bottom: -5px;
+        margin-top: -5px;
+    }
+
+    .active-to-the-middel:active {
+        width: 124px;
+        height: 124px;
+        background-color: var(--primary);
+        color: white;
+        box-shadow: var(--btn-shdw-ttb);
+        margin-right: -4px;
+        margin-left: -4px;
+        margin-bottom: -5px;
+        margin-top: -5px;
+    }
+
+    .active-to-the-left-small:active {
+        width: 124px;
+        height: 124px;
+        background-color: var(--primary);
+        color: white;
+        box-shadow: var(--btn-shdw-ttb);
+        margin-left: -8px;
+        margin-bottom: -5px;
+        margin-top: -5px;
     }
 }

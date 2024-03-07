@@ -80,6 +80,14 @@ function changeClassesOnWidth() {
         right.classList.add('active-to-the-right');
         left.classList.remove('hover-to-the-left');
         left.classList.add('active-to-the-left');
+        bottom.classList.remove('hover-to-the-bottom-right');
+        bottom.classList.add('active-to-the-bottom-right');
+        middel.classList.remove('hover-to-the-middel');
+        middel.classList.add('active-to-the-middel');
+        rightSmall.classList.remove('hover-to-the-right-small');
+        rightSmall.classList.add('active-to-the-right-small');
+        leftSmall.classList.remove('hover-to-the-left-small');
+        leftSmall.classList.add('active-to-the-left-small');
     }
     if (window.innerWidth > 600) {
         right.classList.add('hover-to-the-right');
