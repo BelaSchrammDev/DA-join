@@ -302,7 +302,7 @@ function getAssignedToSpan(badgeColor, badgeInitials) {
  */
 function getTaskRowHTML(rowObj) {
     return `
-        <div id="taskrow_${rowObj.id}" class="board_task_row" ondragenter="draggableEnter(event,'${rowObj.id}')" ondragleave="draggableLeave(event,'${rowObj.id}')">
+        <div id="taskrow_${rowObj.id}" class="board_task_row" ondragover="dragOver(event)" ondragenter="draggableEnter(event,'${rowObj.id}')" ondragleave="draggableLeave(event,'${rowObj.id}')">
         <div class="board_task_head">
             <span>${rowObj.name}</span>
             ${rowObj.addbutton
