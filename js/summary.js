@@ -77,8 +77,17 @@ function getFeedbackAmount() {
 
 function getUserName() {
     let container = document.getElementById('userName');
+    let welcomeMsg = document.getElementById('mobileUserWelcomeMsg');
     let name = currentuser.name;
     container.innerHTML = name;
+    if (name == 'Guest') {
+        welcomeMsg.innerHTML = 'Good morning!';
+        return
+    }
+    welcomeMsg.innerHTML = /*html*/`
+    Good morning,<br>
+    <span>${name}</span>
+    `;
 }
 
 
