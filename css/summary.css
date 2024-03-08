@@ -501,6 +501,20 @@ a:visited {
     .summary-main-container {
         margin-top: 40px;
     }
+
+    .welcome-container-mobile {
+        display: flex;
+    }
+
+    .welcome-message-mobile {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .welcome-container-mobile {
+        padding-left: 0;
+    }
 }
 
 @media only screen and (max-width: 600px) {

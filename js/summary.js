@@ -1,5 +1,9 @@
-async function initSummarySite(){
+let mobileIntro = true;
+
+async function initSummarySite() {
     await initJoin();
+    loadIntroSeen();
+    mobileWelcomeMsg();
     getAmounts();
     getUserName();
     changeClassesOnWidth();
@@ -14,6 +18,18 @@ function getAmounts() {
     getTaskAmount();
     getInProgressAmount();
     getFeedbackAmount();
+}
+
+function saveIntroSeen() {
+    let introSeen = JSON.stringify(mobileIntro);
+    sessionStorage.setItem('intro', introSeen);
+}
+
+function loadIntroSeen() {
+    let introSeen = sessionStorage.getItem('intro');
+    if (introSeen) {
+        mobileIntro = JSON.parse(introSeen);
+    }
 }
 
 
@@ -108,10 +124,17 @@ function changeClassesOnWidth() {
 
 function mobileWelcomeMsg() {
     let welcome = document.getElementById('welcomeContainerMobile');
-    if (window.innerWidth < 846) {
-        welcome.style.display = 'flex';
-        setTimeout(() => {welcome.style.filter = 'opacity(0)'}, 1500);
-        setTimeout(() => {welcome.style.display = 'none'}, 4000);
+    let msg = document.querySelector('.welcome-message-mobile');
+    if (mobileIntro) {
+        if (window.innerWidth < 846) {
+            msg.style.display = 'block';
+            setTimeout(() => { welcome.style.filter = 'opacity(0)' }, 1500);
+            setTimeout(() => { welcome.style.display = 'none' }, 4000);
+            mobileIntro = false;
+            saveIntroSeen();
+        }
+    } else {
+        welcome.style.display = 'none';
     }
     if (window.innerWidth > 845) {
         welcome.style.display = 'none';
