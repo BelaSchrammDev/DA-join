@@ -47,6 +47,7 @@ function logOut() {
     sessionStorage.removeItem('currentuser');
     sessionStorage.removeItem('sessiontasks');
     sessionStorage.removeItem('sessioncontacts');
+    sessionStorage.removeItem('intro');
     window.location.href = './index.html';
 }
 
