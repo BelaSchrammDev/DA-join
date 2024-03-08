@@ -237,6 +237,7 @@ a:visited {
     align-items: center; 
     filter: opacity(1);
     transition: filter 2s linear;   
+    text-align: center;
 }
 
 .welcome-message-mobile {
