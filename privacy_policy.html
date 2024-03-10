@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
+    <script src="./js/main.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/media_queries.css">
+
+    <title>Help</title>
+</head>
+
+<body onload="initLegalNoticePrivacyPolicy()">
+    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
+    <div onclick="closeHeaderMenu()" class="header.main-container">
+        <header w3-include-html="./templates/header.html"></header>
+        <div id="legalNoticeTemplate" class="legal_notice">
+            <div class="headline">
+                <h1>Privacy Policy</h1>
+                <img onclick="history.back()" class="blue_arrow" src="../img/icons/contacts/back-arrow.svg"
+                    alt="back-arrow">
+            </div>
+            <h2>Imprint</h2>
+            <ul>
+                <li>Béla Schramm</li>
+                <li>Simon Henke</li>
+                <li>Nadja Reuther</li>
+                <br>
+                <p>Würkertstraße 17<br>04157 Leipzig</p>
+            </ul>
+            <h2>Contact</h2>
+            <p>
+                Email:
+                <a href="mailto:belaschramm@aol.de"><span class="accent_blue">belaschramm@aol.de</span></a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
