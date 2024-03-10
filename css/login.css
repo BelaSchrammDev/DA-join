@@ -241,6 +241,7 @@ body {
     align-items: center;
     gap: 10px;
     user-select: none;
+    cursor: pointer;
 }
 
 .login_checkbox>label>a {
