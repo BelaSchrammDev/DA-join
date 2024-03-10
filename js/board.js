@@ -1,3 +1,9 @@
+/**
+ * An array of objects representing each row in the board.
+ * Each object contains the id, name, and addbutton properties.
+ * 
+ * @type {Array<{id: string, name: string, addbutton: boolean}>}
+ */
 const rowIdName = [
     { id: 'todo', name: 'ToDo', addbutton: true },
     { id: 'inprogress', name: 'In Progress', addbutton: true },
@@ -5,11 +11,31 @@ const rowIdName = [
     { id: 'done', name: 'Done', addbutton: false },
 ]
 
+
+/**
+ * The ID of the currently dragged task.
+ * @type {string}
+ */
 let currentDraggableTaskID = '';
+
+
+/**
+ * The ID of the currently displayed flying window.
+ * @type {string}
+ */
 let current_flyingwindow_id = '';
+
+
+/**
+ * The ID of the currently selected task.
+ * @type {string}
+ */
 let current_taskID = '';
 
 
+/**
+ * A test function to display a request window.
+ */
 function testrequest() {
     let div = getElement('requestdiv');
     div.innerHTML = getRequestWindowHTML(1, 'testfrage?');
@@ -18,7 +44,9 @@ function testrequest() {
 
 
 /**
- * initfunction for the board site
+ * Initializes the board site.
+ * 
+ * @returns {Promise<void>}
  */
 async function initBoardSite() {
     await initJoin();
@@ -33,6 +61,9 @@ async function initBoardSite() {
 }
 
 
+/**
+ * Adds a media query for toggling draggable tasks based on screen size.
+ */
 function addMediaQueryForDragToggling() {
     let query = window.matchMedia("(max-width: 1200px)");
     query.onchange = (query) => {
@@ -44,6 +75,9 @@ function addMediaQueryForDragToggling() {
 }
 
 
+/**
+ * Callback function after adding a task.
+ */
 function afterAddTask() {
     storeSessionTasksToRemoteStorage();
     closeOverlay();
@@ -51,6 +85,11 @@ function afterAddTask() {
 }
 
 
+/**
+ * Shows an overlay window.
+ * 
+ * @param {string} windowID - The ID of the window to show.
+ */
 function showOverlay(windowID) {
     current_flyingwindow_id = windowID;
     setStyle('board_overlay', 'z-index', '10');
@@ -60,7 +99,9 @@ function showOverlay(windowID) {
 
 
 /**
- * close the current showing overlay
+ * Closes the currently displayed overlay window.
+ * 
+ * @param {Event} [event=null] - The event that triggered the close action.
  */
 function closeOverlay(event = null) {
     if (current_flyingwindow_id != '') {
@@ -74,6 +115,9 @@ function closeOverlay(event = null) {
 }
 
 
+/**
+ * Renders the rows of the board.
+ */
 function renderRows() {
     let rowsHTML = '';
     for (let index = 0; index < rowIdName.length; index++) {
@@ -84,7 +128,9 @@ function renderRows() {
 
 
 /**
- * render all task in the related rows
+ * Renders all tasks in the related rows.
+ * 
+ * @param {string} [filter=''] - The filter string to apply to the tasks.
  */
 function renderTasks(filter = '') {
     resetAllDropDowns();
@@ -106,7 +152,7 @@ function renderTasks(filter = '') {
 
 
 /**
- * render info in empty rows
+ * Renders an info message in empty rows.
  */
 function renderEmptyRowMessage() {
     for (let index = 0; index < rowIdName.length; index++) {
@@ -119,7 +165,7 @@ function renderEmptyRowMessage() {
 
 
 /**
- * clear all the rows of the board
+ * Clears all the rows of the board.
  */
 function clearRows() {
     for (let index = 0; index < rowIdName.length; index++) {
@@ -130,9 +176,9 @@ function clearRows() {
 
 
 /**
- * render and show the big task view window
+ * Renders and shows the big task view window.
  * 
- * @param {string} taskID 
+ * @param {string} taskID - The ID of the task to display.
  */
 function showBigTaskView(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
@@ -144,11 +190,21 @@ function showBigTaskView(taskID) {
 }
 
 
+/**
+ * Updates the content of the big task view window.
+ * 
+ * @param {Object} task - The task object to display.
+ */
 function updateBigTaskView(task) {
     setInnerHTML('task_big_showing', getBigTaskHTML(task));
 }
 
 
+/**
+ * Shows the add task overlay window.
+ * 
+ * @param {string} newtaskStatus - The status of the new task.
+ */
 function showAddTaskOverlay(newtaskStatus) {
     presetStatusByAddTask = newtaskStatus;
     getElement('addtask_form').reset();
@@ -156,6 +212,11 @@ function showAddTaskOverlay(newtaskStatus) {
 }
 
 
+/**
+ * Updates the mini task card.
+ * 
+ * @param {string} taskID - The ID of the task to update.
+ */
 function updateMiniTaskCard(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     const taskCard = getElement('taskcard_' + taskID);
@@ -165,6 +226,9 @@ function updateMiniTaskCard(taskID) {
 }
 
 
+/**
+ * Submits the edit task form.
+ */
 function submitEditTaskForm() {
     const searchForm = document.getElementById('edittask_form');
     let formData = new FormData(searchForm);
@@ -179,6 +243,11 @@ function submitEditTaskForm() {
 }
 
 
+/**
+ * Shows the edit task mode.
+ * 
+ * @param {string} taskID - The ID of the task to edit.
+ */
 function showEditTaskMode(taskID) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task) {
@@ -189,12 +258,20 @@ function showEditTaskMode(taskID) {
 }
 
 
+/**
+ * Hides the edit task mode.
+ */
 function hideEditTaskMode() {
     setStyle('task_big_showing', 'display', 'flex');
     setStyle('edittask_form', 'display', 'none');
 }
 
 
+/**
+ * Fills the edit task form with data from a task object.
+ * 
+ * @param {Object} task - The task object to fill the form with.
+ */
 function fillEditTaskFormular(task) {
     setInputValue('edittask_category', taskCategorys[task.category].name);
     setInputValue('edittask_title', task.title);
@@ -207,6 +284,11 @@ function fillEditTaskFormular(task) {
 }
 
 
+/**
+ * Sets the subtasks in the edit task form.
+ * 
+ * @param {Array} subtaskList - The list of subtasks.
+ */
 function setSubTasks(subtaskList) {
     let subtaskHTML = '';
     for (let index = 0; index < subtaskList.length; index++) {
@@ -218,6 +300,11 @@ function setSubTasks(subtaskList) {
 }
 
 
+/**
+ * Sets the assigned contacts in the edit task form.
+ * 
+ * @param {Array} assignedToList - The list of assigned contacts.
+ */
 function setAssignedToButtons(assignedToList) {
     for (let index = 0; index < sessionContacts.length; index++) {
         const contactsID = sessionContacts[index].id;
@@ -228,6 +315,11 @@ function setAssignedToButtons(assignedToList) {
 }
 
 
+/**
+ * Sets the priority radio button in the edit task form.
+ * 
+ * @param {string} priority - The priority value.
+ */
 function setPriorityRadioButton(priority) {
     const prioTypes = ['urgent', 'medium', 'low'];
     for (let index = 0; index < prioTypes.length; index++) {
@@ -238,11 +330,10 @@ function setPriorityRadioButton(priority) {
 
 
 /**
- * function executes when a subtask is clicked an change the state
- * in the picture and the taskObject itself
+ * Handles the click event on a subtask and changes its state.
  * 
- * @param {string} taskID 
- * @param {number} subtaskNumber subtaskindex
+ * @param {string} taskID - The ID of the task.
+ * @param {number} subtaskNumber - The index of the subtask.
  */
 function clickSubTaskDone(taskID, subtaskNumber) {
     let task = sessionTasks.find(t => t.id == taskID);
@@ -256,6 +347,11 @@ function clickSubTaskDone(taskID, subtaskNumber) {
 }
 
 
+/**
+ * Deletes a task.
+ * 
+ * @param {string} taskID - The ID of the task to delete.
+ */
 function deletetask(taskID) {
     const taskArrayIndex = sessionTasks.findIndex(t => t.id == taskID);
     if (taskArrayIndex) {
@@ -267,6 +363,12 @@ function deletetask(taskID) {
 }
 
 
+/**
+ * Sets the new status of a task.
+ * 
+ * @param {string} taskID - The ID of the task to update.
+ * @param {string} newStatus - The new status value.
+ */
 function setNewStatus(taskID, newStatus) {
     const task = sessionTasks.find(t => t.id == taskID);
     if (task && newStatus != '') task.status = newStatus;
@@ -276,12 +378,24 @@ function setNewStatus(taskID, newStatus) {
 }
 
 
+/**
+ * Event handler for the draggable task when the drag starts.
+ * 
+ * @param {DragEvent} event - The drag event.
+ * @param {string} taskID - The ID of the task being dragged.
+ */
 function draggableBegin(event, taskID) {
     currentDraggableTaskID = taskID;
     addClass('minitask_' + taskID, 'task_draggable');
 }
 
 
+/**
+ * Event handler for the draggable task when the drag ends.
+ * 
+ * @param {DragEvent} event - The drag event.
+ * @param {string} taskID - The ID of the task being dragged.
+ */
 function draggableEnd(event, taskID) {
     event.preventDefault();
     removeClass('minitask_' + taskID, 'task_draggable');
@@ -291,11 +405,23 @@ function draggableEnd(event, taskID) {
 }
 
 
+/**
+ * Event handler for the dragover event.
+ * 
+ * @param {DragEvent} event - The drag event.
+ */
 function dragOver(event) {
     event.preventDefault();
 }
 
 
+/**
+ * Gets the ID of the row based on the mouse position.
+ * 
+ * @param {number} posX - The X coordinate of the mouse position.
+ * @param {number} posY - The Y coordinate of the mouse position.
+ * @returns {string} - The ID of the row.
+ */
 function getRowIDFromMousePosition(posX, posY) {
     const isBetween = (num1, value, num2) => num1 < value && value < num2;
     for (let index = 0; index < rowIdName.length; index++) {
@@ -308,6 +434,12 @@ function getRowIDFromMousePosition(posX, posY) {
 }
 
 
+/**
+ * Event handler for the draggable task when it enters a row.
+ * 
+ * @param {DragEvent} event - The drag event.
+ * @param {string} rowID - The ID of the row.
+ */
 function draggableEnter(event, rowID) {
     event.preventDefault();
     addClass('taskrow_' + rowID, 'row_draggable');
@@ -315,6 +447,12 @@ function draggableEnter(event, rowID) {
 }
 
 
+/**
+ * Event handler for the draggable task when it leaves a row.
+ * 
+ * @param {DragEvent} event - The drag event.
+ * @param {string} rowID - The ID of the row.
+ */
 function draggableLeave(event, rowID) {
     event.preventDefault();
     if (currentDragHighlightID === event.target.id) {
@@ -324,17 +462,31 @@ function draggableLeave(event, rowID) {
 }
 
 
+/**
+ * Opens the move menu for a task.
+ * 
+ * @param {string} menuID - The ID of the move menu.
+ * @param {boolean} open - Whether to open or close the move menu.
+ */
 function openMoveMenu(menuID, open) {
     const menu = document.getElementById(menuID);
     if (menu) menu.setAttribute('dropdownopen', open);
 }
 
 
+/**
+ * Executes when the user presses any key in the task search field.
+ * 
+ * @param {Event} event 
+ */
 function changeTaskSearchTerm(event) {
     renderTasks(event.target.value);
 }
 
 
+/**
+ * Clears the task search field and renders the tasks.
+ */
 function clickClearTaskSearch() {
     setInputValue('tasksearchfield');
     renderTasks();

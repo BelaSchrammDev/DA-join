@@ -1,7 +1,21 @@
+/**
+ * Action to be performed after adding a task.
+ * @type {Function}
+ */
 let actionAfterAddTask = null;
+
+
+/**
+ * Preset status for the task to be added.
+ * @type {string}
+ */
 let presetStatusByAddTask = 'todo';
 
 
+/**
+ * Initializes the add task site.
+ * @async
+ */
 async function initAddtaskSite() {
     await initJoin();
     renderAddtaskFields();
@@ -9,12 +23,20 @@ async function initAddtaskSite() {
 }
 
 
+/**
+ * Resets the add task form.
+ * 
+ * @param {string} prefix - The prefix for the form elements.
+ */
 function resetAddTaskForm(prefix) {
     setInnerHTML(prefix + 'subtask_list', '');
     setInnerHTML(prefix + 'assignedcontacts_bar', '');
 }
 
 
+/**
+ * Renders the fields for adding a task.
+ */
 function renderAddtaskFields() {
     renderCategorys();
     renderAssignedContacts('addtask_assigned_list', 'addtask_');
@@ -24,6 +46,12 @@ function renderAddtaskFields() {
 }
 
 
+/**
+ * Renders the assigned contacts.
+ * 
+ * @param {string} listDropDownID - The ID of the dropdown list.
+ * @param {string} prefix - The prefix for the form elements.
+ */
 function renderAssignedContacts(listDropDownID, prefix) {
     let listHTML = '';
     for (let index = 0; index < sessionContacts.length; index++) {
@@ -33,6 +61,11 @@ function renderAssignedContacts(listDropDownID, prefix) {
 }
 
 
+/**
+ * Sets the assigned contacts bar.
+ * 
+ * @param {string} prefix - The prefix for the form elements.
+ */
 function setAssignedContactsBar(prefix) {
     let contactsBarHTML = '';
     for (let index = 0; index < sessionContacts.length; index++) {
@@ -46,6 +79,9 @@ function setAssignedContactsBar(prefix) {
 }
 
 
+/**
+ * Renders the categories.
+ */
 function renderCategorys() {
     let html = '';
     categoryKeys = Object.keys(taskCategorys);
@@ -57,11 +93,23 @@ function renderCategorys() {
 }
 
 
+/**
+ * Opens the task category dropdown list.
+ * 
+ * @param {string} prefix - The prefix for the form elements.
+ * @param {boolean} open - Whether to open the dropdown list.
+ */
 function openTaskCategoryDropDownList(prefix, open) {
     setAttribute(prefix + 'category_div', 'dropdownopen', open);
 }
 
 
+/**
+ * Opens the assigned contacts dropdown list.
+ * 
+ * @param {string} prefix - The prefix for the form elements.
+ * @param {boolean} open - Whether to open the dropdown list.
+ */
 function openAssignedContactsDropDownList(prefix, open) {
     if (open) {
         showAllAssignedContacts();
@@ -77,6 +125,9 @@ function openAssignedContactsDropDownList(prefix, open) {
 }
 
 
+/**
+ * Shows all assigned contacts.
+ */
 function showAllAssignedContacts() {
     let contactsDivs = document.getElementById('addtask_assigned_list').children;
     for (let index = 0; index < contactsDivs.length; index++) {
@@ -85,6 +136,12 @@ function showAllAssignedContacts() {
 }
 
 
+/**
+ * Changes the assigned contacts search term.
+ * 
+ * @param {Event} event - The event object.
+ * @param {string} prefix - The prefix for the form elements.
+ */
 function changeAssignedContactsSearchTerm(event, prefix) {
     const searchTerm = document.getElementById(prefix + 'assignedinput').value.toLowerCase();
     let contactsDivs = document.getElementById(prefix + 'assigned_list').children;
@@ -98,6 +155,11 @@ function changeAssignedContactsSearchTerm(event, prefix) {
 }
 
 
+/**
+ * Sets the characters left for a textarea element.
+ * 
+ * @param {HTMLTextAreaElement} taElement - The textarea element.
+ */
 function setCharactersLeft(taElement) {
     const spanElement = taElement.nextElementSibling;
     const cLeft = taElement.maxLength - taElement.value.length;
@@ -105,6 +167,12 @@ function setCharactersLeft(taElement) {
 }
 
 
+/**
+ * Handles the enter key press on the subtask input.
+ * 
+ * @param {KeyboardEvent} event - The event object.
+ * @param {string} prefix - The prefix for the form elements.
+ */
 function enterSubtaskInput(event, prefix) {
     if (event.key == 'Enter') {
         createNewSubTask(prefix);
@@ -115,12 +183,22 @@ function enterSubtaskInput(event, prefix) {
 }
 
 
+/**
+ * Selects a task category.
+ * 
+ * @param {number} categoryID - The ID of the category.
+ */
 function selectTaskCategory(categoryID) {
     setInputValue('addtask_category', taskCategorys[categoryID].name);
     closeDropDown();
 }
 
 
+/**
+ * Creates a new subtask.
+ * 
+ * @param {string} prefix - The prefix for the form elements.
+ */
 function createNewSubTask(prefix) {
     let newSubTaskName = getInputValue(prefix + 'subtask_input');
     if (newSubTaskName == '') return;
@@ -129,11 +207,21 @@ function createNewSubTask(prefix) {
 }
 
 
+/**
+ * Deletes a subtask.
+ * 
+ * @param {string} subtaskID - The ID of the subtask.
+ */
 function deleteSubTask(subtaskID) {
     getElement('subtaskdiv' + subtaskID).remove();
 }
 
 
+/**
+ * Changes a subtask.
+ * 
+ * @param {string} subtaskID - The ID of the subtask.
+ */
 function changeSubTask(subtaskID) {
     const inputSubTask = getElement('subtask' + subtaskID);
     const spanSubTask = getElement('subtaskspan' + subtaskID);
@@ -143,6 +231,12 @@ function changeSubTask(subtaskID) {
 }
 
 
+/**
+ * Sets the edit mode for a subtask.
+ * 
+ * @param {string} subtaskID - The ID of the subtask.
+ * @param {boolean} mode - Whether to set the edit mode.
+ */
 function setSubTaskEditMode(subtaskID, mode) {
     setAttribute('subtaskdiv' + subtaskID, 'editmode', mode);
     setAttribute('subtask' + subtaskID, 'tabindex', '0');
@@ -150,6 +244,9 @@ function setSubTaskEditMode(subtaskID, mode) {
 }
 
 
+/**
+ * Submits the add task form.
+ */
 function submitAddTaskForm() {
     const searchForm = document.getElementById('addtask_form');
     let formData = new FormData(searchForm);
@@ -163,12 +260,23 @@ function submitAddTaskForm() {
 }
 
 
+/**
+ * Performs actions after the add task template is submitted.
+ * 
+ * @async
+ */
 async function afterAddTaskTemplateSubmit() {
     await storeSessionTasksToRemoteStorage();
     window.location.href = './board.html';
 }
 
 
+/**
+ * Fills a task object from form data.
+ * 
+ * @param {Object} task - The task object.
+ * @param {Object} formData - The form data.
+ */
 function fillTaskObjectFromFormData(task, formData) {
     if (formData.task_category) task.category = getCategoryID(formData.task_category);
     task.title = formData.task_title;
@@ -188,6 +296,12 @@ function fillTaskObjectFromFormData(task, formData) {
 }
 
 
+/**
+ * Gets the ID of a category.
+ * 
+ * @param {string} category - The category name.
+ * @returns {number} The category ID.
+ */
 function getCategoryID(category) {
     if (category == 'User Story') return 1;
     else if (category == 'Technical Task') return 2;
@@ -195,6 +309,14 @@ function getCategoryID(category) {
 }
 
 
+/**
+ * Adds properties to an array from form data.
+ * 
+ * @param {string} searchString - The search string to filter the form data keys.
+ * @param {Object} formData - The form data.
+ * @param {Function} pushFunction - The function to push the properties to the array.
+ * @returns {Array} The new array.
+ */
 function addPropertysToArray(searchString, formData, pushFunction) {
     let newArray = [];
     const relevantStrings = Object.keys(formData).filter((key) => key.startsWith(searchString));

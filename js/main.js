@@ -1,13 +1,21 @@
-let currentuser = undefined;
-let sessionTasks = [];
-let sessionContacts = [];
+/**
+ * @typedef {Object} TaskCategory
+ * @property {number} id - The ID of the task category.
+ * @property {string} name - The name of the task category.
+ * @property {string} color - The color associated with the task category.
+ */
+
 
 const taskCategorys = {
-    1: { id: 1, name: 'User Story', color: '#0038ff', },
-    2: { id: 2, name: 'Technical Task', color: '#1FD7C1', }
-}
+    1: { id: 1, name: 'User Story', color: '#0038ff' },
+    2: { id: 2, name: 'Technical Task', color: '#1FD7C1' }
+};
 
 
+/**
+ * Array of colors for the contacts.
+ * @type {string[]}
+ */
 const hexColors = [
     '#0038FF',
     '#00BEE8',
@@ -23,26 +31,40 @@ const hexColors = [
     '#FFA35E',
     '#FFBB2B',
     '#FFC701',
-    '#FFE62B',
+    '#FFE62B'
 ];
 
 
+/**
+ * Closes the header menu by removing the 'show-header-menu' class from the 'headerMenu' element.
+ */
 function closeHeaderMenu() {
     document.getElementById('headerMenu').classList.remove('show-header-menu');
 }
 
 
+/**
+ * Toggles the header menu by adding or removing the 'show-header-menu' class from the 'headerMenu' element.
+ */
 function toggleHeaderMenu() {
     document.getElementById('headerMenu').classList.toggle('show-header-menu');
 }
 
 
+/**
+ * Generates a random color from the 'hexColors' array.
+ * 
+ * @returns {string} A random color in hexadecimal format.
+ */
 function randomColor() {
     let randomColor = Math.floor(Math.random() * hexColors.length);
     return randomColor;
 }
 
 
+/**
+ * Logs out the current user by removing session data and redirecting to the login page.
+ */
 function logOut() {
     sessionStorage.removeItem('currentuser');
     sessionStorage.removeItem('sessiontasks');
@@ -53,10 +75,10 @@ function logOut() {
 
 
 /**
- * create and return an unique id with optional prefix string
+ * Creates and returns a unique ID with an optional prefix string.
  * 
- * @param {string} prefix 
- * @returns {string}
+ * @param {string} prefix - The prefix for the unique ID.
+ * @returns {string} The unique ID.
  */
 function createUniqueID(prefix) {
     const uniqueID = Math.random().toString(16).slice(2);
@@ -65,7 +87,8 @@ function createUniqueID(prefix) {
 
 
 /**
- * main init function with check if user loged in
+ * Initializes the join application by checking if the user is logged in,
+ * loading HTML templates, and loading session data.
  */
 async function initJoin() {
     // test if user logged in
@@ -76,6 +99,12 @@ async function initJoin() {
 }
 
 
+/**
+ * Loads the current user from session storage
+ * and redirects to the login page if the user is not logged in.
+ * 
+ * @param {boolean} forceLogin - Whether to force the user to log in.
+ */
 async function loadCurrentUser(forceLogin = false) {
     let currentUserString = await sessionStorage.getItem('currentuser');
     if (forceLogin && !currentUserString) window.location.href = './index.html';
@@ -84,6 +113,10 @@ async function loadCurrentUser(forceLogin = false) {
 }
 
 
+/**
+ * Initializes the legal notice and privacy policy page by loading the current user,
+ * including HTML templates, and hiding the menu if the user is empty.
+ */
 async function initLegalNoticePrivacyPolicy() {
     loadCurrentUser();
     await includeHTML();
@@ -92,6 +125,10 @@ async function initLegalNoticePrivacyPolicy() {
 }
 
 
+/**
+ * Sets the initial span element with the current user's initial
+ * or hides the current user badge if there is no current user.
+ */
 function setInitialSpan() {
     if (currentuser) {
         const initialSpan = getElement('currentuser-initial');
@@ -101,8 +138,10 @@ function setInitialSpan() {
     }
 }
 
+
 /**
- * init function for the login site
+ * Initializes the login site by including HTML templates
+ * and loading users from remote storage for login.
  */
 async function initLoginSite() {
     await includeHTML();
@@ -111,7 +150,8 @@ async function initLoginSite() {
 
 
 /**
- * includes html templates to the site
+ * Includes HTML templates into the site by fetching and inserting the HTML content
+ * into elements with the 'w3-include-html' attribute.
  */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -129,6 +169,9 @@ async function includeHTML() {
 }
 
 
+/**
+ * Hides the menu if there is no current user.
+ */
 function hideMenuIfEmptyUser() {
     if (currentuser) return;
     setStyle('nav_elements', 'display', 'none');
@@ -136,10 +179,10 @@ function hideMenuIfEmptyUser() {
 
 
 /**
- * converts a string to pascalcase, undefined parameter returns a empty string
+ * Converts a string to PascalCase. If the word parameter is undefined, an empty string is returned.
  * 
- * @param {string} word - string that be converted
- * @returns {string} to pascalcase converted string
+ * @param {string} word - The string to be converted.
+ * @returns {string} The PascalCase converted string.
  */
 function getPascalCaseWord(word) {
     if (word) return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
@@ -148,10 +191,10 @@ function getPascalCaseWord(word) {
 
 
 /**
- * gets a html element with the id or the element itself
+ * Gets an HTML element with the specified ID or the element itself.
  * 
- * @param {string|Object} elementIdOrObj 
- * @returns {Object} htmlelement
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
+ * @returns {Object} The HTML element.
  */
 function getElement(elementIdOrObj) {
     if (typeof elementIdOrObj === 'string') return document.getElementById(elementIdOrObj);
@@ -159,20 +202,32 @@ function getElement(elementIdOrObj) {
 }
 
 
+/**
+ * Adds a CSS class to the specified element.
+ * 
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
+ * @param {string} className - The name of the class to add.
+ */
 function addClass(elementIdOrObj, className) {
     getElement(elementIdOrObj).classList.add(className);
 }
 
 
+/**
+ * Removes a CSS class from the specified element.
+ * 
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
+ * @param {string} className - The name of the class to remove.
+ */
 function removeClass(elementIdOrObj, className) {
     getElement(elementIdOrObj).classList.remove(className);
 }
 
 
 /**
- * set the focus to the given element or element id
+ * Sets the focus to the specified element.
  * 
- * @param {string|Object} elementIdOrObj 
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
  */
 function setFocus(elementIdOrObj) {
     getElement(elementIdOrObj).focus();
@@ -180,10 +235,10 @@ function setFocus(elementIdOrObj) {
 
 
 /**
- * set the value of a input element or element id
+ * Sets the value of the specified input element.
  * 
- * @param {string|Object} elementIdOrObj 
- * @param {string} newvalue 
+ * @param {string|Object} elementIdOrObj - The ID of the input element or the element itself.
+ * @param {string} newvalue - The new value to set.
  */
 function setInputValue(elementIdOrObj, newvalue = '') {
     getElement(elementIdOrObj).value = newvalue;
@@ -191,9 +246,10 @@ function setInputValue(elementIdOrObj, newvalue = '') {
 
 
 /**
- * get the value of the given input element or input element id
+ * Gets the value of the specified input element.
  * 
- * @param {string|Object} elementIdOrObj 
+ * @param {string|Object} elementIdOrObj - The ID of the input element or the element itself.
+ * @returns {string} The value of the input element.
  */
 function getInputValue(elementIdOrObj) {
     return getElement(elementIdOrObj).value;
@@ -201,11 +257,11 @@ function getInputValue(elementIdOrObj) {
 
 
 /**
- * set the givent style property of the elemnet or the element id with the stylevalue
+ * Sets the specified style property of the element.
  * 
- * @param {string|Object} elementIdOrObj 
- * @param {string} styleProperty 
- * @param {string} styleValue 
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
+ * @param {string} styleProperty - The name of the style property.
+ * @param {string} styleValue - The value to set for the style property.
  */
 function setStyle(elementIdOrObj, styleProperty, styleValue) {
     getElement(elementIdOrObj).style[styleProperty] = styleValue;
@@ -213,11 +269,11 @@ function setStyle(elementIdOrObj, styleProperty, styleValue) {
 
 
 /**
- * set the attribute of the element or the element id with the value
+ * Sets the specified attribute of the element.
  * 
- * @param {string|Object} elementIdOrObj 
- * @param {string} attribute 
- * @param {string} value 
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
+ * @param {string} attribute - The name of the attribute.
+ * @param {string} value - The value to set for the attribute.
  */
 function setAttribute(elementIdOrObj, attribute, value) {
     getElement(elementIdOrObj).setAttribute(attribute, value);
@@ -225,10 +281,10 @@ function setAttribute(elementIdOrObj, attribute, value) {
 
 
 /**
- * set the placeholder property of a input element or a element id
+ * Sets the placeholder property of the input element.
  * 
- * @param {string|Object} elementIdOrObj 
- * @param {string} placeholderString 
+ * @param {string|Object} elementIdOrObj - The ID of the input element or the element itself.
+ * @param {string} placeholderString - The placeholder string to set.
  */
 function setPlaceHolder(elementIdOrObj, placeholderString) {
     getElement(elementIdOrObj).placeholder = placeholderString;
@@ -236,10 +292,10 @@ function setPlaceHolder(elementIdOrObj, placeholderString) {
 
 
 /**
- * set the innerHTML property of an element or an element id with the new htmlstring
+ * Sets the innerHTML property of the element.
  * 
- * @param {string|Object} elementIdOrObj 
- * @param {string} htmlString 
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
+ * @param {string} htmlString - The HTML string to set.
  */
 function setInnerHTML(elementIdOrObj, htmlString = '') {
     getElement(elementIdOrObj).innerHTML = htmlString;
@@ -247,10 +303,10 @@ function setInnerHTML(elementIdOrObj, htmlString = '') {
 
 
 /**
- * add the htmlstring to the innerHTML property of an element or an element id
+ * Adds the specified HTML string to the innerHTML property of the element.
  * 
- * @param {string|Object} elementIdOrObj 
- * @param {string} htmlString 
+ * @param {string|Object} elementIdOrObj - The ID of the element or the element itself.
+ * @param {string} htmlString - The HTML string to add.
  */
 function addInnerHTML(elementIdOrObj, htmlString) {
     getElement(elementIdOrObj).innerHTML += htmlString;
@@ -258,10 +314,10 @@ function addInnerHTML(elementIdOrObj, htmlString) {
 
 
 /**
- * set the focus to the input with id nextInputID when enter key is pressed
+ * Sets the focus to the next input element when the Enter key is pressed.
  * 
- * @param {Object} event 
- * @param {string} nextInputID 
+ * @param {Object} event - The keydown event object.
+ * @param {string} nextInputID - The ID of the next input element.
  */
 function getToNextInputOnKeyEnter(event, nextInputID = '') {
     if (event.key == 'Enter') {
