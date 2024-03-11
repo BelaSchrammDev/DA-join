@@ -313,24 +313,3 @@ function getTaskRowHTML(rowObj) {
         <div id="tasklist_${rowObj.id}" class="board_task_list"></div></div>
     `;
 }
-
-
-function getRequestWindowHTML(id, question) {
-    return `
-    <div onclick="event.stopPropagation()" id="${id}" class="request-proof-window">
-    <div class="request-question-container">
-        <span class="request-question">${question}</span>
-    </div>
-    <div class="request-button-container">   
-        <button type="button" class="btnCancel" onclick="">
-            <span>Cancel</span>
-            <img src="./img/icons/contacts/cancel.svg" alt="cancel">
-        </button>
-        <button type="button" class="btnAddOk" onclick="">
-            <span>Yes</span>
-            <img src="./img/icons/contacts/check-white.svg" alt="check">
-        </button>
-    </div>
-</div>
-`;
-}

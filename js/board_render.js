@@ -34,10 +34,7 @@ function renderTasks(filter = '') {
     clearRows();
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
-        if (filter == ''
-            || task.title.toLowerCase().includes(filter.toLowerCase())
-            || task.description.toLowerCase().includes(filter.toLowerCase())) {
-
+        if (ifFilterTask(task, filter)) {
             const tasksHTML = `<div id="taskcard_${task.id}">${getTaskHTML(task)}</div>`;
             const tasklist = document.getElementById('tasklist_' + task.status);
             if (tasklist) tasklist.innerHTML += tasksHTML;
@@ -45,6 +42,20 @@ function renderTasks(filter = '') {
         }
     }
     renderEmptyRowMessage();
+}
+
+
+/**
+ * Checks if a task matches the given filter.
+ *
+ * @param {Object} task - The task object to check.
+ * @param {string} filter - The filter string to match against the task.
+ * @returns {boolean} - Returns true if the task matches the filter, false otherwise.
+ */
+function ifFilterTask(task, filter) {
+    return filter == ''
+        || task.title.toLowerCase().includes(filter.toLowerCase())
+        || task.description.toLowerCase().includes(filter.toLowerCase());
 }
 
 
