@@ -90,9 +90,9 @@
 }
 
 .taskmove img {
-    background-color: #2a3647;
+    /* background-color: #2a3647; */
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 5000px;
     height: 38px;
     width: 38px;
     display: none;
@@ -284,6 +284,10 @@
         display: block;
         cursor: pointer;
         pointer-events: all;
+    }
+
+    .taskmove img:hover {
+        background-color: #E1E1E1;
     }
 }
 

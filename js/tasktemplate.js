@@ -143,8 +143,8 @@ function getMoveTaskMenu(task) {
             `;
     });
     return `
-    <div class="taskmove" title="Move task...">
-        <img onclick="clickDropDown(event,'taskmove_${task.id}')" src="./img/icons/general/white/board-white.svg">
+    <div class="taskmove" title="Move task..."> 
+        <img onclick="clickDropDown(event,'taskmove_${task.id}')" src="./img/icons/general/gray/move-up-and-down-arrow.svg">
         <div dropdownopen=false class="taskmove_menu" id="taskmove_${task.id}">${menuPoints}</div>
     </div>
     `;
