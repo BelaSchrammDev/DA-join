@@ -236,6 +236,8 @@
 }
 
 .task_big_buttons>button {
+    font-size: 16px;
+    font-weight: 400;
     outline: unset;
     border: unset;
     height: 24px;
@@ -246,12 +248,16 @@
     cursor: pointer;
 }
 
-.task_big_buttons>button:first-child>img:hover {
-    content: url('../img/icons/board/delete-img-high.png');
+.task_big_buttons>button:hover span {
+    color: #29ABE2;
 }
 
-.task_big_buttons>button:last-child>img:hover {
-    content: url('../img/icons/board/edit-img-high.png');
+.task_big_buttons>button:hover:first-child>img {
+    content: url('../img/icons/board/delete-high.svg');
+}
+
+.task_big_buttons>button:hover:last-child>img {
+    content: url('../img/icons/board/edit-high.svg');
 }
 
 .task_big_buttons>div {

@@ -75,9 +75,9 @@ function getBigTaskHTML(task) {
             <div>${getSubTaskBigHTML(task)}</div>
         </div>
         <div class="task_big_buttons">
-            <button onclick="deletetask('${task.id}')"><img src="./img/icons/board/delete-img.png" alt=""></button>
+            <button onclick="deletetask('${task.id}')"><img src="./img/icons/board/delete.svg" alt=""><span>Delete</span></button>
             <div></div>
-            <button onclick="showEditTaskMode('${task.id}')"><img src="./img/icons/board/edit-img.png" alt=""></button>
+            <button onclick="showEditTaskMode('${task.id}')"><img src="./img/icons/board/edit.svg" alt=""><span>Edit</span></button>
         </div>
     `;
 }

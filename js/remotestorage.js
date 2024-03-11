@@ -2,30 +2,45 @@ const STORAGE_TOKEN = "QRFWKZVNK81DEAU7AMO2GVI5JL8YYYMLU187EAAJ";
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 
+/**
+ * stores the current session tasks to the remote storage
+ */
 async function storeSessionTasksToRemoteStorage() {
     sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
     if (currentuser.id != 'UXXXXXXX') await setItemFromJson(currentuser.id + 'tasks', sessionTasks);
 }
 
 
+/**
+ * stores the current session contacts to the remote storage
+ */
 async function storeSessionContactsToRemoteStorage() {
     sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
     if (currentuser.id != 'UXXXXXXX') await setItemFromJson(currentuser.id + 'contacts', sessionContacts);
 }
 
 
+/**
+ * load the tasks from the remote storage into the session tasks
+ */
 async function loadSessionTasksFromRemoteStorage() {
     let taskString = await getItem(currentuser.id + 'tasks');
     if (taskString) sessionTasks = JSON.parse(taskString);
 }
 
 
+/**
+ * load the contacts from the remote storage into the session contacts
+ */
 async function loadSessionContactsFromRemoteStorage() {
     let contactString = await getItem(currentuser.id + 'contacts');
     if (contactString) sessionContacts = JSON.parse(contactString);
 }
 
 
+/**
+ * load the tasks and the contacts from the session storage
+ */
 async function loadSessionDataFromSessionStorage() {
     let tasksString = await sessionStorage.getItem('sessiontasks');
     if (tasksString) sessionTasks = JSON.parse(tasksString);
@@ -72,7 +87,7 @@ async function getItem(key) {
     return fetch(url).then(res => res.json()).then(res => {
         if (res.data) return res.data.value;
         return undefined;
-    });
+    }).catch(err => { return undefined; });
 }
 
 
