@@ -51,6 +51,7 @@ function addMediaQueryForDragToggling() {
 
 /**
  * Callback function after adding a task.
+ * Stores the tasks to the remote storage and closes the overlay.
  */
 function afterAddTask() {
     storeSessionTasksToRemoteStorage();
@@ -74,10 +75,8 @@ function showOverlay(windowID) {
 
 /**
  * Closes the currently displayed overlay window.
- * 
- * @param {Event} [event=null] - The event that triggered the close action.
  */
-function closeOverlay(event = null) {
+function closeOverlay() {
     if (current_flyingwindow_id != '') {
         setStyle(current_flyingwindow_id, 'transform', 'translateX(130vw)');
         setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.0)');
@@ -134,7 +133,7 @@ function showEditTaskMode(taskID) {
 
 
 /**
- * Hides the edit task mode.
+ * switches the edit task mode off and shows the task big view.
  */
 function hideEditTaskMode() {
     setStyle('task_big_showing', 'display', 'flex');
@@ -205,7 +204,8 @@ function setPriorityRadioButton(priority) {
 
 
 /**
- * Handles the click event on a subtask and changes its state.
+ * Handles the click event on a subtask and changes its state,
+ * stores the changes to the remote storage and updates the mini task card.
  * 
  * @param {string} taskID - The ID of the task.
  * @param {number} subtaskNumber - The index of the subtask.
@@ -223,7 +223,8 @@ function clickSubTaskDone(taskID, subtaskNumber) {
 
 
 /**
- * Deletes a task.
+ * Deletes a task and stores the changes to the remote storage,
+ * closes the overlay and renders the tasks.
  * 
  * @param {string} taskID - The ID of the task to delete.
  */
@@ -239,7 +240,8 @@ function deletetask(taskID) {
 
 
 /**
- * Sets the new status of a task.
+ * Sets the new status of a task and clears the search field.
+ * also stores the changes to the remote storage.
  * 
  * @param {string} taskID - The ID of the task to update.
  * @param {string} newStatus - The new status value.
@@ -281,7 +283,7 @@ function draggableEnd(event, taskID) {
 
 
 /**
- * Event handler for the dragover event.
+ * Event handler for the dragover event. to chenge the cursor.
  * 
  * @param {DragEvent} event - The drag event.
  */
@@ -344,7 +346,7 @@ function draggableLeave(event, rowID) {
  * @param {boolean} open - Whether to open or close the move menu.
  */
 function openMoveMenu(menuID, open) {
-    const menu = document.getElementById(menuID);
+    const menu = getElement(menuID);
     if (menu) menu.setAttribute('dropdownopen', open);
 }
 
@@ -360,7 +362,7 @@ function changeTaskSearchTerm(event) {
 
 
 /**
- * Clears the task search field and renders the tasks.
+ * Clears the task search field and render all tasks.
  */
 function clickClearTaskSearch() {
     setInputValue('tasksearchfield');

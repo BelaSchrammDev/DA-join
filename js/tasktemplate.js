@@ -57,7 +57,7 @@ function getBigTaskHTML(task) {
     return `
         <div class="task_big_headline">
             ${getCategoryHTML(task)}
-            <img class="round_button" onclick="closeOverlay(event)" src="./img/icons/board/close.svg" alt="">
+            <img class="round_button" onclick="closeOverlay()" src="./img/icons/board/close.svg" alt="">
         </div>
             <div class="task_scrolldiv custom-scrollbar">
             <span class="task_big_title">${task.title}</span>

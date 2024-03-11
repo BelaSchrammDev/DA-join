@@ -13,7 +13,7 @@ const rowIdName = [
 
 
 /**
- * Renders the rows of the board.
+ * Renders the rowheaders of the board.
  */
 function renderRows() {
     let rowsHTML = '';
@@ -26,6 +26,8 @@ function renderRows() {
 
 /**
  * Renders all tasks in the related rows.
+ * only tasks that match the filter will be rendered.
+ * if filter is empty, all tasks will be rendered.
  * 
  * @param {string} [filter=''] - The filter string to apply to the tasks.
  */
@@ -60,7 +62,7 @@ function ifFilterTask(task, filter) {
 
 
 /**
- * Renders an info message in empty rows.
+ * Renders an info message when a row is empty.
  */
 function renderEmptyRowMessage() {
     for (let index = 0; index < rowIdName.length; index++) {
@@ -73,7 +75,7 @@ function renderEmptyRowMessage() {
 
 
 /**
- * Clears all the rows of the board.
+ * Clears all the tasks from the board.
  */
 function clearRows() {
     for (let index = 0; index < rowIdName.length; index++) {

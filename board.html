@@ -23,7 +23,7 @@
 </head>
 
 <body onload="initBoardSite()" class="custom-scrollbar">
-    <div onclick="closeOverlay(event)" id="board_overlay" class="board_overlay">
+    <div onclick="closeOverlay()" id="board_overlay" class="board_overlay">
         <div id="requestdiv" class="requestdiv"></div>
         <div onclick="event.stopPropagation();" id="task_big" class="task_big">
             <!-- task big begin -->
@@ -140,7 +140,7 @@
                 onsubmit="submitAddTaskForm()">
                 <div class="edittask_headline">
                     <span class="addtask_title">Add Task</span>
-                    <img onclick="closeOverlay(event)" class="round_button" src="./img/icons/board/close.svg">
+                    <img onclick="closeOverlay()" class="round_button" src="./img/icons/board/close.svg">
                 </div>
                 <div class="addtask_form custom-scrollbar">
                     <div class="addtask_edit">
