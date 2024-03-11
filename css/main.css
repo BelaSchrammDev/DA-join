@@ -138,7 +138,7 @@ body {
 
 /********** LEGAL NOTICE **********/
 
-.headline{
+.headline {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -361,6 +361,7 @@ header img:hover {
     align-items: center;
     justify-content: start;
     transition: 100ms ease-in-out;
+    text-decoration: none;
 }
 
 .header-menu-link:hover {
