@@ -1,5 +1,5 @@
 /**
- * get the contact HTML string for the assignedto list
+ * get the contact HTML string for the assignedto list 
  * 
  * @param {Object} contact 
  * @param {string} prefix 
@@ -20,7 +20,7 @@ function getAssignedContactHTML(contact, prefix) {
 
 
 /**
- * get the subtask HTML string
+ * get the subtask HTML string for the subtask list
  * 
  * @param {string} subtaskID 
  * @param {string} subtaskname 
@@ -48,7 +48,7 @@ function getSubTaskHTML(subtaskID, subtaskname) {
 
 
 /**
- * get the rendered html structure of the big task view
+ * get the rendered html structure of the big task view for the board
  * 
  * @param {Object} task 
  * @returns {string} rendered html
@@ -117,7 +117,7 @@ function getTaskHTML(task) {
 
 
 /**
- * get a short task description, max 3 lines and max 50 characters
+ * get a short task description, max 3 lines and max 50 characters for the mini task view
  * 
  * @param {Object} task 
  * @returns {string}
@@ -130,7 +130,7 @@ function getTaskDescriptionHTML(task) {
 
 
 /**
- * get the movetask menu
+ * get the move task menu for the mini task view
  * 
  * @param {Object} task 
  * @returns {string}
