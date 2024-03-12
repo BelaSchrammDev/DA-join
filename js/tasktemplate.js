@@ -75,7 +75,7 @@ function getBigTaskHTML(task) {
             <div>${getSubTaskBigHTML(task)}</div>
         </div>
         <div class="task_big_buttons">
-            <button onclick="deletetask('${task.id}')"><img src="./img/icons/board/delete.svg" alt=""><span>Delete</span></button>
+            <button nolistclose onclick="openDropDown('deletetask_confirm');"><img nolistclose src="./img/icons/board/delete.svg" alt=""><span nolistclose>Delete</span></button>
             <div></div>
             <button onclick="showEditTaskMode('${task.id}')"><img src="./img/icons/board/edit.svg" alt=""><span>Edit</span></button>
         </div>

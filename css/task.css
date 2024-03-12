@@ -7,6 +7,43 @@
     --bigtask_padding: 48px 40px 48px 40px;
 }
 
+.delete_request_window {
+    --window_width: calc(var(--task_big_width) - var(--task_title_fontsize));
+    overflow: hidden;
+    z-index: 40;
+    position: fixed;
+    background-color: #2A3647;
+    color: white;
+    transition: transform 125ms ease-in-out;
+    border-radius: var(--task_fontsize);
+    box-shadow: 0px 0px 4px 0px #00000029;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: var(--task_fontsize);
+    max-width: var(--window_width);
+    min-width: var(--window_width);
+    left: calc(calc(100vw - var(--window_width)) / 2);
+    bottom: calc(100dvh / 2);
+    transform: translateX(150vw);
+}
+
+.delete_request_window>span {
+    font-size: var(--task_fontsize);
+    font-weight: 700;
+    padding: var(--task_fontsize);
+}
+
+.delete_request_window>div {
+    padding: var(--task_fontsize);
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
 .board_overlay {
     z-index: -1;
     position: fixed;
@@ -236,6 +273,7 @@
 }
 
 .task_big_buttons>button {
+    color: #2A3647;
     font-size: 16px;
     font-weight: 400;
     outline: unset;

@@ -29,6 +29,7 @@ async function initBoardSite() {
     renderAddtaskFields();
     renderAssignedContacts('edittask_assigned_list', 'edittask_');
     addDropDownList('edittask_assignet', openAssignedContactsDropDownList, 'edittask_');
+    addDropDownList('deletetask_confirm', openDeleteTaskConfirm, '');
     setAttribute('edittask_duedate', 'min', new Date().toISOString().split('T')[0]);
     actionAfterAddTask = afterAddTask;
     addMediaQueryForDragToggling();
@@ -228,8 +229,8 @@ function clickSubTaskDone(taskID, subtaskNumber) {
  * 
  * @param {string} taskID - The ID of the task to delete.
  */
-function deletetask(taskID) {
-    const taskArrayIndex = sessionTasks.findIndex(t => t.id == taskID);
+function deletetask() {
+    const taskArrayIndex = sessionTasks.findIndex(t => t.id == current_taskID);
     if (taskArrayIndex) {
         sessionTasks.splice(taskArrayIndex, 1);
         storeSessionTasksToRemoteStorage();
@@ -367,4 +368,9 @@ function changeTaskSearchTerm(event) {
 function clickClearTaskSearch() {
     setInputValue('tasksearchfield');
     renderTasks();
+}
+
+
+function openDeleteTaskConfirm(formID, open) {
+    setStyle('delete_task_confirm', 'transform', open ? 'translateX(0)' : 'translateX(150vw)');
 }
