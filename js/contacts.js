@@ -261,9 +261,11 @@ function showLargeContactsView() {
     if (window.innerWidth > 1080) {
         contactSection.style.display = 'flex';
         showContactSection.style.display = 'flex';
-        contact.classList.add('contact-data-container-active');
-        contact.classList.remove('contact-data-container');
-        closeMobileMenu();
+        if (contact) {
+            contact.classList.add('contact-data-container-active');
+            contact.classList.remove('contact-data-container');
+            closeMobileMenu();
+        }
     }
     if (window.innerWidth <= 1080) {
         closeMobileUserEntry();
@@ -392,13 +394,6 @@ async function createContact() {
     }, 2000);
     await storeSessionContactsToRemoteStorage();
     closeAddEditWindow();
-}
-
-
-function getId() {
-    let date = new Date();
-    let time = date.getTime().toString();
-    return time.slice(-3);
 }
 
 

@@ -889,7 +889,6 @@ a:visited {
         flex: 1;
         padding: 24px 38px 124px 38px;
         z-index: 0;
-        height: unset;
     }
 
     .main-contacts-container {
@@ -944,6 +943,12 @@ a:visited {
 
     .info-headline {
         margin-bottom: 21px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .contact-container {
+        height: calc(100vh - 80px);
     }
 }
 
