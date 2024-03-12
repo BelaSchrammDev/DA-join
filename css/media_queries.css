@@ -88,7 +88,8 @@
     }
 
     .header-menu-container {
-        right: 8px;
+        right: 12px;
+        top: 80px;
     }
 
     .header-user-bg {
