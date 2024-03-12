@@ -42,7 +42,7 @@ function showAddToContactWindow() {
                     <div class="input-container">
                         <input id="nameCreate" placeholder="Name" class="input-class name-input" type="text" required>
                         <input id="emailCreate" placeholder="Email" class="input-class email-input" type="email" required>
-                        <input id="phoneCreate" placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
+                        <input id="phoneCreate" placeholder="Phone (12 Digits)" class="input-class phone-input" type="tel" pattern="[0-9]{12}" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
                         <button onclick="closeAddEditWindow()" type="button" class="cancel-button">
@@ -95,7 +95,7 @@ function showEditWindow(number) {
                     <div class="input-container">
                         <input id="nameEdit" placeholder="Name" class="input-class name-input" type="text" required>
                         <input id="emailEdit" placeholder="Email" class="input-class email-input" type="email" required>
-                        <input id="phoneEdit" placeholder="Phone" class="input-class phone-input" type="tel" minlength="12" maxlength="12" required>
+                        <input id="phoneEdit" placeholder="Phone (12 Digits)" class="input-class phone-input" type="tel" pattern="[0-9]{12}" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
                         <button type="button" class="cancel-button-mobile" onclick="deleteContactProof(${number})">
