@@ -127,3 +127,8 @@ function closeDropDown() {
 }
 
 
+function openFlyWindow(formID, open) {
+    setStyle(formID, 'transform', open ? 'translateX(0)' : 'translateX(150vw)');
+}
+
+

@@ -28,11 +28,27 @@ async function initBoardSite() {
     renderTasks();
     renderAddtaskFields();
     renderAssignedContacts('edittask_assigned_list', 'edittask_');
-    addDropDownList('edittask_assignet', openAssignedContactsDropDownList, 'edittask_');
-    addDropDownList('deletetask_confirm', openDeleteTaskConfirm, '');
+    addDropDowns();
     setAttribute('edittask_duedate', 'min', new Date().toISOString().split('T')[0]);
     actionAfterAddTask = afterAddTask;
     addMediaQueryForDragToggling();
+    checkIfTaskAdded();
+}
+
+
+async function checkIfTaskAdded() {
+    const taskaddedItem = await sessionStorage.getItem('taskadded');
+    if (taskaddedItem) {
+        showTaskAddedInfo();
+        sessionStorage.removeItem('taskadded');
+    }
+}
+
+
+function addDropDowns() {
+    addDropDownList('edittask_assignet', openAssignedContactsDropDownList, 'edittask_');
+    addDropDownList('deletetask_confirm', openFlyWindow, 'delete_task_confirm');
+    addDropDownList('taskadded_info', openFlyWindow, 'add_task_info');
 }
 
 
@@ -58,6 +74,7 @@ function afterAddTask() {
     storeSessionTasksToRemoteStorage();
     closeOverlay();
     renderTasks();
+    showTaskAddedInfo();
 }
 
 
@@ -371,6 +388,7 @@ function clickClearTaskSearch() {
 }
 
 
-function openDeleteTaskConfirm(formID, open) {
-    setStyle('delete_task_confirm', 'transform', open ? 'translateX(0)' : 'translateX(150vw)');
+function showTaskAddedInfo() {
+    openDropDown('taskadded_info');
+    setTimeout(() => { closeDropDown(); }, 2000);
 }
