@@ -368,7 +368,7 @@ async function createContact() {
     let email = document.getElementById('emailCreate').value;
     let phone = document.getElementById('phoneCreate').value;
     let contactData = {
-        id: `C${getId()}`,
+        id: `${createUniqueID('C')}`,
         name: name,
         initial: initial,
         email: email,
