@@ -9,10 +9,9 @@ let defaultTasks = [
         priority: '',
         category: 1,
         subtasks: [
-            { name: 'subtask 1', done: true },
-            { name: 'subtask 2', done: false },
-            { name: 'subtask 3', done: false },
-            { name: 'subtask 4', done: false },
+            { name: 'Create site structure', done: true },
+            { name: 'Create 3 Recipes', done: false },
+            { name: 'Implement the Calculator', done: false },
         ]
     },
     {
@@ -24,11 +23,15 @@ let defaultTasks = [
         date: '2024-03-16',
         priority: 'low',
         category: 2,
-        subtasks: []
+        subtasks: [
+            { name: 'Create Header', done: true },
+            { name: 'Create Footer', done: false },
+            { name: 'Create Sidebar', done: false },
+        ]
     },
     {
         id: 'T123454',
-        status: 'awaitfeedback',
+        status: 'done',
         title: 'Join finish off',
         description: '',
         assignedto: ['C789', 'C456'],
@@ -43,7 +46,36 @@ let defaultTasks = [
             { name: 'Sidebar', done: false },
         ]
     },
-]
+    {
+        id: 'T1',
+        status: 'todo',
+        title: 'Write the documentation for the project',
+        description: 'Write the documentation for the project and create a presentation for the project',
+        assignedto: ['C123'],
+        date: '2024-03-17',
+        priority: '',
+        category: 1,
+        subtasks: [
+            { name: 'Create the presentation', done: true },
+            { name: 'Write the documentation', done: false },
+            { name: 'Create a video', done: false },
+        ]
+    },
+    {
+        id: 'T2',
+        status: 'inprogress',
+        title: 'Learning ReactJS',
+        description: 'Learn the basics of ReactJS and create a small project with it',
+        assignedto: ['C456'],
+        date: '2024-03-18',
+        priority: 'low',
+        category: 2,
+        subtasks: [
+            { name: 'Create a small project', done: true },
+            { name: 'Learn the basics', done: false },
+        ]
+    }
+];
 
 let defaultContacts = [
     {
@@ -94,27 +126,44 @@ let defaultContacts = [
         color: '#C3FF2B',
         phone: '491146801111',
     },
-]
-
-// let usersX = [
-//     {
-//         id: 'U123',
-//         name: 'Bela Schramm',
-//         email: 'belaschramm@aol.de',
-//         password: 'BS',
-//     },
-//     {
-//         id: 'U456',
-//         name: 'Nadja Reuther',
-//         email: 'nadjareuther@aol.de',
-//         password: 'NR',
-//     },
-//     {
-//         id: 'U789',
-//         name: 'Simon Henke',
-//         email: 'simonhenke@aol.de',
-//         password: 'SH',
-//     },
-// ]
-// example arrays for testing only ---------------------------------------------------END
-
+    {
+        id: 'C246',
+        name: 'John Doe',
+        initial: 'JD',
+        email: 'johndoe@gmail.com',
+        color: '#FC71FF',
+        phone: '491234567890',
+    },
+    {
+        id: 'C135',
+        name: 'Alice Smith',
+        initial: 'AS',
+        email: 'alicesmith@yahoo.com',
+        color: '#FF4646',
+        phone: '491234567891',
+    },
+    {
+        id: 'C864',
+        name: 'Bob Johnson',
+        initial: 'BJ',
+        email: 'bobjohnson@hotmail.com',
+        color: '#FF5EB3',
+        phone: '491234567892',
+    },
+    {
+        id: 'C579',
+        name: 'Emily Davis',
+        initial: 'ED',
+        email: 'emilydavis@gmail.com',
+        color: '#FF745E',
+        phone: '491234567893',
+    },
+    {
+        id: 'C2468',
+        name: 'David Wilson',
+        initial: 'DW',
+        email: 'davidwilson@yahoo.com',
+        color: '#FF7A00',
+        phone: '491234567894',
+    },
+];
