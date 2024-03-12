@@ -267,6 +267,7 @@ function submitAddTaskForm() {
  */
 async function afterAddTaskTemplateSubmit() {
     await storeSessionTasksToRemoteStorage();
+    await sessionStorage.setItem('taskadded', 'true');
     window.location.href = './board.html';
 }
 
