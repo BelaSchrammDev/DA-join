@@ -1,4 +1,5 @@
 let mobileIntro = true;
+let sortedTasks = [];
 
 async function initSummarySite() {
     await initJoin();
@@ -15,6 +16,7 @@ function getAmounts() {
     getToDoAmount();
     getDoneAmount();
     getUrgentAmount();
+    nextDeadline();
     getTaskAmount();
     getInProgressAmount();
     getFeedbackAmount();
@@ -49,8 +51,31 @@ function getDoneAmount() {
 
 function getUrgentAmount() {
     let card = document.getElementById('urgentAmount');
-    let amount = sessionTasks.filter(sessionTasks => sessionTasks.priority === 'urgent').length;
+    let amount = sessionTasks.filter(sessionTasks => sessionTasks.priority === 'urgent' && sessionTasks.status != 'done').length;
     card.innerHTML = amount;
+}
+
+
+async function nextDeadline() {
+    sortedTasks = [];
+    let card = document.getElementById('nextDeadline');
+    for (let i = 0; i < sessionTasks.length; i++) {
+        let priority = sessionTasks[i].priority;
+        let status = sessionTasks[i].status;
+        if (priority === 'urgent' && status != 'done') {
+            sortedTasks.push(sessionTasks[i]);
+        }  
+    }
+    if (sortedTasks.length) {
+        sortedTasks.sort(function (a, b) {
+            let oldest = new Date(a.date)
+            let latest = new Date(b.date)
+            return oldest - latest;
+        });
+        let date = new Date(sortedTasks[0].date).toLocaleString('en-us',{month:'long', day:'numeric', year:'numeric'});
+        console.log(date);
+        card.innerHTML = date;
+    }
 }
 
 
