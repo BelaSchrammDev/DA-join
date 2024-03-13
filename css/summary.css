@@ -610,6 +610,10 @@ a:visited {
         gap: 8px;
     }
 
+    .important-text-bold {
+        font-size: 18px;
+    }
+
     .important-text {
         font-size: 14px;
     }
