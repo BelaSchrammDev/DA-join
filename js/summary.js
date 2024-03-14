@@ -1,8 +1,12 @@
 let mobileIntro = true;
 let sortedTasks = [];
+const LAST_PAGE = document.referrer;
+
+console.log(LAST_PAGE);
 
 async function initSummarySite() {
     await initJoin();
+    await proofLastPageForIntro();
     loadIntroSeen();
     mobileWelcomeMsg();
     getAmounts();
@@ -22,10 +26,19 @@ function getAmounts() {
     getFeedbackAmount();
 }
 
+
+function proofLastPageForIntro() {
+    if (LAST_PAGE === 'https://join-41.developerakademie.net/addtask.html' || LAST_PAGE === 'https://join-41.developerakademie.net/board.html' || LAST_PAGE === 'https://join-41.developerakademie.net/contacts.html' || LAST_PAGE === 'https://join-41.developerakademie.net/privacy_policy.html' || LAST_PAGE === 'https://join-41.developerakademie.net/legal_notice.html') {
+        mobileIntro = false;
+    }
+}
+
+
 function saveIntroSeen() {
     let introSeen = JSON.stringify(mobileIntro);
     sessionStorage.setItem('intro', introSeen);
 }
+
 
 function loadIntroSeen() {
     let introSeen = sessionStorage.getItem('intro');
@@ -64,7 +77,7 @@ async function nextDeadline() {
         let status = sessionTasks[i].status;
         if (priority === 'urgent' && status != 'done') {
             sortedTasks.push(sessionTasks[i]);
-        }  
+        }
     }
     if (sortedTasks.length) {
         sortedTasks.sort(function (a, b) {
@@ -72,7 +85,7 @@ async function nextDeadline() {
             let latest = new Date(b.date)
             return oldest - latest;
         });
-        let date = new Date(sortedTasks[0].date).toLocaleString('en-us',{month:'long', day:'numeric', year:'numeric'});
+        let date = new Date(sortedTasks[0].date).toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
         console.log(date);
         card.innerHTML = date;
     }
