@@ -207,7 +207,7 @@
     max-height: 150px;
 }
 
-.addtask_property>textarea:focus+span.textarea_cleft{
+.addtask_property>textarea:focus+span.textarea_cleft {
     color: #29abe2;
 }
 
@@ -370,10 +370,13 @@
 }
 
 .assignedcontacts_bar {
-    padding-top: 10px;
+    min-height: 210px;
+    margin-top: 10px;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .assignedcontacts_bar>span {
@@ -719,6 +722,10 @@ form[addtask]:invalid button.btnAddOk {
         gap: 20px;
         flex-grow: 1;
         overflow-x: hidden;
+    }
+
+    .assignedcontacts_bar {
+        min-height: var(--editfields_badgesize);
     }
 
     div.separatorline {
