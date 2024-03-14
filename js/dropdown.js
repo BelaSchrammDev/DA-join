@@ -8,7 +8,7 @@ let currentOpenDropDown = null;
  * Represents a list of dropdowns.
  * @type {Array}
  */
-let dropdownList = [];
+let dropdowns = [];
 
 /**
  * The click event handler function when a dropdown is open.
@@ -29,10 +29,10 @@ const closeEventElements = ['body', 'addtask_template', 'task_big_edit', 'addtas
  * @param {Function} openFunc - The function to be called when the dropdown open and close.
  * @param {string} formID - The ID of the form associated with the dropdown.
  */
-function addDropDownList(listID, openFunc, formID) {
-    if (dropdownList.find(l => l.id == listID)) return;
+function addDropDown(listID, openFunc, formID) {
+    if (dropdowns.find(l => l.id == listID)) return;
     let newDropDown = { id: listID, openFunction: openFunc, formid: formID, open: false };
-    dropdownList.push(newDropDown);
+    dropdowns.push(newDropDown);
 }
 
 /**
@@ -40,17 +40,17 @@ function addDropDownList(listID, openFunc, formID) {
  */
 function resetAllDropDowns() {
     closeDropDown();
-    dropdownList.forEach(l => l.open == false);
+    dropdowns.forEach(l => l.open == false);
 }
 
 /**
  * Removes a dropdown from the dropdown list.
  * @param {string} listID - The ID of the dropdown list to be removed.
  */
-function removeDropDownList(listID) {
-    const dropdownIndex = dropdownList.findIndex(l => l.id == listID);
+function removeDropDown(listID) {
+    const dropdownIndex = dropdowns.findIndex(l => l.id == listID);
     if (dropdownIndex == -1) return;
-    dropdownList.splice(dropdownIndex, 1);
+    dropdowns.splice(dropdownIndex, 1);
 }
 
 /**
@@ -92,7 +92,7 @@ function clickWhenDropDownOpen(event) {
  */
 function clickDropDown(event, listID) {
     event.stopPropagation();
-    let dropDown = dropdownList.find(d => d.id == listID);
+    let dropDown = dropdowns.find(d => d.id == listID);
     if (dropDown == currentOpenDropDown) closeDropDown();
     else {
         closeDropDown();
@@ -110,7 +110,7 @@ function openDropDown(listID) {
         currentOpenDropDown.open = false;
     }
     else setCloseEventElements();
-    currentOpenDropDown = dropdownList.find(d => d.id == listID);
+    currentOpenDropDown = dropdowns.find(d => d.id == listID);
     currentOpenDropDown.openFunction(currentOpenDropDown.formid, true);
     currentOpenDropDown.open = true;
 }

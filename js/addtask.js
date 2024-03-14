@@ -41,8 +41,8 @@ function renderAddtaskFields() {
     renderCategorys();
     renderAssignedContacts('addtask_assigned_list', 'addtask_');
     setAttribute('addtask_duedate', 'min', new Date().toISOString().split('T')[0]);
-    addDropDownList('addtask_assignet', openAssignedContactsDropDownList, 'addtask_');
-    addDropDownList('addtask_category', openTaskCategoryDropDownList, 'addtask_');
+    addDropDown('addtask_assignet', openAssignedContactsDropDown, 'addtask_');
+    addDropDown('addtask_category', openTaskCategoryDropDown, 'addtask_');
 }
 
 
@@ -99,7 +99,7 @@ function renderCategorys() {
  * @param {string} prefix - The prefix for the form elements.
  * @param {boolean} open - Whether to open the dropdown list.
  */
-function openTaskCategoryDropDownList(prefix, open) {
+function openTaskCategoryDropDown(prefix, open) {
     setAttribute(prefix + 'category_div', 'dropdownopen', open);
 }
 
@@ -110,7 +110,7 @@ function openTaskCategoryDropDownList(prefix, open) {
  * @param {string} prefix - The prefix for the form elements.
  * @param {boolean} open - Whether to open the dropdown list.
  */
-function openAssignedContactsDropDownList(prefix, open) {
+function openAssignedContactsDropDown(prefix, open) {
     if (open) {
         showAllAssignedContacts();
         setPlaceHolder(prefix + 'assignedinput', 'Search contact');

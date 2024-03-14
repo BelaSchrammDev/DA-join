@@ -46,9 +46,9 @@ async function checkIfTaskAdded() {
 
 
 function addDropDowns() {
-    addDropDownList('edittask_assignet', openAssignedContactsDropDownList, 'edittask_');
-    addDropDownList('deletetask_confirm', openFlyWindow, 'delete_task_confirm');
-    addDropDownList('taskadded_info', openFlyWindow, 'add_task_info');
+    addDropDown('edittask_assignet', openAssignedContactsDropDown, 'edittask_');
+    addDropDown('deletetask_confirm', openFlyWindow, 'delete_task_confirm');
+    addDropDown('taskadded_info', openFlyWindow, 'add_task_info');
 }
 
 
