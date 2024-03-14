@@ -369,8 +369,12 @@
     flex-grow: 1;
 }
 
+.bar_height {
+    min-height: 210px !important;
+}
+
 .assignedcontacts_bar {
-    min-height: 210px;
+    min-height: var(--editfields_badgesize);
     margin-top: 10px;
     display: flex;
     justify-content: flex-start;
@@ -724,8 +728,8 @@ form[addtask]:invalid button.btnAddOk {
         overflow-x: hidden;
     }
 
-    .assignedcontacts_bar {
-        min-height: var(--editfields_badgesize);
+    .bar_height {
+        min-height: var(--editfields_badgesize) !important;
     }
 
     div.separatorline {
