@@ -158,8 +158,15 @@ body {
 }
 
 .legal_notice p,
+.legal_notice li,
+.legal_notice a,
 .legal_notice span {
     font-size: 16px;
+}
+
+.legal_notice a {
+    color: var(--accent);
+    text-decoration: none;
 }
 
 .legal_notice h1 {
@@ -176,6 +183,8 @@ body {
     }
 
     .legal_notice p,
+    .legal_notice a,
+    .legal_notice li,
     .legal_notice span {
         font-size: 12px;
     }
@@ -192,6 +201,10 @@ body {
 @media (max-width: 500px) {
     .legal_notice {
         padding: 12px;
+    }
+    .headline {
+        flex-direction: column-reverse;
+        align-items: flex-start;
     }
 }
 
