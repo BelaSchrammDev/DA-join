@@ -164,6 +164,7 @@
     font-weight: 400;
     color: black;
     background-color: white;
+    transition: border 100ms ease-in-out;
 }
 
 .addtask_property>input,
@@ -208,16 +209,17 @@
     max-height: 150px;
 }
 
-.addtask_property>textarea:focus+span.textarea_cleft {
-    color: #29abe2;
-}
-
 .addtask_property>span.textarea_cleft {
     color: transparent;
     font-size: var(--editfields_smallfontsize);
     font-weight: 400;
     align-self: flex-end;
     user-select: none;
+    transition: color 100ms ease-in-out;
+}
+
+.addtask_property>textarea:focus+span.textarea_cleft {
+    color: #29abe2;
 }
 
 .addtask_assigned[dropdownopen='true'],
