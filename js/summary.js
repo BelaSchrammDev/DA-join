@@ -12,7 +12,6 @@ async function initSummarySite() {
     getAmounts();
     getUserName();
     changeClassesOnWidth();
-    // other render functions...
 }
 
 

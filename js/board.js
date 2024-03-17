@@ -204,7 +204,7 @@ function setAssignedToButtons(assignedToList) {
         const assignedCheckBox = getElement('edittask_task_assigned_' + contactsID);
         if (assignedCheckBox) assignedCheckBox.checked = assignedToList.includes(contactsID);
     }
-    setAssignedContactsBar('edittask_')
+    renderAssignedContactsBar('edittask_');
 }
 
 

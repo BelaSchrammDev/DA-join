@@ -305,12 +305,14 @@ function resetContactButtonMobile() {
 
 
 function openMobileMenu() {
-    document.getElementById('mobileMenu').classList.add('mobile-menu-active');
+    const mobileMenu = getElement('mobileMenu');
+    if (mobileMenu) addClass(mobileMenu, 'mobile-menu-active');
 }
 
 
 function closeMobileMenu() {
-    document.getElementById('mobileMenu').classList.remove('mobile-menu-active');
+    const mobileMenu = getElement('mobileMenu');
+    if (mobileMenu) removeClass(mobileMenu, 'mobile-menu-active');
 }
 
 
