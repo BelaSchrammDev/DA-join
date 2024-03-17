@@ -39,16 +39,17 @@ const hexColors = [
  * Closes the header menu by removing the 'show-header-menu' class from the 'headerMenu' element.
  */
 function closeHeaderMenu() {
-    document.getElementById('headerMenu').classList.remove('show-header-menu');
+    removeClass('headerMenu', 'show-header-menu');
 }
 
 
 /**
  * Toggles the header menu by adding or removing the 'show-header-menu' class from the 'headerMenu' element.
+ * If the dropdown is open, it is closed by calling the 'closeDropDown' function.
  */
 function toggleHeaderMenu() {
-    closeDropDown();
-    document.getElementById('headerMenu').classList.toggle('show-header-menu');
+    if (typeof closeDropDown !== 'undefined') closeDropDown();
+    toggleClass('headerMenu', 'show-header-menu');
 }
 
 
@@ -226,6 +227,17 @@ function addClass(elementIdOrObj, className) {
  */
 function removeClass(elementIdOrObj, className) {
     getElement(elementIdOrObj).classList.remove(className);
+}
+
+
+/**
+ * Toggles the specified class on the given element.
+ *
+ * @param {string|HTMLElement} elementIdOrObj - The ID of the element or the element object itself.
+ * @param {string} className - The class name to toggle.
+ */
+function toggleClass(elementIdOrObj, className) {
+    getElement(elementIdOrObj).classList.toggle(className);
 }
 
 
