@@ -47,6 +47,7 @@ function closeHeaderMenu() {
  * Toggles the header menu by adding or removing the 'show-header-menu' class from the 'headerMenu' element.
  */
 function toggleHeaderMenu() {
+    closeDropDown();
     document.getElementById('headerMenu').classList.toggle('show-header-menu');
 }
 
