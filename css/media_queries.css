@@ -78,6 +78,7 @@
         position: sticky;
         top: 0;
         height: 80px;
+        min-height: 80px;
     }
 
     .header-logo {
