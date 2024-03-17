@@ -26,7 +26,8 @@
         background-color: #2A3647;
         margin: 0;
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-around;
         text-align: center;
         position: fixed;
         bottom: 0;

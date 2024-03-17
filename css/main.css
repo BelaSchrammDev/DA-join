@@ -202,6 +202,7 @@ body {
     .legal_notice {
         padding: 12px;
     }
+
     .headline {
         flex-direction: column-reverse;
         align-items: flex-start;
@@ -233,7 +234,18 @@ nav {
 .nav_list {
     display: flex;
     justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
 }
+
+.nav_elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
 
 .nav_list_element {
     display: flex;
@@ -242,15 +254,18 @@ nav {
     text-decoration: none;
     width: 100%;
     padding: 6px 46px 6px 46px;
-    margin-bottom: 24px;
     cursor: pointer;
-    transition-duration: 175ms;
+    transition: background-color 125ms ease-in-out;
 }
 
 .nav_list_element:hover {
     background-color: var(--secondary);
-    transition-duration: 175ms;
-    transform: scale(1.1);
+}
+
+.nav_list_element_highlighted {
+    background-color: var(--secondary);
+    pointer-events: none;
+    cursor: default;
 }
 
 .nav_list_element span {

@@ -91,9 +91,9 @@ function createUniqueID(prefix) {
  * loading HTML templates, and loading session data.
  */
 async function initJoin() {
-    // test if user logged in
     loadCurrentUser(true);
     await includeHTML();
+    highlightCurrentPageLink();
     setInitialSpan();
     await loadSessionDataFromSessionStorage();
 }
@@ -121,6 +121,7 @@ async function initLegalNoticePrivacyPolicy() {
     loadCurrentUser();
     await includeHTML();
     hideMenuIfEmptyUser();
+    highlightCurrentPageLink();
     setInitialSpan();
 }
 
@@ -136,16 +137,6 @@ function setInitialSpan() {
     } else {
         setStyle('current_user_badge', 'display', 'none');
     }
-}
-
-
-/**
- * Initializes the login site by including HTML templates
- * and loading users from remote storage for login.
- */
-async function initLoginSite() {
-    await includeHTML();
-    // load users from remotestorage for login
 }
 
 
@@ -167,6 +158,21 @@ async function includeHTML() {
         }
     }
 }
+
+
+function highlightCurrentPageLink() {
+    let path = window.location.pathname;
+    let currentPage = path.split('/').pop();
+    let links = document.querySelectorAll('.nav_list_element');
+    links.forEach(link => {
+        let linkPath = link.getAttribute('href');
+        let linkPage = linkPath.split('/').pop();
+        if (linkPage === currentPage) {
+            link.classList.add('nav_list_element_highlighted');
+        }
+    });
+}
+
 
 
 /**
