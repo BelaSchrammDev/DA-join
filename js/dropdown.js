@@ -127,8 +127,12 @@ function closeDropDown() {
 }
 
 
+/**
+ * Opens or closes a fly window by applying a transform style to the specified form element.
+ * 
+ * @param {string} formID - The ID of the form element.
+ * @param {boolean} open - A boolean value indicating whether to open or close the fly window.
+ */
 function openFlyWindow(formID, open) {
     setStyle(formID, 'transform', open ? 'translateX(0)' : 'translateX(150vw)');
 }
-
-

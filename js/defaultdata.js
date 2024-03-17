@@ -1,3 +1,5 @@
+// this is the default tasks and contacts for the guest user
+
 let defaultTasks = [
     {
         id: 'T12',

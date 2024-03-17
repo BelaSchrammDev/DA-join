@@ -6,9 +6,17 @@ const userGuest = {
     color: '#0038FF',
     phone: '',
 }
+
 let current_flyID = '';
 
 
+/**
+ * Attempts to log in a user with the provided email and password.
+ * 
+ * @param {string} loginEmail - The email of the user trying to log in.
+ * @param {string} loginPassword - The password of the user trying to log in.
+ * @returns {Promise<string|object>} - A promise that resolves to either a string representing an error code or an object representing the logged-in user.
+ */
 async function tryLogin(loginEmail, loginPassword) {
     const users = await getItemAsJson('users');
     if (!users) return 'remote#userarray';
@@ -19,6 +27,17 @@ async function tryLogin(loginEmail, loginPassword) {
 }
 
 
+/**
+ * Tries to sign in a user with the provided information.
+ * 
+ * @param {string} signinName - The name of the user.
+ * @param {string} signinEmail - The email of the user.
+ * @param {string} signinPassword - The password of the user.
+ * @param {string} signinPasswordConfirm - The confirmation password of the user.
+ * @returns {Promise<string|object>} - A promise that resolves to a string or an object.
+ *    - If the sign-in is successful, it returns the newly created user object.
+ *    - If the sign-in fails, it returns a string indicating the reason for the failure.
+ */
 async function trySignIn(signinName, signinEmail, signinPassword, signinPasswordConfirm) {
     const users = await getItemAsJson('users');
     if (!users) return 'remote#userarray';
@@ -32,6 +51,15 @@ async function trySignIn(signinName, signinEmail, signinPassword, signinPassword
 }
 
 
+/**
+ * Logs in the user and load tasks and contacts from the remotestorage,
+ * then save it to the sessionstorage to use it on other pages.
+ * if no tasks or contacts found, use the defaultdata.
+ * then redirect to the summary page.
+ * 
+ * @param {Object} user - The user object containing login data.
+ * @returns {Promise<void>} - A promise that resolves when the login process is complete.
+ */
 async function loginUser(user) {
     currentuser = createUserObjectFromLoginData(user);
     sessionStorage.setItem('currentuser', JSON.stringify(currentuser));
@@ -63,6 +91,11 @@ function createUserObjectFromLoginData(loginObject) {
 }
 
 
+/**
+ * Toggles the visibility of a password input field.
+ * 
+ * @param {string} inputID - The ID of the password input field.
+ */
 function togglePasswortVisibility(inputID) {
     const passwordInput = document.getElementById(inputID);
     if (passwordInput.type == 'password') passwordInput.type = 'text';
@@ -70,6 +103,13 @@ function togglePasswortVisibility(inputID) {
 }
 
 
+/**
+ * Logs in the user as a guest.
+ * Sets the current user, session tasks, and session contacts in the session storage.
+ * Redirects the user to the summary page.
+ * 
+ * @returns {void}
+ */
 async function loginAsGuest() {
     sessionStorage.setItem('currentuser', JSON.stringify(userGuest));
     sessionStorage.setItem('sessiontasks', JSON.stringify(defaultTasks));
@@ -78,6 +118,12 @@ async function loginAsGuest() {
 }
 
 
+/**
+ * Clears all error messages from the specified inputs.
+ * 
+ * @param {string} formID - The ID of the form element.
+ * @param {string[]} inputs - An array of input IDs.
+ */
 function clearAllMessagesFromInputs(formID, inputs) {
     for (let index = 0; index < inputs.length; index++) {
         const input = getElement(formID + inputs[index]);
@@ -92,6 +138,12 @@ function clearAllMessagesFromInputs(formID, inputs) {
 }
 
 
+/**
+ * Sets error messages on input fields based on the provided form ID and error message.
+ *
+ * @param {string} formID - The ID of the form element.
+ * @param {string} errorMessage - The error message in the format "errorField#errorType".
+ */
 function setInputErrorMessages(formID, errorMessage) {
     const errorField = errorMessage.split('#')[0];
     const errorType = errorMessage.split('#')[1];
@@ -104,6 +156,12 @@ function setInputErrorMessages(formID, errorMessage) {
 }
 
 
+/**
+ * Submits the login form.
+ * 
+ * @param {Event} event - The event object representing the form submission.
+ * @returns {Promise<void>} - A promise that resolves when the login process is complete.
+ */
 async function submitLogin(event) {
     clearAllMessagesFromInputs('login_', ['password', 'email']);
     const formData = Object.fromEntries(new FormData(event.target));
@@ -119,6 +177,12 @@ async function submitLogin(event) {
 }
 
 
+/**
+ * Submits the sign-in form.
+ * 
+ * @param {Event} event - The event object representing the form submission.
+ * @returns {Promise<void>} - A promise that resolves when the sign-in process is complete.
+ */
 async function submitSignIn(event) {
     clearAllMessagesFromInputs('signin_', ['name', 'email', 'confirm_password']);
     const formData = Object.fromEntries(new FormData(event.target));
@@ -135,23 +199,44 @@ async function submitSignIn(event) {
 }
 
 
+/**
+ * Shows or hides a load animation.
+ *
+ * @param {string} svgID - The ID of the SVG element.
+ * @param {boolean} show - Whether to show or hide the load animation.
+ */
 function showLoadAnimation(svgID, show) {
     lockBody(show);
     setStyle(svgID, 'display', show ? 'flex' : 'none');
 }
 
 
+/**
+ * Locks or unlocks the body element by adjusting the z-index of the login overlay.
+ * 
+ * @param {boolean} lock - Indicates whether to lock or unlock the body element. Default is true.
+ */
 function lockBody(lock = true) {
     setStyle('login_overlay', 'z-index', lock ? '10' : '-1');
 }
 
 
+/**
+ * Displays fly information by setting the transform property of the specified element to 'translateX(0)'.
+ * 
+ * @param {string} infoID - The ID of the element to show fly information for.
+ */
 function showFlyinfo(infoID = '') {
     lockBody();
     setStyle(infoID, 'transform', 'translateX(0)');
 }
 
 
+/**
+ * Shows or hides the sign-in mask.
+ * 
+ * @param {boolean} [show=true] - Indicates whether to show or hide the sign-in mask. Default is true.
+ */
 function showSignInMask(show = true) {
     setStyle('signin_button', 'display', show ? 'none' : 'flex');
     setStyle('login_form', 'display', show ? 'none' : 'flex');

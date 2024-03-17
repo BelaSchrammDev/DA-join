@@ -1,5 +1,12 @@
 /**
- * Event handler for the draggable task when the drag starts.
+ * The ID of the currently draggable task.
+ * @type {string}
+ */
+let currentDraggableTaskID = '';
+
+
+/**
+* Event handler for the draggable task when the drag starts.
  * 
  * @param {DragEvent} event - The drag event.
  * @param {string} taskID - The ID of the task being dragged.
@@ -80,5 +87,4 @@ function draggableLeave(event, rowID) {
         currentDragHighlightID = '';
     }
 }
-
 

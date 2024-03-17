@@ -1,7 +1,15 @@
-let currentDraggableTaskID = '';
-
+/**
+ * Represents the ID of the current flying window.
+ * 
+ * @type {string}
+ */
 let current_flyingwindow_id = '';
 
+/**
+ * Represents the ID of the current task in the big task view.
+ * 
+ * @type {string}
+ */
 let current_taskID = '';
 
 
@@ -12,7 +20,7 @@ async function initBoardSite() {
     await initJoin();
     renderRows();
     renderTasks();
-    renderAddtaskFields();
+    initAddtaskFields();
     renderAssignedContacts('edittask_assigned_list', 'edittask_');
     addDropDowns();
     setAttribute('edittask_duedate', 'min', new Date().toISOString().split('T')[0]);
@@ -22,19 +30,25 @@ async function initBoardSite() {
 }
 
 
+/**
+ * Adds drop-down menus to the page.
+ */
+function addDropDowns() {
+    addDropDown('edittask_assignet', openAssignedContactsDropDown, 'edittask_');
+    addDropDown('deletetask_confirm', openFlyWindow, 'delete_task_confirm');
+    addDropDown('taskadded_info', openFlyWindow, 'add_task_info');
+}
+
+
+/**
+ * Checks if a task has been added and shows the info if so. 
+ */
 async function checkIfTaskAdded() {
     const taskaddedItem = await sessionStorage.getItem('taskadded');
     if (taskaddedItem) {
         showTaskAddedInfo();
         sessionStorage.removeItem('taskadded');
     }
-}
-
-
-function addDropDowns() {
-    addDropDown('edittask_assignet', openAssignedContactsDropDown, 'edittask_');
-    addDropDown('deletetask_confirm', openFlyWindow, 'delete_task_confirm');
-    addDropDown('taskadded_info', openFlyWindow, 'add_task_info');
 }
 
 
@@ -55,6 +69,7 @@ function addMediaQueryForDragToggling() {
 /**
  * Callback function after adding a task.
  * Stores the tasks to the remote storage and closes the overlay.
+ * Also renders the tasks and shows the task added info.
  */
 function afterAddTask() {
     storeSessionTasksToRemoteStorage();
@@ -65,7 +80,7 @@ function afterAddTask() {
 
 
 /**
- * Shows an overlay window.
+ * Shows an overlay window and sets the current flying window ID.
  * 
  * @param {string} windowID - The ID of the window to show.
  */
@@ -122,8 +137,8 @@ function submitEditTaskForm() {
 
 
 /**
- * Shows the edit task mode.
- * 
+ * Switches to the edit task mode and fill the edit form with the current task propertys.
+ *  
  * @param {string} taskID - The ID of the task to edit.
  */
 function showEditTaskMode(taskID) {
@@ -137,7 +152,7 @@ function showEditTaskMode(taskID) {
 
 
 /**
- * switches the edit task mode off and shows the task big view.
+ * Switches the edit task mode off and shows the task big view.
  */
 function hideEditTaskMode() {
     setStyle('task_big_showing', 'display', 'flex');
@@ -290,6 +305,9 @@ function clickClearTaskSearch() {
 }
 
 
+/**
+ * Shows the task added information by opening a dropdown and closing it after 2 seconds.
+ */
 function showTaskAddedInfo() {
     openDropDown('taskadded_info');
     setTimeout(() => { closeDropDown(); }, 2000);
