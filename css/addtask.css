@@ -170,7 +170,6 @@
 .addtask_property>input,
 .addtask_property>div>input,
 .addtask_property>textarea {
-    /* padding: 12px 21px 12px 21px; */
     padding: var(--editfields_padding_x) var(--editfields_padding_y);
     outline: unset;
 }

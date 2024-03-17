@@ -18,7 +18,7 @@ let presetStatusByAddTask = 'todo';
  */
 async function initAddtaskSite() {
     await initJoin();
-    renderAddtaskFields();
+    initAddtaskFields();
     actionAfterAddTask = afterAddTaskTemplateSubmit;
 }
 
@@ -35,9 +35,9 @@ function resetAddTaskForm(prefix) {
 
 
 /**
- * Renders the fields for adding a task.
+ * Initializes the add task fields.
  */
-function renderAddtaskFields() {
+function initAddtaskFields() {
     renderCategorys();
     renderAssignedContacts('addtask_assigned_list', 'addtask_');
     setAttribute('addtask_duedate', 'min', new Date().toISOString().split('T')[0]);
@@ -47,7 +47,7 @@ function renderAddtaskFields() {
 
 
 /**
- * Renders the assigned contacts.
+ * Renders the assigned contacts dropdownlist.
  * 
  * @param {string} listDropDownID - The ID of the dropdown list.
  * @param {string} prefix - The prefix for the form elements.
@@ -62,11 +62,11 @@ function renderAssignedContacts(listDropDownID, prefix) {
 
 
 /**
- * Sets the assigned contacts bar.
+ * Render the assigned contacts bar.
  * 
  * @param {string} prefix - The prefix for the form elements.
  */
-function setAssignedContactsBar(prefix) {
+function renderAssignedContactsBar(prefix) {
     let contactsBarHTML = '';
     for (let index = 0; index < sessionContacts.length; index++) {
         const contact = sessionContacts[index];
@@ -80,7 +80,7 @@ function setAssignedContactsBar(prefix) {
 
 
 /**
- * Renders the categories.
+ * Renders the categories dropdownlist.
  */
 function renderCategorys() {
     let html = '';
@@ -94,7 +94,7 @@ function renderCategorys() {
 
 
 /**
- * Opens the task category dropdown list.
+ * Opens the task category dropdown list by setting the dropdownopen attribute.
  * 
  * @param {string} prefix - The prefix for the form elements.
  * @param {boolean} open - Whether to open the dropdown list.
@@ -105,7 +105,9 @@ function openTaskCategoryDropDown(prefix, open) {
 
 
 /**
- * Opens the assigned contacts dropdown list.
+ * Opens and close the assigned contacts dropdown list.
+ * when the list is open the search input is focused.
+ * when the list is closed the search input is cleared and the assigned contacts bar is rendered.
  * 
  * @param {string} prefix - The prefix for the form elements.
  * @param {boolean} open - Whether to open the dropdown list.
@@ -117,7 +119,7 @@ function openAssignedContactsDropDown(prefix, open) {
         setFocus(prefix + 'assignedinput');
     }
     else {
-        setAssignedContactsBar(prefix);
+        renderAssignedContactsBar(prefix);
         setPlaceHolder(prefix + 'assignedinput', 'Choose contacts');
         setInputValue(prefix + 'assignedinput', '');
     }
@@ -126,7 +128,7 @@ function openAssignedContactsDropDown(prefix, open) {
 
 
 /**
- * Shows all assigned contacts.
+ * Set all assigned contacts to be visible, after the search term is cleared.
  */
 function showAllAssignedContacts() {
     let contactsDivs = document.getElementById('addtask_assigned_list').children;
@@ -137,7 +139,8 @@ function showAllAssignedContacts() {
 
 
 /**
- * Changes the assigned contacts search term.
+ * Execute when the assigned contacts search term is changed.
+ * Only the contacts that contains the search term are visible.
  * 
  * @param {Event} event - The event object.
  * @param {string} prefix - The prefix for the form elements.
@@ -157,6 +160,7 @@ function changeAssignedContactsSearchTerm(event, prefix) {
 
 /**
  * Sets the characters left for a textarea element.
+ * the information is displayed in a span element next to the textarea.
  * 
  * @param {HTMLTextAreaElement} taElement - The textarea element.
  */

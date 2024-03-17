@@ -49,6 +49,7 @@ function renderTasks(filter = '') {
 
 /**
  * Checks if a task matches the given filter.
+ * If the filter is empty, the task will always match.
  *
  * @param {Object} task - The task object to check.
  * @param {string} filter - The filter string to match against the task.
