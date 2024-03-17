@@ -161,12 +161,10 @@ async function includeHTML() {
 
 
 function highlightCurrentPageLink() {
-    let path = window.location.pathname;
-    let currentPage = path.split('/').pop();
+    let currentPage = window.location.pathname.split('/').pop();
     let links = document.querySelectorAll('.nav_list_element');
     links.forEach(link => {
-        let linkPath = link.getAttribute('href');
-        let linkPage = linkPath.split('/').pop();
+        let linkPage = link.getAttribute('href').split('/').pop();
         if (linkPage === currentPage) {
             link.classList.add('nav_list_element_highlighted');
         }

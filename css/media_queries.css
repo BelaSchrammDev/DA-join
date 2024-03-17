@@ -34,9 +34,13 @@
         left: 0;
         right: 0;
         height: 80px;
+        gap: 0;
     }
 
     .nav_list_element {
+        border-radius: 16px;
+        width: 80px;
+        height: 100%;
         padding: 0;
         display: flex;
         justify-content: center;

@@ -252,9 +252,11 @@ nav {
     align-items: center;
     color: var(--icon-grey);
     text-decoration: none;
+    padding-left: 20px;
     width: 100%;
-    padding: 6px 46px 6px 46px;
+    height: 50px;
     cursor: pointer;
+    border-radius: 0 1000px 1000px 0;
     transition: background-color 125ms ease-in-out;
 }
 
@@ -263,9 +265,17 @@ nav {
 }
 
 .nav_list_element_highlighted {
-    background-color: var(--secondary);
     pointer-events: none;
     cursor: default;
+    border-radius: 1000px 0 0 1000px;
+}
+
+.nav_list_element_highlighted[mainmenulink] {
+    background-color: var(--secondary);
+}
+
+.nav_list_element_highlighted[securitylink] {
+    background-color: var(--secondary);
 }
 
 .nav_list_element span {
@@ -282,6 +292,7 @@ nav {
 }
 
 .nav_security_links a {
+    height: 30px;
     color: var(--qm-grey);
     text-decoration: none;
 }
