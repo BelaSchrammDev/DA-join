@@ -177,3 +177,12 @@ function contactHtml(user, contact) {
     </div>
 `;
 }
+
+
+function contactAddHtml() {
+    return /*html*/`
+    <div onclick="showAddToContactWindow()" class="mobile-add-contact-button-bg">
+        <img class="mobile-add-contact-button" src="../img/icons/contacts/add-person.svg" alt="mobile-add-button"> 
+    </div>
+`;
+}
