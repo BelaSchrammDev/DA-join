@@ -2,6 +2,12 @@ const USER_STARTING_LETTER = [];
 let entryNumber = undefined;
 
 
+/**
+ * Initializes the contacts site by performing necessary setup tasks asynchronously.
+ * @async
+ * @function initContactsSite
+ * @returns {Promise<void>} A Promise that resolves when the initialization is complete.
+ */
 async function initContactsSite() {
     await initJoin();
     renderContacts();
@@ -9,6 +15,12 @@ async function initContactsSite() {
 }
 
 
+/**
+ * Activates the contact data container by adding a CSS class to make it visually active.
+ * @function
+ * @name contactActive
+ * @returns {void}
+ */
 function contactActive() {
     let container = document.getElementById('contact1');
     container.classList.add('contact-data-container-active');
@@ -16,6 +28,9 @@ function contactActive() {
 }
 
 
+/**
+ * Displays the add/edit contact window on the webpage.
+ */
 function showAddToContactWindow() {
     let background = document.getElementById('addEditContactContainer');
     background.innerHTML = addToContactWindowHtml();
@@ -30,6 +45,10 @@ function showAddToContactWindow() {
 }
 
 
+/**
+ * Displays the edit window for a contact.
+ * @param {number} number - The index of the contact in the sessionContacts array.
+ */
 function showEditWindow(number) {
     let contactData = sessionContacts[number];
     let background = document.getElementById('addEditContactContainer');
@@ -48,6 +67,9 @@ function showEditWindow(number) {
 }
 
 
+/**
+ * Closes the add/edit window for a contact.
+ */
 function closeAddEditWindow() {
     let background = document.getElementById('addEditContactContainer');
     let window = document.getElementById('addEditContact');
@@ -63,6 +85,10 @@ function closeAddEditWindow() {
 }
 
 
+/**
+ * Deletes a contact proof by updating the UI.
+ * @param {number} number - The contact proof number to delete.
+ */
 function deleteContactProof(number) {
     let background = document.getElementById('deleteProofWindow');
     background.innerHTML = deleteContactHtml(number);
@@ -77,6 +103,9 @@ function deleteContactProof(number) {
 }
 
 
+/**
+ * Closes the delete proof window with animations.
+ */
 function closeDeleteProofWindow() {
     let background = document.getElementById('deleteProofWindow');
     let window = document.getElementById('deleteContactProof');
@@ -92,6 +121,12 @@ function closeDeleteProofWindow() {
 }
 
 
+/**
+ * Displays the user entry corresponding to the given number.
+ * @async
+ * @param {number} number - The number representing the user entry.
+ * @returns {Promise<void>} - A promise that resolves when the user entry is displayed.
+ */
 async function showUserEntry(number) {
     entryNumber = number;
     resetContactButton(number);
@@ -116,6 +151,11 @@ async function showUserEntry(number) {
 
 window.addEventListener("resize", showLargeContactsView);
 
+
+/**
+ * Event listener for resizing the window to show large contacts view.
+ * @returns {void}
+ */
 function showLargeContactsView() {
     let contactSection = document.getElementById('contactSection');
     let showContactSection = document.getElementById('showContactSection');
@@ -135,6 +175,10 @@ function showLargeContactsView() {
 }
 
 
+/**
+ * Resets the styling and event listeners of contact buttons except for the one specified.
+ * @param {number} number - The index of the contact button to exclude from reset.
+ */
 function resetContactButton(number) {
     for (let index = 0; index < sessionContacts.length; index++) {
         let contact = document.getElementById(`contact${index}`);
@@ -147,6 +191,9 @@ function resetContactButton(number) {
 }
 
 
+/**
+ * Closes the mobile user entry section and resets contact buttons styling and event listeners.
+ */
 function closeMobileUserEntry() {
     let contactSection = document.getElementById('contactSection');
     let showContactSection = document.getElementById('showContactSection');
@@ -156,6 +203,11 @@ function closeMobileUserEntry() {
 }
 
 
+/**
+ * Resets the appearance and functionality of contact buttons on mobile devices.
+ * Removes active class from contact data containers and adds a click event listener
+ * to each contact button to show user entry.
+ */
 function resetContactButtonMobile() {
     for (let index = 0; index < sessionContacts.length; index++) {
         let contact = document.getElementById(`contact${index}`);
@@ -166,18 +218,32 @@ function resetContactButtonMobile() {
 }
 
 
+/**
+ * Opens the mobile menu by adding 'mobile-menu-active' class to the mobile menu element.
+ */
 function openMobileMenu() {
     const mobileMenu = getElement('mobileMenu');
     if (mobileMenu) addClass(mobileMenu, 'mobile-menu-active');
 }
 
 
+/**
+ * Closes the mobile menu by removing 'mobile-menu-active' class from the mobile menu element.
+ */
 function closeMobileMenu() {
     const mobileMenu = getElement('mobileMenu');
     if (mobileMenu) removeClass(mobileMenu, 'mobile-menu-active');
 }
 
 
+/**
+ * Renders contacts based on the starting letters of their names.
+ * Clears the container, populates it with HTML representing contacts grouped by starting letter,
+ * and adds an option to add new contacts.
+ * @async
+ * @function renderContacts
+ * @returns {Promise<void>} Promise object representing the completion of rendering contacts.
+ */
 async function renderContacts() {
     USER_STARTING_LETTER.length = 0;
     await saveUserStartingLetters();
@@ -198,6 +264,11 @@ async function renderContacts() {
 }
 
 
+/**
+ * Saves unique starting letters of contact names into the global array USER_STARTING_LETTER.
+ * Sorts the array alphabetically.
+ * @function saveUserStartingLetters
+ */
 function saveUserStartingLetters() {
     for (let u = 0; u < sessionContacts.length; u++) {
         let contact = sessionContacts[u].name
@@ -210,6 +281,12 @@ function saveUserStartingLetters() {
 }
 
 
+/**
+ * Creates a new contact with the provided information and performs necessary actions.
+ * @async
+ * @function createContact
+ * @returns {Promise<void>} - A promise resolved after the contact creation process is complete.
+ */
 async function createContact() {
     let nameInput = document.getElementById('nameCreate').value;
     let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
@@ -244,6 +321,12 @@ async function createContact() {
 }
 
 
+/**
+ * Edits a contact with the provided details.
+ * @async
+ * @param {number} number - The index of the contact in the sessionContacts array.
+ * @returns {Promise<void>} - A Promise that resolves once the operation is complete.
+ */
 async function editContact(number) {
     let nameInput = document.getElementById('nameEdit').value;
     let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
@@ -261,6 +344,12 @@ async function editContact(number) {
 }
 
 
+/**
+ * Deletes a contact from the sessionContacts array.
+ * @async
+ * @param {number} number - The index of the contact to be deleted.
+ * @returns {Promise<void>} - A Promise that resolves once the operation is complete.
+ */
 async function deleteContact(number) {
     sessionContacts.splice(number, 1);
     document.getElementById('showUserEntry').innerHTML = '';

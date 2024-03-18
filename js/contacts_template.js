@@ -1,3 +1,7 @@
+/**
+ * Generates HTML for adding a new contact.
+ * @returns {string} The HTML string for adding a new contact.
+ */
 function addToContactWindowHtml() {
     return /*html*/`
     <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
@@ -41,7 +45,12 @@ function addToContactWindowHtml() {
 `;
 }
 
-
+/**
+ * Generates HTML for editing an existing contact.
+ * @param {object} contactData - The data of the contact to be edited.
+ * @param {number} number - The index of the contact.
+ * @returns {string} The HTML string for editing an existing contact.
+ */
 function editWindowHtml(contactData, number) {
     return /*html*/`
     <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
@@ -83,7 +92,11 @@ function editWindowHtml(contactData, number) {
 `;
 }
 
-
+/**
+ * Generates HTML for deleting a contact.
+ * @param {number} number - The index of the contact to be deleted.
+ * @returns {string} The HTML string for deleting a contact.
+ */
 function deleteContactHtml(number) {
     return /*html*/`
     <div onclick="event.stopPropagation()" id="deleteContactProof" class="delete-contact-proof-window">
@@ -104,7 +117,12 @@ function deleteContactHtml(number) {
 `;
 }
 
-
+/**
+ * Generates HTML for displaying user entry details.
+ * @param {object} user - The user object containing details.
+ * @param {number} number - The index of the user.
+ * @returns {string} The HTML string for displaying user entry details.
+ */
 function userEntryHtml(user, number) {
     return /*html*/`
     <img onclick="closeMobileUserEntry()" class="mobile-back-arrow" src="../img/icons/contacts/back-arrow.svg" alt="back-arrow">
@@ -127,7 +145,9 @@ function userEntryHtml(user, number) {
                 </div>
             </div>
         </div>
-        <div class="info-headline">
+        <div class="info-head
+
+line">
             <span>Contact Information</span>
         </div>
         <div class="info-entry-container">
@@ -155,15 +175,24 @@ function userEntryHtml(user, number) {
     `;
 }
 
-
+/**
+ * Generates HTML for a contact separator.
+ * @param {string} userLetter - The letter used for separation.
+ * @returns {string} The HTML string for a contact separator.
+ */
 function contactSeperatorHtml(userLetter) {
     return /*html*/`
     <h3 class="contact-letter">${userLetter}</h3>
-    <div class="contact-seperator"></div>
+    <div class="contact-separator"></div>
 `;
 }
 
-
+/**
+ * Generates HTML for displaying a contact.
+ * @param {number} user - The index of the user.
+ * @param {object} contact - The contact object containing details.
+ * @returns {string} The HTML string for displaying a contact.
+ */
 function contactHtml(user, contact) {
     return /*html*/`
     <div onclick="showUserEntry(${user})" id="contact${user}" class="contact-data-container">
@@ -178,7 +207,10 @@ function contactHtml(user, contact) {
 `;
 }
 
-
+/**
+ * Generates HTML for adding a contact.
+ * @returns {string} The HTML string for adding a contact.
+ */
 function contactAddHtml() {
     return /*html*/`
     <div onclick="showAddToContactWindow()" class="mobile-add-contact-button-bg">

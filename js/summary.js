@@ -2,8 +2,19 @@ let mobileIntro = true;
 let sortedTasks = [];
 const LAST_PAGE = document.referrer;
 
-console.log(LAST_PAGE);
 
+/**
+ * Initializes the summary site by executing several asynchronous tasks sequentially.
+ * - Initializes the join functionality.
+ * - Checks and proves the last page for introduction.
+ * - Loads the information about whether the introduction has been seen.
+ * - Displays a mobile welcome message if applicable.
+ * - Retrieves the amounts data.
+ * - Retrieves the user name.
+ * - Adjusts classes based on the width of the viewport.
+ * 
+ * @returns {Promise<void>} A Promise that resolves when all tasks are completed.
+ */
 async function initSummarySite() {
     await initJoin();
     await proofLastPageForIntro();
@@ -15,6 +26,10 @@ async function initSummarySite() {
 }
 
 
+/**
+ * Retrieves various amounts related to tasks and deadlines.
+ * Calls several functions to calculate and retrieve different counts.
+ */
 function getAmounts() {
     getToDoAmount();
     getDoneAmount();
@@ -26,6 +41,10 @@ function getAmounts() {
 }
 
 
+/**
+* Checks if the last page visited is one of the specified pages.
+* If it is, sets mobileIntro to false.
+*/
 function proofLastPageForIntro() {
     if (LAST_PAGE === 'https://join-41.developerakademie.net/addtask.html' || LAST_PAGE === 'https://join-41.developerakademie.net/board.html' || LAST_PAGE === 'https://join-41.developerakademie.net/contacts.html' || LAST_PAGE === 'https://join-41.developerakademie.net/privacy_policy.html' || LAST_PAGE === 'https://join-41.developerakademie.net/legal_notice.html') {
         mobileIntro = false;
@@ -33,12 +52,21 @@ function proofLastPageForIntro() {
 }
 
 
+/**
+* Saves the mobile intro seen status to the session storage.
+* Converts the mobileIntro object to a JSON string.
+* @param {object} mobileIntro The mobile intro object containing the seen status.
+* @return {void}
+*/
 function saveIntroSeen() {
     let introSeen = JSON.stringify(mobileIntro);
     sessionStorage.setItem('intro', introSeen);
 }
 
 
+/**
+* Loads the intro seen status from the session storage.
+*/
 function loadIntroSeen() {
     let introSeen = sessionStorage.getItem('intro');
     if (introSeen) {
@@ -47,6 +75,9 @@ function loadIntroSeen() {
 }
 
 
+/**
+* Gets the amount of to-do tasks and updates the specified card with the amount.
+*/
 function getToDoAmount() {
     let card = document.getElementById('toDoAmount');
     let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'todo').length;
@@ -54,6 +85,9 @@ function getToDoAmount() {
 }
 
 
+/**
+* Updates the 'doneAmount' card with the number of tasks with status 'done'.
+*/
 function getDoneAmount() {
     let card = document.getElementById('doneAmount');
     let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'done').length;
@@ -61,6 +95,9 @@ function getDoneAmount() {
 }
 
 
+/**
+* Updates the 'urgentAmount' card with the number of tasks with priority 'urgent' and status not equal to 'done'.
+*/
 function getUrgentAmount() {
     let card = document.getElementById('urgentAmount');
     let amount = sessionTasks.filter(sessionTasks => sessionTasks.priority === 'urgent' && sessionTasks.status != 'done').length;
@@ -68,6 +105,9 @@ function getUrgentAmount() {
 }
 
 
+/**
+* Updates the 'nextDeadline' card with the date of the earliest deadline among the urgent tasks that are not yet done.
+*/
 async function nextDeadline() {
     sortedTasks = [];
     let card = document.getElementById('nextDeadline');
@@ -91,6 +131,9 @@ async function nextDeadline() {
 }
 
 
+/**
+* Retrieves the task amount and updates the UI element with the result.
+*/
 function getTaskAmount() {
     let card = document.getElementById('taskAmount');
     let amount = sessionTasks.length;
@@ -98,6 +141,9 @@ function getTaskAmount() {
 }
 
 
+/**
+* Retrieves the amount of tasks in progress and updates the UI element with the result.
+*/
 function getInProgressAmount() {
     let card = document.getElementById('inProgressAmount');
     let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'inprogress').length;
@@ -105,6 +151,9 @@ function getInProgressAmount() {
 }
 
 
+/**
+* Retrieves the amount of tasks awaiting feedback and updates the UI element with the result.
+*/
 function getFeedbackAmount() {
     let card = document.getElementById('feedbackAmount');
     let amount = sessionTasks.filter(sessionTasks => sessionTasks.status === 'awaitfeedback').length;
@@ -112,6 +161,10 @@ function getFeedbackAmount() {
 }
 
 
+/**
+* Retrieves the user's name and updates the UI element with the result. 
+* Also updates the welcome message based on the user's name.
+*/
 function getUserName() {
     let container = document.getElementById('userName');
     let welcomeMsg = document.getElementById('mobileUserWelcomeMsg');
@@ -130,6 +183,10 @@ function getUserName() {
 
 window.addEventListener("resize", changeClassesOnWidth);
 
+/**
+* Function to change classes based on window width.
+* Gets the elements and changes their classes accordingly.
+*/
 function changeClassesOnWidth() {
     let right = document.getElementById('toTheRight');
     let left = document.getElementById('toTheLeft');
@@ -168,6 +225,9 @@ function changeClassesOnWidth() {
 }
 
 
+/**
+* Displays the welcome message for mobile users and handles the hiding logic.
+*/
 function mobileWelcomeMsg() {
     let welcome = document.getElementById('welcomeContainerMobile');
     let msg = document.querySelector('.welcome-message-mobile');
