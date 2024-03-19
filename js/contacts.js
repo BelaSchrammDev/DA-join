@@ -2,12 +2,24 @@ const USER_STARTING_LETTER = [];
 let entryNumber = undefined;
 
 
+/**
+ * Initializes the contacts site by performing necessary setup tasks asynchronously.
+ * @async
+ * @function initContactsSite
+ * @returns {Promise<void>} A Promise that resolves when the initialization is complete.
+ */
 async function initContactsSite() {
     await initJoin();
     renderContacts();
 }
 
 
+/**
+ * Activates the contact data container by adding a CSS class to make it visually active.
+ * @function
+ * @name contactActive
+ * @returns {void}
+ */
 function contactActive() {
     let container = document.getElementById('contact1');
     container.classList.add('contact-data-container-active');
@@ -15,48 +27,12 @@ function contactActive() {
 }
 
 
+/**
+ * Displays the add/edit contact window on the webpage.
+ */
 function showAddToContactWindow() {
     let background = document.getElementById('addEditContactContainer');
-    background.innerHTML = /*html*/`
-        <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
-            <div class="add-edit-contact-left">
-                <div onclick="closeAddEditWindow()" class="close-mobile">
-                    <img src="./img/icons/contacts/cancel-white.svg" alt="exit">
-                </div>
-                <img src="./img/logo/join-small.png" alt="join-logo">
-                <h2>Add contact</h2>
-                <span>Tasks are better with a team!</span>
-                <div></div>
-            </div>
-            <div class="add-edit-contact-middle">
-                <div>
-                    <img src="./img/icons/contacts/profile.svg" alt="user">
-                </div>
-            </div>
-            <div class="add-edit-contact-right">
-                <div onclick="closeAddEditWindow()">
-                    <img src="./img/icons/contacts/cancel.svg" alt="exit">
-                </div>
-                <form onsubmit="createContact(); return false;">
-                    <div class="input-container">
-                        <input id="nameCreate" placeholder="Name" class="input-class name-input" type="text" required>
-                        <input id="emailCreate" placeholder="Email" class="input-class email-input" type="email" required>
-                        <input id="phoneCreate" placeholder="Phone (12 Digits)" class="input-class phone-input" type="tel" pattern="[0-9]{12}" minlength="12" maxlength="12" required>
-                    </div>
-                    <div class="button-container">
-                        <button onclick="closeAddEditWindow()" type="button" class="cancel-button">
-                            <span>Cancel</span>
-                            <img src="./img/icons/contacts/cancel.svg" alt="cancel">
-                        </button>
-                        <button type="submit" class="create-button">
-                            <span>Create Contact</span>
-                            <img src="./img/icons/contacts/check-white.svg" alt="check">
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    `;
+    background.innerHTML = addToContactWindowHtml();
     let window = document.getElementById('addEditContact');
     background.classList.remove('hide');
     setTimeout(() => {
@@ -68,47 +44,14 @@ function showAddToContactWindow() {
 }
 
 
+/**
+ * Displays the edit window for a contact.
+ * @param {number} number - The index of the contact in the sessionContacts array.
+ */
 function showEditWindow(number) {
     let contactData = sessionContacts[number];
     let background = document.getElementById('addEditContactContainer');
-    background.innerHTML = /*html*/`
-        <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
-            <div class="add-edit-contact-left">
-                <div onclick="closeAddEditWindow()" class="close-mobile">
-                    <img src="./img/icons/contacts/cancel-white.svg" alt="exit">
-                </div>
-                <img src="./img/logo/join-small.png" alt="join-logo">
-                <h2>Edit contact</h2> 
-                <div></div>
-            </div>
-            <div class="add-edit-contact-middle">
-                <div class="contact-bg-large"  style="background-color: ${contactData.color}">
-                    <span class="contact-short-large">${contactData.initial}</span>
-                </div>
-            </div>
-            <div class="add-edit-contact-right">
-                <div onclick="closeAddEditWindow()">
-                    <img src="./img/icons/contacts/cancel.svg" alt="exit">
-                </div>
-                <form onsubmit="editContact(${number}); return false;">
-                    <div class="input-container">
-                        <input id="nameEdit" placeholder="Name" class="input-class name-input" type="text" required>
-                        <input id="emailEdit" placeholder="Email" class="input-class email-input" type="email" required>
-                        <input id="phoneEdit" placeholder="Phone (12 Digits)" class="input-class phone-input" type="tel" pattern="[0-9]{12}" minlength="12" maxlength="12" required>
-                    </div>
-                    <div class="button-container">
-                        <button type="button" class="cancel-button-mobile" onclick="deleteContactProof(${number})">
-                            <span>Delete</span>
-                        </button>
-                        <button type="submit" class="create-button">
-                            <span>Save</span>
-                            <img src="./img/icons/contacts/check-white.svg" alt="check">
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    `;
+    background.innerHTML = editWindowHtml(contactData, number);
     document.getElementById('nameEdit').value = contactData.name;
     document.getElementById('emailEdit').value = contactData.email;
     document.getElementById('phoneEdit').value = contactData.phone;
@@ -123,6 +66,9 @@ function showEditWindow(number) {
 }
 
 
+/**
+ * Closes the add/edit window for a contact.
+ */
 function closeAddEditWindow() {
     let background = document.getElementById('addEditContactContainer');
     let window = document.getElementById('addEditContact');
@@ -138,25 +84,13 @@ function closeAddEditWindow() {
 }
 
 
+/**
+ * Deletes a contact proof by updating the UI.
+ * @param {number} number - The contact proof number to delete.
+ */
 function deleteContactProof(number) {
     let background = document.getElementById('deleteProofWindow');
-    background.innerHTML = /*html*/`
-        <div onclick="event.stopPropagation()" id="deleteContactProof" class="delete-contact-proof-window">
-            <div class="delete-question-container">
-                <span class="delete-question">Are you sure you want to delete this contact permanently?</span>
-            </div>
-            <div class="delete-button-container">   
-                <button type="button" class="cancel-button-mobile cancel-delete" onclick="closeDeleteProofWindow()">
-                    <span>Cancel</span>
-                    <img src="./img/icons/contacts/cancel.svg" alt="cancel">
-                </button>
-                <button type="button" class="create-button yes-delete" onclick="deleteContact(${number})">
-                    <span>Yes</span>
-                    <img src="./img/icons/contacts/check-white.svg" alt="check">
-                </button>
-            </div>
-        </div>
-    `;
+    background.innerHTML = deleteContactHtml(number);
     let window = document.getElementById('deleteContactProof');
     background.classList.remove('hide');
     setTimeout(() => {
@@ -168,6 +102,9 @@ function deleteContactProof(number) {
 }
 
 
+/**
+ * Closes the delete proof window with animations.
+ */
 function closeDeleteProofWindow() {
     let background = document.getElementById('deleteProofWindow');
     let window = document.getElementById('deleteContactProof');
@@ -183,6 +120,12 @@ function closeDeleteProofWindow() {
 }
 
 
+/**
+ * Displays the user entry corresponding to the given number.
+ * @async
+ * @param {number} number - The number representing the user entry.
+ * @returns {Promise<void>} - A promise that resolves when the user entry is displayed.
+ */
 async function showUserEntry(number) {
     entryNumber = number;
     resetContactButton(number);
@@ -191,53 +134,7 @@ async function showUserEntry(number) {
     let user = sessionContacts[number];
     contact.classList.add('contact-data-container-active');
     contact.classList.remove('contact-data-container');
-    container.innerHTML = /*html*/`
-        <img onclick="closeMobileUserEntry()" class="mobile-back-arrow" src="../img/icons/contacts/back-arrow.svg" alt="back-arrow">
-        <div id="userEntry" class="user-entry">
-            <div class="show-contact-large-container">
-                <div class="contact-bg-large"  style="background-color: ${user.color}">
-                    <span class="contact-short-large">${user.initial}</span>
-                </div>
-                <div>
-                    <span class="contact-name-large">${user.name}</span>
-                    <div class="edit-delete-contact">
-                        <div onclick="showEditWindow(${number})" class="edit-contact">
-                            <img src="./img/icons/contacts/pen-black.svg" alt="edit">
-                            <span>Edit</span>
-                        </div>
-                        <div onclick="deleteContactProof(${number})" class="delete-contact">
-                            <img src="./img/icons/contacts/trash-black.svg" alt="trash">
-                            <span>Delete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="info-headline">
-                <span>Contact Information</span>
-            </div>
-            <div class="info-entry-container">
-                <span class="bold">Email</span>
-                <span class="contact-email">${user.email}</span>
-                <span class="bold">Phone</span>
-                <span>${user.phone.replace(/(\d{2})(\d{4})(\d{3})(\d{2})(\d{1})/, `+$1 $2 $3 $4 $5`)}</span>
-            </div>
-        </div>
-        <div onclick="openMobileMenu(); event.stopPropagation();" class="mobile-menu-button-bg">
-            <img class="mobile-menu-button" src="../img/icons/contacts/mobile-menu.svg" alt="mobile-menu">
-        </div>
-        <div onclick="event.stopPropagation()" id="mobileMenu" class="mobile-menu-bg">
-            <div>
-                <div onclick="showEditWindow(${number})" class="mobile-menu-nav-button mobile-menu-nav-button-edit">
-                    <img src="../img/icons/contacts/pen-black.svg" alt="black-pen">
-                    <span>Edit</span>
-                </div>
-                <div onclick="deleteContactProof(${number})" class="mobile-menu-nav-button mobile-menu-nav-button-delete">
-                    <img src="../img/icons/contacts/trash-black.svg" alt="black-trash">
-                    <span>Delete</span>
-                </div>
-            </div>
-        </div>
-        `;
+    container.innerHTML = userEntryHtml(user, number);
     contact.onclick = null;
     setTimeout(() => {
         document.getElementById('userEntry').style.transform = 'translateX(0)';
@@ -253,6 +150,11 @@ async function showUserEntry(number) {
 
 window.addEventListener("resize", showLargeContactsView);
 
+
+/**
+ * Event listener for resizing the window to show large contacts view.
+ * @returns {void}
+ */
 function showLargeContactsView() {
     let contactSection = document.getElementById('contactSection');
     let showContactSection = document.getElementById('showContactSection');
@@ -272,6 +174,10 @@ function showLargeContactsView() {
 }
 
 
+/**
+ * Resets the styling and event listeners of contact buttons except for the one specified.
+ * @param {number} number - The index of the contact button to exclude from reset.
+ */
 function resetContactButton(number) {
     for (let index = 0; index < sessionContacts.length; index++) {
         let contact = document.getElementById(`contact${index}`);
@@ -284,6 +190,9 @@ function resetContactButton(number) {
 }
 
 
+/**
+ * Closes the mobile user entry section and resets contact buttons styling and event listeners.
+ */
 function closeMobileUserEntry() {
     let contactSection = document.getElementById('contactSection');
     let showContactSection = document.getElementById('showContactSection');
@@ -293,6 +202,11 @@ function closeMobileUserEntry() {
 }
 
 
+/**
+ * Resets the appearance and functionality of contact buttons on mobile devices.
+ * Removes active class from contact data containers and adds a click event listener
+ * to each contact button to show user entry.
+ */
 function resetContactButtonMobile() {
     for (let index = 0; index < sessionContacts.length; index++) {
         let contact = document.getElementById(`contact${index}`);
@@ -303,18 +217,32 @@ function resetContactButtonMobile() {
 }
 
 
+/**
+ * Opens the mobile menu by adding 'mobile-menu-active' class to the mobile menu element.
+ */
 function openMobileMenu() {
     const mobileMenu = getElement('mobileMenu');
     if (mobileMenu) addClass(mobileMenu, 'mobile-menu-active');
 }
 
 
+/**
+ * Closes the mobile menu by removing 'mobile-menu-active' class from the mobile menu element.
+ */
 function closeMobileMenu() {
     const mobileMenu = getElement('mobileMenu');
     if (mobileMenu) removeClass(mobileMenu, 'mobile-menu-active');
 }
 
 
+/**
+ * Renders contacts based on the starting letters of their names.
+ * Clears the container, populates it with HTML representing contacts grouped by starting letter,
+ * and adds an option to add new contacts.
+ * @async
+ * @function renderContacts
+ * @returns {Promise<void>} Promise object representing the completion of rendering contacts.
+ */
 async function renderContacts() {
     USER_STARTING_LETTER.length = 0;
     await saveUserStartingLetters();
@@ -322,36 +250,24 @@ async function renderContacts() {
     container.innerHTML = '';
     for (let letter = 0; letter < USER_STARTING_LETTER.length; letter++) {
         let userLetter = USER_STARTING_LETTER[letter];
-        container.innerHTML += /*html*/`
-            <h3 class="contact-letter">${userLetter}</h3>
-            <div class="contact-seperator"></div>
-        `;
+        container.innerHTML += contactSeperatorHtml(userLetter);
         for (let user = 0; user < sessionContacts.length; user++) {
             let contact = sessionContacts[user];
             let firstLetter = contact.name.charAt(0).toUpperCase();
             if (userLetter == firstLetter) {
-                container.innerHTML += /*html*/`
-                    <div onclick="showUserEntry(${user})" id="contact${user}" class="contact-data-container">
-                        <div class="contact-bg" style="background-color: ${contact.color}">
-                            <span class="contact-short">${contact.initial}</span>
-                        </div>
-                        <div class="contact-name-email-container">
-                            <span class="contact-name">${contact.name}</span>
-                            <span class="contact-email">${contact.email}</span>
-                        </div>
-                    </div>
-                `;
+                container.innerHTML += contactHtml(user, contact);
             }
         }
     }
-    container.innerHTML += /*html*/`
-        <div onclick="showAddToContactWindow()" class="mobile-add-contact-button-bg">
-            <img class="mobile-add-contact-button" src="../img/icons/contacts/add-person.svg" alt="mobile-add-button"> 
-        </div>
-    `;
+    container.innerHTML += contactAddHtml();
 }
 
 
+/**
+ * Saves unique starting letters of contact names into the global array USER_STARTING_LETTER.
+ * Sorts the array alphabetically.
+ * @function saveUserStartingLetters
+ */
 function saveUserStartingLetters() {
     for (let u = 0; u < sessionContacts.length; u++) {
         let contact = sessionContacts[u].name
@@ -364,6 +280,12 @@ function saveUserStartingLetters() {
 }
 
 
+/**
+ * Creates a new contact with the provided information and performs necessary actions.
+ * @async
+ * @function createContact
+ * @returns {Promise<void>} - A promise resolved after the contact creation process is complete.
+ */
 async function createContact() {
     let nameInput = document.getElementById('nameCreate').value;
     let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
@@ -398,6 +320,12 @@ async function createContact() {
 }
 
 
+/**
+ * Edits a contact with the provided details.
+ * @async
+ * @param {number} number - The index of the contact in the sessionContacts array.
+ * @returns {Promise<void>} - A Promise that resolves once the operation is complete.
+ */
 async function editContact(number) {
     let nameInput = document.getElementById('nameEdit').value;
     let name = nameInput.split(' ').map((name) => { return name[0].toUpperCase() + name.substring(1) }).join(' ');
@@ -415,6 +343,12 @@ async function editContact(number) {
 }
 
 
+/**
+ * Deletes a contact from the sessionContacts array.
+ * @async
+ * @param {number} number - The index of the contact to be deleted.
+ * @returns {Promise<void>} - A Promise that resolves once the operation is complete.
+ */
 async function deleteContact(number) {
     sessionContacts.splice(number, 1);
     document.getElementById('showUserEntry').innerHTML = '';
