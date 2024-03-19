@@ -28,15 +28,19 @@ function renderRows() {
  * Renders all tasks in the related rows.
  * only tasks that match the filter will be rendered.
  * if filter is empty, all tasks will be rendered.
+ * function returns the number of tasks rendered.
  * 
  * @param {string} [filter=''] - The filter string to apply to the tasks.
+ * @returns {number} - The number of tasks rendered.
  */
 function renderTasks(filter = '') {
     resetAllDropDowns();
     clearRows();
+    let renderedTasks = 0;
     for (let index = 0; index < sessionTasks.length; index++) {
         const task = sessionTasks[index];
         if (ifFilterTask(task, filter)) {
+            renderedTasks++;
             const tasksHTML = `<div id="taskcard_${task.id}">${getTaskHTML(task)}</div>`;
             const tasklist = document.getElementById('tasklist_' + task.status);
             if (tasklist) tasklist.innerHTML += tasksHTML;
@@ -44,6 +48,7 @@ function renderTasks(filter = '') {
         }
     }
     renderEmptyRowMessage();
+    return renderedTasks;
 }
 
 

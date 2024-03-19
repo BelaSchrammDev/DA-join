@@ -51,7 +51,7 @@ div[tasksearchfield] {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 48px;
+    height: var(--editfields_height);
     width: 312px;
     padding-left: 16px;
     background-color: white;
@@ -79,11 +79,11 @@ div[tasksearchfield]>input::placeholder {
     color: #D1D1D1;
 }
 
-div[tasksearchfield]>input:placeholder-shown ~ img[clearsearch] {
+div[tasksearchfield]>input:placeholder-shown~img[clearsearch] {
     display: none;
 }
 
-div[tasksearchfield]>input:not(:placeholder-shown) ~ img[tasksearch] {
+div[tasksearchfield]>input:not(:placeholder-shown)~img[tasksearch] {
     display: none;
 }
 
@@ -421,6 +421,7 @@ div[tasksearchfield]>img:last-child:hover {
         width: unset;
         padding: 0 16px;
         margin-right: 0;
+        margin-bottom: var(--editfields_smallfontsize);
     }
 }
 

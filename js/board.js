@@ -292,7 +292,9 @@ function openMoveMenu(menuID, open) {
  * @param {Event} event 
  */
 function changeTaskSearchTerm(event) {
-    renderTasks(event.target.value);
+    const renderedTasks = renderTasks(event.target.value);
+    if (renderedTasks == 0) addClass('tasksearchfield_div', 'searchfield_not_found');
+    else removeClass('tasksearchfield_div', 'searchfield_not_found');
 }
 
 

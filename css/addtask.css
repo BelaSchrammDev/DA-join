@@ -19,6 +19,20 @@
     padding: 50px;
 }
 
+.searchfield_not_found {
+    position: relative;
+}
+
+.searchfield_not_found::after {
+    position: absolute;
+    top: var(--editfields_height);
+    left: 10px;
+    content: 'No tasks found';
+    color: #ff8190;
+    font-size: var(--editfields_smallfontsize);
+    font-weight: 400;
+}
+
 /* buttonstyle for multiple use */
 .btnAddOk,
 .btnCancel {
@@ -76,8 +90,6 @@
 .btnCancel:active>div>img {
     content: url('../img/icons/add-task/cancel-activ.svg');
 }
-
-
 
 .btnAddOk>img,
 .btnCancel>img {
