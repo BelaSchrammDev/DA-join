@@ -304,6 +304,7 @@ function changeTaskSearchTerm(event) {
 function clickClearTaskSearch() {
     setInputValue('tasksearchfield');
     renderTasks();
+    removeClass('tasksearchfield_div', 'searchfield_not_found');
 }
 
 
