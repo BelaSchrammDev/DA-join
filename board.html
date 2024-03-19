@@ -290,8 +290,18 @@
     <div nolistclose id="delete_task_confirm" class="delete_request_window">
         <span nolistclose>Are you sure you want to delete this task permanently?</span>
         <div nolistclose>
-            <button onclick="deletetask()" class="btnAddOk">OK</button>
-            <button class="btnCancel">Cancel</button>
+            <button class="btnCancel">
+                <div>
+                    <span>Cancel</span>
+                    <img src="./img/icons/contacts/cancel.svg" alt="cancel">
+                </div>
+            </button>
+            <button onclick="deletetask()" class="btnAddOk">
+                <div>
+                    <span>Yes</span>
+                    <img src="./img/icons/contacts/check-white.svg" alt="check">
+                </div>
+            </button>
         </div>
     </div>
 
