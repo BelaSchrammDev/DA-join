@@ -2,7 +2,6 @@ let mobileIntro = true;
 let sortedTasks = [];
 const LAST_PAGE = document.referrer;
 
-console.log(LAST_PAGE);
 
 async function initSummarySite() {
     await initJoin();

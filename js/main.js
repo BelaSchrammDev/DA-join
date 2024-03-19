@@ -12,6 +12,10 @@ const taskCategorys = {
 };
 
 
+let sessionTasks = [];
+let sessionContacts = [];
+
+
 /**
  * Array of colors for the contacts.
  * @type {string[]}

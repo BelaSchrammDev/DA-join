@@ -5,7 +5,6 @@ let entryNumber = undefined;
 async function initContactsSite() {
     await initJoin();
     renderContacts();
-    // renderfunctions
 }
 
 
