@@ -191,6 +191,7 @@ div[tasksearchfield]>img:last-child:hover {
 }
 
 .board_task {
+    cursor: pointer;
     width: 100%;
     height: max-content;
     border-radius: 24px;
