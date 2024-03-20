@@ -106,8 +106,11 @@ function getUrgentAmount() {
 
 
 /**
-* Updates the 'nextDeadline' card with the date of the earliest deadline among the urgent tasks that are not yet done.
-*/
+ * Retrieves and displays the next urgent deadline among session tasks.
+ * @async
+ * @function nextDeadline
+ * @returns {void}
+ */
 async function nextDeadline() {
     sortedTasks = [];
     let card = document.getElementById('nextDeadline');
@@ -118,6 +121,15 @@ async function nextDeadline() {
             sortedTasks.push(sessionTasks[i]);
         }
     }
+    sortTasks(card);
+}
+
+
+/**
+ * Sorts tasks on a card by their date and updates the card content with the earliest task's date.
+ * @param {HTMLElement} card - The HTML element representing the card containing tasks.
+ */
+function sortTasks(card) {
     if (sortedTasks.length) {
         sortedTasks.sort(function (a, b) {
             let oldest = new Date(a.date)
@@ -125,7 +137,6 @@ async function nextDeadline() {
             return oldest - latest;
         });
         let date = new Date(sortedTasks[0].date).toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
-        console.log(date);
         card.innerHTML = date;
     }
 }
@@ -183,6 +194,7 @@ function getUserName() {
 
 window.addEventListener("resize", changeClassesOnWidth);
 
+
 /**
 * Function to change classes based on window width.
 * Gets the elements and changes their classes accordingly.
@@ -194,20 +206,16 @@ function changeClassesOnWidth() {
     let middel = document.getElementById('toTheMiddel');
     let rightSmall = document.getElementById('toTheRightSmall');
     let leftSmall = document.getElementById('toTheLeftSmall');
-    if (window.innerWidth < 601) {
-        right.classList.remove('hover-to-the-right');
-        right.classList.add('active-to-the-right');
-        left.classList.remove('hover-to-the-left');
-        left.classList.add('active-to-the-left');
-        bottom.classList.remove('hover-to-the-bottom-right');
-        bottom.classList.add('active-to-the-bottom-right');
-        middel.classList.remove('hover-to-the-middel');
-        middel.classList.add('active-to-the-middel');
-        rightSmall.classList.remove('hover-to-the-right-small');
-        rightSmall.classList.add('active-to-the-right-small');
-        leftSmall.classList.remove('hover-to-the-left-small');
-        leftSmall.classList.add('active-to-the-left-small');
-    }
+    turnOnMobileSummary(right, left, bottom, middel, rightSmall, leftSmall);
+    turnOnDesktopSummary(right, left, bottom, middel, rightSmall, leftSmall);
+}
+
+
+/**
+ * Turns on the desktop summary layout.
+ * Applies CSS classes to elements based on window width condition.
+ */
+function turnOnDesktopSummary(right, left, bottom, middel, rightSmall, leftSmall) {
     if (window.innerWidth > 600) {
         right.classList.add('hover-to-the-right');
         right.classList.remove('active-to-the-right');
@@ -221,6 +229,28 @@ function changeClassesOnWidth() {
         rightSmall.classList.remove('active-to-the-right-small');
         leftSmall.classList.add('hover-to-the-left-small');
         leftSmall.classList.remove('active-to-the-left-small');
+    }
+}
+
+
+/**
+ * Turns on the mobile summary layout.
+ * Applies CSS classes to elements based on window width condition.
+ */
+function turnOnMobileSummary(right, left, bottom, middel, rightSmall, leftSmall) {
+    if (window.innerWidth < 601) {
+        right.classList.remove('hover-to-the-right');
+        right.classList.add('active-to-the-right');
+        left.classList.remove('hover-to-the-left');
+        left.classList.add('active-to-the-left');
+        bottom.classList.remove('hover-to-the-bottom-right');
+        bottom.classList.add('active-to-the-bottom-right');
+        middel.classList.remove('hover-to-the-middel');
+        middel.classList.add('active-to-the-middel');
+        rightSmall.classList.remove('hover-to-the-right-small');
+        rightSmall.classList.add('active-to-the-right-small');
+        leftSmall.classList.remove('hover-to-the-left-small');
+        leftSmall.classList.add('active-to-the-left-small');
     }
 }
 
