@@ -140,11 +140,16 @@ async function showUserEntry(number) {
         document.getElementById('userEntry').style.transform = 'translateX(0)';
     }, 0);
     if (window.innerWidth <= 1080) {
-        let contactSection = document.getElementById('contactSection');
+        turnOnMobileContacts();
+    }
+}
+
+
+function turnOnMobileContacts() {
+    let contactSection = document.getElementById('contactSection');
         let showContactSection = document.getElementById('showContactSection');
         contactSection.style.display = 'none';
         showContactSection.style.display = 'flex';
-    }
 }
 
 
@@ -281,10 +286,10 @@ function saveUserStartingLetters() {
 
 
 /**
- * Creates a new contact with the provided information and performs necessary actions.
+ * Creates a new contact using input values from the DOM elements.
  * @async
  * @function createContact
- * @returns {Promise<void>} - A promise resolved after the contact creation process is complete.
+ * @returns {Promise<void>} A promise that resolves after creating the contact.
  */
 async function createContact() {
     let nameInput = document.getElementById('nameCreate').value;
@@ -292,6 +297,24 @@ async function createContact() {
     let initial = nameInput.split(' ').map((item) => { return item[0].toUpperCase() }).join('');
     let email = document.getElementById('emailCreate').value;
     let phone = document.getElementById('phoneCreate').value;
+    createContactData(name, initial, email, phone);
+    await renderContacts();
+    showUserEntry(sessionContacts.length - 1);
+    turnOnCreatedMsg();
+    turnOffCreatedMsg();
+    await storeSessionContactsToRemoteStorage();
+    closeAddEditWindow();
+}
+
+
+/**
+ * Creates contact data and adds it to the sessionContacts array.
+ * @param {string} name - The name of the contact.
+ * @param {string} initial - The initial of the contact.
+ * @param {string} email - The email of the contact.
+ * @param {string|number} phone - The phone number of the contact.
+ */
+function createContactData(name, initial, email, phone) {
     let contactData = {
         id: `${createUniqueID('C')}`,
         name: name,
@@ -301,22 +324,36 @@ async function createContact() {
         phone: phone.toString()
     }
     sessionContacts.push(contactData);
-    await renderContacts();
-    showUserEntry(sessionContacts.length - 1);
+}
+
+
+/**
+ * Turns on the created message by applying a transformation.
+ * @function
+ */
+function turnOnCreatedMsg() {
     setTimeout(() => {
         if (window.innerWidth > 1080) {
             document.getElementById('createdMsg').style.transform = 'translateX(0)';
+        } else {
+            document.getElementById('createdMsg').style.transform = 'translateY(0)';
         }
-        document.getElementById('createdMsg').style.transform = 'translateY(0)';
     }, 300);
+}
+
+
+/**
+ * Turns off the created message by applying a transformation.
+ * @function
+ */
+function turnOffCreatedMsg() {
     setTimeout(() => {
         if (window.innerWidth > 1080) {
             document.getElementById('createdMsg').style.transform = 'translateX(1000%)';
+        } else {
+            document.getElementById('createdMsg').style.transform = 'translateY(1000%)';
         }
-        document.getElementById('createdMsg').style.transform = 'translateY(1000%)';
     }, 2000);
-    await storeSessionContactsToRemoteStorage();
-    closeAddEditWindow();
 }
 
 
