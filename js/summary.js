@@ -206,8 +206,8 @@ function changeClassesOnWidth() {
     let middel = document.getElementById('toTheMiddel');
     let rightSmall = document.getElementById('toTheRightSmall');
     let leftSmall = document.getElementById('toTheLeftSmall');
-    turnOnMobileSummary();
-    turnOnDesktopSummary();
+    turnOnMobileSummary(right, left, bottom, middel, rightSmall, leftSmall);
+    turnOnDesktopSummary(right, left, bottom, middel, rightSmall, leftSmall);
 }
 
 
@@ -215,7 +215,7 @@ function changeClassesOnWidth() {
  * Turns on the desktop summary layout.
  * Applies CSS classes to elements based on window width condition.
  */
-function turnOnDesktopSummary() {
+function turnOnDesktopSummary(right, left, bottom, middel, rightSmall, leftSmall) {
     if (window.innerWidth > 600) {
         right.classList.add('hover-to-the-right');
         right.classList.remove('active-to-the-right');
@@ -237,7 +237,7 @@ function turnOnDesktopSummary() {
  * Turns on the mobile summary layout.
  * Applies CSS classes to elements based on window width condition.
  */
-function turnOnMobileSummary() {
+function turnOnMobileSummary(right, left, bottom, middel, rightSmall, leftSmall) {
     if (window.innerWidth < 601) {
         right.classList.remove('hover-to-the-right');
         right.classList.add('active-to-the-right');
