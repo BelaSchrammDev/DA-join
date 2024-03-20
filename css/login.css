@@ -44,6 +44,10 @@ body {
     margin-bottom: var(--joinlogo_topleft);
 }
 
+.policy_notice_div>a:first-child {
+    margin-right: var(--joinlogo_topleft);
+}
+
 .policy_notice_div>a {
     color: #A8A8A8;
     text-decoration: none;
