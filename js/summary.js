@@ -100,7 +100,7 @@ function getDoneAmount() {
 */
 function getUrgentAmount() {
     let card = document.getElementById('urgentAmount');
-    let amount = sessionTasks.filter(sessionTasks => sessionTasks.priority === 'urgent' && sessionTasks.status != 'done').length;
+    let amount = sessionTasks.filter(sessionTasks => sessionTasks.priority === 'urgent').length;
     card.innerHTML = amount;
 }
 
