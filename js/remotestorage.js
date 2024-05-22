@@ -1,6 +1,7 @@
 const STORAGE_TOKEN = "QRFWKZVNK81DEAU7AMO2GVI5JL8YYYMLU187EAAJ";
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 const FB_URL = 'https://da-join-41-default-rtdb.europe-west1.firebasedatabase.app/';
+const USER_GUEST_ID = 'UXXXXXXX';
 
 
 /**
@@ -8,7 +9,7 @@ const FB_URL = 'https://da-join-41-default-rtdb.europe-west1.firebasedatabase.ap
  */
 async function storeSessionTasksToRemoteStorage() {
     sessionStorage.setItem('sessiontasks', JSON.stringify(sessionTasks));
-    if (currentuser.id != 'UXXXXXXX') await setItemFromJson(currentuser.id + 'tasks', sessionTasks);
+    if (currentuser.id != USER_GUEST_ID) await setItemFromJson(currentuser.id + 'tasks', sessionTasks);
 }
 
 
@@ -17,7 +18,7 @@ async function storeSessionTasksToRemoteStorage() {
  */
 async function storeSessionContactsToRemoteStorage() {
     sessionStorage.setItem('sessioncontacts', JSON.stringify(sessionContacts));
-    if (currentuser.id != 'UXXXXXXX') await setItemFromJson(currentuser.id + 'contacts', sessionContacts);
+    if (currentuser.id != USER_GUEST_ID) await setItemFromJson(currentuser.id + 'contacts', sessionContacts);
 }
 
 

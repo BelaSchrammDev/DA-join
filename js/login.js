@@ -1,5 +1,5 @@
 const userGuest = {
-    id: 'UXXXXXXX',
+    id: USER_GUEST_ID,
     name: 'Guest',
     initial: 'G',
     email: 'guest@gmail.com',
