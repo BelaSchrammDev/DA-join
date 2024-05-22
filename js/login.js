@@ -18,7 +18,7 @@ let current_flyID = '';
  * @returns {Promise<string|object>} - A promise that resolves to either a string representing an error code or an object representing the logged-in user.
  */
 async function tryLogin(loginEmail, loginPassword) {
-    const users = await getItemAsJson('users');
+    const users = await loadItemFromFirebase('users');
     if (!users) return 'remote#userarray';
     const user = users.find(u => u.email == loginEmail);
     if (!user) return 'email#unknow';
@@ -39,14 +39,17 @@ async function tryLogin(loginEmail, loginPassword) {
  *    - If the sign-in fails, it returns a string indicating the reason for the failure.
  */
 async function trySignIn(signinName, signinEmail, signinPassword, signinPasswordConfirm) {
-    const users = await getItemAsJson('users');
+    let users = await loadItemFromFirebase('users');
+    // debug ############################################################
+    users = [];
+    // ############################################################
     if (!users) return 'remote#userarray';
     if (users.find(u => u.name == signinName)) return 'name#exists';
     if (users.find(u => u.email == signinEmail)) return 'email#exists';
     if (signinPassword != signinPasswordConfirm) return 'password_confirm#notconfirm';
     const newUser = { id: createUniqueID('U'), name: signinName, email: signinEmail, password: signinPassword };
     users.push(newUser);
-    setItemFromJson('users', users);
+    saveItemToFirebase('users', users);
     return newUser;
 }
 
