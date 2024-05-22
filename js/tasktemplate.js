@@ -10,7 +10,7 @@ function getAssignedContactHTML(contact, prefix) {
     <div nolistclose id="${prefix}assignedContacts_${contact.id}" checked="true">
         <label nolistclose for="${prefix}task_assigned_${contact.id}">
             <span nolistclose style="background-color: ${contact.color};">${contact.initial}</span>
-            <span nolistclose>${contact.name}</span>
+            <span nolistclose>${contact.name}${contact.id == currentuser.id ? ' (you)' : ''}</span>
             <img nolistclose src="../img/icons/add-task/cf-unchecked-black.svg" alt="">
         </label>
         <input nolistclose id="${prefix}task_assigned_${contact.id}" name="task_assigned_${contact.id}" type="checkbox" id="contactsCheckbox_${contact.id}">

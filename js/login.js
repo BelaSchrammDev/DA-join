@@ -40,17 +40,45 @@ async function tryLogin(loginEmail, loginPassword) {
  */
 async function trySignIn(signinName, signinEmail, signinPassword, signinPasswordConfirm) {
     let users = await loadItemFromFirebase('users');
-    // debug ############################################################
-    users = [];
-    // ############################################################
     if (!users) return 'remote#userarray';
     if (users.find(u => u.name == signinName)) return 'name#exists';
     if (users.find(u => u.email == signinEmail)) return 'email#exists';
     if (signinPassword != signinPasswordConfirm) return 'password_confirm#notconfirm';
     const newUser = { id: createUniqueID('U'), name: signinName, email: signinEmail, password: signinPassword };
     users.push(newUser);
-    saveItemToFirebase('users', users);
+    await saveItemToFirebase('users', users);
+    await setupDefaultDataForNewUser(newUser);
     return newUser;
+}
+
+
+/**
+ * Save default tasks and contacts for a new user.
+ * Add the new user to the contacts list.
+ * @param {Object} newUser - The new user object.
+ * @returns {Promise<void>} - A promise that resolves when the data is saved.
+ */
+async function setupDefaultDataForNewUser(newUser) {
+    defaultContacts.unshift(getNewContactFromUser(newUser));
+    await saveItemToFirebase(newUser.id + 'tasks', defaultTasks);
+    await saveItemToFirebase(newUser.id + 'contacts', defaultContacts);
+}
+
+
+/**
+ * Creates a new contact object from newUser object.
+ * @param {Object} newUser - The user object containing the new contact information.
+ * @returns {Object} - The newly created contact object.
+ */
+function getNewContactFromUser(newUser) {
+    return {
+        id: newUser.id,
+        name: newUser.name,
+        initial: newUser.name.split(' ').map((item) => { return item[0].toUpperCase() }).join(''),
+        email: newUser.email,
+        color: hexColors[randomColor()],
+        phone: '',
+    }
 }
 
 
