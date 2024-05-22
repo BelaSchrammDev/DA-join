@@ -138,9 +138,9 @@ function getTaskDescriptionHTML(task) {
 function getMoveTaskMenu(task) {
     let menuPoints = '';
     rowIdName.forEach((row) => {
-        if (task.status != row.id) menuPoints += `
-            <span onclick="setNewStatus('${task.id}','${row.id}'); event.stopPropagation();">${row.name}</span>
-            `;
+        let selectable = `selectable onclick="setNewStatus('${task.id}','${row.id}'); event.stopPropagation();"`;
+        let activRow = 'style="color: #878787;"';
+        menuPoints += `<span ${task.status == row.id ? activRow : selectable}>${row.name}</span>`;
     });
     return `
     <div class="taskmove" title="Move task..."> 

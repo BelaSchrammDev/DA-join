@@ -162,13 +162,17 @@
 }
 
 .taskmove_menu span {
+    cursor: default;
     white-space: nowrap;
     width: fit-content;
-    cursor: pointer;
     width: 100%;
 }
 
-.taskmove_menu span:hover {
+.taskmove_menu span[selectable] {
+    cursor: pointer;
+}
+
+.taskmove_menu span[selectable]:hover {
     background-color: #5b6e88;
 }
 
