@@ -1,5 +1,6 @@
 const STORAGE_TOKEN = "QRFWKZVNK81DEAU7AMO2GVI5JL8YYYMLU187EAAJ";
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+const FB_URL = 'https://da-join-41-default-rtdb.europe-west1.firebasedatabase.app/';
 
 
 /**

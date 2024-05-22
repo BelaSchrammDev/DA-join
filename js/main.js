@@ -166,6 +166,9 @@ async function includeHTML() {
 }
 
 
+/**
+ * Highlights the current page link in the navigation menu.
+ */
 function highlightCurrentPageLink() {
     let currentPage = window.location.pathname.split('/').pop();
     let links = document.querySelectorAll('.nav_list_element');
