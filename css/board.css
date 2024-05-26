@@ -114,20 +114,6 @@ div[tasksearchfield]>img:last-child:hover {
     transition: transform 125ms ease-in-out;
 }
 
-/* REQUEST */
-
-.requestdiv {
-    border-radius: 20px;
-    overflow: hidden;
-    z-index: 11;
-    position: fixed;
-    background-color: white;
-    box-shadow: 0px 0px 4px 0px #00000029;
-    border-radius: 30px;
-    transition: transform 125ms ease-in-out;
-    transform: translateX(120vw);
-}
-
 .board_task_rows {
     display: flex;
     justify-content: flex-start;

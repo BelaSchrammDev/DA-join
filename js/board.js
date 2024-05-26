@@ -86,6 +86,7 @@ function afterAddTask() {
  */
 function showOverlay(windowID) {
     current_flyingwindow_id = windowID;
+    stopScrolling();
     setStyle('board_overlay', 'z-index', '10');
     setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.2)');
     setStyle(windowID, 'transform', `translateX(0)`);
@@ -100,10 +101,21 @@ function closeOverlay() {
         setStyle(current_flyingwindow_id, 'transform', 'translateX(130vw)');
         setStyle('board_overlay', 'background-color', 'rgba(0, 0, 0, 0.0)');
         current_flyingwindow_id = '';
+        allowScrolling();
         setTimeout(() => { setStyle('board_overlay', 'z-index', '-1'); }, 200);
         hideEditTaskMode();
         current_taskID = '';
     }
+}
+
+
+function allowScrolling() {
+    setStyle(document.body, 'overflow-y', 'auto');
+}
+
+
+function stopScrolling() {
+    setStyle(document.body, 'overflow-y', 'hidden');
 }
 
 

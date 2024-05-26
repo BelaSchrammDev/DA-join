@@ -63,7 +63,7 @@
     min-width: var(--task_big_width);
     max-height: 90dvh;
     min-height: 90dvh;
-    overflow-x: hidden;
+    overflow: hidden;
     display: -webkit-box;
     z-index: 11;
     position: fixed;
@@ -166,6 +166,13 @@
     white-space: nowrap;
     width: fit-content;
     width: 100%;
+}
+
+.taskmove_menu span:first-child {
+    text-align: left;
+    border-radius: unset;
+    border-bottom: 1px solid #878787;
+    margin-bottom: 5px;
 }
 
 .taskmove_menu span[selectable] {
