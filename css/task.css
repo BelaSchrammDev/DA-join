@@ -135,26 +135,28 @@
 }
 
 .taskmove_menu {
-    padding: 5px;
+    pointer-events: none;
     position: absolute;
+    opacity: 0;
     right: 0;
-    top: 0px;
+    top: 0;
     border-radius: 10px;
     color: white;
     background-color: #2a3647;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     font-size: var(--task_fontsize);
     transform-origin: right;
     transform: scale(1, 0);
-    transition: transform 125ms ease-in-out,
-        top 100ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .taskmove_menu[dropdownopen=true] {
     transform: scale(1, 1);
-    top: 45px;
+    top: 0px;
+    right: 40px;
+    opacity: 1;
 }
 
 .taskmove_menu[dropdownopen=true] span {
@@ -162,9 +164,9 @@
 }
 
 .taskmove_menu span {
+    height: calc(var(--task_fontsize) + 10px);
     cursor: default;
     white-space: nowrap;
-    width: fit-content;
     width: 100%;
 }
 
@@ -172,7 +174,6 @@
     text-align: left;
     border-radius: unset;
     border-bottom: 1px solid #878787;
-    margin-bottom: 5px;
 }
 
 .taskmove_menu span[selectable] {
@@ -180,7 +181,8 @@
 }
 
 .taskmove_menu span[selectable]:hover {
-    background-color: #5b6e88;
+    color: #29ABE2;
+    /* background-color: #5b6e88; */
 }
 
 .task_big_title {

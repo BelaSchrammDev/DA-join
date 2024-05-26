@@ -140,13 +140,13 @@ function getMoveTaskMenu(task) {
     let menuPoints = `<span onclick="event.stopPropagation();">Move to...</span>`;
     rowIdName.forEach((row) => {
         let selectable = `selectable onclick="setNewStatus('${task.id}','${row.id}'); event.stopPropagation();"`;
-        if (task.status == row.id) menuPoints += `<span ${activRow}>${row.name} (current)</span>`;
+        if (task.status == row.id) menuPoints += `<span ${activRow}>${row.name}</span>`;
         else menuPoints += `<span ${selectable}>${row.name}</span>`;
     });
     return `
     <div class="taskmove"> 
         <img onclick="clickDropDown(event,'taskmove_${task.id}')" src="./img/icons/general/gray/move-up-and-down-arrow.svg">
-        <div dropdownopen=false class="taskmove_menu" id="taskmove_${task.id}">${menuPoints}</div>
+        <div dropdownopen=false  onclick="event.stopPropagation();" class="taskmove_menu" id="taskmove_${task.id}">${menuPoints}</div>
     </div>
     `;
 }
