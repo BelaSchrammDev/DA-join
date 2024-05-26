@@ -13,7 +13,7 @@
 </head>
 
 <body onload="initContactsSite()" class="custom-scrollbar">
-    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
+    <div w3-include-html="./templates/sidebar.html"></div>
     <!--Add new contact window//Start-->
     <section onclick="closeAddEditWindow()" id="addEditContactContainer" class="hide">
         <div onclick="event.stopPropagation()" id="addEditContact" class="add-edit-contact">
@@ -36,7 +36,8 @@
                     <div class="input-container">
                         <input placeholder="Name" class="input-class name-input" type="text" required>
                         <input placeholder="Email" class="input-class email-input" type="email" required>
-                        <input placeholder="Phone (12 Digits)" class="input-class phone-input" type="tel" pattern="[0-9]{12}" minlength="12" maxlength="12" required>
+                        <input placeholder="Phone (12 Digits)" class="input-class phone-input" type="tel"
+                            pattern="[0-9]{12}" minlength="12" maxlength="12" required>
                     </div>
                     <div class="button-container">
                         <button type="button" class="cancel-button">
@@ -72,7 +73,7 @@
         </div>
     </section>
     <!--Delete contact window//End-->
-    <div onclick="closeHeaderMenu()" class="header-main-container">
+    <div class="header-main-container">
         <header w3-include-html="./templates/header.html"></header>
         <main>
             <section id="contactSection" class="contact-container custom-scrollbar">
@@ -107,6 +108,7 @@
             </section>
         </main>
     </div>
+    <script src="./js/dropdown.js"></script>
     <script src="./js/remotestorage.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/contacts_template.js"></script>

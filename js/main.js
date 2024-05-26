@@ -39,21 +39,12 @@ const hexColors = [
 ];
 
 
-/**
- * Closes the header menu by removing the 'show-header-menu' class from the 'headerMenu' element.
- */
-function closeHeaderMenu() {
-    removeClass('headerMenu', 'show-header-menu');
-}
-
-
-/**
- * Toggles the header menu by adding or removing the 'show-header-menu' class from the 'headerMenu' element.
- * If the dropdown is open, it is closed by calling the 'closeDropDown' function.
- */
-function toggleHeaderMenu() {
-    if (typeof closeDropDown !== 'undefined') closeDropDown();
-    toggleClass('headerMenu', 'show-header-menu');
+function openHeaderMenu(id, open) {
+    if (open) {
+        addClass('headerMenu', 'show-header-menu');
+    } else {
+        removeClass('headerMenu', 'show-header-menu');
+    }
 }
 
 
@@ -102,6 +93,7 @@ async function initJoin() {
     highlightCurrentPageLink();
     setInitialSpan();
     await loadSessionDataFromSessionStorage();
+    addDropDown('header_dropdown', openHeaderMenu, 'headermenu');
 }
 
 

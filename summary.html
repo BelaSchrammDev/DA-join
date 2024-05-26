@@ -13,8 +13,8 @@
 </head>
 
 <body onload="initSummarySite()" class="custom-scrollbar">
-    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
-    <div onclick="closeHeaderMenu()" class="header-main-container">
+    <div w3-include-html="./templates/sidebar.html"></div>
+    <div class="header-main-container">
         <header w3-include-html="./templates/header.html"></header>
         <main>
             <section class="summary-headline-container">
@@ -94,6 +94,7 @@
             </section>
         </main>
     </div>
+    <script src="./js/dropdown.js"></script>
     <script src="./js/remotestorage.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/summary.js"></script>

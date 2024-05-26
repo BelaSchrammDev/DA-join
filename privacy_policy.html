@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/logo/favicon.png" type="image/x-icon">
     <script src="./js/main.js"></script>
+    <script src="./js/dropdown.js"></script>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/media_queries.css">
@@ -14,8 +15,8 @@
 </head>
 
 <body onload="initLegalNoticePrivacyPolicy()">
-    <div onclick="closeHeaderMenu()" w3-include-html="./templates/sidebar.html"></div>
-    <div onclick="closeHeaderMenu()" class="header.main-container">
+    <div w3-include-html="./templates/sidebar.html"></div>
+    <div class="header.main-container">
         <header w3-include-html="./templates/header.html"></header>
         <div id="legalNoticeTemplate" class="legal_notice">
             <div class="headline">

@@ -4,11 +4,13 @@
  */
 let currentOpenDropDown = null;
 
+
 /**
  * Represents a list of dropdowns.
  * @type {Array}
  */
 let dropdowns = [];
+
 
 /**
  * The click event handler function when a dropdown is open.
@@ -16,11 +18,13 @@ let dropdowns = [];
  */
 const clickFunction = function (event) { clickWhenDropDownOpen(event); };
 
+
 /**
  * The list of elements that trigger the close event.
  * @type {Array}
  */
 const closeEventElements = ['body', 'addtask_template', 'task_big_edit', 'addtask_overlay', 'task_big'];
+
 
 /**
  * Adds a dropdown to the dropdown list.
@@ -35,6 +39,7 @@ function addDropDown(listID, openFunc, formID) {
     dropdowns.push(newDropDown);
 }
 
+
 /**
  * Resets all the dropdowns by closing them.
  */
@@ -42,6 +47,7 @@ function resetAllDropDowns() {
     closeDropDown();
     dropdowns.forEach(l => l.open == false);
 }
+
 
 /**
  * Removes a dropdown from the dropdown list.
@@ -52,6 +58,7 @@ function removeDropDown(listID) {
     if (dropdownIndex == -1) return;
     dropdowns.splice(dropdownIndex, 1);
 }
+
 
 /**
  * Sets up the close event elements by adding click event listeners to them.
@@ -64,6 +71,7 @@ function setCloseEventElements() {
     }
 }
 
+
 /**
  * Unsets the close event elements by removing click event listeners from them.
  */
@@ -75,6 +83,7 @@ function unsetCloseEventElements() {
     }
 }
 
+
 /**
  * Handles the click event when a dropdown is open.
  * @param {Event} event - The click event object.
@@ -85,6 +94,7 @@ function clickWhenDropDownOpen(event) {
     closeDropDown();
 }
 
+
 /**
  * Handles the click event when a dropdown is toggled.
  * @param {Event} event - The click event object.
@@ -93,12 +103,11 @@ function clickWhenDropDownOpen(event) {
 function clickDropDown(event, listID) {
     event.stopPropagation();
     let dropDown = dropdowns.find(d => d.id == listID);
-    if (dropDown == currentOpenDropDown) closeDropDown();
-    else {
-        closeDropDown();
-        openDropDown(listID);
-    }
+    const otherDropDown = dropDown != currentOpenDropDown;
+    closeDropDown();
+    if (otherDropDown) openDropDown(listID);
 }
+
 
 /**
  * Opens a dropdown.
@@ -114,6 +123,7 @@ function openDropDown(listID) {
     currentOpenDropDown.openFunction(currentOpenDropDown.formid, true);
     currentOpenDropDown.open = true;
 }
+
 
 /**
  * Closes the currently open dropdown.
