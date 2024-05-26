@@ -179,6 +179,13 @@
     transition: border 100ms ease-in-out;
 }
 
+.addtask_property>input[type="date"] {
+    display: block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .addtask_property>input,
 .addtask_property>div>input,
 .addtask_property>textarea {
