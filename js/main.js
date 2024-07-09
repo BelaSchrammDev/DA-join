@@ -93,7 +93,6 @@ async function initJoin() {
     highlightCurrentPageLink();
     setInitialSpan();
     await loadSessionDataFromSessionStorage();
-    addDropDown('header_dropdown', openHeaderMenu, 'headermenu');
 }
 
 
@@ -131,7 +130,10 @@ async function initLegalNoticePrivacyPolicy() {
 function setInitialSpan() {
     if (currentuser) {
         const initialSpan = getElement('currentuser-initial');
-        if (initialSpan) setInnerHTML(initialSpan, currentuser.initial);
+        if (initialSpan) {
+            setInnerHTML(initialSpan, currentuser.initial);
+            addDropDown('header_dropdown', openHeaderMenu, 'headermenu');
+        }
     } else {
         setStyle('current_user_badge', 'display', 'none');
     }
